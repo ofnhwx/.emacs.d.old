@@ -1,7 +1,7 @@
 ;;; init.el --- load this file at first when emacs was started.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2016/06/05 22:44:37>
+;; Last updated: <2016/06/05 23:44:10>
 ;;
 
 ;;; Commentary:
@@ -266,6 +266,9 @@
   :ensure t
   :config
   (smartparens-global-mode t))
+
+(use-package "sunrise-commander"
+  :load-path "lisp/sunrise-commander")
 
 (use-package "tempbuf"
   :config

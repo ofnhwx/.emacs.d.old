@@ -2,7 +2,7 @@
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
 
-;; Last updated: <2016/06/05 22:29:41>
+;; Last updated: <2016/06/05 23:45:04>
 ;;
 
 ;;; Commentary:
@@ -190,7 +190,8 @@
     (unless (member major-mode linum-ignore-mode-list)
       ad-do-it))
   ;; 行番号非表示にするモード
-  (cl-pushnew 'eww-mode linum-ignore-mode-list))
+  (cl-pushnew 'eww-mode linum-ignore-mode-list)
+  (cl-pushnew 'sr-mode  linum-ignore-mode-list))
 
 ;; for:`server'
 (when (e:require 'server t)
