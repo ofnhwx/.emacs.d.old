@@ -1,7 +1,7 @@
 ;;; init.el --- load this file at first when emacs was started.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2016/06/05 22:22:17>
+;; Last updated: <2016/06/05 22:44:37>
 ;;
 
 ;;; Commentary:
@@ -339,6 +339,12 @@
   :config
   (use-package "menu-bar+"
     :ensure t))
+
+(use-package "minimap"
+  :ensure t
+  :config
+  (custom-set-variables
+   '(minimap-window-location 'right)))
 
 (use-package "recentf"
   :config
