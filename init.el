@@ -1,7 +1,7 @@
 ;;; init.el --- load this file at first when emacs was started.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2016/06/05 16:30:51>
+;; Last updated: <2016/06/05 22:15:33>
 ;;
 
 ;;; Commentary:
@@ -162,28 +162,29 @@
 (use-package "guide-key"
   :ensure t
   :config
-  '(guide-key/guide-key-sequence
-    '( ;; `multiple-cursors'
-      "C-t"
-      ;; ウィンドウ関連
-      "C-x 4"
-      ;; フレーム関連
-      "C-x 5"
-      ;; `two-column'
-      "C-x 6"
-      ;; 特殊文字
-      "C-x 8" "C-x 8 \"" "C-x 8 '" "C-x 8 *" "C-x 8 ," "C-x 8 1"
-      "C-x 8 3" "C-x 8 /" "C-x 8 ^" "C-x 8 ~" "C-x 8 _"
-      ;; `abbrev'
-      "C-x a"
-      ;; レジスタ・矩型選択
-      "C-x r"
-      ;; 修飾子
-      "C-x @"
-      ;; 文字コード
-      "C-x <RET>"))
-  '(guide-key/popup-window-position 'right)
-  '(guide-key-mode t))
+  (custom-set-vaRiables
+   '(guide-key/guide-key-sequence
+     '( ;; `multiple-cursors'
+       "C-t"
+       ;; ウィンドウ関連
+       "C-x 4"
+       ;; フレーム関連
+       "C-x 5"
+       ;; `two-column'
+       "C-x 6"
+       ;; 特殊文字
+       "C-x 8" "C-x 8 \"" "C-x 8 '" "C-x 8 *" "C-x 8 ," "C-x 8 1"
+       "C-x 8 3" "C-x 8 /" "C-x 8 ^" "C-x 8 ~" "C-x 8 _"
+       ;; `abbrev'
+       "C-x a"
+       ;; レジスタ・矩型選択
+       "C-x r"
+       ;; 修飾子
+       "C-x @"
+       ;; 文字コード
+       "C-x <RET>"))
+   '(guide-key/popup-window-position 'right)
+   '(guide-key-mode t)))
 
 (use-package "helm"
   :ensure t
