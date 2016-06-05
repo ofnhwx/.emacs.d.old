@@ -1,0 +1,9 @@
+[user]
+	name = Yuta Fujita
+	email = ofnhwx@komunan.net
+[color]
+	ui = auto
+	status = auto
+	branch = auto
+[core]
+	editor = vim -c \"set fenc=utf-8\"

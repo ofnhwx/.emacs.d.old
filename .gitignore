@@ -1,0 +1,20 @@
+# 全てのファイルを無視する
+# ドットから始まる設定ファイルも無視する
+/*
+/.*
+
+# 無視したくないファイルを以下に'![ファイル名]'で指定する
+##### Gitで管理するファイル #####
+!/lisp
+!/.gitconfig
+!/.gitignore
+!/init-config.el
+!/init-enhance.el
+!/init-keybind.el
+!/init-setup.el
+!/init.el
+!/README.md
+
+# 上記で指定したファイルで無視したいものを指定する
+##### Gitで無視するファイル #####
+/lisp/.DS_Store
