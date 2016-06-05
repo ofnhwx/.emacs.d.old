@@ -1,7 +1,7 @@
 ;;; init.el --- load this file at first when emacs was started.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2016/06/05 22:15:33>
+;; Last updated: <2016/06/05 22:22:17>
 ;;
 
 ;;; Commentary:
@@ -162,7 +162,7 @@
 (use-package "guide-key"
   :ensure t
   :config
-  (custom-set-vaRiables
+  (custom-set-variables
    '(guide-key/guide-key-sequence
      '( ;; `multiple-cursors'
        "C-t"
