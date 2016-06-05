@@ -2,7 +2,7 @@
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
 
-;; Last updated: <2016/06/05 16:26:49>
+;; Last updated: <2016/06/05 22:29:41>
 ;;
 
 ;;; Commentary:
@@ -99,6 +99,10 @@
    '(eshell-prompt-function
      (lambda () (concat "[" (e:unexpand (eshell/pwd)) "]\n" (if (zerop (user-uid)) "# " "$ "))))
    '(eshell-prompt-regexp "^[^#$]*[#$] ")))
+
+;; for:`generic-x'
+(when (e:require 'generic-x)
+  )
 
 ;; for:`recentf'
 (when (e:require 'recentf t)
