@@ -1,7 +1,7 @@
 ;;; init.el --- load this file at first when emacs was started.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2016/06/05 23:44:10>
+;; Last updated: <2016/06/06 14:46:36>
 ;;
 
 ;;; Commentary:
@@ -115,15 +115,15 @@
      '(ac-php-tags-path (e:expand "ac-php" :conf)))
     (defun add-company-php-backends ()
       (add-company-backends '(company-ac-php-backend)))
-    (eval-after-load "php-mode"
+    (with-eval-after-load "php-mode"
       (add-hook 'php-mode-hook 'add-company-php-backends))
-    (eval-after-load "web-mode"
+    (with-eval-after-load "web-mode"
       (add-hook 'web-mode-hook 'add-company-php-backends)))
   ;; WEB補完
   (when (e:require-package 'company-web t t)
     (defun add-company-web-backends ()
       (add-company-backends '(company-web-html)))
-    (eval-after-load "web-mode"
+    (with-eval-after-load "web-mode"
       (add-hook 'web-mode-hook 'add-company-web-backends)))
   ;; 全バッファで有効化
   (global-company-mode))
@@ -142,7 +142,7 @@
   :config
   (custom-set-variables
    '(global-flycheck-mode t))
-  (eval-after-load "web-mode"
+  (with-eval-after-load "web-mode"
     (flycheck-add-mode 'php 'web-mode)))
 
 (use-package "free-keys"
@@ -193,10 +193,10 @@
     :ensure t)
   (use-package "helm-descbinds"
     :ensure t)
-  (eval-after-load "ag"
+  (with-eval-after-load "ag"
     (use-package "helm-ag"
       :ensure t))
-  (eval-after-load "yasnippet"
+  (with-eval-after-load "yasnippet"
     (use-package "helm-c-yasnippet"
       :ensure t)))
 
