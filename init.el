@@ -1,7 +1,7 @@
 ;;; init.el --- load this file at first when emacs was started.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2016/06/06 14:46:36>
+;; Last updated: <2016/06/07 13:38:50>
 ;;
 
 ;;; Commentary:
@@ -389,7 +389,19 @@
 
 (use-package "web-mode"
   :ensure t
-  :mode (("\\.php\\'" . web-mode)))
+  :mode (("\\.php\\'" . web-mode))
+  :config
+  (custom-set-variables
+   ;; offset
+   '(web-mode-markup-indent-offset 2)
+   '(web-mode-css-indent-offset    2)
+   '(web-mode-code-indent-offset   2)
+   '(web-mode-attr-indent-offset   2)
+   ;; padding
+   '(web-mode-style-padding  1)
+   '(web-mode-script-padding 1)
+   '(web-mode-block-padding  0)
+   ))
 
 ;; キーバインドの設定
 
