@@ -1,7 +1,7 @@
 ﻿;;; init-enhance.el --- 環境回りの設定.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2016/06/05 10:07:31>
+;; Last updated: <2016/06/09 17:39:52>
 ;;
 
 ;;; Commentary:
@@ -84,6 +84,7 @@
  '(inhibit-startup-screen t)    ;; スタートアップの画面を表示しない
  '(resize-mini-windows    t)    ;; ミニバッファ拡大防止
  '(mouse-drag-copy-region nil)  ;; 選択範囲を勝手にコピーしない
+ '(create-lockfiles       nil)  ;; lockfileを作成しない
  ;; -------------------------------------------------------------------- ;;
  )
 
