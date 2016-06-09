@@ -1,7 +1,7 @@
 ;;; init.el --- load this file at first when emacs was started.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2016/06/07 13:38:50>
+;; Last updated: <2016/06/09 16:33:08>
 ;;
 
 ;;; Commentary:
@@ -196,6 +196,9 @@
   (with-eval-after-load "ag"
     (use-package "helm-ag"
       :ensure t))
+  (with-eval-after-load "projectile"
+    (use-package "helm-projectile"
+      :ensure t))
   (with-eval-after-load "yasnippet"
     (use-package "helm-c-yasnippet"
       :ensure t)))
@@ -261,6 +264,9 @@
   :ensure t
   :config
   (powerline-default-theme))
+
+(use-package "projectile"
+  :ensure t)
 
 (use-package "smartparens"
   :ensure t

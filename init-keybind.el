@@ -2,7 +2,7 @@
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
 
-;; Last updated: <2016/06/05 17:24:33>
+;; Last updated: <2016/06/09 16:48:20>
 ;;
 
 ;;; Commentary:
@@ -63,7 +63,19 @@
     (with-eval-after-load "helm-ag"
       (bind-keys ("M-g ," . helm-ag-pop-stack)
                  ("M-g ." . helm-ag)
-                 ("M-g /" . helm-ag-this-file))))
+                 ("M-g /" . helm-ag-this-file)))
+    ;; for::`helm-projectile'
+    (with-eval-after-load "helm-projectile"
+      (defun helm-find-files-with-projectile (&optional arg)
+        (interactive "P")
+        (if (projectile-project-p)
+            (helm-projectile-find-file arg)
+          (helm-find-files arg)))
+      (bind-keys :map ctl-x-map
+                 ("C-f" . helm-find-files-with-projectile))))
+  (with-eval-after-load "ido"
+    (bind-keys :map ctl-x-map
+               ("f" . ido-find-file)))
   ;; for:`lacarte'
   (with-eval-after-load "lacarte"
     (bind-keys ("M-X" . lacarte-execute-command)))
