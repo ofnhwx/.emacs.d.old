@@ -1,7 +1,7 @@
 ﻿;;; init-enhance.el --- 環境回りの設定.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2016/06/10 13:28:01>
+;; Last updated: <2016/06/10 15:17:08>
 ;;
 
 ;;; Commentary:
@@ -86,6 +86,7 @@
  '(mouse-drag-copy-region nil)  ;; 選択範囲を勝手にコピーしない
  '(create-lockfiles       nil)  ;; lockfileを作成しない
  '(require-final-newline  nil)  ;; 勝手に改行を追加しない
+ '(mode-require-final-newline nil)
  ;; -------------------------------------------------------------------- ;;
  )
 
