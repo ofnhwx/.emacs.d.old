@@ -2,7 +2,7 @@
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
 
-;; Last updated: <2016/06/10 14:57:23>
+;; Last updated: <2016/06/14 09:24:23>
 ;;
 
 ;;; Commentary:
@@ -90,6 +90,13 @@
     ;; for:`ac-php'
     (with-eval-after-load "ac-php"
       (bind-keys :map php-mode-map
+                 ("C-]" . ac-php-find-symbol-at-point)
+                 ("C-}" . ac-php-location-stack-back))))
+  ;; for:`web-mode'
+  (with-eval-after-load "web-mode"
+    ;; for:`ac-php'
+    (with-eval-after-load "ac-php"
+      (bind-keys :map web-mode-map
                  ("C-]" . ac-php-find-symbol-at-point)
                  ("C-}" . ac-php-location-stack-back))))
   ;; for:`whitespace'

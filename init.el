@@ -1,7 +1,7 @@
 ;;; init.el --- load this file at first when emacs was started.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2016/06/09 16:33:08>
+;; Last updated: <2016/06/14 09:30:08>
 ;;
 
 ;;; Commentary:
@@ -414,6 +414,24 @@
 (let* ((default-directory user-emacs-directory)
        (keybind (expand-file-name "init-keybind")))
   (require 'init-keybind keybind t))
+
+;; [2016-06-14] - とりあえず`ac-php'を`web-mode'でも動くように
+(defun company-ac-php-backend (command &optional arg &rest ignored)
+  (interactive (list 'interactive))
+  (case command
+    (interactive (company-begin-backend 'company-ac-php-backend))
+    (prefix (and (or (eq major-mode 'php-mode)
+                     (eq major-mode 'web-mode))
+                 (company-ac-php--prefix)))
+    (candidates (company-ac-php-candidate arg))
+    (annotation (company-ac-php-annotation arg))
+    (duplicates t)
+    (post-completion
+     (let((doc))
+       (when (ac-php--tag-name-is-function arg)
+         (setq doc (ac-php-clean-document (get-text-property 0 'ac-php-help arg)))
+         (insert (concat doc ")"))
+         (company-template-c-like-templatify (concat arg doc ")")))))))
 
 (provide 'init)
 ;;; init.el ends here
