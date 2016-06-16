@@ -1,7 +1,7 @@
 ;;; init.el --- load this file at first when emacs was started.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2016/06/14 09:30:08>
+;; Last updated: <2016/06/16 12:47:44>
 ;;
 
 ;;; Commentary:
@@ -133,6 +133,16 @@
   :config
   (custom-set-variables
    '(edbi:ds-history-file (e:expand ".edbi-ds-history" :conf))))
+
+(use-package "emmet-mode"
+  :ensure t
+  :config
+  (with-eval-after-load "php-mode"
+    (add-hook 'php-mode-hook 'emmet-mode))
+  (with-eval-after-load "web-mode"
+    (add-hook 'web-mode-hook 'emmet-mode))
+  (custom-set-variables
+   '(emmet-indentation 2)))
 
 (use-package "expand-region"
   :ensure t)
