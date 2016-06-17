@@ -1,7 +1,7 @@
 ;;; init-enhance.el --- 個人設定用の拡張機能.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2016/06/05 09:47:35>
+;; Last updated: <2016/06/17 12:01:02>
 ;;
 
 ;;; Commentary:

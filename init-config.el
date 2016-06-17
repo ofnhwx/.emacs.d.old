@@ -1,7 +1,7 @@
-﻿;;; init-enhance.el --- 環境回りの設定.
+;;; init-enhance.el --- 環境回りの設定.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2016/06/17 11:59:15>
+;; Last updated: <2016/06/17 12:00:42>
 ;;
 
 ;;; Commentary:

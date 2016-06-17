@@ -1,8 +1,8 @@
-﻿;;; init-keybind.el --- キーバインド.
+;;; init-keybind.el --- キーバインド.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
 
-;; Last updated: <2016/06/14 09:24:23>
+;; Last updated: <2016/06/17 12:01:20>
 ;;
 
 ;;; Commentary:

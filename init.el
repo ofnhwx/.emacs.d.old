@@ -1,7 +1,7 @@
 ;;; init.el --- load this file at first when emacs was started.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2016/06/17 11:51:03>
+;; Last updated: <2016/06/17 12:01:44>
 ;;
 
 ;;; Commentary:

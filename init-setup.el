@@ -1,8 +1,8 @@
-﻿;;; init-setup.el --- 標準Lispでの設定.
+;;; init-setup.el --- 標準Lispでの設定.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
 
-;; Last updated: <2016/06/05 23:45:04>
+;; Last updated: <2016/06/17 12:01:31>
 ;;
 
 ;;; Commentary:
