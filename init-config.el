@@ -1,7 +1,7 @@
 ﻿;;; init-enhance.el --- 環境回りの設定.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2016/06/10 15:17:08>
+;; Last updated: <2016/06/17 11:59:15>
 ;;
 
 ;;; Commentary:
@@ -67,7 +67,6 @@
  '(message-log-max     100000)  ;;
  '(blink-cursor-mode      nil)  ;; カーソルを点滅しない
  '(indent-tabs-mode       nil)  ;; インデントは空白
- '(visual-line-mode       t)    ;;
  '(tab-width              4)    ;; タブ幅は 4
  '(truncate-lines         t)    ;; 折り返さない
  '(column-number-mode     t)    ;; 列番号を表示
