@@ -1,7 +1,7 @@
 ;;; init.el --- load this file at first when emacs was started.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2016/06/16 12:47:44>
+;; Last updated: <2016/06/17 11:51:03>
 ;;
 
 ;;; Commentary:
@@ -66,6 +66,7 @@
 
 (use-package "anzu"
   :ensure t
+  :diminish anzu-mode
   :config
   (custom-set-variables
    '(global-anzu-mode 1)))
@@ -95,6 +96,7 @@
 
 (use-package "company"
   :ensure t
+  :diminish company-mode
   :config
   (custom-set-variables
    ;; 補完候補をすぐに表示
@@ -161,16 +163,19 @@
 (use-package "git-gutter-fringe"
   :if window-system
   :ensure t
+  :diminish git-gutter-mode
   :config
   (global-git-gutter-mode))
 (use-package "git-gutter"
   :if (not window-system)
   :ensure t
+  :diminish git-gutter-mode
   :config
   (global-git-gutter-mode))
 
 (use-package "guide-key"
   :ensure t
+  :diminish guide-key-mode
   :config
   (custom-set-variables
    '(guide-key/guide-key-sequence
@@ -280,6 +285,7 @@
 
 (use-package "smartparens"
   :ensure t
+  :diminish smartparens-mode
   :config
   (smartparens-global-mode t))
 
@@ -294,6 +300,7 @@
 
 (use-package "undo-tree"
   :ensure t
+  :diminish undo-tree-mode
   :config
   (global-undo-tree-mode))
 
@@ -312,6 +319,7 @@
     :ensure t))
 
 (use-package "eldoc"
+  :diminish eldoc-mode
   :config
   (use-package "eldoc-extension"
     :ensure t))
@@ -369,6 +377,9 @@
   :config
   (use-package "recentf-ext"
     :ensure t))
+
+(use-package "whitespace"
+  :diminish global-whitespace-mode)
 
 ;; モード関連の設定
 
