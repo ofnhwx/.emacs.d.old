@@ -1,7 +1,7 @@
 ;;; init.el --- load this file at first when emacs was started.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2016/06/17 12:01:44>
+;; Last updated: <2016/06/21 14:09:30>
 ;;
 
 ;;; Commentary:
@@ -286,6 +286,24 @@
 (use-package "psysh"
   :if (executable-find "psysh")
   :ensure t)
+
+;; `skk-user-directory'の設定は事前に行う必要あり
+(let ((dir (e:expand "ddskk" :conf)))
+  (custom-set-variables
+   `(skk-user-directory ,dir))
+  (unless (f-exists? dir)
+    (make-directory dir t)))
+(use-package "skk"
+  :ensure ddskk
+  :config
+  (custom-set-variables
+   '(skk-init-file (e:expand "init-skk.el" :user))
+   '(skk-get-jisyo-direcroty (e:expand "ddskk/dic" :conf)))
+  (unless (f-exists? skk-get-jisyo-direcroty)
+    (make-directory skk-get-jisyo-direcroty t)
+    (skk-get skk-get-jisyo-direcroty))
+  (load skk-init-file t)
+  (require 'skk-study))
 
 (use-package "smartparens"
   :ensure t

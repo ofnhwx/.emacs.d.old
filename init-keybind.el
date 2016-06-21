@@ -92,6 +92,9 @@
       (bind-keys :map php-mode-map
                  ("C-]" . ac-php-find-symbol-at-point)
                  ("C-}" . ac-php-location-stack-back))))
+  ;; for:`skk'
+  (with-eval-after-load "skk"
+    (bind-keys ("C-\¥" . skk-mode)))
   ;; for:`web-mode'
   (with-eval-after-load "web-mode"
     ;; for:`ac-php'
