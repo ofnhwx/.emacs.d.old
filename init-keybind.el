@@ -2,7 +2,7 @@
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
 
-;; Last updated: <2016/06/17 12:01:20>
+;; Last updated: <2016/06/20 14:41:53>
 ;;
 
 ;;; Commentary:
@@ -16,6 +16,7 @@
              ("f" . find-file))
   (bind-keys :map mode-specific-map
              ("i" . imenu)
+             ("t" . toggle-truncate-lines)
              ("z" . eshell))
   ;; for:`mac'
   (when (os-type-mac-p)
