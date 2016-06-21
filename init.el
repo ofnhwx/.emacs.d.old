@@ -1,7 +1,7 @@
 ;;; init.el --- load this file at first when emacs was started.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2016/06/21 14:09:30>
+;; Last updated: <2016/06/21 23:28:55>
 ;;
 
 ;;; Commentary:
@@ -135,6 +135,11 @@
   :config
   (custom-set-variables
    '(edbi:ds-history-file (e:expand ".edbi-ds-history" :conf))))
+
+(use-package "editorconfig"
+  :ensure t
+  :config
+  (editorconfig-mode))
 
 (use-package "emmet-mode"
   :ensure t
