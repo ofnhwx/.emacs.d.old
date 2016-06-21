@@ -1,7 +1,7 @@
 ;;; init.el --- load this file at first when emacs was started.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2016/06/21 23:28:55>
+;; Last updated: <2016/06/22 00:09:02>
 ;;
 
 ;;; Commentary:
@@ -178,34 +178,6 @@
   :config
   (global-git-gutter-mode))
 
-(use-package "guide-key"
-  :ensure t
-  :diminish guide-key-mode
-  :config
-  (custom-set-variables
-   '(guide-key/guide-key-sequence
-     '( ;; `multiple-cursors'
-       "C-t"
-       ;; ウィンドウ関連
-       "C-x 4"
-       ;; フレーム関連
-       "C-x 5"
-       ;; `two-column'
-       "C-x 6"
-       ;; 特殊文字
-       "C-x 8" "C-x 8 \"" "C-x 8 '" "C-x 8 *" "C-x 8 ," "C-x 8 1"
-       "C-x 8 3" "C-x 8 /" "C-x 8 ^" "C-x 8 ~" "C-x 8 _"
-       ;; `abbrev'
-       "C-x a"
-       ;; レジスタ・矩型選択
-       "C-x r"
-       ;; 修飾子
-       "C-x @"
-       ;; 文字コード
-       "C-x <RET>"))
-   '(guide-key/popup-window-position 'right)
-   '(guide-key-mode t)))
-
 (use-package "helm"
   :ensure t
   :config
@@ -330,6 +302,12 @@
   :diminish undo-tree-mode
   :config
   (global-undo-tree-mode))
+
+(use-package "which-key"
+  :ensure t
+  :config
+  (which-key-setup-side-window-right-bottom)
+  (which-key-mode))
 
 (use-package "yasnippet"
   :ensure t
