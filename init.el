@@ -283,6 +283,10 @@
 (use-package "projectile"
   :ensure t)
 
+(use-package "psysh"
+  :if (executable-find "psysh")
+  :ensure t)
+
 (use-package "smartparens"
   :ensure t
   :diminish smartparens-mode
