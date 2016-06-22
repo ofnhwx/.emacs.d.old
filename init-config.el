@@ -1,7 +1,7 @@
 ;;; init-enhance.el --- 環境回りの設定.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2016/06/17 12:00:42>
+;; Last updated: <2016/06/22 11:58:07>
 ;;
 
 ;;; Commentary:
@@ -130,11 +130,38 @@
  '(company-preview-common           ((t (:foreground "lightgrey" :background nil :underline t))))
  '(company-scrollbar-fg             ((t (:background "orange"))))
  '(company-scrollbar-bg             ((t (:background "gray40"))))
+ ;; for:`dired'
+ '(diredp-dir-heading            ((t (:foreground "#ff0000" :background nil))))
+ '(diredp-dir-priv               ((t (:foreground "#ffff00" :backtround nil))))
+ '(diredp-dir-name               ((t (:foreground "#ffff00" :background nil))))
+ '(diredp-file-name              ((t (:foreground "#ffffff" :background nil))))
+ '(diredp-file-suffix            ((t (:foreground "#ffffff" :background nil))))
+ '(diredp-compressed-file-name   ((t (:foreground "#ff00ff" :background nil))))
+ '(diredp-compressed-file-suffix ((t (:foreground "#ff00ff" :background nil))))
+ '(diredp-ignored-file-name      ((t (:foreground "#a0a0a0" :background nil))))
+ '(diredp-link-priv              ((t (:foreground "#80ffff" :background nil))))
+ '(diredp-symlink                ((t (:foreground "#80ffff" :background nil))))
+ '(diredp-number                 ((t (:foreground "#ffff80" :background nil))))
+ '(diredp-date-time              ((t (:foreground "#8080ff" :background nil))))
+ '(diredp-deletion               ((t (:foreground "#ffff00" :background "#ff0000"))))
+ '(diredp-deletion-file-name     ((t (:foreground "#ffffff" :background "#800000"))))
+ '(diredp-flag-mark              ((t (:foreground "#0000ff" :background "#80ff80"))))
+ '(diredp-flag-mark-line         ((t (:foreground "#ffffff" :background "#008000"))))
+ '(diredp-rare-priv              ((t (:foreground "#000000" :background "#ff0000"))))
+ '(diredp-read-priv              ((t (:foreground "#ffcccc" :background nil))))
+ '(diredp-write-priv             ((t (:foreground "#ccffcc" :background nil))))
+ '(diredp-exec-priv              ((t (:foreground "#ccccff" :background nil))))
+ '(diredp-other-priv             ((t (:foreground "#a0a0a0" :background nil))))
+ '(diredp-no-priv                ((t (:foreground "#a0a0a0" :background nil))))
  ;; for:`powerline'
  '(powerline-active1   ((t (:foreground "#ffffff" :background "#b00000"))))
  '(powerline-active2   ((t (:foreground "#ffffff" :background "#800000"))))
  '(powerline-inactive1 ((t (:foreground "#ffffff" :background "#404040"))))
  '(powerline-inactive2 ((t (:foreground "#ffffff" :background "#808080"))))
+ ;; for:`sunrise'
+ '(sr-active-path-face    ((t (:foreground "#000000" :background "#ff0000"))))
+ '(sr-highlight-path-face ((t (:foreground "#000000" :background "#ff0000"))))
+ '(sr-directory-face      ((t (:foreground "#ffff00" :background nil))))
  )
 
 ;;; mac用の設定
