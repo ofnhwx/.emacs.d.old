@@ -261,7 +261,7 @@
 (use-package "powerline"
   :ensure t
   :config
-  (powerline-default-theme))
+  (e:load-config "powerline"))
 
 (use-package "projectile"
   :ensure t)

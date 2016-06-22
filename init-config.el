@@ -96,9 +96,10 @@
  '(cursor  ((t (:background "#ffff00"))))
  '(region  ((t (:background "#000080"))))
  ;; モードライン
- '(mode-line           ((t (:background "#000000" :foreground "#ff0000" :box (:line-width 1 :color "#ffffff")))))
+ '(mode-line           ((t (:background "#f00000" :foreground "#ffffff" :box (:line-width 1 :color "#ffffff")))))
  '(mode-line-inactive  ((t (:background "#000000" :foreground "#ffffff" :box (:line-width 1 :color "#ffffff")))))
- '(mode-line-buffer-id ((t (:background nil       :foreground nil       :box (:line-width 1 :color "#ffffff")))))
+ '(mode-line-buffer-id          ((t (:background nil :foreground nil :box (:line-width 1 :color "#ffffff")))))
+ '(mode-line-buffer-id-inactive ((t (:background nil :foreground nil :box (:line-width 1 :color "#ffffff")))))
  ;; 関数, 変数, 文字列
  '(font-lock-function-name-face   ((t (:foreground "#4169e1"))))
  '(font-lock-variable-name-face   ((t (:foreground "#00ffff"))))
@@ -129,6 +130,11 @@
  '(company-preview-common           ((t (:foreground "lightgrey" :background nil :underline t))))
  '(company-scrollbar-fg             ((t (:background "orange"))))
  '(company-scrollbar-bg             ((t (:background "gray40"))))
+ ;; for:`powerline'
+ '(powerline-active1   ((t (:foreground "#ffffff" :background "#b00000"))))
+ '(powerline-active2   ((t (:foreground "#ffffff" :background "#800000"))))
+ '(powerline-inactive1 ((t (:foreground "#ffffff" :background "#404040"))))
+ '(powerline-inactive2 ((t (:foreground "#ffffff" :background "#808080"))))
  )
 
 ;;; mac用の設定
