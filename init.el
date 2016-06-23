@@ -170,6 +170,7 @@
   (custom-set-variables
    '(global-flycheck-mode t))
   (with-eval-after-load "web-mode"
+    (flycheck-add-mode 'html-tidy 'web-mode)
     (flycheck-add-mode 'php 'web-mode)))
 
 (use-package "free-keys"
