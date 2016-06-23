@@ -1,7 +1,7 @@
 ;;; init.el --- load this file at first when emacs was started.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2016/06/23 14:01:47>
+;; Last updated: <2016/06/23 14:42:04>
 ;;
 
 ;;; Commentary:
@@ -105,6 +105,10 @@
    '(company-minimum-prefix-length 2)
    ;; 上下でループ
    '(company-selection-wrap-around t))
+  (use-package "company-flx"
+    :ensure t
+    :config
+    (company-flx-mode))
   ;; ヘルパー関数
   (defun add-company-backends (backends)
     (make-local-variable 'company-backends)
