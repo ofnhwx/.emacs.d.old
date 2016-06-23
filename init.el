@@ -1,7 +1,7 @@
 ;;; init.el --- load this file at first when emacs was started.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2016/06/23 11:52:41>
+;; Last updated: <2016/06/23 11:56:09>
 ;;
 
 ;;; Commentary:
@@ -207,6 +207,11 @@
 (use-package "magit"
   :ensure t
   :config
+  (custom-set-variables
+   ;; 行内の差分に色付けする
+   '(magit-diff-refine-hunk 'all)
+   ;; 空白の差を無視しない
+   '(smerge-refine-ignore-whitespace nil))
   (use-package "magit-gitflow"
     :ensure t
     :config
