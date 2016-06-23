@@ -1,7 +1,7 @@
 ;;; init.el --- load this file at first when emacs was started.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2016/06/23 16:38:06>
+;; Last updated: <2016/06/23 17:41:52>
 ;;
 
 ;;; Commentary:
@@ -457,13 +457,19 @@
    ;; offset
    '(web-mode-markup-indent-offset 2)
    '(web-mode-css-indent-offset    2)
-   '(web-mode-code-indent-offset   2)
+   '(web-mode-code-indent-offset   4)
    '(web-mode-attr-indent-offset   2)
    ;; padding
    '(web-mode-style-padding  1)
    '(web-mode-script-padding 1)
-   '(web-mode-block-padding  0)
-   ))
+   '(web-mode-block-padding  0))
+  (with-eval-after-load "editorconfig"
+    (add-hook
+     'editorconfig-custom-hooks
+     (lambda (props)
+       (setq web-mode-script-padding 1)
+       (setq web-mode-style-padding  1)
+       (setq web-mode-block-padding  0)))))
 
 ;; キーバインドの設定
 
