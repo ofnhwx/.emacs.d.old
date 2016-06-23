@@ -1,7 +1,7 @@
 ;;; init.el --- load this file at first when emacs was started.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2016/06/23 14:42:04>
+;; Last updated: <2016/06/23 16:38:06>
 ;;
 
 ;;; Commentary:
@@ -427,6 +427,9 @@
   (custom-set-variables
    '(cobol-column-marker-1 6)
    '(cobol-column-marker-2 72)))
+
+(use-package "csv-mode"
+  :ensure t)
 
 (use-package "php-mode"
   :ensure t
