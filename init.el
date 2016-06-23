@@ -1,7 +1,7 @@
 ;;; init.el --- load this file at first when emacs was started.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2016/06/23 11:56:09>
+;; Last updated: <2016/06/23 14:01:47>
 ;;
 
 ;;; Commentary:
@@ -44,16 +44,6 @@
   :config
   (exec-path-from-shell-initialize))
 
-(use-package "ace-jump-mode"
-  :ensure t
-  :config
-  (use-package "ace-link"
-    :ensure t
-    :config
-    (ace-link-setup-default))
-  (use-package "ace-window"
-    :ensure t))
-
 (use-package "ag"
   :if (executable-find "ag")
   :ensure t)
@@ -82,6 +72,16 @@
    '(auto-save-buffers-enhanced-file-related-with-scratch-buffer
      (e:expand ".scratch" :conf)))
   (auto-save-buffers-enhanced t))
+
+(use-package "avy"
+  :ensure t
+  :config
+  (use-package "ace-link"
+    :ensure t
+    :config
+    (ace-link-setup-default))
+  (use-package "ace-window"
+    :ensure t))
 
 (use-package "bar-cursor"
   :ensure t

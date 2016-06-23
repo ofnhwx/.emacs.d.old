@@ -2,7 +2,7 @@
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
 
-;; Last updated: <2016/06/20 14:41:53>
+;; Last updated: <2016/06/23 14:07:05>
 ;;
 
 ;;; Commentary:
@@ -32,18 +32,18 @@
                ("<double-wheel-down>" . scroll-up-with-lines)
                ("<triple-wheel-up>"   . scroll-down-with-lines)
                ("<triple-wheel-down>" . scroll-up-with-lines)))
-  ;; for:`ace-jump-mode'
+  ;; for:`avy'
   (with-eval-after-load "ace-jump-mode"
-    (bind-keys ("C-:" . ace-jump-char-mode)
-               ("C-;" . ace-jump-word-mode)
-               ("C-M-;" . ace-jump-line-mode))
+    (bind-keys ("C-:" . avy-goto-char)
+               ("C-;" . avy-goto-word-1)
+               ("M-g M-g" . avy-goto-line))
     ;; for:`ace-window'
     (with-eval-after-load "ace-window"
       (bind-keys ("C-^" . ace-window)
                  :map ctl-x-map
                  ("o" . ace-window)))
     ;; for:`eww'
-    (with-eval-after-load "eww"
+    (with-eval-after-load "ace-link"
       (bind-keys :map eww-mode-map
                  ("o" . ace-link-eww))))
   ;; for:`dired'
