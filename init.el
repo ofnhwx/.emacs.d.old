@@ -1,7 +1,7 @@
 ;;; init.el --- load this file at first when emacs was started.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2016/06/22 11:53:31>
+;; Last updated: <2016/06/23 11:52:41>
 ;;
 
 ;;; Commentary:
@@ -287,6 +287,17 @@
     (skk-get skk-get-jisyo-direcroty))
   (load skk-init-file t)
   (require 'skk-study))
+
+(use-package "rainbow-mode"
+  :ensure t
+  :diminish rainbow-mode
+  :config
+  (add-hook 'lisp-interaction-mode-hook 'rainbow-mode)
+  (add-hook 'emacs-lisp-mode-hook 'rainbow-mode)
+  (add-hook 'php-mode-hook 'rainbow-mode)
+  (add-hook 'web-mode-hook 'rainbow-mode)
+  (add-hook 'css-mode-hook 'rainbow-mode)
+  (add-hook 'html-mode-hook 'rainbow-mode))
 
 (use-package "smartparens"
   :ensure t
