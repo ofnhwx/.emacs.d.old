@@ -1,7 +1,7 @@
 ;;; powerline.el --- 'powerline'の設定
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2016/06/22 12:56:54>
+;; Last updated: <2016/06/23 12:03:27>
 ;;
 
 ;;; Commentary:
@@ -9,8 +9,20 @@
 ;;; Code:
 
 (with-eval-after-load "evil"
-  (use-package "powerline-evil"
-    :ensure t))
+  (defface powerline-evil-normal-face   '((t (:foreground "#000000" :background "#59ff59"))) "NORMAL state."   :group 'powerline)
+  (defface powerline-evil-insert-face   '((t (:foreground "#000000" :background "#5959ff"))) "INSERT state."   :group 'powerline)
+  (defface powerline-evil-visual-face   '((t (:foreground "#000000" :background "#ff5959"))) "VISUAL state."   :group 'powerline)
+  (defface powerline-evil-operator-face '((t (:foreground "#000000" :background "#59ffff"))) "OPERATOR state." :group 'powerline)
+  (defface powerline-evil-replace-face  '((t (:foreground "#000000" :background "#ffff59"))) "REPLACE state."  :group 'powerline)
+  (defface powerline-evil-motion-face   '((t (:foreground "#000000" :background "#ff59ff"))) "MOTION state."   :group 'powerline)
+  (defface powerline-evil-emacs-face    '((t (:foreground "#000000" :background "#ff00ff"))) "EMACS state."    :group 'powerline)
+  (defun powerline-evil-state ()
+    (upcase (format "[%s]" evil-state)))
+  (defun powerline-evil-face ()
+    (let ((face (intern (format "powerline-evil-%s-face" evil-state))))
+      (if (facep face)
+          face
+        nil))))
 
 (setq-default
  mode-line-format
@@ -28,7 +40,7 @@
             (list
              ;; ステート(evil)
              (when (bound-and-true-p evil-mode)
-               (powerline-raw (powerline-evil-tag) (powerline-evil-face)))
+               (powerline-raw (powerline-evil-state) (powerline-evil-face)))
              ;; 状態(%:readonly, *:modified, -:otherwise)
              (powerline-raw "%*" mode-line 'l)
              ;; IME
