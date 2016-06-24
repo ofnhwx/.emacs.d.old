@@ -2,7 +2,7 @@
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
 
-;; Last updated: <2016/06/23 14:07:05>
+;; Last updated: <2016/06/24 11:51:08>
 ;;
 
 ;;; Commentary:
@@ -33,7 +33,7 @@
                ("<triple-wheel-up>"   . scroll-down-with-lines)
                ("<triple-wheel-down>" . scroll-up-with-lines)))
   ;; for:`avy'
-  (with-eval-after-load "ace-jump-mode"
+  (with-eval-after-load "avy"
     (bind-keys ("C-:" . avy-goto-char)
                ("C-;" . avy-goto-word-1)
                ("M-g M-g" . avy-goto-line))
