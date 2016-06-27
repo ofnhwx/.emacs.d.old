@@ -2,7 +2,7 @@
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
 
-;; Last updated: <2016/06/24 11:51:08>
+;; Last updated: <2016/06/27 10:19:30>
 ;;
 
 ;;; Commentary:
@@ -46,6 +46,9 @@
     (with-eval-after-load "ace-link"
       (bind-keys :map eww-mode-map
                  ("o" . ace-link-eww))))
+  ;; for:`bbyac'
+  (with-eval-after-load "bbyac"
+    (bind-keys ("M-/" . bbyac-expand-symbols)))
   ;; for:`dired'
   (with-eval-after-load "dired"
     (with-eval-after-load "wdired"

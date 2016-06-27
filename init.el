@@ -1,7 +1,7 @@
 ;;; init.el --- load this file at first when emacs was started.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2016/06/23 17:41:52>
+;; Last updated: <2016/06/27 10:16:54>
 ;;
 
 ;;; Commentary:
@@ -365,6 +365,19 @@
 
 (use-package "ido"
   :config
+  (use-package "bbyac"
+    ;; 単体ではなく`ido'がある場合のみ使用する
+    :ensure t
+    :config
+    (custom-set-variables
+     '(bbyac-max-chars 99999))
+    (defun bbyac--display-matches--use-ido (orig strlist)
+      (cond ((null (cdr strlist))
+             (car strlist))
+            ((cl-notany #'bbyac--string-multiline-p strlist)
+             (ido-completing-read "Bbyac: " strlist nil t))
+            (t (apply orig strlist))))
+    (advice-add 'bbyac--display-matches :around 'bbyac--display-matches--use-ido))
   (use-package "ido-at-point"
     :ensure t
     :config
