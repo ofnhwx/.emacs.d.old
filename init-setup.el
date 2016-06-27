@@ -2,7 +2,7 @@
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
 
-;; Last updated: <2016/06/17 12:01:31>
+;; Last updated: <2016/06/27 11:48:38>
 ;;
 
 ;;; Commentary:
@@ -51,6 +51,12 @@
    '(dired-isearch-filenames t)
    ;; 'ls'に渡すオプション
    '(dired-listing-switches "ahl")))
+
+;; for:`ediff'
+(when (e:require 'ediff t)
+  (custom-set-variables
+   '(ediff-window-setup-function 'ediff-setup-windows-plain)
+   '(ediff-split-window-function 'split-window-horizontally)))
 
 ;; for:`eldoc'
 (when (e:require 'eldoc t)
