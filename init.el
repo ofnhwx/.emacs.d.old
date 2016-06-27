@@ -1,7 +1,7 @@
 ;;; init.el --- load this file at first when emacs was started.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2016/06/27 10:16:54>
+;; Last updated: <2016/06/27 14:34:23>
 ;;
 
 ;;; Commentary:
@@ -98,40 +98,7 @@
   :ensure t
   :diminish company-mode
   :config
-  (custom-set-variables
-   ;; 補完候補をすぐに表示
-   '(company-idle-delay 0)
-   ;; 補完開始文字数
-   '(company-minimum-prefix-length 2)
-   ;; 上下でループ
-   '(company-selection-wrap-around t))
-  (use-package "company-flx"
-    :ensure t
-    :config
-    (company-flx-mode))
-  ;; ヘルパー関数
-  (defun add-company-backends (backends)
-    (make-local-variable 'company-backends)
-    (dolist (backend backends company-backends)
-      (add-to-list 'company-backends backend)))
-  ;; PHP補完
-  (when (and (e:require-package 'ac-php t t)
-             (e:require-package 'company-php t t))
-    (custom-set-variables
-     '(ac-php-tags-path (e:expand "ac-php" :conf)))
-    (defun add-company-php-backends ()
-      (add-company-backends '(company-ac-php-backend)))
-    (with-eval-after-load "php-mode"
-      (add-hook 'php-mode-hook 'add-company-php-backends))
-    (with-eval-after-load "web-mode"
-      (add-hook 'web-mode-hook 'add-company-php-backends)))
-  ;; WEB補完
-  (when (e:require-package 'company-web t t)
-    (defun add-company-web-backends ()
-      (add-company-backends '(company-web-html)))
-    (with-eval-after-load "web-mode"
-      (add-hook 'web-mode-hook 'add-company-web-backends)))
-  ;; 全バッファで有効化
+  (e:load-config "company")
   (global-company-mode))
 
 (use-package "edbi"
@@ -489,24 +456,6 @@
 (let* ((default-directory user-emacs-directory)
        (keybind (expand-file-name "init-keybind")))
   (require 'init-keybind keybind t))
-
-;; [2016-06-14] - とりあえず`ac-php'を`web-mode'でも動くように
-(defun company-ac-php-backend (command &optional arg &rest ignored)
-  (interactive (list 'interactive))
-  (case command
-    (interactive (company-begin-backend 'company-ac-php-backend))
-    (prefix (and (or (eq major-mode 'php-mode)
-                     (eq major-mode 'web-mode))
-                 (company-ac-php--prefix)))
-    (candidates (company-ac-php-candidate arg))
-    (annotation (company-ac-php-annotation arg))
-    (duplicates t)
-    (post-completion
-     (let((doc))
-       (when (ac-php--tag-name-is-function arg)
-         (setq doc (ac-php-clean-document (get-text-property 0 'ac-php-help arg)))
-         (insert (concat doc ")"))
-         (company-template-c-like-templatify (concat arg doc ")")))))))
 
 (provide 'init)
 ;;; init.el ends here
