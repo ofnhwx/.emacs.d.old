@@ -1,7 +1,7 @@
 ;;; init.el --- load this file at first when emacs was started.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2016/06/27 14:34:23>
+;; Last updated: <2016/06/28 13:57:17>
 ;;
 
 ;;; Commentary:
@@ -138,7 +138,7 @@
   :ensure t
   :config
   (e:load-config "evil")
-  (evil-mode))
+  (evil-mode 0))
 
 (use-package "flycheck"
   :ensure t
