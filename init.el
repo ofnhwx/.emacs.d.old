@@ -1,7 +1,7 @@
 ;;; init.el --- load this file at first when emacs was started.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2016/06/28 13:57:17>
+;; Last updated: <2016/06/28 15:02:00>
 ;;
 
 ;;; Commentary:
@@ -171,6 +171,7 @@
   (use-package "helm-backup"       :ensure t)
   (use-package "helm-descbinds"    :ensure t)
   (use-package "helm-mode-manager" :ensure t)
+  (use-package "helm-swoop"        :ensure t)
   (with-eval-after-load "ag"         (use-package "helm-ag"          :ensure t))
   (with-eval-after-load "flycheck"   (use-package "helm-flycheck"    :ensure t))
   (with-eval-after-load "projectile" (use-package "helm-projectile"  :ensure t))

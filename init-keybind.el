@@ -2,7 +2,7 @@
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
 
-;; Last updated: <2016/06/27 11:37:26>
+;; Last updated: <2016/06/28 18:13:20>
 ;;
 
 ;;; Commentary:
@@ -65,24 +65,24 @@
                :map ctl-x-map
                ("C-b" . helm-buffers-list)
                ("M-f" . helm-find-files))
-    ;; for::`helm-ag'
+    ;; for:`helm-ag'
     (with-eval-after-load "helm-ag"
       (bind-keys ("M-g ," . helm-ag-pop-stack)
                  ("M-g ." . helm-ag)
                  ("M-g /" . helm-ag-project-root)
                  ("M-g _" . helm-ag-this-file)))
-    ;; for::`helm-elscreen'
+    ;; for:`helm-elscreen'
     (with-eval-after-load "helm-elscreen"
       (bind-keys ("C-z C-z" . helm-elscreen)))
-    ;; for::`helm-eshell'
-    (with-eval-after-load "helm-eshell"
+    ;; for:`helm-eshell'
+    (with-eval-after-load "eshell"
       (add-hook
        'eshell-mode-hook
        (lambda ()
          (bind-keys :map eshell-mode-map
                     ("M-p" . helm-eshell-history)
                     ("M-n" . helm-esh-pcomplete)))))
-    ;; for::`helm-projectile'
+    ;; for:`helm-projectile'
     (with-eval-after-load "helm-projectile"
       (defun helm-find-files-with-projectile (&optional arg)
         (interactive "P")
@@ -90,7 +90,11 @@
             (helm-projectile-find-file arg)
           (helm-find-files arg)))
       (bind-keys :map ctl-x-map
-                 ("C-f" . helm-find-files-with-projectile))))
+                 ("C-f" . helm-find-files-with-projectile)))
+    ;; for:`helm-swoop'
+    (with-eval-after-load "helm-swoop"
+      (bind-keys :map isearch-mode-map
+                 ("C-o" . helm-swoop-from-isearch))))
   ;; for:`lacarte'
   (with-eval-after-load "lacarte"
     (bind-keys ("M-X" . lacarte-execute-command)))
