@@ -122,6 +122,8 @@
  '(whitespace-tab     ((t (:foreground "#ff0000" :background nil :underline t))))
  '(whitespace-space   ((t (:foreground "#ff0000" :background nil :underline t))))
  '(whitespace-newline ((t (:foreground "#228b22" :background nil))))
+ ;; for:`anzu'
+ '(anzu-mode-line ((t (:foreground "#000000" :background "#dd00dd"))))
  ;; for:`company'
  '(company-tooltip                  ((t (:foreground "black" :background "lightgrey"))))
  '(company-tooltip-common           ((t (:foreground "black" :background "lightgrey"))))
