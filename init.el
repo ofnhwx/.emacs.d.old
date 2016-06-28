@@ -166,6 +166,9 @@
   (with-eval-after-load "ag"
     (use-package "helm-ag"
       :ensure t))
+  (with-eval-after-load "flycheck"
+    (use-package "helm-flycheck"
+      :ensure t))
   (with-eval-after-load "projectile"
     (use-package "helm-projectile"
       :ensure t))
