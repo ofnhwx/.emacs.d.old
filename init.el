@@ -159,22 +159,13 @@
 (use-package "helm"
   :ensure t
   :config
-  (use-package "helm-backup"
-    :ensure t)
-  (use-package "helm-descbinds"
-    :ensure t)
-  (with-eval-after-load "ag"
-    (use-package "helm-ag"
-      :ensure t))
-  (with-eval-after-load "flycheck"
-    (use-package "helm-flycheck"
-      :ensure t))
-  (with-eval-after-load "projectile"
-    (use-package "helm-projectile"
-      :ensure t))
-  (with-eval-after-load "yasnippet"
-    (use-package "helm-c-yasnippet"
-      :ensure t)))
+  (use-package "helm-backup"       :ensure t)
+  (use-package "helm-descbinds"    :ensure t)
+  (use-package "helm-mode-manager" :ensure t)
+  (with-eval-after-load "ag"         (use-package "helm-ag"          :ensure t))
+  (with-eval-after-load "flycheck"   (use-package "helm-flycheck"    :ensure t))
+  (with-eval-after-load "projectile" (use-package "helm-projectile"  :ensure t))
+  (with-eval-after-load "yasnippet"  (use-package "helm-c-yasnippet" :ensure t)))
 
 (use-package "lacarte"
   :ensure t)
