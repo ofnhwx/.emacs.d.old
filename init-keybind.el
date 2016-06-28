@@ -2,7 +2,7 @@
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
 
-;; Last updated: <2016/06/28 18:13:20>
+;; Last updated: <2016/06/28 18:17:16>
 ;;
 
 ;;; Commentary:
@@ -100,7 +100,8 @@
     (bind-keys ("M-X" . lacarte-execute-command)))
   ;; for:`magit'
   (with-eval-after-load "magit"
-    (bind-keys ("M-g l" . magit-diff-buffer-file-popup)
+    (bind-keys ("M-g d" . magit-diff-buffer-file-popup)
+               ("M-g l" . magit-log-buffer-file-popup)
                ("M-g s" . magit-status)))
   ;; for:`neotree'
   (with-eval-after-load "neotree"
