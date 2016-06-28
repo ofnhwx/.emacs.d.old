@@ -1,7 +1,7 @@
 ;;; init-enhance.el --- 環境回りの設定.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2016/06/22 11:58:07>
+;; Last updated: <2016/06/28 10:40:55>
 ;;
 
 ;;; Commentary:
@@ -160,6 +160,36 @@
  '(elscreen-tab-control-face        ((t (:foreground "#ff0000" :background "#000000" :box (:color "#ffffff")))))
  '(elscreen-tab-current-screen-face ((t (:foreground "#000000" :background "#ff0000" :box (:color "#ffffff")))))
  '(elscreen-tab-other-screen-face   ((t (:foreground "#ffffff" :background "#000000" :box (:color "#ffffff")))))
+ ;; for:`helm'
+ '(helm-action                  ((t (:foreground "#ffffff" :background nil))))
+ '(helm-candidate-number        ((t (:foreground "#000000" :background "#ffff00"))))
+ '(helm-header                  ((t (:foreground "#ffffff" :background "#000000"))))
+ '(helm-header-line-left-margin ((t (:foreground "#000000" :background "#ffff00"))))
+ '(helm-selection               ((t (:foreground "#000000" :background "#00ff00"))))
+ '(helm-selection-line          ((t (:foreground "#000000" :background "#00ff00"))))
+ '(helm-visible-mark            ((t (:foreground "#000000" :background "#ffff00"))))
+ '(helm-separator               ((t (:foreground "#ff0000" :background nil))))
+ '(helm-source-header           ((t (:foreground "#ffffff" :background "#0000ff" :height 1.2 :weight bold :box t))))
+ '(helm-match                   ((t (:box t))))
+ ;; for:`helm-buffers'
+ '(helm-buffer-directory ((t (:foreground "#ffff00" :background nil))))
+ '(helm-buffer-file      ((t (:foreground "#8080ff" :background nil))))
+ '(helm-buffer-not-saved ((t (:foreground "#00ff00" :background nil))))
+ '(helm-buffer-size      ((t (:foreground "#ff00ff" :background nil))))
+ '(helm-buffer-process   ((t (:foreground "#ff0000" :background nil))))
+ '(helm-buffer-saved-out ((t (:inherit helm-buffer-not-saved :underline (:style wave)))))
+ ;; for:`helm-files'
+ '(helm-ff-directory        ((t (:foreground "#ffff00" :background nil))))
+ '(helm-ff-dirs             ((t (:foreground "#ffff00" :background nil))))
+ '(helm-ff-dotted-directory ((t (:foreground "#808080" :background nil))))
+ '(helm-ff-executable       ((t (:foreground "#ff0000" :background nil))))
+ '(helm-ff-file             ((t (:foreground "#ffffff" :background nil))))
+ '(helm-ff-prefix           ((t (:foreground "#000000" :background "#ffff00"))))
+ '(helm-ff-symlink          ((t (:foreground "#00ffff" :background nil))))
+ '(helm-history-deleted     ((t (:foreground "#808080" :background nil :strike-through t))))
+ '(helm-history-remote      ((t (:foreground "#ff00ff" :background nil))))
+ '(helm-ff-invalid-symlink  ((t (:inherit helm-ff-symlink :strike-through t))))
+ '(helm-ff-dotted-symlink-directory ((t (:inherit helm-ff-dotted-directory :underline (:style wave)))))
  ;; for:`powerline'
  '(powerline-active1   ((t (:foreground "#ffffff" :background "#b00000"))))
  '(powerline-active2   ((t (:foreground "#ffffff" :background "#800000"))))
