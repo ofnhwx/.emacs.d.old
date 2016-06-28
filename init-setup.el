@@ -2,7 +2,7 @@
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
 
-;; Last updated: <2016/06/27 11:48:38>
+;; Last updated: <2016/06/28 11:06:45>
 ;;
 
 ;;; Commentary:
@@ -90,6 +90,8 @@
   (custom-set-variables
    ;; eshellの基準ディレクトリを変更
    '(eshell-directory-name (e:expand "eshell" :conf))
+   ;; 履歴
+   '(eshell-history-size 100000)
    ;; 補完時に大文字小文字を区別しない
    '(eshell-cmpl-ignore-case t)
    ;; 履歴で重複を無視する
