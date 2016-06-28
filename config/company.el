@@ -1,7 +1,7 @@
 ;;; company.el --- 'company'の設定
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2016/06/27 15:03:28>
+;; Last updated: <2016/06/28 11:36:10>
 ;;
 
 ;;; Commentary:
@@ -12,7 +12,7 @@
  ;; 補完候補をすぐに表示
  '(company-idle-delay 0)
  ;; 補完開始文字数
- '(company-minimum-prefix-length 2)
+ '(company-minimum-prefix-length 1)
  ;; 上下でループ
  '(company-selection-wrap-around t))
 
