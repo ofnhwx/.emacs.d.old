@@ -112,6 +112,15 @@
   :config
   (editorconfig-mode))
 
+(use-package "elscreen"
+  :ensure t
+  :config
+  ;;; プレフィクスキーはC-z
+  (custom-set-variables
+   '(elscreen-prefix-key (kbd "C-z"))
+   '(elscreen-tab-display-kill-screen nil))
+  (elscreen-start))
+
 (use-package "emmet-mode"
   :ensure t
   :config

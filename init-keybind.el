@@ -71,6 +71,17 @@
                  ("M-g ." . helm-ag)
                  ("M-g /" . helm-ag-project-root)
                  ("M-g _" . helm-ag-this-file)))
+    ;; for::`helm-elscreen'
+    (with-eval-after-load "helm-elscreen"
+      (bind-keys ("C-z C-z" . helm-elscreen)))
+    ;; for::`helm-eshell'
+    (with-eval-after-load "helm-eshell"
+      (add-hook
+       'eshell-mode-hook
+       (lambda ()
+         (bind-keys :map eshell-mode-map
+                    ("M-p" . helm-eshell-history)
+                    ("M-n" . helm-esh-pcomplete)))))
     ;; for::`helm-projectile'
     (with-eval-after-load "helm-projectile"
       (defun helm-find-files-with-projectile (&optional arg)

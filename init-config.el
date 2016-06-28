@@ -155,6 +155,11 @@
  '(diredp-exec-priv              ((t (:foreground "#ccccff" :background nil))))
  '(diredp-other-priv             ((t (:foreground "#a0a0a0" :background nil))))
  '(diredp-no-priv                ((t (:foreground "#a0a0a0" :background nil))))
+ ;; for:`elscreen'
+ '(elscreen-tab-background-face     ((t (:background "#808080" :box (:color "#ffffff")))))
+ '(elscreen-tab-control-face        ((t (:foreground "#ff0000" :background "#000000" :box (:color "#ffffff")))))
+ '(elscreen-tab-current-screen-face ((t (:foreground "#000000" :background "#ff0000" :box (:color "#ffffff")))))
+ '(elscreen-tab-other-screen-face   ((t (:foreground "#ffffff" :background "#000000" :box (:color "#ffffff")))))
  ;; for:`powerline'
  '(powerline-active1   ((t (:foreground "#ffffff" :background "#b00000"))))
  '(powerline-active2   ((t (:foreground "#ffffff" :background "#800000"))))
