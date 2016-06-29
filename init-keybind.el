@@ -2,7 +2,7 @@
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
 
-;; Last updated: <2016/06/29 11:43:32>
+;; Last updated: <2016/06/29 11:48:21>
 ;;
 
 ;;; Commentary:
@@ -70,16 +70,16 @@
   (with-eval-after-load "avy"
     (bind-keys ("C-:" . avy-goto-char)
                ("C-;" . avy-goto-word-1)
-               ("M-g M-g" . avy-goto-line))
-    ;; for:`ace-window'
-    (with-eval-after-load "ace-window"
-      (bind-keys ("C-^" . ace-window)
-                 :map ctl-x-map
-                 ("o" . ace-window)))
-    ;; for:`eww'
-    (with-eval-after-load "ace-link"
-      (bind-keys :map eww-mode-map
-                 ("o" . ace-link-eww))))
+               ("M-g M-g" . avy-goto-line)))
+  ;; for:`ace-window'
+  (with-eval-after-load "ace-window"
+    (bind-keys ("C-^" . ace-window)
+               :map ctl-x-map
+               ("o" . ace-window)))
+  ;; for:`eww'
+  (with-eval-after-load "ace-link"
+    (bind-keys :map eww-mode-map
+               ("o" . ace-link-eww)))
   ;; for:`bbyac'
   (with-eval-after-load "bbyac"
     (bind-keys ("M-/" . bbyac-expand-symbols)))
@@ -99,37 +99,37 @@
                ("C-h b" . helm-descbinds)
                :map ctl-x-map
                ("C-b" . helm-buffers-list)
-               ("M-f" . helm-find-files))
-    ;; for:`helm-ag'
-    (with-eval-after-load "helm-ag"
-      (bind-keys ("M-g ," . helm-ag-pop-stack)
-                 ("M-g ." . helm-ag)
-                 ("M-g /" . helm-ag-project-root)
-                 ("M-g _" . helm-ag-this-file)))
-    ;; for:`helm-elscreen'
-    (with-eval-after-load "helm-elscreen"
-      (bind-keys ("C-z C-z" . helm-elscreen)))
-    ;; for:`helm-eshell'
-    (with-eval-after-load "eshell"
-      (add-hook
-       'eshell-mode-hook
-       (lambda ()
-         (bind-keys :map eshell-mode-map
-                    ("M-p" . helm-eshell-history)
-                    ("M-n" . helm-esh-pcomplete)))))
-    ;; for:`helm-projectile'
-    (with-eval-after-load "helm-projectile"
-      (defun helm-find-files-with-projectile (&optional arg)
-        (interactive "P")
-        (if (projectile-project-p)
-            (helm-projectile-find-file arg)
-          (helm-find-files arg)))
-      (bind-keys :map ctl-x-map
-                 ("C-f" . helm-find-files-with-projectile)))
-    ;; for:`helm-swoop'
-    (with-eval-after-load "helm-swoop"
-      (bind-keys :map isearch-mode-map
-                 ("C-o" . helm-swoop-from-isearch))))
+               ("M-f" . helm-find-files)))
+  ;; for:`helm-ag'
+  (with-eval-after-load "helm-ag"
+    (bind-keys ("M-g ," . helm-ag-pop-stack)
+               ("M-g ." . helm-ag)
+               ("M-g /" . helm-ag-project-root)
+               ("M-g _" . helm-ag-this-file)))
+  ;; for:`helm-elscreen'
+  (with-eval-after-load "helm-elscreen"
+    (bind-keys ("C-z C-z" . helm-elscreen)))
+  ;; for:`helm-eshell'
+  (with-eval-after-load "eshell"
+    (add-hook
+     'eshell-mode-hook
+     (lambda ()
+       (bind-keys :map eshell-mode-map
+                  ("M-p" . helm-eshell-history)
+                  ("M-n" . helm-esh-pcomplete)))))
+  ;; for:`helm-projectile'
+  (with-eval-after-load "helm-projectile"
+    (defun helm-find-files-with-projectile (&optional arg)
+      (interactive "P")
+      (if (projectile-project-p)
+          (helm-projectile-find-file arg)
+        (helm-find-files arg)))
+    (bind-keys :map ctl-x-map
+               ("C-f" . helm-find-files-with-projectile)))
+  ;; for:`helm-swoop'
+  (with-eval-after-load "helm-swoop"
+    (bind-keys :map isearch-mode-map
+               ("C-o" . helm-swoop-from-isearch)))
   ;; for:`lacarte'
   (with-eval-after-load "lacarte"
     (bind-keys ("M-X" . lacarte-execute-command)))
