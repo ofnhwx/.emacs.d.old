@@ -9,6 +9,40 @@
 
 ;;; Code:
 
+(progn
+  (define-prefix-command 'base-command-map)
+  (define-prefix-command 'buffer-command-map)
+  (define-prefix-command 'file-command-map)
+  (define-prefix-command 'general-command-map)
+  (define-prefix-command 'toggle-command-map)
+  (bind-keys ("C-," . base-command-map))
+  (bind-keys :map base-command-map
+             ("b" . buffer-command-map)
+             ("f" . file-command-map)
+             ("g" . general-command-map)
+             ("t" . toggle-command-map))
+  (bind-keys :map buffer-command-map
+             ("b" . switch-to-buffer)
+             ("k" . kill-buffer))
+  (bind-keys :map file-command-map
+             ("f" . find-file)
+             ("h" . helm-find-files)
+             ("p" . helm-find-files-with-projectile)
+             ("r" . helm-recentf))
+  (bind-keys :map general-command-map
+             ("," . helm-ag-pop-stack)
+             ("." . helm-ag)
+             ("/" . helm-ag-project-root)
+             ("_" . helm-ag-this-file)
+             ("c" . helm-flycheck)
+             ("d" . magit-diff-buffer-file-popup)
+             ("g" . avy-goto-line)
+             ("l" . magit-log-buffer-file-popup)
+             ("s" . magit-status))
+  (bind-keys :map toggle-command-map
+             ("r" . read-only-mode)
+             ("t" . toggle-truncate-lines)))
+
 (use-package "bind-key"
   :ensure t
   :config
