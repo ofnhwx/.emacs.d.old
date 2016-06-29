@@ -2,7 +2,7 @@
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
 
-;; Last updated: <2016/06/28 18:17:16>
+;; Last updated: <2016/06/29 11:43:32>
 ;;
 
 ;;; Commentary:
@@ -94,6 +94,7 @@
   ;; for:`helm'
   (with-eval-after-load "helm"
     (bind-keys ("M-x" . helm-M-x)
+               ("M-y" . helm-show-kill-ring)
                ("M-:" . helm-eval-expression-with-eldoc)
                ("C-h b" . helm-descbinds)
                :map ctl-x-map
