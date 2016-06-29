@@ -1,7 +1,7 @@
 ;;; company.el --- 'company'の設定
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2016/06/28 11:36:10>
+;; Last updated: <2016/06/29 11:35:57>
 ;;
 
 ;;; Commentary:
@@ -23,12 +23,11 @@
   (company-flx-mode))
 
 ;; PHP補完
-(use-package "ac-php"
+(use-package "company-php"
   :ensure t
   :config
   (custom-set-variables
-   '(ac-php-tags-path (e:expand "ac-php" :conf)))
-  (use-package "company-php"))
+   '(ac-php-tags-path (e:expand "ac-php" :conf))))
 
 ;; WEB補完
 (use-package "company-web"
