@@ -1,7 +1,7 @@
 ;;; company.el --- 'company'の設定
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2016/06/29 11:35:57>
+;; Last updated: <2016/06/30 15:52:11>
 ;;
 
 ;;; Commentary:
@@ -27,7 +27,7 @@
   :ensure t
   :config
   (custom-set-variables
-   '(ac-php-tags-path (e:expand "ac-php" :conf))))
+   '(ac-php-tags-path (e:expand "ac-php" :local))))
 
 ;; WEB補完
 (use-package "company-web"

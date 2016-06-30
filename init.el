@@ -1,7 +1,7 @@
 ;;; init.el --- load this file at first when emacs was started.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2016/06/30 10:03:09>
+;; Last updated: <2016/06/30 15:52:11>
 ;;
 
 ;;; Commentary:
@@ -70,7 +70,7 @@
    ;; for `*scratch*'
    '(auto-save-buffers-enhanced-save-scratch-buffer-to-file-p t)
    '(auto-save-buffers-enhanced-file-related-with-scratch-buffer
-     (e:expand ".scratch" :conf)))
+     (e:expand ".scratch" :local)))
   (auto-save-buffers-enhanced t))
 
 (use-package "avy"
@@ -108,7 +108,7 @@
   :ensure t
   :config
   (custom-set-variables
-   '(edbi:ds-history-file (e:expand ".edbi-ds-history" :conf))))
+   '(edbi:ds-history-file (e:expand ".edbi-ds-history" :local))))
 
 (use-package "editorconfig"
   :ensure t
@@ -217,7 +217,7 @@
   :ensure t
   :config
   (custom-set-variables
-   '(mc/list-file (e:expand ".mc-lists.el" :conf))))
+   '(mc/list-file (e:expand ".mc-lists.el" :local))))
 
 (use-package "neotree"
   :ensure t
@@ -255,7 +255,7 @@
   :ensure t)
 
 ;; `skk-user-directory'の設定は事前に行う必要あり
-(let ((dir (e:expand "ddskk" :conf)))
+(let ((dir (e:expand "ddskk" :local)))
   (custom-set-variables
    `(skk-user-directory ,dir))
   (unless (f-exists? dir)
@@ -265,7 +265,7 @@
   :config
   (custom-set-variables
    '(skk-init-file (e:expand "init-skk.el" :user))
-   '(skk-get-jisyo-direcroty (e:expand "ddskk/dic" :conf)))
+   '(skk-get-jisyo-direcroty (e:expand "ddskk/dic" :local)))
   (unless (f-exists? skk-get-jisyo-direcroty)
     (make-directory skk-get-jisyo-direcroty t)
     (skk-get skk-get-jisyo-direcroty))
@@ -432,7 +432,7 @@
   ;; 各種設定
   (custom-set-variables
    '(php-mode-force-pear t)
-   '(php-manual-path (e:expand "php-chunked-xhtml" :conf))
+   '(php-manual-path (e:expand "php-chunked-xhtml" :local))
    '(php-search-url "http://www.php.net/")
    '(php-manual-url "http://www.php.net/manual/ja"))
   ;; symfonyのスタイルを有効に

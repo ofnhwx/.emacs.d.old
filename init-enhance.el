@@ -1,7 +1,7 @@
 ;;; init-enhance.el --- 個人設定用の拡張機能.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2016/06/22 10:06:51>
+;; Last updated: <2016/06/30 15:58:30>
 ;;
 
 ;;; Commentary:
@@ -30,10 +30,7 @@
 
 ;; define:`e:load-config'
 (defmacro e:load-config (filename)
-  `(let* ((config-dir (e:expand "config" :user))
-          (file (e:expand ,filename config-dir)))
-     (unless (file-exists-p config-dir)
-       (make-directory config-dir))
+  `(let ((file (e:expand ,filename :conf)))
      (load file)))
 
 ;; use:`package'
@@ -76,7 +73,8 @@
                  ((os-type-bsd-p) "~/")
                  ((os-type-mac-p) "~/")
                  ((os-type-linux-p) "~/")))
-    (:conf (e:expand "conf" (e:get-dir :user)))
+    (:local (e:expand "local" (e:get-dir :user)))
+    (:conf (e:expand "config" (e:get-dir :user)))
     (:temp (e:unexpand (file-truename (e:expand ".emacs" temporary-file-directory))))
     (:user user-emacs-directory)))
 (defun e:get-dir (dirtype)

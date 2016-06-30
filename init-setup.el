@@ -2,7 +2,7 @@
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
 
-;; Last updated: <2016/06/30 10:17:45>
+;; Last updated: <2016/06/30 15:52:11>
 ;;
 
 ;;; Commentary:
@@ -12,7 +12,7 @@
 ;; for:`abbrev'
 (when (e:require 'abbrev t)
   (custom-set-variables
-   '(abbrev-file-name (e:expand "abbrev.defs" :conf))
+   '(abbrev-file-name (e:expand "abbrev.defs" :local))
    '(save-abbrevs t))
   (when (file-exists-p abbrev-file-name)
     (quietly-read-abbrev-file)))
@@ -21,12 +21,12 @@
 (when (e:require 'autoinsert t)
   (custom-set-variables
    '(auto-insert-mode t)
-   '(auto-insert-directory (e:expand "insert" :conf))))
+   '(auto-insert-directory (e:expand "insert" :local))))
 
 ;; for:`bookmark'
 (when (e:require 'bookmark t)
   (custom-set-variables
-   '(bookmark-default-file (e:expand ".emacs.bmk" :conf))))
+   '(bookmark-default-file (e:expand ".emacs.bmk" :local))))
 
 ;; for:`cua-mode'
 (when (e:require 'cua-base t)
@@ -89,7 +89,7 @@
   ;; 各種設定
   (custom-set-variables
    ;; eshellの基準ディレクトリを変更
-   '(eshell-directory-name (e:expand "eshell" :conf))
+   '(eshell-directory-name (e:expand "eshell" :local))
    ;; 履歴
    '(eshell-history-size 100000)
    ;; 補完時に大文字小文字を区別しない
@@ -115,7 +115,7 @@
 ;; for:`recentf'
 (when (e:require 'recentf t)
   (custom-set-variables
-   '(recentf-save-file (e:expand ".recentf" :conf))
+   '(recentf-save-file (e:expand ".recentf" :local))
    '(recentf-max-menu-items   20)
    '(recentf-max-saved-items 200)
    '(recentf-exclude
@@ -158,7 +158,7 @@
 ;; for:`files'
 (when (e:require 'files t)
   ;; バックアップディレクトリの設定
-  (defconst backup-directory (e:expand "backup" :conf))
+  (defconst backup-directory (e:expand "backup" :local))
   ;; for:`backup'
   (let ((item (cons "\\.*$" backup-directory)))
     (unless (member item backup-directory-alist)
@@ -191,7 +191,7 @@
    '(ido-everywhere t)
    '(ido-enable-flex-matching t)
    '(ido-mode 'both)
-   '(ido-save-directory-list-file (e:expand ".ido.last" :conf))))
+   '(ido-save-directory-list-file (e:expand ".ido.last" :local))))
 
 ;; for:`linum'
 (when (e:require 'linum)
@@ -213,7 +213,7 @@
 ;; for:`server'
 (when (e:require 'server t)
   (custom-set-variables
-   '(server-auth-dir (e:expand "server" :conf)))
+   '(server-auth-dir (e:expand "server" :local)))
   (when window-system
     (add-hook 'after-init-hook 'server-start)))
 
