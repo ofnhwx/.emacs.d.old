@@ -2,7 +2,7 @@
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
 
-;; Last updated: <2016/06/30 16:11:36>
+;; Last updated: <2016/06/30 16:15:40>
 ;;
 
 ;;; Commentary:
@@ -230,6 +230,11 @@
 (when (e:require 'uniquify t)
   (custom-set-variables
    '(uniquify-buffer-name-style 'post-forward-angle-brackets)))
+
+;; for:`url-cookie'
+(when (e:require 'url-cookie t)
+  (custom-set-variables
+   '(url-cookie-file (e:expand "cookies" :local))))
 
 ;; for:`whitespace'
 (when (e:require 'whitespace t)
