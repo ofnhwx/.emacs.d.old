@@ -1,7 +1,7 @@
 ;;; init.el --- load this file at first when emacs was started.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2016/06/30 16:09:50>
+;; Last updated: <2016/06/30 16:30:22>
 ;;
 
 ;;; Commentary:
@@ -22,6 +22,8 @@
     (require 'init-config  config  t)
     (require 'init-color   color   t)
     (require 'init-setup   setup   t)))
+
+(set-variable 'custom-file (e:expand "custom.el" :local))
 
 ;; add:`load-path'
 (add-to-list 'load-path (e:expand "lisp" :user))
@@ -468,10 +470,10 @@
        (setq web-mode-block-padding  0)))))
 
 ;; キーバインドの設定
+(require 'init-keybind (e:expand "init-keybind" :user) t)
 
-(let* ((default-directory user-emacs-directory)
-       (keybind (expand-file-name "init-keybind")))
-  (require 'init-keybind keybind t))
+;; カスタムファイル
+(load custom-file t)
 
 (provide 'init)
 ;;; init.el ends here
