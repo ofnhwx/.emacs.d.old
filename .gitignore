@@ -9,6 +9,7 @@
 !/lisp
 !/.gitconfig
 !/.gitignore
+!/init-color.el
 !/init-config.el
 !/init-enhance.el
 !/init-keybind.el

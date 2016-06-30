@@ -1,7 +1,7 @@
 ;;; init.el --- load this file at first when emacs was started.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2016/06/30 15:52:11>
+;; Last updated: <2016/06/30 16:09:50>
 ;;
 
 ;;; Commentary:
@@ -16,9 +16,11 @@
   (let* ((default-directory user-emacs-directory)
          (enhance (expand-file-name "init-enhance"))
          (config  (expand-file-name "init-config"))
+         (color   (expand-file-name "init-color"))
          (setup   (expand-file-name "init-setup")))
     (require 'init-enhance enhance t)
     (require 'init-config  config  t)
+    (require 'init-color   color   t)
     (require 'init-setup   setup   t)))
 
 ;; add:`load-path'
