@@ -126,7 +126,11 @@
   (custom-set-variables
    '(elscreen-prefix-key (kbd "C-z"))
    '(elscreen-tab-display-kill-screen nil))
-  (elscreen-start))
+  (elscreen-start)
+  (use-package "elscreen-persist"
+    :ensure t
+    :config
+    (elscreen-persist-mode 1)))
 
 (use-package "emmet-mode"
   :ensure t
