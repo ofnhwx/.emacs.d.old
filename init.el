@@ -304,6 +304,13 @@
   :config
   (global-undo-tree-mode))
 
+(use-package "undohist"
+  :ensure t
+  :config
+  (custom-set-variables
+   '(undohist-directory (e:expand "undohist" :local)))
+  (undohist-initialize))
+
 (use-package "which-key"
   :ensure t
   :config
