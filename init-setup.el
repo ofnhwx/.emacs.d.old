@@ -2,7 +2,7 @@
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
 
-;; Last updated: <2016/06/30 15:52:11>
+;; Last updated: <2016/06/30 16:11:36>
 ;;
 
 ;;; Commentary:
@@ -109,7 +109,7 @@
    '(eshell-prompt-regexp "^[^#$]*[#$] ")))
 
 ;; for:`generic-x'
-(when (e:require 'generic-x)
+(when (e:require 'generic-x t)
   )
 
 ;; for:`recentf'
@@ -177,7 +177,7 @@
    '(auto-save-file-name-transforms `((".*" ,backup-directory t)))))
 
 ;; for:`hideshow'
-(when (e:require 'hideshow)
+(when (e:require 'hideshow t)
   (add-hook 'lisp-interaction-mode-hook 'hs-minor-mode)
   (add-hook 'emacs-lisp-mode-hook 'hs-minor-mode)
   (add-hook 'lisp-mode-hook 'hs-minor-mode-hook)
@@ -186,7 +186,7 @@
   (add-hook 'web-mode-hook 'hs-minor-mode))
 
 ;; for:`ido'
-(when (e:require 'ido)
+(when (e:require 'ido t)
   (custom-set-variables
    '(ido-everywhere t)
    '(ido-enable-flex-matching t)
@@ -194,7 +194,7 @@
    '(ido-save-directory-list-file (e:expand ".ido.last" :local))))
 
 ;; for:`linum'
-(when (e:require 'linum)
+(when (e:require 'linum t)
   (custom-set-variables
    '(linum-format "%5d")
    '(global-linum-mode t))
@@ -232,7 +232,7 @@
    '(uniquify-buffer-name-style 'post-forward-angle-brackets)))
 
 ;; for:`whitespace'
-(when (e:require 'whitespace)
+(when (e:require 'whitespace t)
   (custom-set-variables
    '(whitespace-style
      '(face      ;; 'face'で色を付ける
