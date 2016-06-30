@@ -2,7 +2,7 @@
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
 
-;; Last updated: <2016/06/29 11:48:21>
+;; Last updated: <2016/06/30 10:05:38>
 ;;
 
 ;;; Commentary:
@@ -94,7 +94,8 @@
     (bind-keys ("C-M-SPC" . er/expand-region)))
   ;; for:`helm'
   (with-eval-after-load "helm"
-    (bind-keys ("M-x" . helm-M-x)
+    (bind-keys :map global-map
+               ("M-x" . helm-M-x)
                ("M-y" . helm-show-kill-ring)
                ("M-:" . helm-eval-expression-with-eldoc)
                ("C-h b" . helm-descbinds)
@@ -144,8 +145,8 @@
     (bind-keys ("<f8>" . neotree-toggle)))
   ;; for:`php-mode'
   (with-eval-after-load "php-mode"
-    ;; for:`ac-php'
-    (with-eval-after-load "ac-php"
+    ;; for:`company-php'
+    (with-eval-after-load "company-php"
       (bind-keys :map php-mode-map
                  ("C-]" . ac-php-find-symbol-at-point)
                  ("C-}" . ac-php-location-stack-back))))
@@ -154,8 +155,8 @@
     (bind-keys ("C-\¥" . skk-mode)))
   ;; for:`web-mode'
   (with-eval-after-load "web-mode"
-    ;; for:`ac-php'
-    (with-eval-after-load "ac-php"
+    ;; for:`company-php'
+    (with-eval-after-load "company-php"
       (bind-keys :map web-mode-map
                  ("C-]" . ac-php-find-symbol-at-point)
                  ("C-}" . ac-php-location-stack-back))))
