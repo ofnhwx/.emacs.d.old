@@ -2,7 +2,7 @@
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
 
-;; Last updated: <2016/06/30 10:05:38>
+;; Last updated: <2016/06/30 10:20:35>
 ;;
 
 ;;; Commentary:
@@ -14,12 +14,14 @@
   (define-prefix-command 'buffer-command-map)
   (define-prefix-command 'file-command-map)
   (define-prefix-command 'general-command-map)
+  (define-prefix-command 'hs-minor-command-map)
   (define-prefix-command 'toggle-command-map)
   (bind-keys ("C-," . base-command-map))
   (bind-keys :map base-command-map
              ("b" . buffer-command-map)
              ("f" . file-command-map)
              ("g" . general-command-map)
+             ("h" . hs-minor-command-map)
              ("t" . toggle-command-map))
   (bind-keys :map buffer-command-map
              ("b" . switch-to-buffer)
@@ -40,7 +42,15 @@
              ("g" . avy-goto-line)
              ("l" . magit-log-buffer-file-popup)
              ("s" . magit-status))
+  (bind-keys :map hs-minor-command-map
+             ("H" . hs-hide-all)
+             ("S" . hs-show-all)
+             ("h" . hs-hide-block)
+             ("l" . hs-hide-level)
+             ("s" . hs-show--block)
+             ("t" . hs-toggle-hiding))
   (bind-keys :map toggle-command-map
+             ("h" . hs-minor-mode)
              ("r" . read-only-mode)
              ("t" . toggle-truncate-lines)))
 

@@ -2,7 +2,7 @@
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
 
-;; Last updated: <2016/06/28 11:06:45>
+;; Last updated: <2016/06/30 10:17:45>
 ;;
 
 ;;; Commentary:
@@ -175,6 +175,15 @@
    '(auto-save-default t)
    '(auto-save-list-file-prefix (file-name-as-directory backup-directory))
    '(auto-save-file-name-transforms `((".*" ,backup-directory t)))))
+
+;; for:`hideshow'
+(when (e:require 'hideshow)
+  (add-hook 'lisp-interaction-mode-hook 'hs-minor-mode)
+  (add-hook 'emacs-lisp-mode-hook 'hs-minor-mode)
+  (add-hook 'lisp-mode-hook 'hs-minor-mode-hook)
+  (add-hook 'css-mode-hook 'hs-minor-mode-hook)
+  (add-hook 'php-mode-hook 'hs-minor-mode)
+  (add-hook 'web-mode-hook 'hs-minor-mode))
 
 ;; for:`ido'
 (when (e:require 'ido)
