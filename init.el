@@ -1,7 +1,7 @@
 ;;; init.el --- load this file at first when emacs was started.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2016/06/28 15:02:00>
+;; Last updated: <2016/06/30 10:03:09>
 ;;
 
 ;;; Commentary:
@@ -82,6 +82,9 @@
     (ace-link-setup-default))
   (use-package "ace-window"
     :ensure t))
+
+(use-package "backup-walker"
+  :ensure t)
 
 (use-package "bar-cursor"
   :ensure t

@@ -34,6 +34,7 @@
              ("." . helm-ag)
              ("/" . helm-ag-project-root)
              ("_" . helm-ag-this-file)
+             ("b" . backup-walker-start)
              ("c" . helm-flycheck)
              ("d" . magit-diff-buffer-file-popup)
              ("g" . avy-goto-line)
