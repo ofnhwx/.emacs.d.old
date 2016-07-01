@@ -1,7 +1,7 @@
 ;;; init.el --- load this file at first when emacs was started.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2016/06/30 16:30:22>
+;; Last updated: <2016/07/01 11:19:44>
 ;;
 
 ;;; Commentary:
@@ -183,10 +183,10 @@
   (use-package "helm-descbinds"    :ensure t)
   (use-package "helm-mode-manager" :ensure t)
   (use-package "helm-swoop"        :ensure t)
-  (with-eval-after-load "ag"         (use-package "helm-ag"          :ensure t))
-  (with-eval-after-load "flycheck"   (use-package "helm-flycheck"    :ensure t))
-  (with-eval-after-load "projectile" (use-package "helm-projectile"  :ensure t))
-  (with-eval-after-load "yasnippet"  (use-package "helm-c-yasnippet" :ensure t)))
+  (use-package "helm-ag"           :ensure t)
+  (use-package "helm-flycheck"     :ensure t)
+  (use-package "helm-projectile"   :ensure t)
+  (use-package "helm-c-yasnippet"  :ensure t))
 
 (use-package "lacarte"
   :ensure t)
@@ -448,8 +448,7 @@
             'php-enable-symfony2-coding-style))
 
 (use-package "yaml-mode"
-  :ensure t
-  :mode (("\\.yaml\\'" . yaml-mode)))
+  :ensure t)
 
 (use-package "web-mode"
   :ensure t
