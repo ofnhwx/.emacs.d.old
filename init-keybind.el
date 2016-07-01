@@ -2,7 +2,7 @@
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
 
-;; Last updated: <2016/06/30 10:20:35>
+;; Last updated: <2016/07/01 10:01:20>
 ;;
 
 ;;; Commentary:
@@ -108,10 +108,10 @@
                ("M-x" . helm-M-x)
                ("M-y" . helm-show-kill-ring)
                ("M-:" . helm-eval-expression-with-eldoc)
-               ("C-h b" . helm-descbinds)
+               :map help-map
+               ("b" . helm-descbinds)
                :map ctl-x-map
-               ("C-b" . helm-buffers-list)
-               ("M-f" . helm-find-files)))
+               ("C-b" . helm-multi-files)))
   ;; for:`helm-ag'
   (with-eval-after-load "helm-ag"
     (bind-keys ("M-g ," . helm-ag-pop-stack)
