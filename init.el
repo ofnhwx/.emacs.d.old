@@ -1,7 +1,7 @@
 ;;; init.el --- load this file at first when emacs was started.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2016/07/01 11:19:44>
+;; Last updated: <2016/07/01 15:05:57>
 ;;
 
 ;;; Commentary:
@@ -256,7 +256,13 @@
   (e:load-config "powerline"))
 
 (use-package "projectile"
-  :ensure t)
+  :ensure t
+  :config
+  (defun helm-find-files-with-projectile (&optional arg)
+    (interactive "P")
+    (if (projectile-project-p)
+        (helm-projectile-find-file arg)
+      (helm-find-files arg))))
 
 (use-package "psysh"
   :if (executable-find "psysh")

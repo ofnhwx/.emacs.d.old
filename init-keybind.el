@@ -2,7 +2,7 @@
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
 
-;; Last updated: <2016/07/01 10:01:20>
+;; Last updated: <2016/07/01 15:09:21>
 ;;
 
 ;;; Commentary:
@@ -16,6 +16,11 @@
   (define-prefix-command 'general-command-map)
   (define-prefix-command 'hs-minor-command-map)
   (define-prefix-command 'toggle-command-map)
+  (define-prefix-command 'meta-g-map))
+
+(use-package "bind-key"
+  :ensure t
+  :config
   (bind-keys ("C-," . base-command-map))
   (bind-keys :map base-command-map
              ("b" . buffer-command-map)
@@ -52,17 +57,12 @@
   (bind-keys :map toggle-command-map
              ("h" . hs-minor-mode)
              ("r" . read-only-mode)
-             ("t" . toggle-truncate-lines)))
+             ("t" . toggle-truncate-lines)
+             ("w" . whitespace-mode)))
 
 (use-package "bind-key"
   :ensure t
   :config
-  (bind-keys :map ctl-x-map
-             ("f" . find-file))
-  (bind-keys :map mode-specific-map
-             ("i" . imenu)
-             ("t" . toggle-truncate-lines)
-             ("z" . eshell))
   ;; for:`mac'
   (when (os-type-mac-p)
     (defun scroll-down-with-lines ()
@@ -71,109 +71,76 @@
     (defun scroll-up-with-lines ()
       (interactive)
       (scroll-up 3))
-    (bind-keys ("<wheel-up>"          . scroll-down-with-lines)
+    (bind-keys :map global-map
+               ("<wheel-up>"          . scroll-down-with-lines)
                ("<wheel-down>"        . scroll-up-with-lines)
                ("<double-wheel-up>"   . scroll-down-with-lines)
                ("<double-wheel-down>" . scroll-up-with-lines)
                ("<triple-wheel-up>"   . scroll-down-with-lines)
                ("<triple-wheel-down>" . scroll-up-with-lines)))
-  ;; for:`avy'
-  (with-eval-after-load "avy"
-    (bind-keys ("C-:" . avy-goto-char)
-               ("C-;" . avy-goto-word-1)
-               ("M-g M-g" . avy-goto-line)))
-  ;; for:`ace-window'
-  (with-eval-after-load "ace-window"
-    (bind-keys ("C-^" . ace-window)
-               :map ctl-x-map
-               ("o" . ace-window)))
-  ;; for:`eww'
-  (with-eval-after-load "ace-link"
-    (bind-keys :map eww-mode-map
-               ("o" . ace-link-eww)))
-  ;; for:`bbyac'
-  (with-eval-after-load "bbyac"
-    (bind-keys ("M-/" . bbyac-expand-symbols)))
-  ;; for:`dired'
-  (with-eval-after-load "dired"
-    (with-eval-after-load "wdired"
-      (bind-keys :map dired-mode-map
-                 ("r" . wdired-change-to-wdired-mode))))
-  ;; for:`expand-region'
-  (with-eval-after-load "expand-region"
-    (bind-keys ("C-M-SPC" . er/expand-region)))
-  ;; for:`helm'
-  (with-eval-after-load "helm"
-    (bind-keys :map global-map
-               ("M-x" . helm-M-x)
-               ("M-y" . helm-show-kill-ring)
-               ("M-:" . helm-eval-expression-with-eldoc)
-               :map help-map
-               ("b" . helm-descbinds)
-               :map ctl-x-map
-               ("C-b" . helm-multi-files)))
-  ;; for:`helm-ag'
-  (with-eval-after-load "helm-ag"
-    (bind-keys ("M-g ," . helm-ag-pop-stack)
-               ("M-g ." . helm-ag)
-               ("M-g /" . helm-ag-project-root)
-               ("M-g _" . helm-ag-this-file)))
-  ;; for:`helm-elscreen'
-  (with-eval-after-load "helm-elscreen"
-    (bind-keys ("C-z C-z" . helm-elscreen)))
-  ;; for:`helm-eshell'
-  (with-eval-after-load "eshell"
-    (add-hook
-     'eshell-mode-hook
-     (lambda ()
-       (bind-keys :map eshell-mode-map
-                  ("M-p" . helm-eshell-history)
-                  ("M-n" . helm-esh-pcomplete)))))
-  ;; for:`helm-projectile'
-  (with-eval-after-load "helm-projectile"
-    (defun helm-find-files-with-projectile (&optional arg)
-      (interactive "P")
-      (if (projectile-project-p)
-          (helm-projectile-find-file arg)
-        (helm-find-files arg)))
-    (bind-keys :map ctl-x-map
-               ("C-f" . helm-find-files-with-projectile)))
-  ;; for:`helm-swoop'
-  (with-eval-after-load "helm-swoop"
-    (bind-keys :map isearch-mode-map
-               ("C-o" . helm-swoop-from-isearch)))
-  ;; for:`lacarte'
-  (with-eval-after-load "lacarte"
-    (bind-keys ("M-X" . lacarte-execute-command)))
-  ;; for:`magit'
-  (with-eval-after-load "magit"
-    (bind-keys ("M-g d" . magit-diff-buffer-file-popup)
-               ("M-g l" . magit-log-buffer-file-popup)
-               ("M-g s" . magit-status)))
-  ;; for:`neotree'
-  (with-eval-after-load "neotree"
-    (bind-keys ("<f8>" . neotree-toggle)))
-  ;; for:`php-mode'
-  (with-eval-after-load "php-mode"
-    ;; for:`company-php'
-    (with-eval-after-load "company-php"
-      (bind-keys :map php-mode-map
-                 ("C-]" . ac-php-find-symbol-at-point)
-                 ("C-}" . ac-php-location-stack-back))))
-  ;; for:`skk'
-  (with-eval-after-load "skk"
-    (bind-keys ("C-\¥" . skk-mode)))
-  ;; for:`web-mode'
-  (with-eval-after-load "web-mode"
-    ;; for:`company-php'
-    (with-eval-after-load "company-php"
-      (bind-keys :map web-mode-map
-                 ("C-]" . ac-php-find-symbol-at-point)
-                 ("C-}" . ac-php-location-stack-back))))
-  ;; for:`whitespace'
-  (with-eval-after-load "whitespace"
-    (bind-keys :map mode-specific-map
-               ("w" . whitespace-mode)))
+  ;; for:`global-map'
+  (bind-keys :map global-map
+             ("<f8>" . neotree-toggle)
+             ("C-:" . avy-goto-char)
+             ("C-;" . avy-goto-word-1)
+             ("C-^" . ace-window)
+             ("C-\¥" . skk-mode)
+             ("C-z C-z" . helm-elscreen)
+             ("M-/" . bbyac-expand-symbols)
+             ("M-:" . helm-eval-expression-with-eldoc)
+             ("M-g" . meta-g-map)
+             ("M-X" . lacarte-execute-command)
+             ("M-x" . helm-M-x)
+             ("M-y" . helm-show-kill-ring)
+             ("C-M-SPC" . er/expand-region))
+  ;; for:`ctl-x-map'
+  (bind-keys :map ctl-x-map
+             ("f" . find-file)
+             ("o" . ace-window)
+             ("C-b" . helm-multi-files)
+             ("C-f" . helm-find-files-with-projectile))
+  ;; for:`meta-g-map'
+  (bind-keys :map meta-g-map
+             ("," . helm-ag-pop-stack)
+             ("." . helm-ag)
+             ("/" . helm-ag-project-root)
+             ("_" . helm-ag-this-file)
+             ("d" . magit-diff-buffer-file-popup)
+             ("l" . magit-log-buffer-file-popup)
+             ("s" . magit-status)
+             ("M-g" . avy-goto-line))
+  ;; for:`mode-ific-map'
+  (bind-keys :map mode-specific-map
+             ("i" . imenu)
+             ("t" . toggle-truncate-lines)
+             ("z" . eshell))
+  ;; for:`helm-map'
+  (bind-keys :map help-map
+             ("b" . helm-descbinds))
+  ;; for:`dired-mode-map'
+  (bind-keys :map dired-mode-map
+             ("r" . wdired-change-to-wdired-mode))
+  ;; for:`eshell-mode-map'
+  (add-hook
+   'eshell-mode-hook
+   (lambda ()
+     (bind-keys :map eshell-mode-map
+                ("M-p" . helm-eshell-history)
+                ("M-n" . helm-esh-pcomplete))))
+  ;; for:`eww-mode-map'
+  (bind-keys :map eww-mode-map
+             ("o" . ace-link-eww))
+  ;; for:`isearch-mode-map'
+  (bind-keys :map isearch-mode-map
+             ("C-o" . helm-swoop-from-isearch))
+  ;; for:`php-mode-map'
+  (bind-keys :map php-mode-map
+             ("C-]" . ac-php-find-symbol-at-point)
+             ("C-}" . ac-php-location-stack-back))
+  ;; for:`web-mode-map'
+  (bind-keys :map web-mode-map
+             ("C-]" . ac-php-find-symbol-at-point)
+             ("C-}" . ac-php-location-stack-back))
   )
 
 (use-package "smartrep"
