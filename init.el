@@ -1,7 +1,7 @@
 ;;; init.el --- load this file at first when emacs was started.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2016/07/02 14:52:43>
+;; Last updated: <2016/07/02 18:30:27>
 ;;
 
 ;;; Commentary:
@@ -130,6 +130,8 @@
   (use-package "elscreen-persist"
     :ensure t
     :config
+    (custom-set-variables
+     '(elscreen-persist-file (e:expand "elscren" :local)))
     (elscreen-persist-mode 1)))
 
 (use-package "emmet-mode"
