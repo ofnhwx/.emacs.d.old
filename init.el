@@ -329,6 +329,7 @@
 
 (use-package "which-key"
   :ensure t
+  :diminish which-key-mode
   :config
   (which-key-setup-side-window-right-bottom)
   (which-key-mode))
@@ -359,6 +360,9 @@
     :ensure t
     :config
     (hlinum-activate)))
+
+(use-package "hideshow"
+  :diminish hs-minor-mode)
 
 (use-package "ido"
   :config
