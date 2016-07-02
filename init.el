@@ -1,7 +1,7 @@
 ;;; init.el --- load this file at first when emacs was started.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2016/07/01 15:05:57>
+;; Last updated: <2016/07/02 14:52:43>
 ;;
 
 ;;; Commentary:
@@ -257,12 +257,14 @@
 
 (use-package "projectile"
   :ensure t
+  :diminish projectile-mode
   :config
   (defun helm-find-files-with-projectile (&optional arg)
     (interactive "P")
     (if (projectile-project-p)
         (helm-projectile-find-file arg)
-      (helm-find-files arg))))
+      (helm-find-files arg)))
+  (projectile-global-mode))
 
 (use-package "psysh"
   :if (executable-find "psysh")
