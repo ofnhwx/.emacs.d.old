@@ -2,7 +2,7 @@
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
 
-;; Last updated: <2016/07/01 15:09:21>
+;; Last updated: <2016/07/02 15:01:35>
 ;;
 
 ;;; Commentary:
@@ -116,6 +116,7 @@
              ("z" . eshell))
   ;; for:`helm-map'
   (bind-keys :map help-map
+             ("a" . helm-apropos)
              ("b" . helm-descbinds))
   ;; for:`dired-mode-map'
   (bind-keys :map dired-mode-map
