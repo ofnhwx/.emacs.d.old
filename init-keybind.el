@@ -135,13 +135,15 @@
   (bind-keys :map isearch-mode-map
              ("C-o" . helm-swoop-from-isearch))
   ;; for:`php-mode-map'
-  (bind-keys :map php-mode-map
-             ("C-]" . ac-php-find-symbol-at-point)
-             ("C-}" . ac-php-location-stack-back))
+  (with-eval-after-load 'php-mode
+    (bind-keys :map php-mode-map
+               ("C-]" . ac-php-find-symbol-at-point)
+               ("C-}" . ac-php-location-stack-back)))
   ;; for:`web-mode-map'
-  (bind-keys :map web-mode-map
-             ("C-]" . ac-php-find-symbol-at-point)
-             ("C-}" . ac-php-location-stack-back))
+  (with-eval-after-load 'web-mode
+    (bind-keys :map web-mode-map
+               ("C-]" . ac-php-find-symbol-at-point)
+               ("C-}" . ac-php-location-stack-back)))
   )
 
 (use-package "smartrep"
