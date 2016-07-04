@@ -2,7 +2,7 @@
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
 
-;; Last updated: <2016/07/02 15:01:35>
+;; Last updated: <2016/07/04 11:11:43>
 ;;
 
 ;;; Commentary:
@@ -27,7 +27,7 @@
              ("f" . file-command-map)
              ("g" . general-command-map)
              ("h" . hs-minor-command-map)
-             ("t" . toggle-command-map))
+             ("t" . hydra-toggle/body))
   (bind-keys :map buffer-command-map
              ("b" . switch-to-buffer)
              ("k" . kill-buffer))
@@ -53,12 +53,7 @@
              ("h" . hs-hide-block)
              ("l" . hs-hide-level)
              ("s" . hs-show--block)
-             ("t" . hs-toggle-hiding))
-  (bind-keys :map toggle-command-map
-             ("h" . hs-minor-mode)
-             ("r" . read-only-mode)
-             ("t" . toggle-truncate-lines)
-             ("w" . whitespace-mode)))
+             ("t" . hs-toggle-hiding)))
 
 (use-package "bind-key"
   :ensure t
@@ -146,48 +141,46 @@
                ("C-}" . ac-php-location-stack-back)))
   )
 
-(use-package "smartrep"
+(use-package "hydra"
   :ensure t
   :config
-  ;;
-  (smartrep-define-key
-   global-map
-   "M-g" '(("n" . 'next-error)
-           ("p" . 'previous-error)
-           ("N" . 'next-error)
-           ("P" . 'previous-error)
-           ))
-  ;;
-  (smartrep-define-key
-   global-map
-   "C-c" '(("n" . (lambda () (scroll-other-window  1)))
-           ("p" . (lambda () (scroll-other-window -1)))
-           ("N" . (lambda () (scroll-other-window)))
-           ("P" . (lambda () (scroll-other-window '-)))
-           ("~" . 'shrink-window)
-           ("^" . 'enlarge-window)
-           ("{" . 'shrink-window-horizontally)
-           ("}" . 'enlarge-window-horizontally)
-           ))
-  ;;
-  (use-package "multiple-cursors"
-    :config
-    (bind-key "C-t" nil)
-    (smartrep-define-key
-     global-map
-     "C-t" '(("C-t" . 'mc/mark-next-like-this)
-             ("n"   . 'mc/mark-next-like-this)
-             ("p"   . 'mc/mark-previous-like-this)
-             ("m"   . 'mc/mark-more-like-this-extended)
-             ("u"   . 'mc/unmark-next-like-this)
-             ("U"   . 'mc/unmark-previous-like-this)
-             ("s"   . 'mc/skip-to-next-like-this)
-             ("S"   . 'mc/skip-to-previous-like-this)
-             ("*"   . 'mc/mark-all-like-this)
-             ("d"   . 'mc/mark-all-like-this-dwim)
-             ("i"   . 'mc/insert-numbers)
-             ("o"   . 'mc/sort-regions)
-             ("O"   . 'mc/reverse-regions)))))
+  (defhydra hydra-toggle (base-command-map "t")
+    "toggle"
+    ("h" hs-minor-mode         "hideshow")
+    ("r" read-only-mode        "readonly")
+    ("t" toggle-truncate-lines "truncate")
+    ("w" whitespace-mode       "whitespace"))
+  (defhydra hydra-jump (global-map "M-g")
+    "jump"
+    ("n" next-error               "next-error")
+    ("p" previous-error           "prev-error")
+    ("N" git-gutter:next-hunk     "next-hunk")
+    ("P" git-gutter:previous-hunk "prev-hunk"))
+  (defhydra hydra-mc (global-map "C-t")
+    "mc"
+    ("C-t" mc/mark-next-like-this          "next")
+    ("n"   mc/mark-next-like-this          "next")
+    ("p"   mc/mark-previous-like-this      "prev")
+    ("m"   mc/mark-more-like-this-extended "more")
+    ("u"   mc/unmark-next-like-this        "unmark-next")
+    ("U"   mc/unmark-previous-like-this    "unmark-prev")
+    ("s"   mc/skip-to-next-like-this       "skip-next")
+    ("S"   mc/skip-to-previous-like-this   "skip-prev")
+    ("*"   mc/mark-all-like-this           "all")
+    ("d"   mc/mark-all-like-this-dwim      "all-dwim")
+    ("i"   mc/insert-numbers               "insert-numbers")
+    ("o"   mc/sort-regions                 "sort")
+    ("O"   mc/reverse-regions              "reverse"))
+  (defhydra hydra-wc (global-map "C-c")
+    ("n" (lambda () (interactive) (scroll-other-window  1)))
+    ("p" (lambda () (interactive) (scroll-other-window -1)))
+    ("N" (lambda () (interactive) (scroll-other-window)))
+    ("P" (lambda () (interactive) (scroll-other-window '-)))
+    ("=" balance-windows)
+    ("~" shrink-window)
+    ("^" enlarge-window)
+    ("{" shrink-window-horizontally)
+    ("}" enlarge-window-horizontally)))
 
 (e:loaded)
 (provide 'init-keybind)
