@@ -272,14 +272,15 @@
   :if (executable-find "psysh")
   :ensure t)
 
-;; `skk-user-directory'の設定は事前に行う必要あり
-(let ((dir (e:expand "ddskk" :local)))
-  (custom-set-variables
-   `(skk-user-directory ,dir))
-  (unless (f-exists? dir)
-    (make-directory dir t)))
 (use-package "skk"
   :ensure ddskk
+  :init
+  ;; `skk-user-directory'の設定は事前に行う必要あり
+  (let ((dir (e:expand "ddskk" :local)))
+    (custom-set-variables
+     `(skk-user-directory ,dir))
+    (unless (f-exists? dir)
+      (make-directory dir t)))
   :config
   (custom-set-variables
    '(skk-init-file (e:expand "init-skk.el" :user))
