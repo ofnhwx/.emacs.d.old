@@ -1,7 +1,7 @@
 ;;; init.el --- load this file at first when emacs was started.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2016/07/04 10:33:33>
+;; Last updated: <2016/07/04 18:11:23>
 ;;
 
 ;;; Commentary:
@@ -436,9 +436,7 @@
 (use-package "term"
   :config
   (use-package "term+"
-    :ensure t
-    :config
-    (require 'xterm-256color)))
+    :ensure t))
 
 (use-package "whitespace"
   :diminish global-whitespace-mode)

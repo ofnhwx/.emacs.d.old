@@ -170,6 +170,10 @@
   ;; for:`isearch-mode-map'
   (bind-keys :map isearch-mode-map
              ("C-o" . helm-swoop-from-isearch))
+  ;; for:`term+char-map'
+  (bind-keys :map term+char-map
+             ("C-^" . nil)
+             ("C-z" . nil))
   ;; for:`php-mode-map'
   (with-eval-after-load 'php-mode
     (bind-keys :map php-mode-map

@@ -2,7 +2,7 @@
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
 
-;; Last updated: <2016/06/30 16:15:40>
+;; Last updated: <2016/07/04 13:12:14>
 ;;
 
 ;;; Commentary:
@@ -103,6 +103,8 @@
    ;;
    '(eshell-visual-commands
      '("elm" "less" "lynx" "rlogin" "more" "ncftp" "pine" "screen" "ssh" "telnet" "tin" "top" "trn" "vi"))
+   ;;
+   '(eshell-escape-control-x nil)
    ;; prompt 文字列の変更
    '(eshell-prompt-function
      (lambda () (concat "[" (e:unexpand (eshell/pwd)) "]\n" (if (zerop (user-uid)) "# " "$ "))))
