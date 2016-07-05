@@ -2,7 +2,7 @@
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
 
-;; Last updated: <2016/07/04 11:11:43>
+;; Last updated: <2016/07/05 17:24:44>
 ;;
 
 ;;; Commentary:
@@ -17,6 +17,47 @@
   (define-prefix-command 'hs-minor-command-map)
   (define-prefix-command 'toggle-command-map)
   (define-prefix-command 'meta-g-map))
+
+(use-package "hydra"
+  :ensure t
+  :config
+  (defhydra hydra-toggle (base-command-map "t")
+    "toggle"
+    ("h" hs-minor-mode         "hideshow")
+    ("r" read-only-mode        "readonly")
+    ("t" toggle-truncate-lines "truncate")
+    ("w" whitespace-mode       "whitespace"))
+  (defhydra hydra-jump (global-map "M-g")
+    "jump"
+    ("n" next-error               "next-error")
+    ("p" previous-error           "prev-error")
+    ("N" git-gutter:next-hunk     "next-hunk")
+    ("P" git-gutter:previous-hunk "prev-hunk"))
+  (defhydra hydra-mc (global-map "C-t")
+    "mc"
+    ("C-t" mc/mark-next-like-this          "next")
+    ("n"   mc/mark-next-like-this          "next")
+    ("p"   mc/mark-previous-like-this      "prev")
+    ("m"   mc/mark-more-like-this-extended "more")
+    ("u"   mc/unmark-next-like-this        "unmark-next")
+    ("U"   mc/unmark-previous-like-this    "unmark-prev")
+    ("s"   mc/skip-to-next-like-this       "skip-next")
+    ("S"   mc/skip-to-previous-like-this   "skip-prev")
+    ("*"   mc/mark-all-like-this           "all")
+    ("d"   mc/mark-all-like-this-dwim      "all-dwim")
+    ("i"   mc/insert-numbers               "insert-numbers")
+    ("o"   mc/sort-regions                 "sort")
+    ("O"   mc/reverse-regions              "reverse"))
+  (defhydra hydra-wc (global-map "C-c")
+    ("n" (lambda () (interactive) (scroll-other-window  1)))
+    ("p" (lambda () (interactive) (scroll-other-window -1)))
+    ("N" (lambda () (interactive) (scroll-other-window)))
+    ("P" (lambda () (interactive) (scroll-other-window '-)))
+    ("=" balance-windows)
+    ("~" shrink-window)
+    ("^" enlarge-window)
+    ("{" shrink-window-horizontally)
+    ("}" enlarge-window-horizontally)))
 
 (use-package "bind-key"
   :ensure t
@@ -140,47 +181,6 @@
                ("C-]" . ac-php-find-symbol-at-point)
                ("C-}" . ac-php-location-stack-back)))
   )
-
-(use-package "hydra"
-  :ensure t
-  :config
-  (defhydra hydra-toggle (base-command-map "t")
-    "toggle"
-    ("h" hs-minor-mode         "hideshow")
-    ("r" read-only-mode        "readonly")
-    ("t" toggle-truncate-lines "truncate")
-    ("w" whitespace-mode       "whitespace"))
-  (defhydra hydra-jump (global-map "M-g")
-    "jump"
-    ("n" next-error               "next-error")
-    ("p" previous-error           "prev-error")
-    ("N" git-gutter:next-hunk     "next-hunk")
-    ("P" git-gutter:previous-hunk "prev-hunk"))
-  (defhydra hydra-mc (global-map "C-t")
-    "mc"
-    ("C-t" mc/mark-next-like-this          "next")
-    ("n"   mc/mark-next-like-this          "next")
-    ("p"   mc/mark-previous-like-this      "prev")
-    ("m"   mc/mark-more-like-this-extended "more")
-    ("u"   mc/unmark-next-like-this        "unmark-next")
-    ("U"   mc/unmark-previous-like-this    "unmark-prev")
-    ("s"   mc/skip-to-next-like-this       "skip-next")
-    ("S"   mc/skip-to-previous-like-this   "skip-prev")
-    ("*"   mc/mark-all-like-this           "all")
-    ("d"   mc/mark-all-like-this-dwim      "all-dwim")
-    ("i"   mc/insert-numbers               "insert-numbers")
-    ("o"   mc/sort-regions                 "sort")
-    ("O"   mc/reverse-regions              "reverse"))
-  (defhydra hydra-wc (global-map "C-c")
-    ("n" (lambda () (interactive) (scroll-other-window  1)))
-    ("p" (lambda () (interactive) (scroll-other-window -1)))
-    ("N" (lambda () (interactive) (scroll-other-window)))
-    ("P" (lambda () (interactive) (scroll-other-window '-)))
-    ("=" balance-windows)
-    ("~" shrink-window)
-    ("^" enlarge-window)
-    ("{" shrink-window-horizontally)
-    ("}" enlarge-window-horizontally)))
 
 (e:loaded)
 (provide 'init-keybind)
