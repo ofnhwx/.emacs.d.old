@@ -122,6 +122,7 @@
              ("C-^" . ace-window)
              ("C-\¥" . skk-mode)
              ("C-z C-z" . helm-elscreen)
+             ("M-%" . vr/query-replace)
              ("M-/" . bbyac-expand-symbols)
              ("M-:" . helm-eval-expression-with-eldoc)
              ("M-g" . meta-g-map)

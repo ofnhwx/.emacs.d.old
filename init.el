@@ -336,6 +336,9 @@
    '(undohist-directory (e:expand "undohist" :local)))
   (undohist-initialize))
 
+(use-package "visual-regexp"
+  :ensure t)
+
 (use-package "which-key"
   :ensure t
   :diminish which-key-mode
