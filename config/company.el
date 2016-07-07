@@ -1,7 +1,7 @@
 ;;; company.el --- 'company'の設定
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2016/06/30 15:52:11>
+;; Last updated: <2016/07/07 10:42:01>
 ;;
 
 ;;; Commentary:
@@ -44,6 +44,22 @@
 ;; モード毎の設定
 (add-company-backends php-mode-hook company-ac-php-backend company-dabbrev-code)
 (add-company-backends web-mode-hook company-web-html company-ac-php-backend company-dabbrev-code)
+
+;; `smartparens'を一時的に無効にする
+(with-eval-after-load 'smartparens
+  (defvar company-smartparens-enabled nil
+    "`company'の補完中に`smartparens'の状態を保存しておく変数.")
+  (defun disable-smartparens-with-company (arg)
+    "`company'での補完開始時に`smartparens'を無効にする.引数 ARG は未使用."
+    (setq company-smartparens-enabled smartparens-global-mode)
+    (smartparens-global-mode 0))
+  (defun revert-smartparens-with-company (arg)
+    "`company'での補完終了時に`smartparens'の状態を戻す.引数 ARG は未使用."
+    (when company-smartparens-enabled
+      (smartparens-global-mode 1)))
+  (add-hook 'company-completion-started-hook   'disable-smartparens-with-company)
+  (add-hook 'company-completion-finished-hook  'revert-smartparens-with-company)
+  (add-hook 'company-completion-cancelled-hook 'revert-smartparens-with-company))
 
 ;; [2016-06-14] - とりあえず`ac-php'を`web-mode'でも動くように
 (defun company-ac-php-backend (command &optional arg &rest ignored)
