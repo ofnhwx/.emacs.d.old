@@ -1,7 +1,7 @@
 ;;; init.el --- load this file at first when emacs was started.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2016/07/04 18:11:23>
+;; Last updated: <2016/07/06 11:10:42>
 ;;
 
 ;;; Commentary:
@@ -391,6 +391,10 @@
              (ido-completing-read "Bbyac: " strlist nil t))
             (t (apply orig strlist))))
     (advice-add 'bbyac--display-matches :around 'bbyac--display-matches--use-ido))
+  (use-package "flx-ido"
+    :ensure t
+    :config
+    (flx-ido-mode))
   (use-package "ido-at-point"
     :ensure t
     :config

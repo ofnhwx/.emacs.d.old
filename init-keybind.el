@@ -2,7 +2,7 @@
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
 
-;; Last updated: <2016/07/05 17:24:44>
+;; Last updated: <2016/07/05 17:42:58>
 ;;
 
 ;;; Commentary:
@@ -58,6 +58,17 @@
     ("^" enlarge-window)
     ("{" shrink-window-horizontally)
     ("}" enlarge-window-horizontally)))
+
+(use-package "mykie"
+  :ensure t
+  :config
+  (mykie:set-keys global-map
+    "C-w"
+    :default (kill-region (line-beginning-position) (line-end-position))
+    :region kill-region
+    "M-w"
+    :default (kill-ring-save (line-beginning-position) (line-end-position))
+    :region kill-ring-save))
 
 (use-package "bind-key"
   :ensure t
