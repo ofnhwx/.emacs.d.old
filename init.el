@@ -247,6 +247,11 @@
     (add-hook 'popwin:before-popup-hook (lambda () (setq neo-persist-show nil)))
     (add-hook 'popwin:after-popup-hook  (lambda () (setq neo-persist-show t)))))
 
+(use-package "php-eldoc"
+  :ensure t
+  :config
+  (add-hook 'php-mode-hook 'php-eldoc-enable)
+  (add-hook 'web-mode-hook 'php-eldoc-enable))
 (use-package "popwin"
   :ensure t
   :config
@@ -443,6 +448,8 @@
 (use-package "term"
   :config
   (use-package "term+"
+    :ensure t)
+  (use-package "term+mux"
     :ensure t))
 
 (use-package "whitespace"
