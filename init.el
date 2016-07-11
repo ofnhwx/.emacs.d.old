@@ -1,7 +1,7 @@
 ;;; init.el --- load this file at first when emacs was started.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2016/07/08 15:28:41>
+;; Last updated: <2016/07/08 16:55:41>
 ;;
 
 ;;; Commentary:
@@ -76,6 +76,11 @@
    '(auto-save-buffers-enhanced-file-related-with-scratch-buffer
      (e:expand ".scratch" :local)))
   (auto-save-buffers-enhanced t))
+
+(use-package "auto-shell-command"
+  :ensure t
+  :config
+  (e:load-config "auto-shell-command" t))
 
 (use-package "avy"
   :ensure t

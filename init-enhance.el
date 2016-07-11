@@ -1,7 +1,7 @@
 ;;; init-enhance.el --- 個人設定用の拡張機能.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2016/06/30 15:58:30>
+;; Last updated: <2016/07/08 16:50:55>
 ;;
 
 ;;; Commentary:
@@ -29,8 +29,13 @@
        (package-installed-p ,package))))
 
 ;; define:`e:load-config'
-(defmacro e:load-config (filename)
-  `(let ((file (e:expand ,filename :conf)))
+(defmacro e:load-config (filename &optional local)
+  `(let ((file ,(if local `(e:expand ,(concat "config/" filename) :local)
+                  `(e:expand ,filename :conf))))
+     ,(when local
+        '(progn (unless (file-exists-p (file-name-directory file))
+                  (make-directory (file-name-directory file) t))
+                (write-region "" nil (concat (file-name-sans-extension file) ".el"))))
      (load file)))
 
 ;; use:`package'
