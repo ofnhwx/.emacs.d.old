@@ -2,7 +2,7 @@
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
 
-;; Last updated: <2016/07/04 13:12:14>
+;; Last updated: <2016/07/08 16:19:28>
 ;;
 
 ;;; Commentary:
@@ -227,6 +227,11 @@
    '(time-stamp-start  (concat "Last " "updated: <"))
    '(time-stamp-format "%04y/%02m/%02d %02H:%02M:%02S")
    '(time-stamp-end    ">")))
+
+;; for:`tramp'
+(when (e:require 'tramp t)
+  (custom-set-variables
+   '(tramp-persistency-file-name (e:expand "tramp" :local))))
 
 ;; for:`uniquify'
 (when (e:require 'uniquify t)
