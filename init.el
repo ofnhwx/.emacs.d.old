@@ -1,7 +1,7 @@
 ;;; init.el --- load this file at first when emacs was started.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2016/07/08 16:55:41>
+;; Last updated: <2016/07/11 13:06:30>
 ;;
 
 ;;; Commentary:
@@ -90,7 +90,13 @@
     :config
     (ace-link-setup-default))
   (use-package "ace-window"
-    :ensure t))
+    :ensure t)
+  (use-package "avy-zap"
+  :ensure t)
+  (use-package "avy-migemo"
+    :ensure t
+    :config
+    (avy-migemo-mode 1)))
 
 (use-package "backup-walker"
   :ensure t)

@@ -2,7 +2,7 @@
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
 
-;; Last updated: <2016/07/05 17:42:58>
+;; Last updated: <2016/07/11 13:07:28>
 ;;
 
 ;;; Commentary:
@@ -140,6 +140,7 @@
              ("M-X" . lacarte-execute-command)
              ("M-x" . helm-M-x)
              ("M-y" . helm-show-kill-ring)
+             ("M-z" . avy-zap-to-char-dwim)
              ("C-M-SPC" . er/expand-region))
   ;; for:`ctl-x-map'
   (bind-keys :map ctl-x-map
