@@ -1,7 +1,7 @@
 ;;; init-enhance.el --- 個人設定用の拡張機能.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2016/07/08 16:50:55>
+;; Last updated: <2016/07/11 11:24:03>
 ;;
 
 ;;; Commentary:
@@ -35,7 +35,8 @@
      ,(when local
         '(progn (unless (file-exists-p (file-name-directory file))
                   (make-directory (file-name-directory file) t))
-                (write-region "" nil (concat (file-name-sans-extension file) ".el"))))
+                (unless (file-exists-p (concat (file-name-sans-extension file) ".el"))
+                  (write-region "" nil (concat (file-name-sans-extension file) ".el")))))
      (load file)))
 
 ;; use:`package'
