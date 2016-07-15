@@ -1,7 +1,7 @@
 ;;; init.el --- load this file at first when emacs was started.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2016/07/11 13:06:30>
+;; Last updated: <2016/07/15 09:58:13>
 ;;
 
 ;;; Commentary:
@@ -34,6 +34,7 @@
 (use-package "s"    :ensure t)
 (use-package "deferred"   :ensure t)
 (use-package "concurrent" :ensure t)
+(use-package "windata"    :ensure t)
 (use-package "cl-lib-highlight"
   :ensure t
   :config
@@ -192,8 +193,17 @@
 (use-package "helm"
   :ensure t
   :config
+  (defun my/helm-display-buffer (buffer)
+    (let ((helm-windata '(frame bottom 0.3 nil)))
+      (apply 'windata-display-buffer buffer helm-windata)))
+  (custom-set-variables
+   '(helm-display-function 'my/helm-display-buffer))
   (use-package "helm-backup"       :ensure t)
   (use-package "helm-descbinds"    :ensure t)
+  (use-package "helm-flx"
+    :ensure t
+    :config
+    (helm-flx-mode 1))
   (use-package "helm-mode-manager" :ensure t)
   (use-package "helm-swoop"        :ensure t)
   (use-package "helm-ag"           :ensure t)
@@ -216,6 +226,11 @@
     :ensure t
     :config
     (add-hook 'magit-mode-hook 'turn-on-magit-gitflow)))
+
+(use-package "mew"
+  :ensure t
+  :config
+  (e:load-config "mew"))
 
 (use-package "migemo"
   :if (executable-find "cmigemo")
