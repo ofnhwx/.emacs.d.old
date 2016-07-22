@@ -2,7 +2,7 @@
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
 
-;; Last updated: <2016/07/11 13:07:28>
+;; Last updated: <2016/07/22 10:11:24>
 ;;
 
 ;;; Commentary:
@@ -98,6 +98,7 @@
              ("d" . magit-diff-buffer-file-popup)
              ("g" . avy-goto-line)
              ("l" . magit-log-buffer-file-popup)
+             ("m" . helm-switch-major-mode)
              ("s" . magit-status))
   (bind-keys :map hs-minor-command-map
              ("H" . hs-hide-all)
@@ -136,28 +137,23 @@
              ("M-%" . vr/query-replace)
              ("M-/" . bbyac-expand-symbols)
              ("M-:" . helm-eval-expression-with-eldoc)
-             ("M-g" . meta-g-map)
+             ("M-g" . general-command-map)
              ("M-X" . lacarte-execute-command)
              ("M-x" . helm-M-x)
              ("M-y" . helm-show-kill-ring)
              ("M-z" . avy-zap-to-char-dwim)
              ("C-M-SPC" . er/expand-region))
+  ;; for:`search-map'
+  (bind-keys :map search-map
+             ("g" . dumb-jump-go)
+             ("b" . dumb-jump-back)
+             ("q" . dumb-jump-quick-look))
   ;; for:`ctl-x-map'
   (bind-keys :map ctl-x-map
              ("f" . find-file)
              ("o" . ace-window)
              ("C-b" . helm-multi-files)
              ("C-f" . helm-find-files-with-projectile))
-  ;; for:`meta-g-map'
-  (bind-keys :map meta-g-map
-             ("," . helm-ag-pop-stack)
-             ("." . helm-ag)
-             ("/" . helm-ag-project-root)
-             ("_" . helm-ag-this-file)
-             ("d" . magit-diff-buffer-file-popup)
-             ("l" . magit-log-buffer-file-popup)
-             ("s" . magit-status)
-             ("M-g" . avy-goto-line))
   ;; for:`mode-ific-map'
   (bind-keys :map mode-specific-map
              ("i" . imenu)

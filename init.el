@@ -1,7 +1,7 @@
 ;;; init.el --- load this file at first when emacs was started.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2016/07/15 09:58:13>
+;; Last updated: <2016/07/22 10:12:41>
 ;;
 
 ;;; Commentary:
@@ -119,6 +119,9 @@
   :config
   (e:load-config "company")
   (global-company-mode))
+
+(use-package "dumb-jump"
+  :ensure t)
 
 (use-package "edbi"
   :ensure t
