@@ -1,7 +1,7 @@
 ;;; init-enhance.el --- 環境回りの設定.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2016/07/14 16:47:04>
+;; Last updated: <2016/08/05 15:36:51>
 ;;
 
 ;;; Commentary:
@@ -61,6 +61,8 @@
      (buffer-file-name "%f" "%b")))
  ;; 日付の書式
  '(display-time-format " %Y/%m/%d(%a) %H:%M")
+ ;; 認証ファイル
+ '(auth-sources `(,(e:expand ".authinfo.gpg" :local)))
  ;; -------------------------------------------------------------------- ;;
  '(menu-bar-mode window-system) ;; コンソールではメニューバーを表示しない
  '(ring-bell-function 'ignore)  ;; ビープ音はなし

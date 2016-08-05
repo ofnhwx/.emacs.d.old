@@ -1,7 +1,7 @@
 ;;; init.el --- load this file at first when emacs was started.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2016/07/22 10:12:41>
+;; Last updated: <2016/08/05 16:13:22>
 ;;
 
 ;;; Commentary:
@@ -367,7 +367,14 @@
   :ensure t
   :config
   (custom-set-variables
-   '(undohist-directory (e:expand "undohist" :local)))
+   '(undohist-directory (e:expand "undohist" :local))
+   '(undohist-ignored-files '(".authinfo.gpg")))
+  ;; 無効リストに登録されているファイルのUndo履歴を保存させない
+  (defun undohist-save-1--with-ignored ()
+    (let ((file (make-undohist-file-name (buffer-file-name))))
+      (undohist-recover-file-p file)))
+  (advice-add 'undohist-save-1 :before-while 'undohist-save-1--with-ignored)
+  ;;
   (undohist-initialize))
 
 (use-package "visual-regexp"
