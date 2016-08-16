@@ -2,7 +2,7 @@
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
 
-;; Last updated: <2016/07/08 16:19:28>
+;; Last updated: <2016/08/12 11:22:01>
 ;;
 
 ;;; Commentary:
@@ -118,8 +118,8 @@
 (when (e:require 'recentf t)
   (custom-set-variables
    '(recentf-save-file (e:expand ".recentf" :local))
-   '(recentf-max-menu-items   20)
-   '(recentf-max-saved-items 200)
+   '(recentf-max-menu-items    20)
+   '(recentf-max-saved-items 1000)
    '(recentf-exclude
      `("^/[^/:]+:"
        "\\.howm$"
