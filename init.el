@@ -212,7 +212,12 @@
     (helm-flx-mode 1))
   (use-package "helm-mode-manager" :ensure t)
   (use-package "helm-swoop"        :ensure t)
-  (use-package "helm-ag"           :ensure t)
+  (use-package "helm-ag"
+    :ensure t
+    :config
+    (when (executable-find "pt")
+      (custom-set-variables
+       '(helm-ag-base-command "pt --nocolor --nogroup --smart-case"))))
   (use-package "helm-flycheck"     :ensure t)
   (use-package "helm-projectile"   :ensure t)
   (use-package "helm-c-yasnippet"  :ensure t))
