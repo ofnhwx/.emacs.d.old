@@ -1,7 +1,7 @@
 ;;; init-enhance.el --- 環境回りの設定.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2016/08/05 15:36:51>
+;; Last updated: <2016/08/12 11:17:29>
 ;;
 
 ;;; Commentary:
@@ -97,6 +97,9 @@
   (require 'ls-lisp nil t)
   (custom-set-variables
    '(ls-lisp-use-insert-directory-program nil))
+  ;; Emacsで使うshellはzsh(fishは'&&'->'; and'で問題あり)
+  (custom-set-variables
+   `(shell-file-name ,(executable-find "zsh")))
   ;; IME関連の設定
   (custom-set-variables
    '(default-input-method "MacOSX"))
