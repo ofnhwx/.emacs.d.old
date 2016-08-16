@@ -1,7 +1,7 @@
 ;;; init.el --- load this file at first when emacs was started.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2016/08/05 16:13:22>
+;; Last updated: <2016/08/16 10:20:42>
 ;;
 
 ;;; Commentary:
@@ -338,6 +338,9 @@
     (skk-get skk-get-jisyo-direcroty))
   (load skk-init-file t)
   (require 'skk-study))
+
+(use-package "string-edit"
+  :ensure t)
 
 (use-package "rainbow-mode"
   :ensure t

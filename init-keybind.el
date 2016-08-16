@@ -2,7 +2,7 @@
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
 
-;; Last updated: <2016/07/22 10:11:24>
+;; Last updated: <2016/08/16 10:22:10>
 ;;
 
 ;;; Commentary:
@@ -96,6 +96,7 @@
              ("b" . backup-walker-start)
              ("c" . helm-flycheck)
              ("d" . magit-diff-buffer-file-popup)
+             ("e" . string-edit-at-point)
              ("g" . avy-goto-line)
              ("l" . magit-log-buffer-file-popup)
              ("m" . helm-switch-major-mode)
