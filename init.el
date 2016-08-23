@@ -1,7 +1,7 @@
 ;;; init.el --- load this file at first when emacs was started.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2016/08/16 10:20:42>
+;; Last updated: <2016/08/23 14:49:22>
 ;;
 
 ;;; Commentary:
@@ -123,6 +123,11 @@
   (e:load-config "company")
   (global-company-mode))
 
+(use-package "digit-groups"
+  :ensure t
+  :config
+  (digit-groups-global-mode 0))
+
 (use-package "dumb-jump"
   :ensure t)
 
@@ -149,7 +154,7 @@
     :ensure t
     :config
     (custom-set-variables
-     '(elscreen-persist-file (e:expand "elscren" :local)))
+     '(elscreen-persist-file (e:expand "elscreen" :local)))
     (elscreen-persist-mode 1)))
 
 (use-package "emmet-mode"
