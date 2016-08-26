@@ -1,7 +1,7 @@
 ;;; init.el --- load this file at first when emacs was started.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2016/08/25 10:41:05>
+;; Last updated: <2016/08/26 12:19:17>
 ;;
 
 ;;; Commentary:
@@ -246,7 +246,7 @@
 (use-package "mew"
   :ensure t
   :config
-  (e:load-config "mew"))
+  (e:load-config "mew" t))
 
 (use-package "migemo"
   :if (executable-find "cmigemo")
