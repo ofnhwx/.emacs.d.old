@@ -1,7 +1,7 @@
 ;;; init.el --- load this file at first when emacs was started.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2016/08/23 14:49:22>
+;; Last updated: <2016/08/25 10:41:05>
 ;;
 
 ;;; Commentary:
@@ -544,7 +544,8 @@
 
 (use-package "web-mode"
   :ensure t
-  :mode (("\\.php\\'" . web-mode))
+  :mode (("\\.php\\'"  . web-mode)
+         ("\\.twig\\'" . web-mode))
   :config
   (custom-set-variables
    '(web-mode-comment-keywords "\\(?:BUG\\|FIXME\\|HACK\\|KLUDGE\\|OPTIMIZE\\|RE\\(?:FACTOR\\|VIEW\\)\\|TODO\\|WORKAROUND\\|XXX\\|MEMO\\)")
