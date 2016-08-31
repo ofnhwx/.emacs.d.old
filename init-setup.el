@@ -2,7 +2,7 @@
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
 
-;; Last updated: <2016/08/12 11:22:01>
+;; Last updated: <2016/08/26 13:47:16>
 ;;
 
 ;;; Commentary:
@@ -128,6 +128,7 @@
    '(recentf-filename-handlers
      '(abbreviate-file-name))
    '(recentf-mode t))
+  (run-with-idle-timer 300 t 'recentf-save-list)
   (defadvice recentf-save-list (before recentf-save-list--convert-home activate)
     (let ((list nil))
       (dolist (file (mapcar 'abbreviate-file-name recentf-list))
