@@ -2,7 +2,7 @@
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
 
-;; Last updated: <2016/08/16 10:22:10>
+;; Last updated: <2016/09/02 13:27:39>
 ;;
 
 ;;; Commentary:
@@ -154,6 +154,7 @@
              ("f" . find-file)
              ("o" . ace-window)
              ("C-b" . helm-multi-files)
+             ("C-c" . helm-M-x)
              ("C-f" . helm-find-files-with-projectile))
   ;; for:`mode-ific-map'
   (bind-keys :map mode-specific-map

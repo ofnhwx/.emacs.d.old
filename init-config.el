@@ -1,7 +1,7 @@
 ;;; init-enhance.el --- 環境回りの設定.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2016/08/12 11:17:29>
+;; Last updated: <2016/09/02 13:25:28>
 ;;
 
 ;;; Commentary:
@@ -90,6 +90,8 @@
  '(mode-require-final-newline nil)
  ;; -------------------------------------------------------------------- ;;
  )
+
+(defalias 'exit 'save-buffers-kill-terminal)
 
 ;;; mac用の設定
 (when (os-type-mac-p)
