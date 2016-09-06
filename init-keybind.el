@@ -2,7 +2,7 @@
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
 
-;; Last updated: <2016/09/02 13:27:39>
+;; Last updated: <2016/09/06 13:58:14>
 ;;
 
 ;;; Commentary:
@@ -159,7 +159,7 @@
   ;; for:`mode-ific-map'
   (bind-keys :map mode-specific-map
              ("i" . imenu)
-             ("t" . toggle-truncate-lines)
+             ("t" . google-translate-enja-or-jaen)
              ("z" . eshell))
   ;; for:`helm-map'
   (bind-keys :map help-map
