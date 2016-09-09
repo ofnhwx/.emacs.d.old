@@ -1,7 +1,7 @@
 ;;; init.el --- load this file at first when emacs was started.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2016/09/06 13:57:31>
+;; Last updated: <2016/09/09 14:48:43>
 ;;
 
 ;;; Commentary:
@@ -102,9 +102,6 @@
     :config
     (avy-migemo-mode 1)))
 
-(use-package "backup-walker"
-  :ensure t)
-
 (use-package "bar-cursor"
   :ensure t
   :config
@@ -122,11 +119,6 @@
   :config
   (e:load-config "company")
   (global-company-mode))
-
-(use-package "digit-groups"
-  :ensure t
-  :config
-  (digit-groups-global-mode 0))
 
 (use-package "dumb-jump"
   :ensure t)
@@ -170,12 +162,6 @@
 (use-package "expand-region"
   :ensure t)
 
-(use-package "evil"
-  :ensure t
-  :config
-  (e:load-config "evil")
-  (evil-mode 0))
-
 (use-package "flycheck"
   :ensure t
   :config
@@ -186,6 +172,22 @@
     (flycheck-add-mode 'php 'web-mode)))
 
 (use-package "free-keys"
+  :ensure t)
+
+(use-package "git-gutter-fringe"
+  :if window-system
+  :ensure t
+  :diminish git-gutter-mode
+  :config
+  (global-git-gutter-mode))
+(use-package "git-gutter"
+  :if (not window-system)
+  :ensure t
+  :diminish git-gutter-mode
+  :config
+  (global-git-gutter-mode))
+
+(use-package "google-translate"
   :ensure t
   :config
   (defvar google-translate-english-chars "[:ascii:]’“”–"
@@ -207,22 +209,6 @@
     (let* ((asciip (string-match (format "\\`[%s]+\\'" google-translate-english-chars) string)))
       (run-at-time 0.1 nil 'deactivate-mark)
       (google-translate-translate (if asciip "en" "ja") (if asciip "ja" "en") string))))
-
-(use-package "git-gutter-fringe"
-  :if window-system
-  :ensure t
-  :diminish git-gutter-mode
-  :config
-  (global-git-gutter-mode))
-(use-package "git-gutter"
-  :if (not window-system)
-  :ensure t
-  :diminish git-gutter-mode
-  :config
-  (global-git-gutter-mode))
-
-(use-package "google-translate"
-  :ensure t)
 
 (use-package "helm"
   :ensure t
@@ -317,6 +303,7 @@
   :config
   (add-hook 'php-mode-hook 'php-eldoc-enable)
   (add-hook 'web-mode-hook 'php-eldoc-enable))
+
 (use-package "popwin"
   :ensure t
   :config
@@ -348,25 +335,6 @@
   :if (executable-find "psysh")
   :ensure t)
 
-(use-package "skk"
-  :ensure ddskk
-  :init
-  ;; `skk-user-directory'の設定は事前に行う必要あり
-  (let ((dir (e:expand "ddskk" :local)))
-    (custom-set-variables
-     `(skk-user-directory ,dir))
-    (unless (f-exists? dir)
-      (make-directory dir t)))
-  :config
-  (custom-set-variables
-   '(skk-init-file (e:expand "init-skk.el" :user))
-   '(skk-get-jisyo-direcroty (e:expand "ddskk/dic" :local)))
-  (unless (f-exists? skk-get-jisyo-direcroty)
-    (make-directory skk-get-jisyo-direcroty t)
-    (skk-get skk-get-jisyo-direcroty))
-  (load skk-init-file t)
-  (require 'skk-study))
-
 (use-package "string-edit"
   :ensure t)
 
@@ -386,9 +354,6 @@
   :diminish smartparens-mode
   :config
   (smartparens-global-mode t))
-
-(use-package "sunrise-commander"
-  :load-path "lisp/sunrise-commander")
 
 (use-package "tempbuf"
   :config
