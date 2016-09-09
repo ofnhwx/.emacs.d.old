@@ -1,7 +1,7 @@
 ;;; init.el --- load this file at first when emacs was started.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2016/09/09 14:48:43>
+;; Last updated: <2016/09/09 16:05:59>
 ;;
 
 ;;; Commentary:
@@ -491,6 +491,11 @@
     :ensure t)
   (use-package "term+mux"
     :ensure t))
+
+(use-package "volatile-highlights"
+  :ensure t
+  :config
+  (volatile-highlights-mode 1))
 
 (use-package "whitespace"
   :diminish global-whitespace-mode)
