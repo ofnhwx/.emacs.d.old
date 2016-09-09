@@ -1,8 +1,8 @@
-﻿;;; init-setup.el --- 標準Lispでの設定.
+;;; init-setup.el --- 標準Lispでの設定.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
 
-;; Last updated: <2016/06/05 23:45:04>
+;; Last updated: <2016/08/26 13:47:16>
 ;;
 
 ;;; Commentary:
@@ -12,7 +12,7 @@
 ;; for:`abbrev'
 (when (e:require 'abbrev t)
   (custom-set-variables
-   '(abbrev-file-name (e:expand "abbrev.defs" :conf))
+   '(abbrev-file-name (e:expand "abbrev.defs" :local))
    '(save-abbrevs t))
   (when (file-exists-p abbrev-file-name)
     (quietly-read-abbrev-file)))
@@ -21,12 +21,12 @@
 (when (e:require 'autoinsert t)
   (custom-set-variables
    '(auto-insert-mode t)
-   '(auto-insert-directory (e:expand "insert" :conf))))
+   '(auto-insert-directory (e:expand "insert" :local))))
 
 ;; for:`bookmark'
 (when (e:require 'bookmark t)
   (custom-set-variables
-   '(bookmark-default-file (e:expand ".emacs.bmk" :conf))))
+   '(bookmark-default-file (e:expand ".emacs.bmk" :local))))
 
 ;; for:`cua-mode'
 (when (e:require 'cua-base t)
@@ -51,6 +51,12 @@
    '(dired-isearch-filenames t)
    ;; 'ls'に渡すオプション
    '(dired-listing-switches "ahl")))
+
+;; for:`ediff'
+(when (e:require 'ediff t)
+  (custom-set-variables
+   '(ediff-window-setup-function 'ediff-setup-windows-plain)
+   '(ediff-split-window-function 'split-window-horizontally)))
 
 ;; for:`eldoc'
 (when (e:require 'eldoc t)
@@ -83,7 +89,9 @@
   ;; 各種設定
   (custom-set-variables
    ;; eshellの基準ディレクトリを変更
-   '(eshell-directory-name (e:expand "eshell" :conf))
+   '(eshell-directory-name (e:expand "eshell" :local))
+   ;; 履歴
+   '(eshell-history-size 100000)
    ;; 補完時に大文字小文字を区別しない
    '(eshell-cmpl-ignore-case t)
    ;; 履歴で重複を無視する
@@ -95,21 +103,23 @@
    ;;
    '(eshell-visual-commands
      '("elm" "less" "lynx" "rlogin" "more" "ncftp" "pine" "screen" "ssh" "telnet" "tin" "top" "trn" "vi"))
+   ;;
+   '(eshell-escape-control-x nil)
    ;; prompt 文字列の変更
    '(eshell-prompt-function
      (lambda () (concat "[" (e:unexpand (eshell/pwd)) "]\n" (if (zerop (user-uid)) "# " "$ "))))
    '(eshell-prompt-regexp "^[^#$]*[#$] ")))
 
 ;; for:`generic-x'
-(when (e:require 'generic-x)
+(when (e:require 'generic-x t)
   )
 
 ;; for:`recentf'
 (when (e:require 'recentf t)
   (custom-set-variables
-   '(recentf-save-file (e:expand ".recentf" :conf))
-   '(recentf-max-menu-items   20)
-   '(recentf-max-saved-items 200)
+   '(recentf-save-file (e:expand ".recentf" :local))
+   '(recentf-max-menu-items    20)
+   '(recentf-max-saved-items 1000)
    '(recentf-exclude
      `("^/[^/:]+:"
        "\\.howm$"
@@ -118,6 +128,7 @@
    '(recentf-filename-handlers
      '(abbreviate-file-name))
    '(recentf-mode t))
+  (run-with-idle-timer 300 t 'recentf-save-list)
   (defadvice recentf-save-list (before recentf-save-list--convert-home activate)
     (let ((list nil))
       (dolist (file (mapcar 'abbreviate-file-name recentf-list))
@@ -150,7 +161,7 @@
 ;; for:`files'
 (when (e:require 'files t)
   ;; バックアップディレクトリの設定
-  (defconst backup-directory (e:expand "backup" :conf))
+  (defconst backup-directory (e:expand "backup" :local))
   ;; for:`backup'
   (let ((item (cons "\\.*$" backup-directory)))
     (unless (member item backup-directory-alist)
@@ -168,16 +179,25 @@
    '(auto-save-list-file-prefix (file-name-as-directory backup-directory))
    '(auto-save-file-name-transforms `((".*" ,backup-directory t)))))
 
+;; for:`hideshow'
+(when (e:require 'hideshow t)
+  (add-hook 'lisp-interaction-mode-hook 'hs-minor-mode)
+  (add-hook 'emacs-lisp-mode-hook 'hs-minor-mode)
+  (add-hook 'lisp-mode-hook 'hs-minor-mode-hook)
+  (add-hook 'css-mode-hook 'hs-minor-mode-hook)
+  (add-hook 'php-mode-hook 'hs-minor-mode)
+  (add-hook 'web-mode-hook 'hs-minor-mode))
+
 ;; for:`ido'
-(when (e:require 'ido)
+(when (e:require 'ido t)
   (custom-set-variables
    '(ido-everywhere t)
    '(ido-enable-flex-matching t)
    '(ido-mode 'both)
-   '(ido-save-directory-list-file (e:expand ".ido.last" :conf))))
+   '(ido-save-directory-list-file (e:expand ".ido.last" :local))))
 
 ;; for:`linum'
-(when (e:require 'linum)
+(when (e:require 'linum t)
   (custom-set-variables
    '(linum-format "%5d")
    '(global-linum-mode t))
@@ -196,7 +216,7 @@
 ;; for:`server'
 (when (e:require 'server t)
   (custom-set-variables
-   '(server-auth-dir (e:expand "server" :conf)))
+   '(server-auth-dir (e:expand "server" :local)))
   (when window-system
     (add-hook 'after-init-hook 'server-start)))
 
@@ -209,13 +229,23 @@
    '(time-stamp-format "%04y/%02m/%02d %02H:%02M:%02S")
    '(time-stamp-end    ">")))
 
+;; for:`tramp'
+(when (e:require 'tramp t)
+  (custom-set-variables
+   '(tramp-persistency-file-name (e:expand "tramp" :local))))
+
 ;; for:`uniquify'
 (when (e:require 'uniquify t)
   (custom-set-variables
    '(uniquify-buffer-name-style 'post-forward-angle-brackets)))
 
+;; for:`url-cookie'
+(when (e:require 'url-cookie t)
+  (custom-set-variables
+   '(url-cookie-file (e:expand "cookies" :local))))
+
 ;; for:`whitespace'
-(when (e:require 'whitespace)
+(when (e:require 'whitespace t)
   (custom-set-variables
    '(whitespace-style
      '(face      ;; 'face'で色を付ける

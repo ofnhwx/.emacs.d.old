@@ -1,7 +1,7 @@
-﻿;;; init-enhance.el --- 環境回りの設定.
+;;; init-enhance.el --- 環境回りの設定.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2016/06/10 15:17:08>
+;; Last updated: <2016/09/02 13:25:28>
 ;;
 
 ;;; Commentary:
@@ -61,13 +61,14 @@
      (buffer-file-name "%f" "%b")))
  ;; 日付の書式
  '(display-time-format " %Y/%m/%d(%a) %H:%M")
+ ;; 認証ファイル
+ '(auth-sources `(,(e:expand ".authinfo.gpg" :local)))
  ;; -------------------------------------------------------------------- ;;
  '(menu-bar-mode window-system) ;; コンソールではメニューバーを表示しない
  '(ring-bell-function 'ignore)  ;; ビープ音はなし
  '(message-log-max     100000)  ;;
  '(blink-cursor-mode      nil)  ;; カーソルを点滅しない
  '(indent-tabs-mode       nil)  ;; インデントは空白
- '(visual-line-mode       t)    ;;
  '(tab-width              4)    ;; タブ幅は 4
  '(truncate-lines         t)    ;; 折り返さない
  '(column-number-mode     t)    ;; 列番号を表示
@@ -90,47 +91,7 @@
  ;; -------------------------------------------------------------------- ;;
  )
 
-;;; 色設定
-(custom-set-faces
- ;; デフォルト, カーソル, リージョン
- '(default ((t (:background "#000000" :foreground "#ffffff"))))
- '(cursor  ((t (:background "#ffff00"))))
- '(region  ((t (:background "#000080"))))
- ;; モードライン
- '(mode-line           ((t (:background "#000000" :foreground "#ff0000" :box (:line-width 1 :color "#ffffff")))))
- '(mode-line-inactive  ((t (:background "#000000" :foreground "#ffffff" :box (:line-width 1 :color "#ffffff")))))
- '(mode-line-buffer-id ((t (:background nil       :foreground nil       :box (:line-width 1 :color "#ffffff")))))
- ;; 関数, 変数, 文字列
- '(font-lock-function-name-face   ((t (:foreground "#4169e1"))))
- '(font-lock-variable-name-face   ((t (:foreground "#00ffff"))))
- '(font-lock-string-face          ((t (:foreground "#ffff00"))))
- ;; キーワード, コメント
- '(font-lock-keyword-face ((t (:foreground "#4169e1"))))
- '(font-lock-comment-face ((t (:foreground "#228b22"))))
- ;; 型, ビルトイン, 定数
- '(font-lock-type-face     ((t (:foreground "#ffa500"))))
- '(font-lock-builtin-face  ((t (:foreground "#8470ff"))))
- '(font-lock-constant-face ((t (:foreground "#ffc0cb"))))
- ;; 括弧
- '(show-paren-match-face ((t (:foreground "#ff0000"))))
- '(paren-face            ((t (:foreground "#ffffff"))))
- ;; 警告
- '(font-lock-warning-face ((t (:foreground "#ff0000"))))
- ;; 現在行のハイライト:`linum'
- '(hl-line ((t (:foreground nil :background nil :underline "#80ff80"))))
- ;; 空白文字の表示:`whitespace'
- '(whitespace-tab     ((t (:foreground "#ff0000" :background nil :underline t))))
- '(whitespace-space   ((t (:foreground "#ff0000" :background nil :underline t))))
- '(whitespace-newline ((t (:foreground "#228b22" :background nil))))
- ;; for:`company'
- '(company-tooltip                  ((t (:foreground "black" :background "lightgrey"))))
- '(company-tooltip-common           ((t (:foreground "black" :background "lightgrey"))))
- '(company-tooltip-common-selection ((t (:foreground "white" :background "steelblue"))))
- '(company-tooltip-selection        ((t (:foreground "black" :background "steelblue"))))
- '(company-preview-common           ((t (:foreground "lightgrey" :background nil :underline t))))
- '(company-scrollbar-fg             ((t (:background "orange"))))
- '(company-scrollbar-bg             ((t (:background "gray40"))))
- )
+(defalias 'exit 'save-buffers-kill-terminal)
 
 ;;; mac用の設定
 (when (os-type-mac-p)
@@ -138,6 +99,22 @@
   (require 'ls-lisp nil t)
   (custom-set-variables
    '(ls-lisp-use-insert-directory-program nil))
+  ;; Emacsで使うshellはzsh(fishは'&&'->'; and'で問題あり)
+  (custom-set-variables
+   `(shell-file-name ,(executable-find "zsh")))
+  ;; IME関連の設定
+  (custom-set-variables
+   '(default-input-method "MacOSX"))
+  (mac-set-input-method-parameter "com.google.inputmethod.Japanese.Roman"          'title "[G]")
+  (mac-set-input-method-parameter "com.google.inputmethod.Japanese.Roman"          'cursor-color "#ffff00")
+  (mac-set-input-method-parameter "com.google.inputmethod.Japanese.base"           'title "[ぐ]")
+  (mac-set-input-method-parameter "com.google.inputmethod.Japanese.base"           'cursor-color "#ff0000")
+  (mac-set-input-method-parameter "com.google.inputmethod.Japanese.Katakana"       'title "[グ]")
+  (mac-set-input-method-parameter "com.google.inputmethod.Japanese.Katakana"       'cursor-color "#00ff00")
+  (mac-set-input-method-parameter "com.google.inputmethod.Japanese.FullWidthRoman" 'title "[Ｇ]")
+  (mac-set-input-method-parameter "com.google.inputmethod.Japanese.FullWidthRoman" 'cursor-color "#ff00ff")
+  (mac-set-input-method-parameter "com.google.inputmethod.Japanese.HalfWidthKana"  'title "[ｸﾞ]")
+  (mac-set-input-method-parameter "com.google.inputmethod.Japanese.HalfWidthKana"  'cursor-color "#0000ff")
   ;; CommandをMetaとして使用
   (custom-set-variables
    '(ns-command-modifier 'meta))
