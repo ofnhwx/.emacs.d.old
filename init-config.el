@@ -1,7 +1,7 @@
 ;;; init-enhance.el --- 環境回りの設定.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2016/09/02 13:25:28>
+;; Last updated: <2016/10/13 13:35:14>
 ;;
 
 ;;; Commentary:
@@ -105,16 +105,17 @@
   ;; IME関連の設定
   (custom-set-variables
    '(default-input-method "MacOSX"))
-  (mac-set-input-method-parameter "com.google.inputmethod.Japanese.Roman"          'title "[G]")
-  (mac-set-input-method-parameter "com.google.inputmethod.Japanese.Roman"          'cursor-color "#ffff00")
-  (mac-set-input-method-parameter "com.google.inputmethod.Japanese.base"           'title "[ぐ]")
-  (mac-set-input-method-parameter "com.google.inputmethod.Japanese.base"           'cursor-color "#ff0000")
-  (mac-set-input-method-parameter "com.google.inputmethod.Japanese.Katakana"       'title "[グ]")
-  (mac-set-input-method-parameter "com.google.inputmethod.Japanese.Katakana"       'cursor-color "#00ff00")
-  (mac-set-input-method-parameter "com.google.inputmethod.Japanese.FullWidthRoman" 'title "[Ｇ]")
-  (mac-set-input-method-parameter "com.google.inputmethod.Japanese.FullWidthRoman" 'cursor-color "#ff00ff")
-  (mac-set-input-method-parameter "com.google.inputmethod.Japanese.HalfWidthKana"  'title "[ｸﾞ]")
-  (mac-set-input-method-parameter "com.google.inputmethod.Japanese.HalfWidthKana"  'cursor-color "#0000ff")
+  (when (fboundp 'mac-set-input-method-parameter)
+    (mac-set-input-method-parameter "com.google.inputmethod.Japanese.Roman"          'title "[G]")
+    (mac-set-input-method-parameter "com.google.inputmethod.Japanese.Roman"          'cursor-color "#ffff00")
+    (mac-set-input-method-parameter "com.google.inputmethod.Japanese.base"           'title "[ぐ]")
+    (mac-set-input-method-parameter "com.google.inputmethod.Japanese.base"           'cursor-color "#ff0000")
+    (mac-set-input-method-parameter "com.google.inputmethod.Japanese.Katakana"       'title "[グ]")
+    (mac-set-input-method-parameter "com.google.inputmethod.Japanese.Katakana"       'cursor-color "#00ff00")
+    (mac-set-input-method-parameter "com.google.inputmethod.Japanese.FullWidthRoman" 'title "[Ｇ]")
+    (mac-set-input-method-parameter "com.google.inputmethod.Japanese.FullWidthRoman" 'cursor-color "#ff00ff")
+    (mac-set-input-method-parameter "com.google.inputmethod.Japanese.HalfWidthKana"  'title "[ｸﾞ]")
+    (mac-set-input-method-parameter "com.google.inputmethod.Japanese.HalfWidthKana"  'cursor-color "#0000ff"))
   ;; CommandをMetaとして使用
   (custom-set-variables
    '(ns-command-modifier 'meta))
