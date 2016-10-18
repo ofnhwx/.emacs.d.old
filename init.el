@@ -1,12 +1,19 @@
 ;;; init.el --- load this file at first when emacs was started.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2016/09/09 16:05:59>
+;; Last updated: <2016/10/17 10:33:59>
 ;;
 
 ;;; Commentary:
 
 ;;; Code:
+
+;; Added by Package.el.  This must come before configurations of
+;; installed packages.  Don't delete this line.  If you don't want it,
+;; just comment it out by adding a semicolon to the start of the line.
+;; You may delete these explanatory comments.
+;;(package-initialize)
+
 
 ;; use:`cl'
 (require 'cl-lib)
@@ -229,9 +236,15 @@
   (use-package "helm-ag"
     :ensure t
     :config
-    (when (executable-find "pt")
+    (cond
+     ;; ripgrep
+     ((executable-find "rg")
       (custom-set-variables
-       '(helm-ag-base-command "pt --nocolor --nogroup --smart-case"))))
+       '(helm-ag-base-command "rg --color never --no-heading --smart-case --vimgrep")))
+     ;; The Platinum Searcher
+     ((executable-find "pt")
+      (custom-set-variables
+       '(helm-ag-base-command "pt --nocolor --nogroup --smart-case")))))
   (use-package "helm-flycheck"     :ensure t)
   (use-package "helm-projectile"   :ensure t)
   (use-package "helm-c-yasnippet"  :ensure t))
@@ -319,7 +332,7 @@
   :diminish projectile-mode
   :init
   (custom-set-variables
-   '(projectile-keymap-prefix (kbd) "C-x p"))
+   '(projectile-keymap-prefix (kbd "C-x p")))
   :config
   (custom-set-variables
    '(projectile-known-projects-file (e:expand "projectile-bookmarks.eld" :local))

@@ -1,7 +1,7 @@
 ;;; init-enhance.el --- 個人設定用の拡張機能.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2016/07/11 11:24:03>
+;; Last updated: <2016/10/18 13:56:38>
 ;;
 
 ;;; Commentary:
@@ -42,7 +42,8 @@
 ;; use:`package'
 (when (e:require 'package t)
   (cl-dolist (item '(("melpa" . "https://melpa.org/packages/")
-                     ("marmalade" . "http://marmalade-repo.org/packages/")))
+                     ;;("marmalade" . "http://marmalade-repo.org/packages/")
+                     ))
     (add-to-list 'package-archives item))
   (unless (file-directory-p package-user-dir)
     (package-refresh-contents))
