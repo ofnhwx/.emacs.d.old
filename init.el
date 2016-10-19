@@ -1,7 +1,7 @@
 ;;; init.el --- load this file at first when emacs was started.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2016/10/17 10:33:59>
+;; Last updated: <2016/10/19 10:34:07>
 ;;
 
 ;;; Commentary:
@@ -497,6 +497,16 @@
   :config
   (use-package "recentf-ext"
     :ensure t))
+
+(use-package "shell-pop"
+  :ensure t
+  :config
+  (custom-set-variables
+   '(shell-pop-shell-type (quote ("ansi-term" "*ansi-term*" (lambda nil (ansi-term shell-pop-term-shell)))))
+   `(shell-pop-term-shell ,(executable-find "fish"))
+   '(shell-pop-window-position "bottom")
+   '(shell-pop-window-size 30)
+   '(shell-pop-full-span t)))
 
 (use-package "term"
   :config

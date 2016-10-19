@@ -2,7 +2,7 @@
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
 
-;; Last updated: <2016/09/06 13:58:14>
+;; Last updated: <2016/10/18 14:57:50>
 ;;
 
 ;;; Commentary:
@@ -160,6 +160,7 @@
   (bind-keys :map mode-specific-map
              ("i" . imenu)
              ("t" . google-translate-enja-or-jaen)
+             ("x" . shell-pop)
              ("z" . eshell))
   ;; for:`helm-map'
   (bind-keys :map help-map
