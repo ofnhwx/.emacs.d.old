@@ -1,7 +1,7 @@
 ;;; init.el --- load this file at first when emacs was started.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2016/10/20 14:35:43>
+;; Last updated: <2016/10/20 17:34:34>
 ;;
 
 ;;; Commentary:
@@ -574,7 +574,7 @@
 (require 'init-keybind (e:expand "init-keybind" :user) t)
 
 ;; カスタムファイル
-(load custom-file t)
+;(load custom-file t)
 
 (provide 'init)
 ;;; init.el ends here
