@@ -1,7 +1,7 @@
 ;;; init.el --- load this file at first when emacs was started.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2016/10/19 10:34:07>
+;; Last updated: <2016/10/20 14:35:43>
 ;;
 
 ;;; Commentary:
@@ -144,17 +144,10 @@
 (use-package "elscreen"
   :ensure t
   :config
-  ;;; プレフィクスキーはC-z
   (custom-set-variables
    '(elscreen-prefix-key (kbd "C-z"))
    '(elscreen-tab-display-kill-screen nil))
-  (elscreen-start)
-  (use-package "elscreen-persist"
-    :ensure t
-    :config
-    (custom-set-variables
-     '(elscreen-persist-file (e:expand "elscreen" :local)))
-    (elscreen-persist-mode 1)))
+  (elscreen-start))
 
 (use-package "emmet-mode"
   :ensure t
@@ -264,11 +257,6 @@
     :ensure t
     :config
     (add-hook 'magit-mode-hook 'turn-on-magit-gitflow)))
-
-(use-package "mew"
-  :ensure t
-  :config
-  (e:load-config "mew" t))
 
 (use-package "migemo"
   :if (executable-find "cmigemo")
