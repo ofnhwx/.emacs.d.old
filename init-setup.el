@@ -2,7 +2,7 @@
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
 
-;; Last updated: <2016/08/26 13:47:16>
+;; Last updated: <2016/10/20 17:55:22>
 ;;
 
 ;;; Commentary:
@@ -33,6 +33,13 @@
   (cua-mode t)
   (custom-set-variables
    '(cua-enable-cua-keys nil)))
+
+;; for:`desktop'
+(when (e:require 'desktop t)
+  (custom-set-variables
+   '(desktop-save-mode t)
+   '(desktop-save t))
+  (add-to-list 'desktop-globals-to-save 'kill-ring))
 
 ;; for:`dired'
 (when (e:require 'dired t)
