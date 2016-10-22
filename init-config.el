@@ -1,7 +1,7 @@
 ;;; init-enhance.el --- 環境回りの設定.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2016/10/13 13:35:14>
+;; Last updated: <2016/10/20 18:00:25>
 ;;
 
 ;;; Commentary:
@@ -67,6 +67,7 @@
  '(menu-bar-mode window-system) ;; コンソールではメニューバーを表示しない
  '(ring-bell-function 'ignore)  ;; ビープ音はなし
  '(message-log-max     100000)  ;;
+ '(kill-ring-max          200)  ;;
  '(blink-cursor-mode      nil)  ;; カーソルを点滅しない
  '(indent-tabs-mode       nil)  ;; インデントは空白
  '(tab-width              4)    ;; タブ幅は 4
