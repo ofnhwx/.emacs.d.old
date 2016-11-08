@@ -2,7 +2,7 @@
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
 
-;; Last updated: <2016/10/20 17:55:22>
+;; Last updated: <2016/10/24 09:56:41>
 ;;
 
 ;;; Commentary:
@@ -190,8 +190,8 @@
 (when (e:require 'hideshow t)
   (add-hook 'lisp-interaction-mode-hook 'hs-minor-mode)
   (add-hook 'emacs-lisp-mode-hook 'hs-minor-mode)
-  (add-hook 'lisp-mode-hook 'hs-minor-mode-hook)
-  (add-hook 'css-mode-hook 'hs-minor-mode-hook)
+  (add-hook 'lisp-mode-hook 'hs-minor-mode)
+  (add-hook 'css-mode-hook 'hs-minor-mode)
   (add-hook 'php-mode-hook 'hs-minor-mode)
   (add-hook 'web-mode-hook 'hs-minor-mode))
 
