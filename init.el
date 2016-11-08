@@ -1,7 +1,7 @@
 ;;; init.el --- load this file at first when emacs was started.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2016/10/20 17:34:34>
+;; Last updated: <2016/11/08 10:22:03>
 ;;
 
 ;;; Commentary:
@@ -13,7 +13,6 @@
 ;; just comment it out by adding a semicolon to the start of the line.
 ;; You may delete these explanatory comments.
 ;;(package-initialize)
-
 
 ;; use:`cl'
 (require 'cl-lib)
@@ -280,24 +279,6 @@
   :config
   (custom-set-variables
    '(mc/list-file (e:expand ".mc-lists.el" :local))))
-
-(use-package "neotree"
-  :ensure t
-  :config
-  (custom-set-variables
-   ;; 隠しファイルをデフォルトで表示
-   '(neo-show-hidden-files t)
-   ;; neotree でファイルを新規作成した後、自動的にファイルを開く
-   '(neo-create-file-auto-open t)
-   ;; delete-other-window で neotree ウィンドウを消さない
-   '(neo-persist-show t)
-   ;; キーバインドをシンプルにする
-   '(neo-keymap-style 'concise)
-   ;; neotree ウィンドウを表示する毎に current file のあるディレクトリを表示する
-   '(neo-smart-open t))
-  (when neo-persist-show
-    (add-hook 'popwin:before-popup-hook (lambda () (setq neo-persist-show nil)))
-    (add-hook 'popwin:after-popup-hook  (lambda () (setq neo-persist-show t)))))
 
 (use-package "php-eldoc"
   :ensure t
