@@ -1,7 +1,7 @@
 ;;; init-enhance.el --- 環境回りの設定.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2016/10/20 18:00:25>
+;; Last updated: <2016/11/09 17:33:35>
 ;;
 
 ;;; Commentary:
@@ -93,6 +93,13 @@
  )
 
 (defalias 'exit 'save-buffers-kill-terminal)
+
+;;; linux用の設定
+(when (os-type-linux-p)
+  ;; 対策: [Listing directory failed but `access-file' worked]
+  (require 'ls-lisp nil t)
+  (custom-set-variables
+   '(ls-lisp-use-insert-directory-program nil)))
 
 ;;; mac用の設定
 (when (os-type-mac-p)
