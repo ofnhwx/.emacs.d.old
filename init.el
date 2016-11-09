@@ -1,7 +1,7 @@
 ;;; init.el --- load this file at first when emacs was started.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2016/11/08 10:22:03>
+;; Last updated: <2016/11/09 18:00:32>
 ;;
 
 ;;; Commentary:
@@ -336,6 +336,9 @@
   :diminish smartparens-mode
   :config
   (smartparens-global-mode t))
+
+(use-package "sudo-edit"
+  :ensure t)
 
 (use-package "tempbuf"
   :config
