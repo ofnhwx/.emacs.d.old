@@ -2,7 +2,7 @@
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
 
-;; Last updated: <2016/10/18 14:57:50>
+;; Last updated: <2016/11/18 17:16:20>
 ;;
 
 ;;; Commentary:
@@ -129,7 +129,6 @@
                ("<triple-wheel-down>" . scroll-up-with-lines)))
   ;; for:`global-map'
   (bind-keys :map global-map
-             ("<f8>" . neotree-toggle)
              ("C-:" . avy-goto-char)
              ("C-;" . avy-goto-word-1)
              ("C-^" . ace-window)
