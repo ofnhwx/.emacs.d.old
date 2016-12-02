@@ -508,6 +508,12 @@
 
 ;; モード関連の設定
 
+(use-package "android-mode"
+  :ensure t
+  :config
+  (custom-set-variables
+   '(android-mode-sdk-dir "~/Library/Android/sdk")))
+
 (use-package "cobol-mode"
   :mode (("\\.cob\\'" . cobol-mode)
          ("\\.cbl\\'" . cobol-mode)
