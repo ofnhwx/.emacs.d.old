@@ -132,7 +132,6 @@
              ("C-:" . avy-goto-char)
              ("C-;" . avy-goto-word-1)
              ("C-^" . ace-window)
-             ("C-\¥" . skk-mode)
              ("C-z C-z" . helm-elscreen)
              ("M-%" . vr/query-replace)
              ("M-/" . bbyac-expand-symbols)

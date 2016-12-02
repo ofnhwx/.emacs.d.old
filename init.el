@@ -343,8 +343,7 @@
 (use-package "tempbuf"
   :config
   (defmacro enable-tempbuf--hook (hook)
-    `(add-hook ,hook 'turn-on-tempbuf-mode))
-  (enable-tempbuf--hook 'dired-mode-hook))
+    `(add-hook ,hook 'turn-on-tempbuf-mode)))
 
 (use-package "undo-tree"
   :ensure t
@@ -489,6 +488,7 @@
 
 (use-package "volatile-highlights"
   :ensure t
+  :diminish volatile-highlights-mode
   :config
   (volatile-highlights-mode 1))
 
