@@ -2,7 +2,7 @@
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
 
-;; Last updated: <2016/11/18 17:16:20>
+;; Last updated: <2016/12/01 11:38:15>
 ;;
 
 ;;; Commentary:
@@ -138,7 +138,7 @@
              ("M-:" . helm-eval-expression-with-eldoc)
              ("M-g" . general-command-map)
              ("M-X" . lacarte-execute-command)
-             ("M-x" . helm-M-x)
+             ("M-x" . counsel-M-x)
              ("M-y" . helm-show-kill-ring)
              ("M-z" . avy-zap-to-char-dwim)
              ("C-M-SPC" . er/expand-region))
@@ -149,10 +149,10 @@
              ("q" . dumb-jump-quick-look))
   ;; for:`ctl-x-map'
   (bind-keys :map ctl-x-map
-             ("f" . find-file)
+             ("f" . counsel-find-file)
              ("o" . ace-window)
              ("C-b" . helm-multi-files)
-             ("C-c" . helm-M-x)
+             ("C-c" . counsel-M-x)
              ("C-f" . helm-find-files-with-projectile))
   ;; for:`mode-ific-map'
   (bind-keys :map mode-specific-map

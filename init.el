@@ -1,7 +1,7 @@
 ;;; init.el --- load this file at first when emacs was started.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2016/11/09 18:00:32>
+;; Last updated: <2016/12/02 09:52:01>
 ;;
 
 ;;; Commentary:
@@ -125,6 +125,17 @@
   :config
   (e:load-config "company")
   (global-company-mode))
+
+(use-package "counsel"
+  :ensure t
+  :config
+  (counsel-mode 1)
+  (ivy-mode 1)
+  (when (executable-find "rg")
+    (custom-set-variables
+     '(counsel-grep-base-command "rg --color never --no-heading --smart-case --vimgrep \"%s\" %s")))
+  (custom-set-variables
+   '(ivy-height 15)))
 
 (use-package "dumb-jump"
   :ensure t)
