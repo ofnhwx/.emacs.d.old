@@ -1,7 +1,7 @@
 ;;; company.el --- 'company'の設定
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2016/07/07 10:42:01>
+;; Last updated: <2016/12/21 16:06:38>
 ;;
 
 ;;; Commentary:
@@ -21,6 +21,12 @@
   :ensure t
   :config
   (company-flx-mode))
+
+;; Eclim
+(use-package "company-emacs-eclim"
+  :ensure t
+  :config
+  (company-emacs-eclim-setup))
 
 ;; PHP補完
 (use-package "company-php"

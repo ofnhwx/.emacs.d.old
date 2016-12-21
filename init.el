@@ -1,7 +1,7 @@
 ;;; init.el --- load this file at first when emacs was started.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2016/12/02 09:52:01>
+;; Last updated: <2016/12/21 16:04:16>
 ;;
 
 ;;; Commentary:
@@ -72,6 +72,12 @@
   (custom-set-variables
    '(global-anzu-mode 1)))
 
+(use-package "ctags-update"
+  :if (executable-find "ctags")
+  :ensure t
+  :config
+  (add-hook 'php-mode-hook 'turn-on-ctags-auto-update-mode))
+
 (use-package "auto-save-buffers-enhanced"
   :ensure t
   :config
@@ -139,6 +145,11 @@
 
 (use-package "dumb-jump"
   :ensure t)
+
+(use-package "eclim"
+  :ensure t
+  :config
+  (global-eclim-mode))
 
 (use-package "edbi"
   :ensure t
@@ -549,8 +560,7 @@
 
 (use-package "web-mode"
   :ensure t
-  :mode (("\\.php\\'"  . web-mode)
-         ("\\.twig\\'" . web-mode))
+  :mode (("\\.twig\\'" . web-mode))
   :config
   (custom-set-variables
    '(web-mode-comment-keywords "\\(?:BUG\\|FIXME\\|HACK\\|KLUDGE\\|OPTIMIZE\\|RE\\(?:FACTOR\\|VIEW\\)\\|TODO\\|WORKAROUND\\|XXX\\|MEMO\\)")

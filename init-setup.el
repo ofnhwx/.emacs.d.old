@@ -2,7 +2,7 @@
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
 
-;; Last updated: <2016/10/24 09:56:41>
+;; Last updated: <2016/12/16 17:15:35>
 ;;
 
 ;;; Commentary:
@@ -57,7 +57,10 @@
    ;; diredバッファでC-sした時にファイル名だけにマッチするように
    '(dired-isearch-filenames t)
    ;; 'ls'に渡すオプション
-   '(dired-listing-switches "ahl")))
+   '(dired-listing-switches "ahl"))
+  (defun dired-show-details ()
+    (dired-hide-details-mode 0))
+  (add-hook 'dired-mode-hook 'dired-show-details))
 
 ;; for:`ediff'
 (when (e:require 'ediff t)

@@ -2,7 +2,7 @@
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
 
-;; Last updated: <2016/12/01 11:38:15>
+;; Last updated: <2016/12/13 15:44:07>
 ;;
 
 ;;; Commentary:
@@ -141,7 +141,8 @@
              ("M-x" . counsel-M-x)
              ("M-y" . helm-show-kill-ring)
              ("M-z" . avy-zap-to-char-dwim)
-             ("C-M-SPC" . er/expand-region))
+             ("C-M-SPC" . er/expand-region)
+             ("C-M-¥" . indent-region))
   ;; for:`search-map'
   (bind-keys :map search-map
              ("g" . dumb-jump-go)
