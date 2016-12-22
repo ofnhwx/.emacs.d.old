@@ -1,7 +1,7 @@
 ;;; init.el --- load this file at first when emacs was started.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2016/12/21 16:04:16>
+;; Last updated: <2016/12/22 10:21:43>
 ;;
 
 ;;; Commentary:
@@ -366,6 +366,12 @@
   :config
   (defmacro enable-tempbuf--hook (hook)
     `(add-hook ,hook 'turn-on-tempbuf-mode)))
+
+(use-package "twittering-mode"
+  :ensure t
+  :config
+  (custom-set-variables
+   '(twittering-use-master-password t)))
 
 (use-package "undo-tree"
   :ensure t
