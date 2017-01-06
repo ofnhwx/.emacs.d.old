@@ -1,7 +1,7 @@
 ;;; init.el --- load this file at first when emacs was started.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2016/12/22 10:21:43>
+;; Last updated: <2017/01/06 17:24:32>
 ;;
 
 ;;; Commentary:
@@ -560,6 +560,9 @@
   ;; symfonyのスタイルを有効に
   (add-hook 'php-mode-hook
             'php-enable-symfony2-coding-style))
+
+(use-package "vimrc-mode"
+  :ensure t)
 
 (use-package "yaml-mode"
   :ensure t)
