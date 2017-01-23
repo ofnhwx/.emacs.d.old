@@ -1,7 +1,7 @@
 ;;; init.el --- load this file at first when emacs was started.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/01/06 17:24:32>
+;; Last updated: <2017/01/23 16:08:38>
 ;;
 
 ;;; Commentary:
@@ -116,6 +116,7 @@
 
 (use-package "bar-cursor"
   :ensure t
+  :diminish bar-cursor-mode
   :config
   (bar-cursor-mode 1))
 
@@ -134,6 +135,7 @@
 
 (use-package "counsel"
   :ensure t
+  :diminish counsel-mode ivy-mode
   :config
   (counsel-mode 1)
   (ivy-mode 1)
@@ -159,6 +161,7 @@
 
 (use-package "editorconfig"
   :ensure t
+  :diminish editorconfig-mode
   :config
   (editorconfig-mode))
 
