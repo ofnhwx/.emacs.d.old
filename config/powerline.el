@@ -1,7 +1,7 @@
 ;;; powerline.el --- 'powerline'の設定
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2016/06/23 12:03:27>
+;; Last updated: <2017/01/23 16:13:57>
 ;;
 
 ;;; Commentary:
@@ -74,7 +74,7 @@
            (rhs
             (list
              ;; バッテリー、時刻等
-             (powerline-raw global-mode-string face2 'r)
+             ;;(powerline-raw global-mode-string face2 'r)
              ;; <<<
              (funcall separator-right face2 face1)
              ;; 行・列
