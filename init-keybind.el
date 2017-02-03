@@ -1,8 +1,7 @@
 ;;; init-keybind.el --- キーバインド.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-
-;; Last updated: <2016/12/13 15:44:07>
+;; Last updated: <2017/02/03 10:19:59>
 ;;
 
 ;;; Commentary:
@@ -138,7 +137,7 @@
              ("M-:" . helm-eval-expression-with-eldoc)
              ("M-g" . general-command-map)
              ("M-X" . lacarte-execute-command)
-             ("M-x" . counsel-M-x)
+             ("M-x" . helm-M-x)
              ("M-y" . helm-show-kill-ring)
              ("M-z" . avy-zap-to-char-dwim)
              ("C-M-SPC" . er/expand-region)
@@ -150,10 +149,10 @@
              ("q" . dumb-jump-quick-look))
   ;; for:`ctl-x-map'
   (bind-keys :map ctl-x-map
-             ("f" . counsel-find-file)
+             ("f" . find-file)
              ("o" . ace-window)
              ("C-b" . helm-multi-files)
-             ("C-c" . counsel-M-x)
+             ("C-c" . helm-M-x)
              ("C-f" . helm-find-files-with-projectile))
   ;; for:`mode-ific-map'
   (bind-keys :map mode-specific-map
