@@ -1,7 +1,7 @@
 ;;; init-color.el --- 色の設定.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2016/06/30 16:07:50>
+;; Last updated: <2017/02/03 10:29:09>
 ;;
 
 ;;; Commentary:
@@ -37,8 +37,8 @@
  ;; 現在行のハイライト:`linum'
  '(hl-line ((t (:foreground nil :background nil :underline "#80ff80"))))
  ;; 空白文字の表示:`whitespace'
- '(whitespace-tab     ((t (:foreground "#ff0000" :background nil :underline t))))
- '(whitespace-space   ((t (:foreground "#ff0000" :background nil :underline t))))
+ '(whitespace-tab     ((t (:foreground "#ff0000" :background nil))))
+ '(whitespace-space   ((t (:foreground "#ff0000" :background nil))))
  '(whitespace-newline ((t (:foreground "#228b22" :background nil)))))
 
 (custom-set-faces

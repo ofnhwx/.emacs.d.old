@@ -2,7 +2,7 @@
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
 
-;; Last updated: <2017/01/23 16:17:59>
+;; Last updated: <2017/02/03 10:35:42>
 ;;
 
 ;;; Commentary:
@@ -269,9 +269,9 @@
        ))
    '(whitespace-space-regexp "\\(\x3000+\\)")
    '(whitespace-display-mappings
-     '((space-mark   ?\x3000 [?\□])
-       (tab-mark     ?\t     [?\xBB ?\t])
-       (newline-mark ?\x0A   [?\x24 ?\x0A]))))
+     '((space-mark   ?\u3000 [?\u25A1])
+       (tab-mark     ?\t     [?\u00BB ?\t])
+       (newline-mark ?\n     [?\u21B5 ?\n]))))
   ;; すべてのバッファで有効にする
   (global-whitespace-mode))
 
