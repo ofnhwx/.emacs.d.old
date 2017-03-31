@@ -1,7 +1,7 @@
 ;;; powerline.el --- 'powerline'の設定
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/01/23 16:13:57>
+;; Last updated: <2017/03/31 16:16:54>
 ;;
 
 ;;; Commentary:
@@ -24,6 +24,27 @@
           face
         nil))))
 
+(defun get-buffer-file-eol-type ()
+  "バッファの改行コードを取得する."
+  (cl-case (coding-system-eol-type buffer-file-coding-system)
+    (0 "LF")
+    (1 "CRLF")
+    (2 "CR")
+    (otherwise "??")))
+
+(defun get-buffer-coding-type-without-eol-type ()
+  "バッファの文字コードを取得する."
+  (let ((s (symbol-name buffer-file-coding-system))
+        (rep-strings '(("-\\(dos\\|unix\\|mac\\)$" "")
+                       ("-with-signature" "(bom)")
+                       ("japanese-shift-jis" "sjis"))))
+    (cl-dolist (rep-string rep-strings)
+      (setq s (replace-regexp-in-string (cl-first rep-string) (cl-second rep-string) s)))
+    (upcase s)))
+
+(defpowerline powerline-coding-type
+   (concat (get-buffer-coding-type-without-eol-type) "[" (get-buffer-file-eol-type) "]"))
+
 (setq-default
  mode-line-format
  `("%e"
@@ -44,10 +65,9 @@
              ;; 状態(%:readonly, *:modified, -:otherwise)
              (powerline-raw "%*" mode-line 'l)
              ;; IME
-             (powerline-raw mode-line-mule-info mode-line)
-             ;; ファイルサイズ
-             ;;(when powerline-display-buffer-size
-             ;;  (powerline-buffer-size mode-line))
+             ;;(powerline-raw mode-line-mule-info mode-line)
+             (powerline-raw current-input-method-title mode-line)
+             (powerline-coding-type mode-line)
              ;; バッファー名
              (powerline-buffer-id mode-line-buffer-id 'r)
              ;; 関数名(wchich-func-mode)
@@ -85,6 +105,9 @@
              (funcall separator-right face1 mode-line)
              ;; バッファー内での位置
              (powerline-raw "%6p" mode-line 'r)
+             ;; perspeen
+             (when (boundp 'perspeen-modestring)
+               (powerline-raw perspeen-modestring))
              ;; スクロールバー
              (powerline-hud face2 face1))))
       (concat
