@@ -1,7 +1,7 @@
 ;;; init.el --- load this file at first when emacs was started.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/02/03 10:18:59>
+;; Last updated: <2017/03/27 18:35:44>
 ;;
 
 ;;; Commentary:
@@ -159,11 +159,7 @@
   (custom-set-variables
    '(elscreen-prefix-key (kbd "C-z"))
    '(elscreen-tab-display-kill-screen nil))
-  (elscreen-start)
-  (use-package "elscreen-persist"
-    :ensure t
-    :config
-    (elscreen-persist-mode 1)))
+  (elscreen-start))
 ;
 (use-package "emmet-mode"
   :ensure t
