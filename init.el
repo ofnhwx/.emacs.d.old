@@ -1,7 +1,7 @@
 ;;; init.el --- load this file at first when emacs was started.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/03/27 18:35:44>
+;; Last updated: <2017/04/20 15:08:29>
 ;;
 
 ;;; Commentary:
@@ -55,10 +55,6 @@
   :config
   (exec-path-from-shell-initialize))
 
-(use-package "ag"
-  :if (executable-find "ag")
-  :ensure t)
-
 (use-package "all"
   :ensure t
   :config
@@ -110,6 +106,7 @@
   (use-package "avy-zap"
   :ensure t)
   (use-package "avy-migemo"
+    :if (executable-find "cmigemo")
     :ensure t
     :config
     (avy-migemo-mode 1)))
@@ -119,12 +116,6 @@
   :diminish bar-cursor-mode
   :config
   (bar-cursor-mode 1))
-
-(use-package "color-moccur"
-  :ensure t
-  :config
-  (use-package "moccur-edit"
-    :ensure t))
 
 (use-package "company"
   :ensure t

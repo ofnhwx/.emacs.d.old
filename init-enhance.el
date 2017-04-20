@@ -1,7 +1,7 @@
 ;;; init-enhance.el --- 個人設定用の拡張機能.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2016/10/18 13:56:38>
+;; Last updated: <2017/04/20 15:42:43>
 ;;
 
 ;;; Commentary:
@@ -11,6 +11,21 @@
 ;; use:`cl-lib'
 (eval-when-compile
   (require 'cl-lib))
+
+;; define:`os-type-{x}-p'
+(defconst os-type-bsd   'bsd  )
+(defconst os-type-linux 'linux)
+(defconst os-type-mac   'mac  )
+(defconst os-type-win   'win  )
+(defconst os-type
+  (cond ((string-match-p "freebsd"      system-configuration) os-type-bsd  )
+        ((string-match-p "linux"        system-configuration) os-type-linux)
+        ((string-match-p "apple-darwin" system-configuration) os-type-mac  )
+        ((string-match-p "mingw"        system-configuration) os-type-win  )))
+(defun os-type-bsd-p   () "FreeBSD." (eq os-type os-type-bsd  ))
+(defun os-type-linux-p () "Linux."   (eq os-type os-type-linux))
+(defun os-type-mac-p   () "Mac."     (eq os-type os-type-mac  ))
+(defun os-type-win-p   () "Windows." (eq os-type os-type-win  ))
 
 ;; define:`e:require'
 (defmacro e:require (package &optional noerror)
@@ -41,7 +56,9 @@
 
 ;; use:`package'
 (when (e:require 'package t)
-  (cl-dolist (item '(("melpa" . "https://melpa.org/packages/")
+  (cl-dolist (item `(("melpa" . ,(if (os-type-win-p)
+                                     "http://melpa.org/packages/"
+                                   "https://melpa.org/packages/"))
                      ;;("marmalade" . "http://marmalade-repo.org/packages/")
                      ))
     (add-to-list 'package-archives item))
@@ -58,21 +75,6 @@
   `(when (find-font (font-spec :name ,fontname))
      (set-face-attribute 'default nil :family ,fontname :height ,height)
      t))
-
-;; define:`os-type-{x}-p'
-(defconst os-type-bsd   'bsd  )
-(defconst os-type-linux 'linux)
-(defconst os-type-mac   'mac  )
-(defconst os-type-win   'win  )
-(defconst os-type
-  (cond ((string-match-p "freebsd"      system-configuration) os-type-bsd  )
-        ((string-match-p "linux"        system-configuration) os-type-linux)
-        ((string-match-p "apple-darwin" system-configuration) os-type-mac  )
-        ((string-match-p "mingw"        system-configuration) os-type-win  )))
-(defun os-type-bsd-p   () "FreeBSD." (eq os-type os-type-bsd  ))
-(defun os-type-linux-p () "Linux."   (eq os-type os-type-linux))
-(defun os-type-mac-p   () "Mac."     (eq os-type os-type-mac  ))
-(defun os-type-win-p   () "Windows." (eq os-type os-type-win  ))
 
 ;; define:`e:get-dir'
 (defvar e:get-dir-alist
