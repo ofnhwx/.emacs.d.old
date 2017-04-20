@@ -1,7 +1,7 @@
 ;;; init.el --- load this file at first when emacs was started.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/04/20 15:08:29>
+;; Last updated: <2017/04/20 16:11:13>
 ;;
 
 ;;; Commentary:
@@ -35,13 +35,13 @@
 (add-to-list 'load-path (e:expand "lisp" :user))
 
 ;; use:`@libraries'
-(use-package "dash" :ensure t)
-(use-package "f"    :ensure t)
-(use-package "s"    :ensure t)
-(use-package "deferred"   :ensure t)
-(use-package "concurrent" :ensure t)
-(use-package "windata"    :ensure t)
-(use-package "cl-lib-highlight"
+(use-package dash :ensure t)
+(use-package f    :ensure t)
+(use-package s    :ensure t)
+(use-package deferred   :ensure t)
+(use-package concurrent :ensure t)
+(use-package windata    :ensure t)
+(use-package cl-lib-highlight
   :ensure t
   :config
   (cl-lib-highlight-initialize)
@@ -49,32 +49,27 @@
 
 ;; 各種パッケージ設定
 
-(use-package "exec-path-from-shell"
+(use-package exec-path-from-shell
   :if (not (os-type-win-p))
-  :ensure t
+  :init
+  (e:require-package 'exec-path-from-shell)
   :config
   (exec-path-from-shell-initialize))
 
-(use-package "all"
+(use-package all
   :ensure t
   :config
-  (use-package "all-ext"
+  (use-package all-ext
     :ensure t))
 
-(use-package "anzu"
+(use-package anzu
   :ensure t
   :diminish anzu-mode
   :config
   (custom-set-variables
    '(global-anzu-mode 1)))
 
-(use-package "ctags-update"
-  :if (executable-find "ctags")
-  :ensure t
-  :config
-  (add-hook 'php-mode-hook 'turn-on-ctags-auto-update-mode))
-
-(use-package "auto-save-buffers-enhanced"
+(use-package auto-save-buffers-enhanced
   :ensure t
   :config
   (custom-set-variables
@@ -86,7 +81,7 @@
      (e:expand ".scratch" :local)))
   (auto-save-buffers-enhanced t))
 
-(use-package "auto-shell-command"
+(use-package auto-shell-command
   :ensure t
   :config
   (defun ascmd:toggle--display-status ()
@@ -94,57 +89,65 @@
   (advice-add 'ascmd:toggle :after 'ascmd:toggle--display-status)
   (e:load-config "auto-shell-command" t))
 
-(use-package "avy"
+(use-package avy
   :ensure t
   :config
-  (use-package "ace-link"
+  (use-package ace-link
     :ensure t
     :config
     (ace-link-setup-default))
-  (use-package "ace-window"
+  (use-package ace-window
     :ensure t)
-  (use-package "avy-zap"
+  (use-package avy-zap
   :ensure t)
-  (use-package "avy-migemo"
+  (use-package avy-migemo
     :if (executable-find "cmigemo")
-    :ensure t
+    :init
+    (e:require-package 'avy-migemo)
     :config
     (avy-migemo-mode 1)))
 
-(use-package "bar-cursor"
+(use-package bar-cursor
   :ensure t
   :diminish bar-cursor-mode
   :config
   (bar-cursor-mode 1))
 
-(use-package "company"
+(use-package company
   :ensure t
   :diminish company-mode
   :config
   (e:load-config "company")
   (global-company-mode))
 
-(use-package "dumb-jump"
+(use-package ctags-update
+  :if (executable-find "ctags")
+  :init
+  (e:require-package 'ctags-update)
+  :config
+  (add-hook 'php-mode-hook 'turn-on-ctags-auto-update-mode))
+
+(use-package dumb-jump
   :ensure t)
 
-(use-package "eclim"
+(use-package eclim
   :ensure t
   :config
   (global-eclim-mode))
 
-(use-package "edbi"
+(use-package edbi
   :ensure t
   :config
   (custom-set-variables
    '(edbi:ds-history-file (e:expand ".edbi-ds-history" :local))))
 
-(use-package "editorconfig"
+(use-package editorconfig
   :ensure t
   :diminish editorconfig-mode
   :config
   (editorconfig-mode))
 
-(use-package "elscreen"
+(use-package elscreen
   :ensure t
   :config
   (custom-set-variables
@@ -152,7 +155,7 @@
    '(elscreen-tab-display-kill-screen nil))
   (elscreen-start))
 ;
-(use-package "emmet-mode"
+(use-package emmet-mode
   :ensure t
   :config
   (with-eval-after-load "php-mode"
@@ -162,10 +165,10 @@
   (custom-set-variables
    '(emmet-indentation 2)))
 
-(use-package "expand-region"
+(use-package expand-region
   :ensure t)
 
-(use-package "flycheck"
+(use-package flycheck
   :ensure t
   :config
   (custom-set-variables
@@ -174,23 +177,25 @@
     (flycheck-add-mode 'html-tidy 'web-mode)
     (flycheck-add-mode 'php 'web-mode)))
 
-(use-package "free-keys"
+(use-package free-keys
   :ensure t)
 
-(use-package "git-gutter-fringe"
+(use-package git-gutter-fringe
   :if window-system
-  :ensure t
   :diminish git-gutter-mode
+  :init
+  (e:require-package 'git-gutter-fringe)
   :config
   (global-git-gutter-mode))
-(use-package "git-gutter"
+(use-package git-gutter
   :if (not window-system)
-  :ensure t
   :diminish git-gutter-mode
+  :init
+  (e:require-package 'git-gutter)
   :config
   (global-git-gutter-mode))
 
-(use-package "google-translate"
+(use-package google-translate
   :ensure t
   :config
   (defvar google-translate-english-chars "[:ascii:]’“”–"
@@ -213,7 +218,7 @@
       (run-at-time 0.1 nil 'deactivate-mark)
       (google-translate-translate (if asciip "en" "ja") (if asciip "ja" "en") string))))
 
-(use-package "helm"
+(use-package helm
   :ensure t
   :config
   (defun my/helm-display-buffer (buffer)
@@ -221,15 +226,15 @@
       (apply 'windata-display-buffer buffer helm-windata)))
   (custom-set-variables
    '(helm-display-function 'my/helm-display-buffer))
-  (use-package "helm-backup"       :ensure t)
-  (use-package "helm-descbinds"    :ensure t)
-  (use-package "helm-flx"
+  (use-package helm-backup       :ensure t)
+  (use-package helm-descbinds    :ensure t)
+  (use-package helm-flx
     :ensure t
     :config
     (helm-flx-mode 1))
-  (use-package "helm-mode-manager" :ensure t)
-  (use-package "helm-swoop"        :ensure t)
-  (use-package "helm-ag"
+  (use-package helm-mode-manager :ensure t)
+  (use-package helm-swoop        :ensure t)
+  (use-package helm-ag
     :ensure t
     :config
     (cond
@@ -241,14 +246,14 @@
      ((executable-find "pt")
       (custom-set-variables
        '(helm-ag-base-command "pt --nocolor --nogroup --smart-case")))))
-  (use-package "helm-flycheck"     :ensure t)
-  (use-package "helm-projectile"   :ensure t)
-  (use-package "helm-c-yasnippet"  :ensure t))
+  (use-package helm-flycheck     :ensure t)
+  (use-package helm-projectile   :ensure t)
+  (use-package helm-c-yasnippet  :ensure t))
 
-(use-package "lacarte"
+(use-package lacarte
   :ensure t)
 
-(use-package "magit"
+(use-package magit
   :ensure t
   :config
   (custom-set-variables
@@ -256,14 +261,15 @@
    '(magit-diff-refine-hunk 'all)
    ;; 空白の差を無視しない
    '(smerge-refine-ignore-whitespace nil))
-  (use-package "magit-gitflow"
+  (use-package magit-gitflow
     :ensure t
     :config
     (add-hook 'magit-mode-hook 'turn-on-magit-gitflow)))
 
-(use-package "migemo"
+(use-package migemo
   :if (executable-find "cmigemo")
-  :ensure t
+  :init
+  (e:require-package 'migemo)
   :config
   (custom-set-variables
    '(migemo-options '("-q" "--emacs"))
@@ -278,29 +284,29 @@
   ;; 有効化
   (migemo-init))
 
-(use-package "multiple-cursors"
+(use-package multiple-cursors
   :ensure t
   :config
   (custom-set-variables
    '(mc/list-file (e:expand ".mc-lists.el" :local))))
 
-(use-package "php-eldoc"
+(use-package php-eldoc
   :ensure t
   :config
   (add-hook 'php-mode-hook 'php-eldoc-enable)
   (add-hook 'web-mode-hook 'php-eldoc-enable))
 
-(use-package "popwin"
+(use-package popwin
   :ensure t
   :config
   (popwin-mode 1))
 
-(use-package "powerline"
+(use-package powerline
   :ensure t
   :config
   (e:load-config "powerline"))
 
-(use-package "projectile"
+(use-package projectile
   :ensure t
   :diminish projectile-mode
   :init
@@ -317,14 +323,15 @@
       (helm-find-files arg)))
   (projectile-global-mode))
 
-(use-package "psysh"
+(use-package psysh
   :if (executable-find "psysh")
+  :init
+  (e:require-package 'psysh))
+
+(use-package string-edit
   :ensure t)
 
-(use-package "string-edit"
-  :ensure t)
-
-(use-package "rainbow-mode"
+(use-package rainbow-mode
   :ensure t
   :diminish rainbow-mode
   :config
@@ -335,33 +342,33 @@
   (add-hook 'css-mode-hook 'rainbow-mode)
   (add-hook 'html-mode-hook 'rainbow-mode))
 
-(use-package "smartparens"
+(use-package smartparens
   :ensure t
   :diminish smartparens-mode
   :config
   (smartparens-global-mode t))
 
-(use-package "sudo-edit"
+(use-package sudo-edit
   :ensure t)
 
-(use-package "tempbuf"
+(use-package tempbuf
   :config
   (defmacro enable-tempbuf--hook (hook)
     `(add-hook ,hook 'turn-on-tempbuf-mode)))
 
-(use-package "twittering-mode"
+(use-package twittering-mode
   :ensure t
   :config
   (custom-set-variables
    '(twittering-use-master-password t)))
 
-(use-package "undo-tree"
+(use-package undo-tree
   :ensure t
   :diminish undo-tree-mode
   :config
   (global-undo-tree-mode))
 
-(use-package "undohist"
+(use-package undohist
   :ensure t
   :config
   (custom-set-variables
@@ -375,17 +382,17 @@
   ;;
   (undohist-initialize))
 
-(use-package "visual-regexp"
+(use-package visual-regexp
   :ensure t)
 
-(use-package "which-key"
+(use-package which-key
   :ensure t
   :diminish which-key-mode
   :config
   (which-key-setup-side-window-right-bottom)
   (which-key-mode))
 
-(use-package "yasnippet"
+(use-package yasnippet
   :ensure t
   :config
   '(yas-global-mode t)
@@ -394,30 +401,30 @@
 
 ;; 標準パッケージの追加設定
 
-(use-package "dired"
+(use-package dired
   :config
-  (use-package "dired+"
+  (use-package dired+
     :ensure t))
 
-(use-package "eldoc"
+(use-package eldoc
   :diminish eldoc-mode
   :config
-  (use-package "eldoc-extension"
+  (use-package eldoc-extension
     :ensure t))
 
-(use-package "linum"
+(use-package linum
   :config
-  (use-package "hlinum"
+  (use-package hlinum
     :ensure t
     :config
     (hlinum-activate)))
 
-(use-package "hideshow"
+(use-package hideshow
   :diminish hs-minor-mode)
 
-(use-package "ido"
+(use-package ido
   :config
-  (use-package "bbyac"
+  (use-package bbyac
     ;; 単体ではなく`ido'がある場合のみ使用する
     :ensure t
     :config
@@ -430,56 +437,56 @@
              (ido-completing-read "Bbyac: " strlist nil t))
             (t (apply orig strlist))))
     (advice-add 'bbyac--display-matches :around 'bbyac--display-matches--use-ido))
-  (use-package "flx-ido"
+  (use-package flx-ido
     :ensure t
     :config
     (flx-ido-mode))
-  (use-package "ido-at-point"
+  (use-package ido-at-point
     :ensure t
     :config
     (ido-at-point-mode))
-  (use-package "ido-complete-space-or-hyphen"
+  (use-package ido-complete-space-or-hyphen
     :ensure t)
-  (use-package "ido-hacks"
+  (use-package ido-hacks
     :ensure t
     :config
     (custom-set-variables
      '(ido-hacks-mode t)))
-  (use-package "ido-ubiquitous"
+  (use-package ido-ubiquitous
     :ensure t
     :config
     (custom-set-variables
      '(ido-ubiquitous-mode t)))
-  (use-package "ido-vertical-mode"
+  (use-package ido-vertical-mode
     :ensure t
     :config
     (custom-set-variables
      '(ido-vertical-mode t)))
-  (use-package "ido-yes-or-no"
+  (use-package ido-yes-or-no
     :ensure t
     :config
     (custom-set-variables
      '(ido-yes-or-no-mode t)))
-  (use-package "idomenu"
+  (use-package idomenu
     :ensure t))
 
-(use-package "menu-bar"
+(use-package menu-bar
   :config
-  (use-package "menu-bar+"
+  (use-package menu-bar+
     :ensure t))
 
-(use-package "minimap"
+(use-package minimap
   :ensure t
   :config
   (custom-set-variables
    '(minimap-window-location 'right)))
 
-(use-package "recentf"
+(use-package recentf
   :config
-  (use-package "recentf-ext"
+  (use-package recentf-ext
     :ensure t))
 
-(use-package "shell-pop"
+(use-package shell-pop
   :ensure t
   :config
   (custom-set-variables
@@ -489,47 +496,47 @@
    '(shell-pop-window-size 30)
    '(shell-pop-full-span t)))
 
-(use-package "term"
+(use-package term
   :config
-  (use-package "term+"
+  (use-package term+
     :ensure t)
-  (use-package "term+mux"
+  (use-package term+mux
     :ensure t))
 
-(use-package "volatile-highlights"
+(use-package volatile-highlights
   :ensure t
   :diminish volatile-highlights-mode
   :config
   (volatile-highlights-mode 1))
 
-(use-package "whitespace"
+(use-package whitespace
   :diminish global-whitespace-mode)
 
 ;; モード関連の設定
 
-(use-package "android-mode"
+(use-package android-mode
   :ensure t
   :config
   (custom-set-variables
    '(android-mode-sdk-dir "~/Library/Android/sdk")))
 
-(use-package "cobol-mode"
+(use-package cobol-mode
   :mode (("\\.cob\\'" . cobol-mode)
          ("\\.cbl\\'" . cobol-mode)
          ("\\.lst\\'" . cobol-mode)
          ("\\.pco\\'" . cobol-mode)
          ("\\.pcom\\'" . cobol-mode))
   :config
-  (use-package "column-marker"
+  (use-package column-marker
     :ensure t)
   (custom-set-variables
    '(cobol-column-marker-1 6)
    '(cobol-column-marker-2 72)))
 
-(use-package "csv-mode"
+(use-package csv-mode
   :ensure t)
 
-(use-package "php-mode"
+(use-package php-mode
   :ensure t
   :commands (php-mode)
   :config
@@ -543,13 +550,13 @@
   (add-hook 'php-mode-hook
             'php-enable-symfony2-coding-style))
 
-(use-package "vimrc-mode"
+(use-package vimrc-mode
   :ensure t)
 
-(use-package "yaml-mode"
+(use-package yaml-mode
   :ensure t)
 
-(use-package "web-mode"
+(use-package web-mode
   :ensure t
   :mode (("\\.twig\\'" . web-mode))
   :config

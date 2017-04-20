@@ -1,7 +1,7 @@
 ;;; company.el --- 'company'の設定
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2016/12/21 16:06:38>
+;; Last updated: <2017/04/20 16:09:43>
 ;;
 
 ;;; Commentary:
@@ -17,26 +17,26 @@
  '(company-selection-wrap-around t))
 
 ;; Fuzzy matching
-(use-package "company-flx"
+(use-package company-flx
   :ensure t
   :config
   (company-flx-mode))
 
 ;; Eclim
-(use-package "company-emacs-eclim"
+(use-package company-emacs-eclim
   :ensure t
   :config
   (company-emacs-eclim-setup))
 
 ;; PHP補完
-(use-package "company-php"
+(use-package company-php
   :ensure t
   :config
   (custom-set-variables
    '(ac-php-tags-path (e:expand "ac-php" :local))))
 
 ;; WEB補完
-(use-package "company-web"
+(use-package company-web
   :ensure t)
 
 ;; ヘルパー関数
