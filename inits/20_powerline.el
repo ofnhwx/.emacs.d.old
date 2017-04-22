@@ -1,12 +1,15 @@
-;;; powerline.el --- 'powerline'の設定
+;;; 20_powerline.el --- setup powerline.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/03/31 16:16:54>
+;; Last updated: <2017/04/23 01:22:02>
 ;;
 
 ;;; Commentary:
 
 ;;; Code:
+
+(use-package powerline
+  :ensure t)
 
 (with-eval-after-load "evil"
   (defface powerline-evil-normal-face   '((t (:foreground "#000000" :background "#59ff59"))) "NORMAL state."   :group 'powerline)
@@ -43,7 +46,7 @@
     (upcase s)))
 
 (defpowerline powerline-coding-type
-   (concat (get-buffer-coding-type-without-eol-type) "[" (get-buffer-file-eol-type) "]"))
+  (concat (get-buffer-coding-type-without-eol-type) "[" (get-buffer-file-eol-type) "]"))
 
 (setq-default
  mode-line-format
@@ -115,5 +118,5 @@
        (powerline-fill face2 (powerline-width rhs))
        (powerline-render rhs))))))
 
-(e:loaded)
-;;; powerline.el ends here
+(provide '20_powerline)
+;;; 20_powerline.el ends here

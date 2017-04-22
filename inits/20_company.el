@@ -1,20 +1,25 @@
-;;; company.el --- 'company'の設定
+;;; 20_company.el --- setup company.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/04/20 16:09:43>
+;; Last updated: <2017/04/23 01:20:54>
 ;;
 
 ;;; Commentary:
 
 ;;; Code:
 
-(custom-set-variables
- ;; 補完候補をすぐに表示
- '(company-idle-delay 0)
- ;; 補完開始文字数
- '(company-minimum-prefix-length 1)
- ;; 上下でループ
- '(company-selection-wrap-around t))
+(use-package company
+  :ensure t
+  :diminish company-mode
+  :config
+  (custom-set-variables
+   ;; 補完候補をすぐに表示
+   '(company-idle-delay 0)
+   ;; 補完開始文字数
+   '(company-minimum-prefix-length 1)
+   ;; 上下でループ
+   '(company-selection-wrap-around t))
+  (global-company-mode))
 
 ;; Fuzzy matching
 (use-package company-flx
@@ -85,5 +90,5 @@
          (insert (concat doc ")"))
          (company-template-c-like-templatify (concat arg doc ")")))))))
 
-(e:loaded)
-;;; company.el ends here
+(provide '20_company)
+;;; 20_company.el ends here

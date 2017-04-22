@@ -1,7 +1,7 @@
-;;; init-keybind.el --- キーバインド.
+;;; 99_keybind.el --- キーバインド.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/02/03 10:19:59>
+;; Last updated: <2017/04/22 23:16:21>
 ;;
 
 ;;; Commentary:
@@ -197,5 +197,5 @@
   )
 
 (e:loaded)
-(provide 'init-keybind)
-;;; init-keybind.el ends here
+(provide '99_keybind)
+;;; 99_keybind.el ends here
