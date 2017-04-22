@@ -1,7 +1,7 @@
 ;;; init.el --- load this file at first when emacs was started.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/04/20 16:11:13>
+;; Last updated: <2017/04/21 23:57:41>
 ;;
 
 ;;; Commentary:
@@ -48,6 +48,11 @@
   (cl-lib-highlight-warn-cl-initialize))
 
 ;; 各種パッケージ設定
+
+(e:require-package 'popup nil t)
+(when (package-installed-p 'popup)
+  (unless (featurep 'popup)
+    (provide 'popup)))
 
 (use-package exec-path-from-shell
   :if (not (os-type-win-p))
