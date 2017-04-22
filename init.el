@@ -1,7 +1,7 @@
 ;;; init.el --- load this file at first when emacs was started.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/04/21 23:57:41>
+;; Last updated: <2017/04/22 14:23:27>
 ;;
 
 ;;; Commentary:
@@ -254,6 +254,8 @@
   (use-package helm-flycheck     :ensure t)
   (use-package helm-projectile   :ensure t)
   (use-package helm-c-yasnippet  :ensure t))
+
+(use-package kite)
 
 (use-package lacarte
   :ensure t)
