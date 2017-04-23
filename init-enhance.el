@@ -1,7 +1,7 @@
 ;;; init-enhance.el --- 個人設定用の拡張機能.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/04/23 11:55:51>
+;; Last updated: <2017/04/23 16:40:35>
 ;;
 
 ;;; Commentary:
@@ -97,6 +97,13 @@
   ""
   `(if (fboundp (car ',sexplist))
        ,sexplist))
+
+;; define:`e:define-prefix-command'
+(defmacro e:define-prefix-command (command-map &optional docstring)
+  ""
+  `(progn
+     (defvar ,command-map nil ,docstring)
+     (define-prefix-command ',command-map)))
 
 ;; define:`e:loaded'
 (defun e:loaded ()
