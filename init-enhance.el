@@ -1,7 +1,7 @@
 ;;; init-enhance.el --- 個人設定用の拡張機能.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/04/23 16:40:35>
+;; Last updated: <2017/04/23 17:19:39>
 ;;
 
 ;;; Commentary:
@@ -49,15 +49,18 @@
 ;; define:`e:load-config'
 (defun e:load-config (filename &optional local)
   ""
-  (let ((file (if local (e:expand (concat "config/" filename) :local)
-                (e:expand filename :conf))))
+  (let* ((file (if local (e:expand (concat "config/" filename) :local)
+                 (e:expand filename :conf)))
+         (el (concat (file-name-sans-extension file) ".el"))
+         (elc (concat el "c")))
     (when local
       (unless (file-exists-p (file-name-directory file))
         (make-directory (file-name-directory file) t))
-      (unless (file-exists-p (concat (file-name-sans-extension file) ".el"))
-        (write-region "" nil (concat (file-name-sans-extension file) ".el"))))
-    (load file)))
-
+      (unless (file-exists-p el)
+        (write-region (format ";; %s" filename) nil el)))
+    (if (file-exists-p elc)
+        (load elc)
+      (load el))))
 
 ;; define:`e:set-font'
 (defun e:set-font (fontname height)
