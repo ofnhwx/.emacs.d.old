@@ -1,7 +1,7 @@
 ;;; 20_volatile-highlights.el --- setup volatile-highlights.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/04/22 23:48:21>
+;; Last updated: <2017/04/23 12:16:04>
 ;;
 
 ;;; Commentary:
@@ -9,7 +9,7 @@
 ;;; Code:
 
 (use-package volatile-highlights
-  :ensure t
+  :if (e:require-package 'volatile-highlights)
   :diminish volatile-highlights-mode
   :config
   (volatile-highlights-mode 1))

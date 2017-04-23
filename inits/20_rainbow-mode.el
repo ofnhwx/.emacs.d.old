@@ -1,7 +1,7 @@
 ;;; 20_rainbow-mode.el --- setup rainbow-mode.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/04/23 00:41:10>
+;; Last updated: <2017/04/23 12:18:12>
 ;;
 
 ;;; Commentary:
@@ -9,7 +9,7 @@
 ;;; Code:
 
 (use-package rainbow-mode
-  :ensure t
+  :if (e:require 'rainbow-mode)
   :diminish rainbow-mode)
 
 (provide '20_rainbow-mode)

@@ -1,7 +1,7 @@
 ;;; 20_helm.el --- setup helm.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/04/22 23:38:25>
+;; Last updated: <2017/04/23 12:26:53>
 ;;
 
 ;;; Commentary:
@@ -9,22 +9,17 @@
 ;;; Code:
 
 (use-package helm
-  :ensure t
-  :config
+  :if (e:require-package 'helm)
+  :init
   (defun my/helm-display-buffer (buffer)
     (let ((helm-windata '(frame bottom 0.3 nil)))
       (apply 'windata-display-buffer buffer helm-windata)))
   (custom-set-variables
    '(helm-display-function 'my/helm-display-buffer))
-  (use-package helm-c-yasnippet  :ensure t)
-  (use-package helm-descbinds    :ensure t)
-  (use-package helm-flycheck     :ensure t)
-  (use-package helm-mode-manager :ensure t)
-  (use-package helm-projectile   :ensure t)
-  (use-package helm-swoop        :ensure t)
+  :config
   (use-package helm-ag
-    :ensure t
-    :config
+    :if (e:require-package 'helm-ag)
+    :init
     (cond
      ;; ripgrep
      ((executable-find "rg")
@@ -34,10 +29,22 @@
      ((executable-find "pt")
       (custom-set-variables
        '(helm-ag-base-command "pt --nocolor --nogroup --smart-case")))))
+  (use-package helm-c-yasnippet
+    :if (e:require-package 'helm-c-yasnippet))
+  (use-package helm-descbinds
+    :if (e:require-package 'helm-descbinds))
+  (use-package helm-flycheck
+    :if (e:require-package 'helm-flycheck))
   (use-package helm-flx
-    :ensure t
+    :if (e:require-package 'helm-flx)
     :config
-    (helm-flx-mode 1)))
+    (helm-flx-mode 1))
+  (use-package helm-mode-manager
+    :if (e:require-package 'helm-mode-manager))
+  (use-package helm-projectile
+    :if (e:require-package 'helm-projectile))
+  (use-package helm-swoop
+    :if (e:require-package 'helm-swoop)))
 
 (provide '20_helm)
 ;;; 20_helm.el ends here

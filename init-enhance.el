@@ -1,7 +1,7 @@
 ;;; init-enhance.el --- 個人設定用の拡張機能.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/04/21 10:44:12>
+;; Last updated: <2017/04/23 11:55:51>
 ;;
 
 ;;; Commentary:
@@ -33,13 +33,15 @@
   (require package nil noerror))
 
 ;; define:`e:require-package'
-(defun e:require-package (package &optional load noerror)
+(cl-defun e:require-package (package &optional load noerror)
   ""
   (when (e:require 'package t)
     (condition-case err
         (or (package-installed-p package)
-            (package-install package))
-      (error (message "%s" err)))
+            (progn (message "install: %s." package)
+              (package-install package)))
+      (error (message "%s" err)
+             (cl-return-from e:require-package)))
     (if load
         (e:require package noerror)
       (package-installed-p package))))
@@ -56,21 +58,6 @@
         (write-region "" nil (concat (file-name-sans-extension file) ".el"))))
     (load file)))
 
-;; use:`package'
-(when (e:require 'package t)
-  (cl-dolist (item `(("melpa" . ,(if (os-type-win-p)
-                                     "http://melpa.org/packages/"
-                                   "https://melpa.org/packages/"))
-                     ;;("marmalade" . "http://marmalade-repo.org/packages/")
-                     ))
-    (add-to-list 'package-archives item))
-  (unless (file-directory-p package-user-dir)
-    (package-refresh-contents))
-  (package-initialize))
-
-;; use:`use-package'
-(unless (e:require-package 'use-package t t)
-  (defmacro use-package (&rest args)))
 
 ;; define:`e:set-font'
 (defun e:set-font (fontname height)

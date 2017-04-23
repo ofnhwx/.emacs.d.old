@@ -1,7 +1,7 @@
 ;;; init.el --- load this file at first when emacs was started.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/04/23 01:17:19>
+;; Last updated: <2017/04/23 10:32:11>
 ;;
 
 ;;; Commentary:
@@ -17,17 +17,29 @@
 ;; use:`cl'
 (require 'cl-lib)
 
-;; load:`init-enhance', `init-custom', `init-setup'
+;; load:`init-enhance', `init-config', `init-color', `init-setup'
 (cl-eval-when (compile load eval)
-  (let* ((default-directory user-emacs-directory)
-         (enhance (expand-file-name "init-enhance"))
-         (config  (expand-file-name "init-config"))
-         (color   (expand-file-name "init-color"))
-         (setup   (expand-file-name "init-setup")))
-    (require 'init-enhance enhance t)
-    (require 'init-config  config  t)
-    (require 'init-color   color   t)
-    (require 'init-setup   setup   t)))
+  (let* ((default-directory user-emacs-directory))
+    (require 'init-enhance (expand-file-name "init-enhance") t)
+    (require 'init-config  (expand-file-name "init-config")  t)
+    (require 'init-color   (expand-file-name "init-color")   t)
+    (require 'init-setup   (expand-file-name "init-setup")   t)))
+
+;; use:`package'
+(when (e:require 'package t)
+  (cl-dolist (item '(("melpa" . "https://melpa.org/packages/")
+                     ;;("marmalade" . "http://marmalade-repo.org/packages/")
+                     ))
+    (when (os-type-win-p)
+      (setf (cdr item) (replace-regexp-in-string "https://" "http://" (cdr item))))
+    (add-to-list 'package-archives item))
+  (unless (file-directory-p package-user-dir)
+    (package-refresh-contents))
+  (package-initialize))
+
+;; use:`use-package'
+(unless (e:require-package 'use-package t t)
+  (defmacro use-package (&rest args)))
 
 ;; カスタムファイル
 (set-variable 'custom-file (e:expand "custom.el" :local))
@@ -51,7 +63,7 @@
 
 ;; 各種パッケージ設定
 (use-package init-loader
-  :ensure t
+  :if (e:require-package 'init-loader)
   :config
   (custom-set-variables
    '(init-loader-directory (e:expand "inits" :user)))

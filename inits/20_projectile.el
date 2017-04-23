@@ -1,7 +1,7 @@
 ;;; 20_projectile.el --- setup projectile.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/04/22 23:25:11>
+;; Last updated: <2017/04/23 12:18:45>
 ;;
 
 ;;; Commentary:
@@ -9,7 +9,7 @@
 ;;; Code:
 
 (use-package projectile
-  :ensure t
+  :if (e:require-package 'projectile)
   :diminish projectile-mode
   :init
   (custom-set-variables

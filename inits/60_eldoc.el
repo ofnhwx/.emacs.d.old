@@ -1,7 +1,7 @@
 ;;; 60_eldoc.el --- setup eldoc.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/04/22 23:36:48>
+;; Last updated: <2017/04/23 12:09:30>
 ;;
 
 ;;; Commentary:
@@ -12,7 +12,7 @@
   :diminish eldoc-mode
   :config
   (use-package eldoc-extension
-    :ensure t))
+    :if (e:require-package 'eldoc-extension)))
 
 (provide '60_eldoc)
 ;;; 60_eldoc.el ends here

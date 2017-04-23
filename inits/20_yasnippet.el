@@ -1,7 +1,7 @@
 ;;; 20_yasnippet.el --- setup yasnippet.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/04/23 00:11:57>
+;; Last updated: <2017/04/23 12:15:34>
 ;;
 
 ;;; Commentary:
@@ -9,7 +9,7 @@
 ;;; Code:
 
 (use-package yasnippet
-  :ensure t
+  :if (e:require-package 'yasnippet)
   :config
   '(yas-global-mode t)
   ;; スニペット名をidoで選択する

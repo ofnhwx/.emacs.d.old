@@ -1,7 +1,7 @@
 ;;; 20_undohist.el --- setup undohist.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/04/23 00:07:19>
+;; Last updated: <2017/04/23 12:16:58>
 ;;
 
 ;;; Commentary:
@@ -9,11 +9,12 @@
 ;;; Code:
 
 (use-package undohist
-  :ensure t
-  :config
+  :if (e:require-package 'undohist)
+  :init
   (custom-set-variables
    '(undohist-directory (e:expand "undohist" :local))
    '(undohist-ignored-files '(".authinfo.gpg")))
+  :config
   ;; 無効リストに登録されているファイルのUndo履歴を保存させない
   (defun undohist-save-1--with-ignored ()
     (let ((file (make-undohist-file-name (buffer-file-name))))

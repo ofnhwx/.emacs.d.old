@@ -1,7 +1,7 @@
 ;;; 40_web-mode.el --- setup web-mode.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/04/23 00:45:39>
+;; Last updated: <2017/04/23 12:11:18>
 ;;
 
 ;;; Commentary:
@@ -9,9 +9,9 @@
 ;;; Code:
 
 (use-package web-mode
-  :ensure t
+  :if (e:require-package 'web-mode)
   :mode (("\\.twig\\'" . web-mode))
-  :config
+  :init
   (custom-set-variables
    '(web-mode-comment-keywords "\\(?:BUG\\|FIXME\\|HACK\\|KLUDGE\\|OPTIMIZE\\|RE\\(?:FACTOR\\|VIEW\\)\\|TODO\\|WORKAROUND\\|XXX\\|MEMO\\)")
    ;; offset
@@ -23,6 +23,7 @@
    '(web-mode-style-padding  1)
    '(web-mode-script-padding 1)
    '(web-mode-block-padding  0))
+  :config
   ;; インデント再調整
   (with-eval-after-load "editorconfig"
     (add-hook

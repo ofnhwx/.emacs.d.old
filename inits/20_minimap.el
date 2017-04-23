@@ -1,7 +1,7 @@
 ;;; 20_minimap.el --- setup minimap.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/04/22 23:43:28>
+;; Last updated: <2017/04/23 12:22:37>
 ;;
 
 ;;; Commentary:
@@ -9,8 +9,8 @@
 ;;; Code:
 
 (use-package minimap
-  :ensure t
-  :config
+  :if (e:require-package 'minimap)
+  :init
   (custom-set-variables
    '(minimap-window-location 'right)))
 

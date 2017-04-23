@@ -1,7 +1,7 @@
 ;;; 60_linum.el --- setup linum.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/04/22 23:37:39>
+;; Last updated: <2017/04/23 12:08:15>
 ;;
 
 ;;; Commentary:
@@ -11,7 +11,7 @@
 (use-package linum
   :config
   (use-package hlinum
-    :ensure t
+    :if (e:require-package 'hlinum)
     :config
     (hlinum-activate)))
 

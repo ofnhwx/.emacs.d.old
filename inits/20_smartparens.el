@@ -1,7 +1,7 @@
 ;;; 20_smartparens.el --- setup smartparens.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/04/23 00:09:47>
+;; Last updated: <2017/04/23 12:17:41>
 ;;
 
 ;;; Commentary:
@@ -9,7 +9,7 @@
 ;;; Code:
 
 (use-package smartparens
-  :ensure t
+  :if (e:require-package 'smartparens)
   :diminish smartparens-mode
   :config
   (smartparens-global-mode t))

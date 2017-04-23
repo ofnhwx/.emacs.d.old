@@ -1,7 +1,7 @@
 ;;; 20_edbi.el --- setup edbi.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/04/23 00:57:08>
+;; Last updated: <2017/04/23 11:50:36>
 ;;
 
 ;;; Commentary:
@@ -9,8 +9,8 @@
 ;;; Code:
 
 (use-package edbi
-  :ensure t
-  :config
+  :if (e:require-package 'edbi)
+  :init
   (custom-set-variables
    '(edbi:ds-history-file (e:expand ".edbi-ds-history" :local))))
 

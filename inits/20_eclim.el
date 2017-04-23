@@ -1,7 +1,7 @@
 ;;; 20_eclim.el --- setup eclim.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/04/23 00:55:52>
+;; Last updated: <2017/04/23 11:50:15>
 ;;
 
 ;;; Commentary:
@@ -9,7 +9,7 @@
 ;;; Code:
 
 (use-package eclim
-  :ensure t
+  :if (e:require-package 'eclim)
   :config
   (global-eclim-mode))
 

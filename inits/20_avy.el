@@ -1,7 +1,7 @@
 ;;; 20_avy.el --- setup avy.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/04/22 23:58:41>
+;; Last updated: <2017/04/23 10:45:26>
 ;;
 
 ;;; Commentary:
@@ -9,20 +9,19 @@
 ;;; Code:
 
 (use-package avy
-  :ensure t
+  :if (e:require-package 'avy)
   :config
   (use-package ace-link
-    :ensure t
+    :if (e:require-package 'ace-link)
     :config
     (ace-link-setup-default))
   (use-package ace-window
-    :ensure t)
+    :if (e:require-package 'ace-window))
   (use-package avy-zap
-    :ensure t)
+    :if (e:require-package 'avy-zap))
   (use-package avy-migemo
-    :if (executable-find "cmigemo")
-    :init
-    (e:require-package 'avy-migemo)
+    :if (and (executable-find "cmigemo")
+             (e:require-package 'avy-migemo))
     :config
     (avy-migemo-mode 1)))
 
