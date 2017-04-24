@@ -1,7 +1,7 @@
 ;;; 30_cobol-mode.el --- setup cobol-mode.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/04/23 12:14:47>
+;; Last updated: <2017/04/24 12:55:56>
 ;;
 
 ;;; Commentary:
@@ -18,9 +18,8 @@
   (use-package column-marker
     :if (e:require-package 'column-marker)
     :init
-    (custom-set-variables
-     '(cobol-column-marker-1 6)
-     '(cobol-column-marker-2 72))))
+    (set-variable 'cobol-column-marker-1 6)
+    (set-variable 'cobol-column-marker-2 72)))
 
 (provide '30_cobol-mode)
 ;;; 30_cobol-mode.el ends here

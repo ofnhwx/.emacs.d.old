@@ -1,7 +1,7 @@
 ;;; init.el --- load this file at first when emacs was started.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/04/23 10:32:11>
+;; Last updated: <2017/04/24 14:01:26>
 ;;
 
 ;;; Commentary:
@@ -64,9 +64,9 @@
 ;; 各種パッケージ設定
 (use-package init-loader
   :if (e:require-package 'init-loader)
+  :init
+  (set-variable 'init-loader-directory (e:expand "inits" :user))
   :config
-  (custom-set-variables
-   '(init-loader-directory (e:expand "inits" :user)))
   (unless (file-directory-p init-loader-directory)
     (make-directory init-loader-directory t))
   (init-loader-load))

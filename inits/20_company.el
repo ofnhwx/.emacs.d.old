@@ -1,7 +1,7 @@
 ;;; 20_company.el --- setup company.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/04/23 10:59:10>
+;; Last updated: <2017/04/24 12:47:04>
 ;;
 
 ;;; Commentary:
@@ -12,13 +12,9 @@
   :if (e:require-package 'company)
   :diminish company-mode
   :init
-  (custom-set-variables
-   ;; 補完候補をすぐに表示
-   '(company-idle-delay 0)
-   ;; 補完開始文字数
-   '(company-minimum-prefix-length 1)
-   ;; 上下でループ
-   '(company-selection-wrap-around t))
+  (set-variable 'company-idle-delay 0)            ;; 補完候補をすぐに表示
+  (set-variable 'company-minimum-prefix-length 1) ;; 補完開始文字数
+  (set-variable 'company-selection-wrap-around t) ;; 上下でループ
   :config
   ;; Fuzzy matching
   (use-package company-flx
@@ -34,8 +30,7 @@
   (use-package company-php
     :if (e:require-package 'company-php)
     :init
-    (custom-set-variables
-     '(ac-php-tags-path (e:expand "ac-php" :local))))
+    (set-variable 'ac-php-tags-path (e:expand "ac-php" :local)))
   ;; WEB補完
   (use-package company-web
     :if (e:require-package 'company-web))

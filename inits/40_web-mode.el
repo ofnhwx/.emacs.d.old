@@ -1,7 +1,7 @@
 ;;; 40_web-mode.el --- setup web-mode.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/04/23 12:11:18>
+;; Last updated: <2017/04/24 12:56:26>
 ;;
 
 ;;; Commentary:
@@ -12,17 +12,16 @@
   :if (e:require-package 'web-mode)
   :mode (("\\.twig\\'" . web-mode))
   :init
-  (custom-set-variables
-   '(web-mode-comment-keywords "\\(?:BUG\\|FIXME\\|HACK\\|KLUDGE\\|OPTIMIZE\\|RE\\(?:FACTOR\\|VIEW\\)\\|TODO\\|WORKAROUND\\|XXX\\|MEMO\\)")
+  (set-variable 'web-mode-comment-keywords "\\(?:BUG\\|FIXME\\|HACK\\|KLUDGE\\|OPTIMIZE\\|RE\\(?:FACTOR\\|VIEW\\)\\|TODO\\|WORKAROUND\\|XXX\\|MEMO\\)")
    ;; offset
-   '(web-mode-markup-indent-offset 2)
-   '(web-mode-css-indent-offset    2)
-   '(web-mode-code-indent-offset   4)
-   '(web-mode-attr-indent-offset   2)
+  (set-variable 'web-mode-markup-indent-offset 2)
+  (set-variable 'web-mode-css-indent-offset    2)
+  (set-variable 'web-mode-code-indent-offset   4)
+  (set-variable 'web-mode-attr-indent-offset   2)
    ;; padding
-   '(web-mode-style-padding  1)
-   '(web-mode-script-padding 1)
-   '(web-mode-block-padding  0))
+  (set-variable 'web-mode-style-padding  1)
+  (set-variable 'web-mode-script-padding 1)
+  (set-variable 'web-mode-block-padding  0)
   :config
   ;; インデント再調整
   (with-eval-after-load "editorconfig"

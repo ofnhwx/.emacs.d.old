@@ -1,7 +1,7 @@
 ;;; 20_migemo.el --- setup migemo.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/04/23 12:23:07>
+;; Last updated: <2017/04/24 12:52:51>
 ;;
 
 ;;; Commentary:
@@ -12,16 +12,14 @@
   :if (and (executable-find "cmigemo")
            (e:require-package 'migemo))
   :init
-  (custom-set-variables
-   '(migemo-options '("-q" "--emacs"))
-   '(migemo-user-dictionary nil)
-   '(migemo-regex-dictionary nil)
-   '(migemo-coding-system 'utf-8-unix))
+  (set-variable 'migemo-options '("-q" "--emacs"))
+  (set-variable 'migemo-user-dictionary nil)
+  (set-variable 'migemo-regex-dictionary nil)
+  (set-variable 'migemo-coding-system 'utf-8-unix)
   ;; for:`mac'
   (when (os-type-mac-p)
-    (custom-set-variables
-     '(migemo-command (executable-find "cmigemo"))
-     '(migemo-dictionary "/usr/local/share/migemo/utf-8/migemo-dict")))
+    (set-variable 'migemo-command (executable-find "cmigemo"))
+    (set-variable 'migemo-dictionary "/usr/local/share/migemo/utf-8/migemo-dict"))
   :config
   ;; 有効化
   (migemo-init))

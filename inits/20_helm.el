@@ -1,7 +1,7 @@
 ;;; 20_helm.el --- setup helm.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/04/23 12:26:53>
+;; Last updated: <2017/04/24 12:52:35>
 ;;
 
 ;;; Commentary:
@@ -14,8 +14,7 @@
   (defun my/helm-display-buffer (buffer)
     (let ((helm-windata '(frame bottom 0.3 nil)))
       (apply 'windata-display-buffer buffer helm-windata)))
-  (custom-set-variables
-   '(helm-display-function 'my/helm-display-buffer))
+  (set-variable 'helm-display-function 'my/helm-display-buffer)
   :config
   (use-package helm-ag
     :if (e:require-package 'helm-ag)
@@ -23,12 +22,10 @@
     (cond
      ;; ripgrep
      ((executable-find "rg")
-      (custom-set-variables
-       '(helm-ag-base-command "rg --color never --no-heading --smart-case --vimgrep")))
+      (set-variable 'helm-ag-base-command "rg --color never --no-heading --smart-case --vimgrep"))
      ;; The Platinum Searcher
      ((executable-find "pt")
-      (custom-set-variables
-       '(helm-ag-base-command "pt --nocolor --nogroup --smart-case")))))
+      (set-variable 'helm-ag-base-command "pt --nocolor --nogroup --smart-case"))))
   (use-package helm-c-yasnippet
     :if (e:require-package 'helm-c-yasnippet))
   (use-package helm-descbinds

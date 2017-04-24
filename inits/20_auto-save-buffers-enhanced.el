@@ -1,7 +1,7 @@
 ;;; 20_auto-save-buffers-enhanced.el --- setup auto-save-buffers-enhanced.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/04/23 10:42:42>
+;; Last updated: <2017/04/24 14:08:04>
 ;;
 
 ;;; Commentary:
@@ -11,13 +11,11 @@
 (use-package auto-save-buffers-enhanced
   :if (e:require-package 'auto-save-buffers-enhanced)
   :init
-  (custom-set-variables
-   '(auto-save-buffers-enhanced-quiet-save-p t)
-   '(auto-save-buffers-enhanced-interval 3)
+  (set-variable 'auto-save-buffers-enhanced-quiet-save-p t)
+  (set-variable 'auto-save-buffers-enhanced-interval 3)
    ;; for `*scratch*'
-   '(auto-save-buffers-enhanced-save-scratch-buffer-to-file-p t)
-   '(auto-save-buffers-enhanced-file-related-with-scratch-buffer
-     (e:expand ".scratch" :local)))
+  (set-variable 'auto-save-buffers-enhanced-save-scratch-buffer-to-file-p t)
+  (set-variable 'auto-save-buffers-enhanced-file-related-with-scratch-buffer (e:expand ".scratch" :local))
   :config
   (auto-save-buffers-enhanced t))
 
