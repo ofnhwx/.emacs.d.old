@@ -1,7 +1,7 @@
 ;;; 99_keybind.el --- キーバインド.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/04/23 16:40:50>
+;; Last updated: <2017/04/24 18:28:11>
 ;;
 
 ;;; Commentary:
@@ -90,7 +90,8 @@
    ("M-X" . lacarte-execute-command)
    ("M-y" . helm-show-kill-ring)
    ("M-z" . avy-zap-to-char-dwim)
-   ("C-M-SPC" . er/expand-region)
+   ("C-<" . er/contract-region)
+   ("C->" . er/expand-region)
    ("C-M-¥"   . indent-region)))
 (use-package bind-key
   :if (and (os-type-mac-p)
@@ -126,7 +127,9 @@
     "mc"
     ("C-t" mc/mark-next-like-this          "next")
     ("n"   mc/mark-next-like-this          "next")
+    (">"   mc/mark-next-like-this          "next")
     ("p"   mc/mark-previous-like-this      "prev")
+    ("<"   mc/mark-previous-like-this      "prev")
     ("m"   mc/mark-more-like-this-extended "more")
     ("u"   mc/unmark-next-like-this        "unmark-next")
     ("U"   mc/unmark-previous-like-this    "unmark-prev")
