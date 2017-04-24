@@ -1,7 +1,7 @@
 ;;; init.el --- load this file at first when emacs was started.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/04/24 14:01:26>
+;; Last updated: <2017/04/24 14:33:38>
 ;;
 
 ;;; Commentary:
@@ -17,13 +17,15 @@
 ;; use:`cl'
 (require 'cl-lib)
 
-;; load:`init-enhance', `init-config', `init-color', `init-setup'
+;; load:`init-enhance', `init-config', `init-setup'
 (cl-eval-when (compile load eval)
   (let* ((default-directory user-emacs-directory))
     (require 'init-enhance (expand-file-name "init-enhance") t)
     (require 'init-config  (expand-file-name "init-config")  t)
-    (require 'init-color   (expand-file-name "init-color")   t)
     (require 'init-setup   (expand-file-name "init-setup")   t)))
+
+;; テーマ
+(load-theme 'init t)
 
 ;; use:`package'
 (when (e:require 'package t)
