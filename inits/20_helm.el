@@ -1,7 +1,7 @@
 ;;; 20_helm.el --- setup helm.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/04/24 12:52:35>
+;; Last updated: <2017/05/30 13:50:08>
 ;;
 
 ;;; Commentary:
@@ -25,7 +25,12 @@
       (set-variable 'helm-ag-base-command "rg --color never --no-heading --smart-case --vimgrep"))
      ;; The Platinum Searcher
      ((executable-find "pt")
-      (set-variable 'helm-ag-base-command "pt --nocolor --nogroup --smart-case"))))
+      (set-variable 'helm-ag-base-command "pt --nocolor --nogroup --smart-case")))
+    :config
+    (defun helm-ag--project-root ()
+      (cl-loop for dir in '(".git" ".git/" ".hg/" ".svn/")
+               when (locate-dominating-file default-directory dir)
+               return it)))
   (use-package helm-c-yasnippet
     :if (e:require-package 'helm-c-yasnippet))
   (use-package helm-descbinds
