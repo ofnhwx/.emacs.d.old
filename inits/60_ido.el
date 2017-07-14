@@ -1,7 +1,7 @@
 ;;; 60_ido.el --- setup ido.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/04/24 12:57:28>
+;; Last updated: <2017/07/14 09:59:37>
 ;;
 
 ;;; Commentary:
@@ -37,15 +37,14 @@
   (use-package ido-complete-space-or-hyphen
     :if (e:require-package 'ido-complete-space-or-hyphen))
   ;;
+  (use-package ido-completing-read+
+    :if (e:require-package 'ido-completing-read+)
+    (ido-ubiquitous-mode t))
+  ;;
   (use-package ido-hacks
     :if (e:require-package 'ido-hacks)
     :config
     (ido-hacks-mode t))
-  ;;
-  (use-package ido-ubiquitous
-    :if (e:require-package 'ido-ubiquitous)
-    :config
-    (ido-ubiquitous-mode t))
   ;;
   (use-package ido-vertical-mode
     :if (e:require-package 'ido-vertical-mode)
