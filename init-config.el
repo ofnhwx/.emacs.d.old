@@ -1,7 +1,7 @@
 ;;; init-enhance.el --- 環境回りの設定.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/04/24 15:07:54>
+;; Last updated: <2017/09/10 16:09:06>
 ;;
 
 ;;; Commentary:
@@ -40,7 +40,8 @@
       (e:set-font "IPAゴシック"     90)))
  ;; linux
  ((os-type-linux-p)
-  (or (e:set-font "IPAゴシック" 90)))
+  (or (e:set-font "Takao" 90)
+      (e:set-font "IPAゴシック" 90)))
  ;; mac
  ((os-type-mac-p)
   (or (e:set-font "Ricty Diminished Discord" 140)

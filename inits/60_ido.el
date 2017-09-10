@@ -1,7 +1,7 @@
 ;;; 60_ido.el --- setup ido.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/07/14 09:59:37>
+;; Last updated: <2017/09/10 16:02:10>
 ;;
 
 ;;; Commentary:
@@ -39,6 +39,7 @@
   ;;
   (use-package ido-completing-read+
     :if (e:require-package 'ido-completing-read+)
+    :config
     (ido-ubiquitous-mode t))
   ;;
   (use-package ido-hacks
