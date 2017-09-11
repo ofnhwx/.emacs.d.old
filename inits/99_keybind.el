@@ -1,7 +1,7 @@
 ;;; 99_keybind.el --- キーバインド.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/04/24 18:28:11>
+;; Last updated: <2017/09/07 09:47:23>
 ;;
 
 ;;; Commentary:
@@ -93,6 +93,7 @@
    ("C-<" . er/contract-region)
    ("C->" . er/expand-region)
    ("C-M-¥"   . indent-region)))
+
 (use-package bind-key
   :if (and (os-type-mac-p)
            (e:require-package 'bind-key))
@@ -111,6 +112,7 @@
    ("<double-wheel-down>" . scroll-up-with-lines)
    ("<triple-wheel-up>"   . scroll-down-with-lines)
    ("<triple-wheel-down>" . scroll-up-with-lines)))
+
 (use-package hydra
   :if (e:require-package 'hydra)
   :config
@@ -120,6 +122,7 @@
     ("p" previous-error           "prev-error")
     ("N" git-gutter:next-hunk     "next-hunk")
     ("P" git-gutter:previous-hunk "prev-hunk")))
+
 (use-package hydra
   :if (e:require-package 'hydra)
   :config
@@ -140,6 +143,7 @@
     ("i"   mc/insert-numbers               "insert-numbers")
     ("o"   mc/sort-regions                 "sort")
     ("O"   mc/reverse-regions              "reverse")))
+
 (use-package hydra
   :if (e:require-package 'hydra)
   :config
@@ -154,6 +158,7 @@
     ("^" enlarge-window)
     ("{" shrink-window-horizontally)
     ("}" enlarge-window-horizontally)))
+
 (use-package mykie
   :if (e:require-package 'mykie)
   :config
@@ -165,7 +170,7 @@
     :default (kill-ring-save (line-beginning-position) (line-end-position))
     :region kill-ring-save))
 
-  ;; for:`search-map' (M-s)
+ ;; for:`search-map' (M-s)
 (use-package bind-key
   :if (e:require-package 'bind-key)
   :config
@@ -175,7 +180,7 @@
    ("b" . dumb-jump-back)
    ("q" . dumb-jump-quick-look)))
 
-  ;; for:`ctl-x-map'
+ ;; for:`ctl-x-map'
 (use-package bind-key
   :if (e:require-package 'bind-key)
   :config
@@ -206,6 +211,16 @@
     (bind-keys
      :map dired-mode-map
      ("r" . wdired-change-to-wdired-mode))))
+
+;; for:`elscreen-map'
+(with-eval-after-load "elscreen"
+  (with-eval-after-load "helm-elscreen"
+    (use-package bind-key
+      :if (e:require-package 'bind-key)
+      :config
+      (bind-keys
+       :map elscreen-map
+       ("C-z" . helm-elscreen)))))
 
 ;; for:`eshell-mode-map'
 (with-eval-after-load "eshell"

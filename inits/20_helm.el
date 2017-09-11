@@ -1,7 +1,7 @@
 ;;; 20_helm.el --- setup helm.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/05/30 13:50:08>
+;; Last updated: <2017/09/07 09:42:14>
 ;;
 
 ;;; Commentary:
@@ -35,6 +35,8 @@
     :if (e:require-package 'helm-c-yasnippet))
   (use-package helm-descbinds
     :if (e:require-package 'helm-descbinds))
+  (use-package helm-elscreen
+    :if (e:require-package 'helm-elscreen))
   (use-package helm-flycheck
     :if (e:require-package 'helm-flycheck))
   (use-package helm-flx
