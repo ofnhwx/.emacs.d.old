@@ -1,7 +1,7 @@
 ;;; 20_elscreen.el --- setup elscreen.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/10/10 10:23:24>
+;; Last updated: <2017/11/06 18:26:39>
 ;;
 
 ;;; Commentary:
@@ -14,11 +14,7 @@
   (set-variable 'elscreen-prefix-key (kbd "C-z"))
   (set-variable 'elscreen-tab-display-kill-screen nil)
   :config
-  (elscreen-start)
-  (use-package elscreen-persist
-    :if (e:require-package 'elscreen-persist nil t)
-    :config
-    (elscreen-persist-mode 1)))
+  (elscreen-start))
 
 (provide '20_elscreen)
 ;;; 20_elscreen.el ends here
