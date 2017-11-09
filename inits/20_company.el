@@ -1,7 +1,7 @@
 ;;; 20_company.el --- setup company.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/04/24 12:47:04>
+;; Last updated: <2017/11/09 10:41:15>
 ;;
 
 ;;; Commentary:
@@ -21,11 +21,6 @@
     :if (e:require-package 'company-flx)
     :config
     (company-flx-mode))
-  ;; Eclim
-  (use-package company-emacs-eclim
-    :if (e:require-package 'company-emacs-eclim)
-    :config
-    (company-emacs-eclim-setup))
   ;; PHP補完
   (use-package company-php
     :if (e:require-package 'company-php)
