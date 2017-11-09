@@ -2,7 +2,7 @@
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
 
-;; Last updated: <2017/04/24 12:44:30>
+;; Last updated: <2017/11/09 14:25:47>
 ;;
 
 ;;; Commentary:
@@ -192,6 +192,10 @@
   (cl-pushnew 'sr-mode  linum-ignore-mode-list)
   ;; 有効可
   (global-linum-mode 1))
+
+;; for:`password-cache'
+(when (e:require 'password-cache t)
+  (set-variable 'password-cache-expiry 3600))
 
 ;; for:`server'
 (when (e:require 'server t)
