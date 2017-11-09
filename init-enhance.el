@@ -1,7 +1,7 @@
 ;;; init-enhance.el --- 個人設定用の拡張機能.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2016/07/11 11:24:03>
+;; Last updated: <2017/04/23 17:19:39>
 ;;
 
 ;;; Commentary:
@@ -11,52 +11,6 @@
 ;; use:`cl-lib'
 (eval-when-compile
   (require 'cl-lib))
-
-;; define:`e:require'
-(defmacro e:require (package &optional noerror)
-  `(cl-eval-when (compile load eval)
-     (require ,package nil ,noerror)))
-
-;; define:`e:require-package'
-(defmacro e:require-package (package &optional load noerror)
-  `(when (e:require 'package t)
-     (condition-case err
-         (or (package-installed-p ,package)
-             (package-install ,package))
-       (error (message "%s" err)))
-     (if ,load
-         (e:require ,package ,noerror)
-       (package-installed-p ,package))))
-
-;; define:`e:load-config'
-(defmacro e:load-config (filename &optional local)
-  `(let ((file ,(if local `(e:expand ,(concat "config/" filename) :local)
-                  `(e:expand ,filename :conf))))
-     ,(when local
-        '(progn (unless (file-exists-p (file-name-directory file))
-                  (make-directory (file-name-directory file) t))
-                (unless (file-exists-p (concat (file-name-sans-extension file) ".el"))
-                  (write-region "" nil (concat (file-name-sans-extension file) ".el")))))
-     (load file)))
-
-;; use:`package'
-(when (e:require 'package t)
-  (cl-dolist (item '(("melpa" . "https://melpa.org/packages/")
-                     ("marmalade" . "http://marmalade-repo.org/packages/")))
-    (add-to-list 'package-archives item))
-  (unless (file-directory-p package-user-dir)
-    (package-refresh-contents))
-  (package-initialize))
-
-;; use:`use-package'
-(unless (e:require-package 'use-package t t)
-  (defmacro use-package (&rest args)))
-
-;; define:`e:set-font'
-(defmacro e:set-font (fontname height)
-  `(when (find-font (font-spec :name ,fontname))
-     (set-face-attribute 'default nil :family ,fontname :height ,height)
-     t))
 
 ;; define:`os-type-{x}-p'
 (defconst os-type-bsd   'bsd  )
@@ -73,6 +27,48 @@
 (defun os-type-mac-p   () "Mac."     (eq os-type os-type-mac  ))
 (defun os-type-win-p   () "Windows." (eq os-type os-type-win  ))
 
+;; define:`e:require'
+(defun e:require (package &optional noerror)
+  ""
+  (require package nil noerror))
+
+;; define:`e:require-package'
+(cl-defun e:require-package (package &optional load noerror)
+  ""
+  (when (e:require 'package t)
+    (condition-case err
+        (or (package-installed-p package)
+            (progn (message "install: %s." package)
+              (package-install package)))
+      (error (message "%s" err)
+             (cl-return-from e:require-package)))
+    (if load
+        (e:require package noerror)
+      (package-installed-p package))))
+
+;; define:`e:load-config'
+(defun e:load-config (filename &optional local)
+  ""
+  (let* ((file (if local (e:expand (concat "config/" filename) :local)
+                 (e:expand filename :conf)))
+         (el (concat (file-name-sans-extension file) ".el"))
+         (elc (concat el "c")))
+    (when local
+      (unless (file-exists-p (file-name-directory file))
+        (make-directory (file-name-directory file) t))
+      (unless (file-exists-p el)
+        (write-region (format ";; %s" filename) nil el)))
+    (if (file-exists-p elc)
+        (load elc)
+      (load el))))
+
+;; define:`e:set-font'
+(defun e:set-font (fontname height)
+  ""
+  (when (find-font (font-spec :name fontname))
+    (set-face-attribute 'default nil :family fontname :height height)
+    t))
+
 ;; define:`e:get-dir'
 (defvar e:get-dir-alist
   '((:home (cond ((os-type-win-p) (file-truename "~/"))
@@ -84,25 +80,37 @@
     (:temp (e:unexpand (file-truename (e:expand ".emacs" temporary-file-directory))))
     (:user user-emacs-directory)))
 (defun e:get-dir (dirtype)
+  ""
   (let ((e (cadr (assoc dirtype e:get-dir-alist))))
     (if e (eval e) dirtype)))
 
 ;; define:`e:expand'
 (defun e:expand (filename &optional dirtype)
+  ""
   (let ((directory (e:get-dir dirtype)))
     (expand-file-name filename directory)))
 
 ;; define:`e:unexpand'
 (defun e:unexpand (filename)
+  ""
   (abbreviate-file-name filename))
 
 ;; define:`e:safe-exec'
 (defmacro e:safe-exec (sexplist)
+  ""
   `(if (fboundp (car ',sexplist))
        ,sexplist))
 
+;; define:`e:define-prefix-command'
+(defmacro e:define-prefix-command (command-map &optional docstring)
+  ""
+  `(progn
+     (defvar ,command-map nil ,docstring)
+     (define-prefix-command ',command-map)))
+
 ;; define:`e:loaded'
 (defun e:loaded ()
+  ""
   (when load-in-progress
     (message "*Loading %s...done"
              (file-name-sans-extension (file-name-nondirectory load-file-name)))))
