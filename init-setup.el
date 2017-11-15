@@ -2,7 +2,7 @@
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
 
-;; Last updated: <2017/11/09 14:25:47>
+;; Last updated: <2017/11/15 17:06:22>
 ;;
 
 ;;; Commentary:
@@ -192,6 +192,12 @@
   (cl-pushnew 'sr-mode  linum-ignore-mode-list)
   ;; 有効可
   (global-linum-mode 1))
+
+;; for:`org'
+(when (e:require 'org t)
+  (set-variable 'org-directory (e:expand "org" :home))
+  (set-variable 'org-agenda-files
+                (cl-remove-if 'file-directory-p (directory-files (e:expand "agenda" org-directory) t))))
 
 ;; for:`password-cache'
 (when (e:require 'password-cache t)
