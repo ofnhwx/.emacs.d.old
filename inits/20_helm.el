@@ -1,7 +1,7 @@
 ;;; 20_helm.el --- setup helm.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/09/07 09:42:14>
+;; Last updated: <2017/11/14 12:35:12>
 ;;
 
 ;;; Commentary:
@@ -43,6 +43,9 @@
     :if (e:require-package 'helm-flx)
     :config
     (helm-flx-mode 1))
+  (use-package helm-ghq
+    :if (and (executable-find "ghq")
+             (e:require-package 'helm-ghq nil t)))
   (use-package helm-mode-manager
     :if (e:require-package 'helm-mode-manager))
   (use-package helm-projectile

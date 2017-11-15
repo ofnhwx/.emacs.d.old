@@ -1,7 +1,7 @@
 ;;; 99_keybind.el --- キーバインド.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/09/07 09:47:23>
+;; Last updated: <2017/11/14 12:37:41>
 ;;
 
 ;;; Commentary:
@@ -49,7 +49,9 @@
   (bind-keys
    :map file-command-map
    ("f" . find-file)
+   ("g" . helm-ghq)
    ("h" . helm-find-files)
+   ("m" . magit-find-file)
    ("p" . helm-find-files-with-projectile)
    ("r" . helm-recentf)))
 
