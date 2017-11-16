@@ -1,7 +1,7 @@
 ;;; 20_magit.el --- setup magit.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/10/02 14:04:54>
+;; Last updated: <2017/11/16 10:55:05>
 ;;
 
 ;;; Commentary:
@@ -11,8 +11,10 @@
 (use-package magit
   :if (e:require-package 'magit)
   :init
-  (set-variable 'magit-diff-refine-hunk 'all)       ;; 行内の差分に色付けする
-  (set-variable 'smerge-refine-ignore-whitespace t) ;; 空白の差を無視する
+  ;; 行内の差分に色付けする
+  (set-variable 'magit-diff-refine-hunk 'all)
+  ;; 空白の差を無視しない
+  (set-variable 'smerge-refine-ignore-whitespace nil)
   :config
   (use-package magit-gitflow
     :if (e:require-package 'magit-gitflow)
