@@ -12,7 +12,6 @@
 !/.editorconfig
 !/.gitconfig
 !/.gitignore
-!/init-color.el
 !/init-config.el
 !/init-enhance.el
 !/init-setup.el

@@ -1,7 +1,7 @@
 ;;; init-theme.el --- 色の設定.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/04/24 15:04:44>
+;; Last updated: <2017/11/16 10:46:33>
 ;;
 
 ;;; Commentary:
@@ -36,9 +36,10 @@
  ;; 現在行のハイライト:`linum'
  '(hl-line ((t (:underline "#80ff80"))))
  ;; 空白文字の表示:`whitespace'
- '(whitespace-tab     ((t (:foreground "#ff0000"))))
- '(whitespace-space   ((t (:foreground "#ff0000"))))
- '(whitespace-newline ((t (:foreground "#228b22"))))
+ '(whitespace-tab      ((t (:foreground "#404040"))))
+ '(whitespace-space    ((t (:foreground "#404040"))))
+ '(whitespace-trailing ((t (:background "#800000"))))
+ '(whitespace-newline  ((t (:foreground "#228b22"))))
  ;; 終了
  )
 
