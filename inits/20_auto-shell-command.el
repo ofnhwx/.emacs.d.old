@@ -1,7 +1,7 @@
 ;;; 20_auto-shell-command.el --- setup auto-shell-command.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/04/23 10:43:27>
+;; Last updated: <2017/11/17 15:26:10>
 ;;
 
 ;;; Commentary:
@@ -13,6 +13,8 @@
   :config
   (defun ascmd:toggle--display-status ()
     (message "ascmd: %s." (if ascmd:active "enabled" "disabled")))
+  (defun ascmd:add-rsync (local server &optional option)
+    (ascmd:add `(,local ,(format "rsync %s %s %s" (or option "") local server))))
   (advice-add 'ascmd:toggle :after 'ascmd:toggle--display-status)
   (e:load-config "auto-shell-command" t))
 
