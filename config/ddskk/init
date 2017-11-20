@@ -1,5 +1,5 @@
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/11/20 18:45:55>
+;; Last updated: <2017/11/20 19:01:27>
 
 ;;; Commentary:
 ;; [~/.skk 設定例集]
@@ -18,7 +18,7 @@
 ;;(set-variable 'skk-use-jisx0201-input-method t)
 
 ;; 変換候補表示
-(set-variable 'skk-inline-show-face t)
+(set-variable 'skk-inline-show-face nil)
 (set-variable 'skk-show-inline 'vertical)
 ;;(set-variable 'skk-show-candidates-always-pop-to-buffer t)
 
