@@ -1,7 +1,7 @@
 ;;; 99_keybind.el --- キーバインド.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/11/14 12:37:41>
+;; Last updated: <2017/11/20 16:18:44>
 ;;
 
 ;;; Commentary:
@@ -23,6 +23,7 @@
    ("f" . file-command-map)
    ("g" . general-command-map)
    ("t" . hydra-toggle/body)))
+
 (use-package hydra
   :if (e:require-package 'hydra)
   :config
@@ -83,18 +84,19 @@
    ("C-," . base-command-map)
    ("C-:" . avy-goto-char)
    ("C-;" . avy-goto-word-1)
+   ("C-<" . er/contract-region)
+   ("C->" . er/expand-region)
+   ("C-M-¥" . indent-region)
    ("C-^" . ace-window)
+   ("C-¥" . skk-mode)
    ("M-%" . vr/query-replace)
    ("M-/" . bbyac-expand-symbols)
    ("M-:" . helm-eval-expression-with-eldoc)
+   ("M-X" . lacarte-execute-command)
    ("M-g" . general-command-map)
    ("M-x" . helm-M-x)
-   ("M-X" . lacarte-execute-command)
    ("M-y" . helm-show-kill-ring)
-   ("M-z" . avy-zap-to-char-dwim)
-   ("C-<" . er/contract-region)
-   ("C->" . er/expand-region)
-   ("C-M-¥"   . indent-region)))
+   ("M-z" . avy-zap-to-char-dwim)))
 
 (use-package bind-key
   :if (and (os-type-mac-p)

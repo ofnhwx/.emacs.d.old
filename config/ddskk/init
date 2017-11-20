@@ -1,0 +1,17 @@
+;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
+;; Last updated: <2017/11/20 16:41:25>
+
+;;; Commentary:
+;; [~/.skk 設定例集]
+;; https://github.com/skk-dev/ddskk/blob/master/etc/dot.skk
+
+;;; Code:
+
+(set-variable 'skk-egg-like-newline t)
+(set-variable 'skk-show-annotation t)
+(set-variable 'skk-use-jisx0201-input-method t)
+
+;; 変換の学習
+(require 'skk-study)
+
+;;; ddskk/init ends here

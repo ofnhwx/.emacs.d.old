@@ -3,13 +3,16 @@
 /*
 /.*
 
+# 除外するディレクトリ内の特定のファイルだけ有効にしたい
+
 # 無視したくないファイルを以下に'![ファイル名]'で指定する
 ##### Gitで管理するファイル #####
-!/config
-!/inits
-!/lisp
-!/themes
+!/config/
+!/inits/
+!/lisp/
+!/themes/
 !/.editorconfig
+!/.gitattributes
 !/.gitconfig
 !/.gitignore
 !/init-config.el
@@ -20,4 +23,8 @@
 
 # 上記で指定したファイルで無視したいものを指定する
 ##### Gitで無視するファイル #####
-/lisp/.DS_Store
+*.elc
+.DS_Store
+/config/ddskk/jisyo
+/config/ddskk/jisyo.bak
+/config/ddskk/record
