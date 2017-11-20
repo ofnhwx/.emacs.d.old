@@ -1,5 +1,5 @@
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/11/20 16:41:25>
+;; Last updated: <2017/11/20 18:16:44>
 
 ;;; Commentary:
 ;; [~/.skk 設定例集]
@@ -7,9 +7,23 @@
 
 ;;; Code:
 
+;; 日本語入力にSKKを使用
+(set-variable 'default-input-method "japanese-skk")
+
+
+;; 設定いろいろ
 (set-variable 'skk-egg-like-newline t)
 (set-variable 'skk-show-annotation t)
-(set-variable 'skk-use-jisx0201-input-method t)
+;;(set-variable 'skk-use-jisx0201-input-method t)
+(set-variable 'skk-tut-file (e:expand "ddskk/SKK.tut" :conf))
+
+;; 辞書サーバ
+(when (executable-find "google-ime-skk")
+  (set-variable 'skk-server-prog (executable-find "google-ime-skk"))
+  (set-variable 'skk-server-inhibit-startup-server nil)
+  (set-variable 'skk-server-host "localhost")
+  (set-variable 'skk-server-portnum 55100)
+  (set-variable 'skk-share-private-jisyo t))
 
 ;; 変換の学習
 (require 'skk-study)

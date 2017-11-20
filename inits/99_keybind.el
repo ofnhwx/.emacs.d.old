@@ -1,7 +1,7 @@
 ;;; 99_keybind.el --- キーバインド.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/11/20 16:18:44>
+;; Last updated: <2017/11/20 18:17:34>
 ;;
 
 ;;; Commentary:
@@ -191,6 +191,7 @@
   (bind-keys
    :map ctl-x-map
    ("f" . find-file)
+   ("j" . skk-mode)
    ("o" . ace-window)
    ("C-b" . helm-multi-files)
    ("C-c" . helm-M-x)

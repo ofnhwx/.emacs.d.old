@@ -4,10 +4,15 @@
 /.*
 
 # 除外するディレクトリ内の特定のファイルだけ有効にしたい
+/config/*
+/config/ddskk/*
 
 # 無視したくないファイルを以下に'![ファイル名]'で指定する
 ##### Gitで管理するファイル #####
 !/config/
+!/config/ddskk/
+!/config/ddskk/init
+!/config/ddskk/skk.tut
 !/inits/
 !/lisp/
 !/themes/
@@ -25,6 +30,3 @@
 ##### Gitで無視するファイル #####
 *.elc
 .DS_Store
-/config/ddskk/jisyo
-/config/ddskk/jisyo.bak
-/config/ddskk/record
