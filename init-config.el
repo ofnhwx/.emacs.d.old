@@ -1,7 +1,7 @@
 ;;; init-enhance.el --- 環境回りの設定.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/11/17 15:02:14>
+;; Last updated: <2017/11/19 12:01:26>
 ;;
 
 ;;; Commentary:
@@ -99,19 +99,19 @@
 
 (defalias 'exit 'save-buffers-kill-terminal)
 
-;;; linux用の設定
-(when (os-type-linux-p)
-  ;; 対策: [Listing directory failed but `access-file' worked]
-  (require 'ls-lisp nil t)
-  (set-variable 'ls-lisp-use-insert-directory-program nil))
-
-;;; mac用の設定
-(when (os-type-mac-p)
+;;; Linux/Mac用の設定
+(when (or (os-type-linux-p)
+          (os-type-mac-p))
   ;; 対策: [Listing directory failed but `access-file' worked]
   (require 'ls-lisp nil t)
   (set-variable 'ls-lisp-use-insert-directory-program nil)
   ;; Emacsで使うshellはzsh(fishは'&&'->'; and'で問題あり)
-  (set-variable 'shell-file-name (executable-find "zsh"))
+  (set-variable 'shell-file-name (or (executable-find "zsh")
+                                     (executable-find "bash")
+                                     (executable-find "sh"))))
+
+;;; mac用の設定
+(when (os-type-mac-p)
   ;; IME関連の設定
   (set-variable 'default-input-method "MacOSX")
   (when (fboundp 'mac-set-input-method-parameter)
