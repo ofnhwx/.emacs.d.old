@@ -1,7 +1,7 @@
 ;;; 40_php-mode.el --- setup php-mode.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/04/24 12:55:31>
+;; Last updated: <2017/11/29 11:12:47>
 ;;
 
 ;;; Commentary:
@@ -9,7 +9,7 @@
 ;;; Code:
 
 (use-package php-mode
-  :if (e:require-package 'php-mode)
+  :if (e:require-package 'php-mode nil t)
   :commands (php-mode)
   :init
   ;; 各種設定
