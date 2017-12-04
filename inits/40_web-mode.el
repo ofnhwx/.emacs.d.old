@@ -1,7 +1,7 @@
 ;;; 40_web-mode.el --- setup web-mode.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/11/01 11:39:50>
+;; Last updated: <2017/12/04 15:49:07>
 ;;
 
 ;;; Commentary:
@@ -9,8 +9,12 @@
 ;;; Code:
 
 (use-package web-mode
-  :if (e:require-package 'web-mode)
+  :if (e:require-package 'web-mode nil t)
   :mode (("\\.twig\\'" . web-mode))
+  :bind
+  (:map web-mode-map
+        ("C-]" . ac-php-find-symbol-at-point)
+        ("C-}" . ac-php-location-stack-back))
   :init
   (set-variable 'web-mode-comment-keywords "\\(?:BUG\\|FIXME\\|HACK\\|KLUDGE\\|OPTIMIZE\\|RE\\(?:FACTOR\\|VIEW\\)\\|TODO\\|WORKAROUND\\|XXX\\|MEMO\\)")
    ;; offset

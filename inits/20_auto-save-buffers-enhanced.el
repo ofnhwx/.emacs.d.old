@@ -1,7 +1,7 @@
 ;;; 20_auto-save-buffers-enhanced.el --- setup auto-save-buffers-enhanced.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/04/24 14:08:04>
+;; Last updated: <2017/12/04 15:09:21>
 ;;
 
 ;;; Commentary:
@@ -9,7 +9,7 @@
 ;;; Code:
 
 (use-package auto-save-buffers-enhanced
-  :if (e:require-package 'auto-save-buffers-enhanced)
+  :if (e:require-package 'auto-save-buffers-enhanced nil t)
   :init
   (set-variable 'auto-save-buffers-enhanced-quiet-save-p t)
   (set-variable 'auto-save-buffers-enhanced-interval 3)

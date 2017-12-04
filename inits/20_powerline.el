@@ -1,7 +1,7 @@
 ;;; 20_powerline.el --- setup powerline.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/04/23 12:21:08>
+;; Last updated: <2017/12/04 15:09:22>
 ;;
 
 ;;; Commentary:
@@ -9,7 +9,7 @@
 ;;; Code:
 
 (use-package powerline
-  :if (e:require-package 'powerline)
+  :if (e:require-package 'powerline nil t)
   :config
   ;; `evil'用の設定
   (with-eval-after-load "evil"

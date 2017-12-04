@@ -1,7 +1,7 @@
 ;;; init.el --- load this file at first when emacs was started.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/04/24 14:33:38>
+;; Last updated: <2017/12/04 16:59:11>
 ;;
 
 ;;; Commentary:
@@ -29,12 +29,16 @@
 
 ;; use:`package'
 (when (e:require 'package t)
-  (cl-dolist (item '(("melpa" . "https://melpa.org/packages/")
-                     ;;("marmalade" . "http://marmalade-repo.org/packages/")
+  (cl-dolist (item '(("melpa-stable" "https://stable.melpa.org/packages/" 10)
+                     ("melpa" "https://melpa.org/packages/")
                      ))
-    (when (os-type-win-p)
-      (setf (cdr item) (replace-regexp-in-string "https://" "http://" (cdr item))))
-    (add-to-list 'package-archives item))
+    (let ((archive (car item))
+	  (location (cadr item))
+	  (priority (or (cl-caddr item) 0)))
+      (when (os-type-win-p)
+	(setq location (replace-regexp-in-string "https://" "http://" location)))
+      (add-to-list 'package-archives (cons archive location))
+      (add-to-list 'package-archive-priorities (cons archive priority))))
   (unless (file-directory-p package-user-dir)
     (package-refresh-contents))
   (package-initialize))
@@ -65,7 +69,7 @@
 
 ;; 各種パッケージ設定
 (use-package init-loader
-  :if (e:require-package 'init-loader)
+  :if (e:require-package 'init-loader nil t)
   :init
   (set-variable 'init-loader-directory (e:expand "inits" :user))
   :config

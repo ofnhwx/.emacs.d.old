@@ -1,7 +1,7 @@
 ;;; 20_google-translate.el --- setup google-translate.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/04/23 11:54:19>
+;; Last updated: <2017/12/04 15:09:23>
 ;;
 
 ;;; Commentary:
@@ -9,7 +9,7 @@
 ;;; Code:
 
 (use-package google-translate
-  :if (e:require-package 'google-translate)
+  :if (e:require-package 'google-translate nil t)
   :config
   (defvar google-translate-english-chars "[:ascii:]’“”–"
     "これらの文字が含まれているときは英語とみなす")

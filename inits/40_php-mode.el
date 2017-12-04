@@ -1,7 +1,7 @@
 ;;; 40_php-mode.el --- setup php-mode.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/11/29 11:12:47>
+;; Last updated: <2017/12/04 15:47:51>
 ;;
 
 ;;; Commentary:
@@ -11,6 +11,10 @@
 (use-package php-mode
   :if (e:require-package 'php-mode nil t)
   :commands (php-mode)
+  :bind
+  (:map php-mode-map
+        ("C-]" . ac-php-find-symbol-at-point)
+        ("C-}" . ac-php-location-stack-back))
   :init
   ;; 各種設定
   (set-variable 'php-mode-force-pear t)
@@ -20,7 +24,7 @@
   :config
   ;; eldoc
   (use-package php-eldoc
-    :if (e:require-package 'php-eldoc))
+    :if (e:require-package 'php-eldoc nil t))
   ;; symfonyのスタイルを有効に
   (add-hook 'php-mode-hook
             'php-enable-symfony2-coding-style))

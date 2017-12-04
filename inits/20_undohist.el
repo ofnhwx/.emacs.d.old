@@ -1,7 +1,7 @@
 ;;; 20_undohist.el --- setup undohist.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/04/24 12:55:14>
+;; Last updated: <2017/12/04 15:09:22>
 ;;
 
 ;;; Commentary:
@@ -9,7 +9,7 @@
 ;;; Code:
 
 (use-package undohist
-  :if (e:require-package 'undohist)
+  :if (e:require-package 'undohist nil t)
   :init
   (set-variable 'undohist-directory (e:expand "undohist" :local))
   (set-variable 'undohist-ignored-files '(".authinfo.gpg"))

@@ -1,7 +1,7 @@
 ;;; 20_projectile.el --- setup projectile.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/04/24 12:53:44>
+;; Last updated: <2017/12/04 15:09:22>
 ;;
 
 ;;; Commentary:
@@ -9,7 +9,7 @@
 ;;; Code:
 
 (use-package projectile
-  :if (e:require-package 'projectile)
+  :if (e:require-package 'projectile nil t)
   :diminish projectile-mode
   :init
   (set-variable 'projectile-keymap-prefix (kbd "C-x p"))

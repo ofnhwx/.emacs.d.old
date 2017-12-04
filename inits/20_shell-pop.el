@@ -1,7 +1,7 @@
 ;;; 20_shell-pop.el --- setup shell-pop.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/12/01 17:50:15>
+;; Last updated: <2017/12/04 15:09:22>
 ;;
 
 ;;; Commentary:
@@ -9,7 +9,7 @@
 ;;; Code:
 
 (use-package shell-pop
-  :if (e:require-package 'shell-pop)
+  :if (e:require-package 'shell-pop nil t)
   :init
   ;;(set-variable 'shell-pop-shell-type '(("ansi-term" "*ansi-term*" (lambda () (ansi-term shell-pop-term-shell)))))
   ;;(set-variable 'shell-pop-term-shell (executable-find "fish"))
