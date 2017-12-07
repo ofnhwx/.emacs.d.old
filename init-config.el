@@ -1,7 +1,7 @@
 ;;; init-enhance.el --- 環境回りの設定.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/12/07 10:53:34>
+;; Last updated: <2017/12/07 11:35:14>
 ;;
 
 ;;; Commentary:
@@ -80,6 +80,7 @@
 (line-number-mode          0) ;; 行番号を非表示
 (column-number-mode        0) ;; 列番号を非表示
 (display-battery-mode      0) ;; バッテリー状態を非表示
+(set-variable 'gc-cons-threshold (* 128 1024 1024)) ;;
 (set-variable 'max-specpdl-size     10000)  ;; 安全策
 (set-variable 'max-lisp-eval-depth  10000)  ;;
 (set-variable 'ring-bell-function 'ignore)  ;; ビープ音はなし
