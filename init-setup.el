@@ -2,7 +2,7 @@
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
 
-;; Last updated: <2017/11/15 17:06:22>
+;; Last updated: <2017/12/07 10:45:44>
 ;;
 
 ;;; Commentary:
@@ -67,7 +67,7 @@
       (erase-buffer)))
   ;; command - less : written by Stefan Reichoer <reichoer@web.de>
   (defun eshell/less (&rest args)
-    "Invoke `view-file' on the file. 
+    "Invoke `view-file' on the file.
   \"less +42 foo\" also goes to line 42 in the buffer."
     (while args
       (if (string-match "\\`\\+\\([0-9]+\\)\\'" (car args))
@@ -178,6 +178,7 @@
   ;; 書式
   (set-variable 'linum-format "%5d")
   ;; アイドル時に更新
+  (set-variable 'linum-delay t)
   (defadvice linum-schedule (around linum-schedule--delay () activate)
     (run-with-idle-timer 0.3 nil #'linum-update-current))
   ;; モード毎に無効にする設定
@@ -190,7 +191,7 @@
   ;; 行番号非表示にするモード
   (cl-pushnew 'eww-mode linum-ignore-mode-list)
   (cl-pushnew 'sr-mode  linum-ignore-mode-list)
-  ;; 有効可
+  ;; 有効化
   (global-linum-mode 1))
 
 ;; for:`org'

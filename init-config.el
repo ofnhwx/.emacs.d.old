@@ -1,7 +1,7 @@
 ;;; init-enhance.el --- 環境回りの設定.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/11/20 16:28:16>
+;; Last updated: <2017/12/07 10:53:34>
 ;;
 
 ;;; Commentary:
@@ -74,12 +74,12 @@
 (scroll-bar-mode           0) ;; スクロールバーを表示しない
 (show-paren-mode           1) ;; paren(対応する括弧のハイライト)を有効
 (blink-cursor-mode         0) ;; カーソルを点滅しない
-(global-hl-line-mode       1) ;; 下線を表示
-(size-indication-mode      1) ;; サイズを表示
-(display-time-mode         1) ;; 時間を表示
-(line-number-mode          1) ;; 行番号を表示
-(column-number-mode        1) ;; 列番号を表示
-(display-battery-mode      1) ;; バッテリー状態を表示
+(global-hl-line-mode       0) ;; 下線を非表示(この辺りは'powerline'で対応)
+(size-indication-mode      0) ;; サイズを非表示
+(display-time-mode         0) ;; 時間を非表示
+(line-number-mode          0) ;; 行番号を非表示
+(column-number-mode        0) ;; 列番号を非表示
+(display-battery-mode      0) ;; バッテリー状態を非表示
 (set-variable 'max-specpdl-size     10000)  ;; 安全策
 (set-variable 'max-lisp-eval-depth  10000)  ;;
 (set-variable 'ring-bell-function 'ignore)  ;; ビープ音はなし
