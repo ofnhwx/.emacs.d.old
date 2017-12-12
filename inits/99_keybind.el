@@ -1,7 +1,7 @@
 ;;; 99_keybind.el --- キーバインド.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/12/04 15:52:37>
+;; Last updated: <2017/12/07 11:46:26>
 ;;
 
 ;;; Commentary:
@@ -136,7 +136,7 @@
 
 (defhydra hydra-wc
   (global-map "C-c")
-  "a"
+  "wc"
   ("n" (lambda () (interactive) (scroll-other-window  1)))
   ("p" (lambda () (interactive) (scroll-other-window -1)))
   ("N" (lambda () (interactive) (scroll-other-window)))

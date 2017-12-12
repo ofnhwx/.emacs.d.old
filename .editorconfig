@@ -3,7 +3,7 @@ root = true
 [*]
 trim_trailing_whitespace = true
 
-[*.{el}]
+[*.el]
 end_of_line = lf
 charset = utf-8
 indent_style = space

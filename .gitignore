@@ -4,18 +4,16 @@
 /.*
 
 # 除外するディレクトリ内の特定のファイルだけ有効にしたい
-/config/*
 /config/ddskk/*
+/config/local
 
 # 無視したくないファイルを以下に'![ファイル名]'で指定する
 ##### Gitで管理するファイル #####
 !/config/
-!/config/ddskk/
 !/config/ddskk/init
 !/config/ddskk/skk.tut
 !/inits/
 !/lisp/
-!/themes/
 !/.editorconfig
 !/.gitattributes
 !/.gitconfig

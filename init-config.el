@@ -1,7 +1,7 @@
 ;;; init-enhance.el --- 環境回りの設定.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/12/07 11:35:14>
+;; Last updated: <2017/12/12 15:38:02>
 ;;
 
 ;;; Commentary:
@@ -19,7 +19,7 @@
 (e:safe-exec (set-keyboard-coding-system    'utf-8))
 ;; テーマ関連
 (set-variable 'frame-background-mode 'dark)
-(set-variable 'custom-theme-directory (e:expand "themes" :user))
+(set-variable 'custom-theme-directory (e:expand "themes" :conf))
 
 ;; -------------------------------------------------------------------- ;;
 ;; フォント
