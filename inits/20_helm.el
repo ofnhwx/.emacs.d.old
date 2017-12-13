@@ -1,7 +1,7 @@
 ;;; 20_helm.el --- setup helm.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/12/04 15:52:26>
+;; Last updated: <2017/12/13 11:55:06>
 ;;
 
 ;;; Commentary:
@@ -42,10 +42,6 @@
           ("C-z" . helm-elscreen)))
   (use-package helm-flycheck
     :if (e:require-package 'helm-flycheck nil t))
-  (use-package helm-flx
-    :if (e:require-package 'helm-flx nil t)
-    :config
-    (helm-flx-mode 1))
   (use-package helm-ghq
     :if (and (executable-find "ghq")
              (e:require-package 'helm-ghq nil t)))

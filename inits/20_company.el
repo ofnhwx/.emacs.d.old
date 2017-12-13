@@ -1,7 +1,7 @@
 ;;; 20_company.el --- setup company.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/12/04 15:09:21>
+;; Last updated: <2017/12/13 11:53:12>
 ;;
 
 ;;; Commentary:
@@ -16,11 +16,6 @@
   (set-variable 'company-minimum-prefix-length 1) ;; 補完開始文字数
   (set-variable 'company-selection-wrap-around t) ;; 上下でループ
   :config
-  ;; Fuzzy matching
-  (use-package company-flx
-    :if (e:require-package 'company-flx nil t)
-    :config
-    (company-flx-mode))
   ;; PHP補完
   (use-package company-php
     :if (e:require-package 'company-php nil t)
