@@ -1,7 +1,7 @@
 ;;; 99_keybind.el --- キーバインド.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/12/14 13:07:48>
+;; Last updated: <2017/12/15 13:12:52>
 ;;
 
 ;;; Commentary:
@@ -34,19 +34,19 @@
  ("." . helm-ag)
  ("/" . helm-ag-project-root)
  ("_" . helm-ag-this-file)
- ("b" . backup-walker-start)
- ("c" . helm-flycheck)
  ("d" . magit-diff-buffer-file-popup)
  ("e" . string-edit-at-point)
  ("g" . avy-goto-line)
  ("l" . magit-log-buffer-file-popup)
  ("m" . helm-switch-major-mode)
- ("s" . magit-status)
- :map search-map
+ ("s" . magit-status))
+
+(bind-keys
+ :map search-map ;; M-s
  ("g" . dumb-jump-go)
  ("b" . dumb-jump-back)
  ("q" . dumb-jump-quick-look)
- :map help-map
+ :map help-map ;; C-h
  ("a" . helm-apropos)
  ("b" . helm-descbinds)
  :map ctl-x-map
@@ -56,8 +56,8 @@
  ("C-b" . helm-multi-files)
  ("C-c" . helm-M-x)
  ("C-f" . helm-find-files-with-projectile)
- :map mode-specific-map
- ("i" . imenu)
+ :map mode-specific-map ;; C-c
+ ("i" . helm-imenu)
  ("t" . google-translate-enja-or-jaen)
  ("x" . shell-pop)
  ("z" . eshell)
@@ -96,7 +96,7 @@
    ("<triple-wheel-down>" . scroll-up-with-lines)))
 
 (defhydra hydra-toggle
-  (base-command-map "t")
+  ()
   "toggle"
   ("h" hs-minor-mode         "hideshow")
   ("r" read-only-mode        "readonly")
@@ -112,27 +112,49 @@
   ("P" git-gutter:previous-hunk "prev-hunk"))
 
 (defhydra hydra-mc
-  (global-map "C-t")
-  "mc"
-  ("C-t" mc/mark-next-like-this          "next")
-  ("n"   mc/mark-next-like-this          "next")
-  (">"   mc/mark-next-like-this          "next")
-  ("p"   mc/mark-previous-like-this      "prev")
-  ("<"   mc/mark-previous-like-this      "prev")
-  ("m"   mc/mark-more-like-this-extended "more")
-  ("u"   mc/unmark-next-like-this        "unmark-next")
-  ("U"   mc/unmark-previous-like-this    "unmark-prev")
-  ("s"   mc/skip-to-next-like-this       "skip-next")
-  ("S"   mc/skip-to-previous-like-this   "skip-prev")
-  ("*"   mc/mark-all-like-this           "all")
-  ("d"   mc/mark-all-like-this-dwim      "all-dwim")
-  ("i"   mc/insert-numbers               "insert-numbers")
-  ("o"   mc/sort-regions                 "sort")
-  ("O"   mc/reverse-regions              "reverse"))
+  (global-map "C-t" :color pink :hint nil)
+  "
+^Prev^           ^Next^           ^Sort^       ^Other^
+----------------------------------------------------------------
+[_p_,_<_]: mark    [_n_,_>_]: mark    [_o_]: asc   [_*_]: mark all
+[_P_,_U_]: unmark  [_N_,_u_]: unmark  [_O_]: desc  [_d_]: mark all(dwim)
+[_S_]  : skip    [_s_]  : skip               [_m_]: mark more
+                                         [_i_]: insert numbers
+
+"
+  ;; Prev
+  ("p" mc/mark-previous-like-this)
+  ("<" mc/mark-previous-like-this)
+  ("P" mc/unmark-previous-like-this)
+  ("U" mc/unmark-previous-like-this)
+  ("S" mc/skip-to-previous-like-this)
+  ;; Next
+  ("n" mc/mark-next-like-this)
+  (">" mc/mark-next-like-this)
+  ("N" mc/unmark-next-like-this)
+  ("u" mc/unmark-next-like-this)
+  ("s" mc/skip-to-next-like-this)
+  ;; Sort
+  ("o" mc/sort-regions)
+  ("O" mc/reverse-regions)
+  ;; Other
+  ("*" mc/mark-all-like-this)
+  ("d" mc/mark-all-like-this-dwim)
+  ("m" mc/mark-more-like-this-extended)
+  ("i" mc/insert-numbers)
+  ("q" nil "quit" :color blue))
 
 (defhydra hydra-wc
-  (global-map "C-c")
-  "wc"
+  (global-map "C-c" :color amaranth :hint nil)
+  "
+^Other window^              ^This window^
+---------------------------------------------------------
+[_n_]: scroll down          [_=_]: balance
+[_p_]: scroll up            [_~_]: shrink
+[_N_]: scroll down (page)   [_{_]: enlarge (horizontally)
+[_P_]: scroll up   (page)   [_}_]: shrink  (horizontally)
+
+"
   ("n" (lambda () (interactive) (scroll-other-window  1)))
   ("p" (lambda () (interactive) (scroll-other-window -1)))
   ("N" (lambda () (interactive) (scroll-other-window)))
@@ -141,7 +163,8 @@
   ("~" shrink-window)
   ("^" enlarge-window)
   ("{" shrink-window-horizontally)
-  ("}" enlarge-window-horizontally))
+  ("}" enlarge-window-horizontally)
+  ("q" nil "quit" :color blue))
 
 (mykie:set-keys global-map
   "C-w"
