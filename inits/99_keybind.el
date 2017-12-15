@@ -1,7 +1,7 @@
 ;;; 99_keybind.el --- キーバインド.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/12/15 13:12:52>
+;; Last updated: <2017/12/15 14:41:15>
 ;;
 
 ;;; Commentary:
@@ -96,12 +96,19 @@
    ("<triple-wheel-down>" . scroll-up-with-lines)))
 
 (defhydra hydra-toggle
-  ()
-  "toggle"
-  ("h" hs-minor-mode         "hideshow")
-  ("r" read-only-mode        "readonly")
-  ("t" toggle-truncate-lines "truncate")
-  ("w" whitespace-mode       "whitespace"))
+  (:hint nil)
+  "
+^Toggle^
+-----------------------------
+[_h_]: hs-minor-mode   %(if hs-minor-mode \[*\] \[_\])
+[_r_]: read-only-mode  %(if buffer-read-only \[*\] \[_\])
+[_t_]: truncate-lines  %(if truncate-lines \[*\] \[_\])
+[_w_]: whitespace-mode %(if whitespace-mode \[*\] \[_\])
+"
+  ("h" hs-minor-mode)
+  ("r" read-only-mode)
+  ("t" toggle-truncate-lines)
+  ("w" whitespace-mode))
 
 (defhydra hydra-jump
   (global-map "M-g")
@@ -114,12 +121,12 @@
 (defhydra hydra-mc
   (global-map "C-t" :color pink :hint nil)
   "
-^Prev^           ^Next^           ^Sort^       ^Other^
+^Prev^           ^^^Next^           ^^^Sort^       ^Other^
 ----------------------------------------------------------------
 [_p_,_<_]: mark    [_n_,_>_]: mark    [_o_]: asc   [_*_]: mark all
 [_P_,_U_]: unmark  [_N_,_u_]: unmark  [_O_]: desc  [_d_]: mark all(dwim)
-[_S_]  : skip    [_s_]  : skip               [_m_]: mark more
-                                         [_i_]: insert numbers
+[_S_]^^  : skip    [_s_]^^  : skip    ^^           [_m_]: mark more
+^^^^               ^^^^               ^^           [_i_]: insert numbers
 
 "
   ;; Prev
