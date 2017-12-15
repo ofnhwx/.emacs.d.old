@@ -1,7 +1,7 @@
 ;;; 60_dired.el --- setup dired.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/12/14 14:52:41>
+;; Last updated: <2017/12/15 17:53:33>
 ;;
 
 ;;; Commentary:
@@ -87,9 +87,6 @@
   :bind
   (:map dired-mode-map
         ("C-c s" . dired-toggle-sudo)))
-
-(use-package helm-dired-history
-  :if (e:require-package 'helm-dired-history nil t))
 
 (provide '60_dired)
 ;;; 60_dired.el ends here
