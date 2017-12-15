@@ -1,7 +1,7 @@
 ;;; 99_keybind.el --- キーバインド.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/12/07 11:46:26>
+;; Last updated: <2017/12/14 13:07:48>
 ;;
 
 ;;; Commentary:
@@ -12,10 +12,6 @@
 (e:define-prefix-command buffer-command-map  "バッファー関連のコマンド")
 (e:define-prefix-command file-command-map    "ファイル関連のコマンド")
 (e:define-prefix-command general-command-map "よく使ういろいろなコマンド")
-
-(e:require-package 'bind-key t t)
-(e:require-package 'hydra t t)
-(e:require-package 'mykie t t)
 
 (bind-keys
  :map base-command-map

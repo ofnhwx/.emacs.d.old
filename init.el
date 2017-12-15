@@ -1,7 +1,7 @@
 ;;; init.el --- load this file at first when emacs was started.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/12/04 16:59:11>
+;; Last updated: <2017/12/14 12:47:42>
 ;;
 
 ;;; Commentary:
@@ -61,6 +61,8 @@
 (use-package deferred   :ensure t)
 (use-package concurrent :ensure t)
 (use-package windata    :ensure t)
+(use-package hydra :ensure t)
+(use-package mykie :ensure t)
 (use-package cl-lib-highlight
   :ensure t
   :config
