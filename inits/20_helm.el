@@ -1,7 +1,7 @@
 ;;; 20_helm.el --- setup helm.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/12/15 17:55:43>
+;; Last updated: <2017/12/22 14:34:05>
 ;;
 
 ;;; Commentary:
@@ -10,6 +10,9 @@
 
 (use-package helm
   :if (e:require-package 'helm nil t)
+  :bind
+  (:map global-map
+        ([remap execute-extended-command] . helm-M-x))
   :init
   (defun my/helm-display-buffer (buffer)
     (let ((helm-windata '(frame bottom 0.3 nil)))
@@ -62,6 +65,12 @@
 
 (use-package helm-projectile
   :if (e:require-package 'helm-projectile nil t))
+
+(use-package helm-smex
+  :if (e:require-package 'helm-smex nil t)
+  :bind
+  (:map global-map
+        ([remap helm-M-x] . helm-smex)))
 
 (use-package helm-swoop
   :if (e:require-package 'helm-swoop nil t))

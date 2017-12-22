@@ -1,7 +1,7 @@
 ;;; 60_ido.el --- setup ido.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/12/18 16:11:55>
+;; Last updated: <2017/12/22 14:50:23>
 ;;
 
 ;;; Commentary:
@@ -39,7 +39,9 @@
 (use-package ido-hacks
   :if (e:require-package 'ido-hacks nil t)
   :config
-  (ido-hacks-mode t))
+  (let ((hacks "^ido-hacks-"))
+    (ad-enable-regexp hacks)
+    (ad-activate-regexp hacks)))
 
 ;; 候補を縦に表示
 (use-package ido-vertical-mode

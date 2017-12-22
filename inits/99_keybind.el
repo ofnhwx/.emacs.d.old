@@ -1,7 +1,7 @@
 ;;; 99_keybind.el --- キーバインド.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/12/15 14:41:15>
+;; Last updated: <2017/12/22 14:34:15>
 ;;
 
 ;;; Commentary:
@@ -54,7 +54,7 @@
  ("j" . skk-mode)
  ("o" . ace-window)
  ("C-b" . helm-multi-files)
- ("C-c" . helm-M-x)
+ ("C-c" . execute-extended-command)
  ("C-f" . helm-find-files-with-projectile)
  :map mode-specific-map ;; C-c
  ("i" . helm-imenu)
@@ -75,7 +75,6 @@
  ("M-:" . helm-eval-expression-with-eldoc)
  ("M-X" . lacarte-execute-command)
  ("M-g" . general-command-map)
- ("M-x" . helm-M-x)
  ("M-y" . helm-show-kill-ring)
  ("M-z" . avy-zap-to-char-dwim))
 
