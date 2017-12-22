@@ -1,7 +1,7 @@
 ;;; init-enhance.el --- 環境回りの設定.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/12/12 15:38:02>
+;; Last updated: <2017/12/22 11:05:50>
 ;;
 
 ;;; Commentary:
@@ -86,9 +86,9 @@
 (set-variable 'ring-bell-function 'ignore)  ;; ビープ音はなし
 (set-variable 'message-log-max     100000)  ;;
 (set-variable 'kill-ring-max          200)  ;;
-(set-variable 'indent-tabs-mode       nil)  ;; インデントは空白
-(set-variable 'tab-width              4)    ;; タブ幅は 4
-(set-variable 'truncate-lines         t)    ;; 折り返さない
+(setq-default  indent-tabs-mode       nil)  ;; インデントは空白
+(setq-default  tab-width              4)    ;; タブ幅は 4
+(setq-default  truncate-lines         t)    ;; 折り返さない
 (set-variable 'truncate-partial-width-windows nil)
 (set-variable 'completion-ignore-case t)    ;; 補完で大文字小文字の区別をしない
 (set-variable 'inhibit-startup-screen t)    ;; スタートアップの画面を表示しない
