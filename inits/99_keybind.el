@@ -1,7 +1,7 @@
 ;;; 99_keybind.el --- キーバインド.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/12/22 14:34:15>
+;; Last updated: <2017/12/22 15:01:24>
 ;;
 
 ;;; Commentary:
@@ -57,6 +57,8 @@
  ("C-c" . execute-extended-command)
  ("C-f" . helm-find-files-with-projectile)
  :map mode-specific-map ;; C-c
+ (":" . avy-goto-char)
+ (";" . avy-goto-word-1)
  ("i" . helm-imenu)
  ("t" . google-translate-enja-or-jaen)
  ("x" . shell-pop)
