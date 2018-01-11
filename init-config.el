@@ -1,7 +1,7 @@
 ;;; init-enhance.el --- 環境回りの設定.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/12/22 11:05:50>
+;; Last updated: <2018/01/11 14:48:28>
 ;;
 
 ;;; Commentary:
@@ -89,6 +89,7 @@
 (setq-default  indent-tabs-mode       nil)  ;; インデントは空白
 (setq-default  tab-width              4)    ;; タブ幅は 4
 (setq-default  truncate-lines         t)    ;; 折り返さない
+(setq-default  bidi-display-reordering nil) ;; 右から左に読む言語に対応しない
 (set-variable 'truncate-partial-width-windows nil)
 (set-variable 'completion-ignore-case t)    ;; 補完で大文字小文字の区別をしない
 (set-variable 'inhibit-startup-screen t)    ;; スタートアップの画面を表示しない
