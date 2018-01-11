@@ -1,7 +1,7 @@
 ;;; 20_powerline.el --- setup powerline.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/12/04 15:09:22>
+;; Last updated: <2018/01/10 16:28:43>
 ;;
 
 ;;; Commentary:
@@ -10,6 +10,8 @@
 
 (use-package powerline
   :if (e:require-package 'powerline nil t)
+  :init
+  (set-variable 'powerline-default-separator 'utf-8)
   :config
   ;; `evil'用の設定
   (with-eval-after-load "evil"
