@@ -1,7 +1,7 @@
 ;;; 20_selected.el --- setup template.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/12/22 15:31:03>
+;; Last updated: <2018/01/10 16:18:57>
 ;;
 
 ;;; Commentary:
@@ -10,6 +10,7 @@
 
 (use-package selected
   :if (e:require-package 'selected nil t)
+  :diminish selected-minor-mode
   :bind
   (:map selected-keymap
         ("=" . count-words-region)
