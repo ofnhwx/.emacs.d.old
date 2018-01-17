@@ -1,7 +1,7 @@
 ;;; 20_helm.el --- setup helm.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/12/22 14:34:05>
+;; Last updated: <2018/01/17 16:21:34>
 ;;
 
 ;;; Commentary:
@@ -65,12 +65,6 @@
 
 (use-package helm-projectile
   :if (e:require-package 'helm-projectile nil t))
-
-(use-package helm-smex
-  :if (e:require-package 'helm-smex nil t)
-  :bind
-  (:map global-map
-        ([remap helm-M-x] . helm-smex)))
 
 (use-package helm-swoop
   :if (e:require-package 'helm-swoop nil t))
