@@ -1,7 +1,7 @@
 ;;; init.el --- load this file at first when emacs was started.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/12/14 12:47:42>
+;; Last updated: <2018/01/17 16:31:18>
 ;;
 
 ;;; Commentary:
@@ -48,7 +48,7 @@
   (defmacro use-package (&rest args)))
 
 ;; カスタムファイル
-(set-variable 'custom-file (e:expand "custom.el" :local))
+(set-variable 'custom-file (e:expand "custom.el" :cache))
 ;(load custom-file t)
 
 ;; add:`load-path'

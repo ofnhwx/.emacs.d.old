@@ -2,7 +2,7 @@
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
 
-;; Last updated: <2017/12/07 10:45:44>
+;; Last updated: <2018/01/17 16:42:05>
 ;;
 
 ;;; Commentary:
@@ -11,19 +11,19 @@
 
 ;; for:`abbrev'
 (when (e:require 'abbrev t)
-  (set-variable 'abbrev-file-name (e:expand "abbrev.defs" :local))
+  (set-variable 'abbrev-file-name (e:expand "abbrev.defs" :cache))
   (set-variable 'save-abbrevs t)
   (when (file-exists-p abbrev-file-name)
     (quietly-read-abbrev-file)))
 
 ;; for:`autoinsert'
 (when (e:require 'autoinsert t)
-  (set-variable 'auto-insert-directory (e:expand "insert" :local))
+  (set-variable 'auto-insert-directory (e:expand "insert" :cache))
   (auto-insert-mode 1))
 
 ;; for:`bookmark'
 (when (e:require 'bookmark t)
-  (set-variable 'bookmark-default-file (e:expand ".emacs.bmk" :local)))
+  (set-variable 'bookmark-default-file (e:expand "bookmark" :cache)))
 
 ;; for:`cua-mode'
 (when (e:require 'cua-base t)
@@ -78,7 +78,7 @@
         (view-file (pop args)))))
   ;;; 各種設定
   ;; eshellの基準ディレクトリを変更
-  (set-variable 'eshell-directory-name (e:expand "eshell" :local))
+  (set-variable 'eshell-directory-name (e:expand "eshell" :cache))
   ;; 履歴
   (set-variable 'eshell-history-size 100000)
   ;; 補完時に大文字小文字を区別しない
@@ -103,7 +103,7 @@
 
 ;; for:`recentf'
 (when (e:require 'recentf t)
-  (set-variable 'recentf-save-file (e:expand ".recentf" :local))
+  (set-variable 'recentf-save-file (e:expand ".recentf" :cache))
   (set-variable 'recentf-max-menu-items 20)
   (set-variable 'recentf-max-saved-items 3000)
   (set-variable 'recentf-exclude `("^/[^/:]+:" "\\.howm$" "\\.org$" ,(rx bol (eval (e:get-dir :temp)))))
@@ -141,7 +141,7 @@
 ;; for:`files'
 (when (e:require 'files t)
   ;; バックアップディレクトリの設定
-  (defconst backup-directory (e:expand "backup" :local))
+  (defconst backup-directory (e:expand "backup" :cache))
   ;; for:`backup'
   (let ((item (cons "\\.*$" backup-directory)))
     (unless (member item backup-directory-alist)
@@ -169,7 +169,7 @@
 ;; for:`ido'
 (when (e:require 'ido t)
   (set-variable 'ido-enable-flex-matching t)
-  (set-variable 'ido-save-directory-list-file (e:expand ".ido.last" :local))
+  (set-variable 'ido-save-directory-list-file (e:expand ".ido.last" :cache))
   (ido-everywhere 1)
   (ido-mode 1))
 
@@ -206,7 +206,7 @@
 
 ;; for:`server'
 (when (e:require 'server t)
-  (set-variable 'server-auth-dir (e:expand "server" :local))
+  (set-variable 'server-auth-dir (e:expand "server" :cache))
   (when window-system
     (add-hook 'after-init-hook 'server-start)))
 
@@ -220,7 +220,7 @@
 
 ;; for:`tramp'
 (when (e:require 'tramp t)
-  (set-variable 'tramp-persistency-file-name (e:expand "tramp" :local)))
+  (set-variable 'tramp-persistency-file-name (e:expand "tramp" :cache)))
 
 ;; for:`uniquify'
 (when (e:require 'uniquify t)
@@ -228,7 +228,7 @@
 
 ;; for:`url-cookie'
 (when (e:require 'url-cookie t)
-  (set-variable 'url-cookie-file (e:expand "cookies" :local)))
+  (set-variable 'url-cookie-file (e:expand "cookies" :cache)))
 
 ;; for:`whitespace'
 (when (e:require 'whitespace t)

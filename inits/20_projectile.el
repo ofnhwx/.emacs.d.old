@@ -1,7 +1,7 @@
 ;;; 20_projectile.el --- setup projectile.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/12/04 15:09:22>
+;; Last updated: <2018/01/17 16:31:17>
 ;;
 
 ;;; Commentary:
@@ -13,8 +13,8 @@
   :diminish projectile-mode
   :init
   (set-variable 'projectile-keymap-prefix (kbd "C-x p"))
-  (set-variable 'projectile-known-projects-file (e:expand "projectile-bookmarks.eld" :local))
-  (set-variable 'projectile-cache-file (e:expand "projectile.cache" :local))
+  (set-variable 'projectile-known-projects-file (e:expand "projectile-bookmarks.eld" :cache))
+  (set-variable 'projectile-cache-file (e:expand "projectile.cache" :cache))
   :config
   (defun helm-find-files-with-projectile (&optional arg)
     (interactive "P")

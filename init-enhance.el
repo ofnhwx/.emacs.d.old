@@ -1,7 +1,7 @@
 ;;; init-enhance.el --- 個人設定用の拡張機能.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/12/12 15:36:28>
+;; Last updated: <2018/01/17 16:34:30>
 ;;
 
 ;;; Commentary:
@@ -74,7 +74,7 @@
                  ((os-type-bsd-p) "~/")
                  ((os-type-mac-p) "~/")
                  ((os-type-linux-p) "~/")))
-    (:local (e:expand "tmp" (e:get-dir :user)))
+    (:cache (e:expand "cache" (e:get-dir :user)))
     (:conf (e:expand "config" (e:get-dir :user)))
     (:temp (e:unexpand (file-truename (e:expand ".emacs" temporary-file-directory))))
     (:user user-emacs-directory)))

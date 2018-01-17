@@ -1,7 +1,7 @@
 ;;; init-enhance.el --- 環境回りの設定.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2018/01/11 14:48:28>
+;; Last updated: <2018/01/17 16:31:18>
 ;;
 
 ;;; Commentary:
@@ -66,7 +66,7 @@
 ;; 日付の書式
 (set-variable 'display-time-format " %Y/%m/%d(%a) %H:%M")
 ;; 認証ファイル
-(set-variable 'auth-sources `(,(e:expand ".authinfo.gpg" :local)))
+(set-variable 'auth-sources `(,(e:expand ".authinfo.gpg" :cache)))
 ;; -------------------------------------------------------------------- ;;
 (menu-bar-mode window-system) ;; コンソールではメニューバーを表示しない
 (tool-bar-mode             0) ;; ツールバーを非表示

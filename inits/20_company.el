@@ -1,7 +1,7 @@
 ;;; 20_company.el --- setup company.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/12/13 11:53:12>
+;; Last updated: <2018/01/17 16:31:17>
 ;;
 
 ;;; Commentary:
@@ -20,7 +20,7 @@
   (use-package company-php
     :if (e:require-package 'company-php nil t)
     :init
-    (set-variable 'ac-php-tags-path (e:expand "ac-php" :local)))
+    (set-variable 'ac-php-tags-path (e:expand "ac-php" :cache)))
   ;; WEB補完
   (use-package company-web
     :if (e:require-package 'company-web nil t))

@@ -1,7 +1,7 @@
 ;;; 40_php-mode.el --- setup php-mode.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/12/04 15:47:51>
+;; Last updated: <2018/01/17 16:31:18>
 ;;
 
 ;;; Commentary:
@@ -18,7 +18,7 @@
   :init
   ;; 各種設定
   (set-variable 'php-mode-force-pear t)
-  (set-variable 'php-manual-path (e:expand "php-chunked-xhtml" :local))
+  (set-variable 'php-manual-path (e:expand "php-chunked-xhtml" :cache))
   (set-variable 'php-search-url "http://www.php.net/")
   (set-variable 'php-manual-url "http://www.php.net/manual/ja")
   :config
