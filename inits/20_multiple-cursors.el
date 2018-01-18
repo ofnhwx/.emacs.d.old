@@ -1,7 +1,7 @@
 ;;; 20_multiple-cursors.el --- setup multiple-cursors.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/04/24 18:39:20>
+;; Last updated: <2018/01/17 16:31:17>
 ;;
 
 ;;; Commentary:
@@ -9,9 +9,9 @@
 ;;; Code:
 
 (use-package multiple-cursors
-  :if (e:require-package 'multiple-cursors)
+  :if (e:require-package 'multiple-cursors nil t)
   :init
-  (set-variable 'mc/list-file (e:expand ".mc-lists.el" :local))
+  (set-variable 'mc/list-file (e:expand ".mc-lists.el" :cache))
   :config
   (setq mc/cmds-to-run-once
         '(hydra-mc/mc/insert-numbers

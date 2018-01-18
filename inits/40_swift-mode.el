@@ -1,7 +1,7 @@
 ;;; 40_swift-mode.el --- setup template.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/11/07 15:21:39>
+;; Last updated: <2017/12/04 15:09:22>
 ;;
 
 ;;; Commentary:

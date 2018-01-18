@@ -1,7 +1,7 @@
 ;;; 20_company.el --- setup company.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/11/09 10:41:15>
+;; Last updated: <2018/01/17 16:31:17>
 ;;
 
 ;;; Commentary:
@@ -9,26 +9,21 @@
 ;;; Code:
 
 (use-package company
-  :if (e:require-package 'company)
+  :if (e:require-package 'company nil t)
   :diminish company-mode
   :init
   (set-variable 'company-idle-delay 0)            ;; 補完候補をすぐに表示
   (set-variable 'company-minimum-prefix-length 1) ;; 補完開始文字数
   (set-variable 'company-selection-wrap-around t) ;; 上下でループ
   :config
-  ;; Fuzzy matching
-  (use-package company-flx
-    :if (e:require-package 'company-flx)
-    :config
-    (company-flx-mode))
   ;; PHP補完
   (use-package company-php
-    :if (e:require-package 'company-php)
+    :if (e:require-package 'company-php nil t)
     :init
-    (set-variable 'ac-php-tags-path (e:expand "ac-php" :local)))
+    (set-variable 'ac-php-tags-path (e:expand "ac-php" :cache)))
   ;; WEB補完
   (use-package company-web
-    :if (e:require-package 'company-web))
+    :if (e:require-package 'company-web nil t))
   ;; ヘルパー関数
   (defmacro add-company-backends (hook &rest backends)
     `(add-hook

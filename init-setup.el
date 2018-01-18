@@ -2,7 +2,7 @@
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
 
-;; Last updated: <2017/04/24 12:44:30>
+;; Last updated: <2018/01/18 13:45:20>
 ;;
 
 ;;; Commentary:
@@ -11,19 +11,19 @@
 
 ;; for:`abbrev'
 (when (e:require 'abbrev t)
-  (set-variable 'abbrev-file-name (e:expand "abbrev.defs" :local))
+  (set-variable 'abbrev-file-name (e:expand "abbrev.defs" :cache))
   (set-variable 'save-abbrevs t)
   (when (file-exists-p abbrev-file-name)
     (quietly-read-abbrev-file)))
 
 ;; for:`autoinsert'
 (when (e:require 'autoinsert t)
-  (set-variable 'auto-insert-directory (e:expand "insert" :local))
+  (set-variable 'auto-insert-directory (e:expand "insert" :cache))
   (auto-insert-mode 1))
 
 ;; for:`bookmark'
 (when (e:require 'bookmark t)
-  (set-variable 'bookmark-default-file (e:expand ".emacs.bmk" :local)))
+  (set-variable 'bookmark-default-file (e:expand "bookmark" :cache)))
 
 ;; for:`cua-mode'
 (when (e:require 'cua-base t)
@@ -67,7 +67,7 @@
       (erase-buffer)))
   ;; command - less : written by Stefan Reichoer <reichoer@web.de>
   (defun eshell/less (&rest args)
-    "Invoke `view-file' on the file. 
+    "Invoke `view-file' on the file.
   \"less +42 foo\" also goes to line 42 in the buffer."
     (while args
       (if (string-match "\\`\\+\\([0-9]+\\)\\'" (car args))
@@ -78,7 +78,7 @@
         (view-file (pop args)))))
   ;;; 各種設定
   ;; eshellの基準ディレクトリを変更
-  (set-variable 'eshell-directory-name (e:expand "eshell" :local))
+  (set-variable 'eshell-directory-name (e:expand "eshell" :cache))
   ;; 履歴
   (set-variable 'eshell-history-size 100000)
   ;; 補完時に大文字小文字を区別しない
@@ -103,7 +103,7 @@
 
 ;; for:`recentf'
 (when (e:require 'recentf t)
-  (set-variable 'recentf-save-file (e:expand ".recentf" :local))
+  (set-variable 'recentf-save-file (e:expand ".recentf" :cache))
   (set-variable 'recentf-max-menu-items 20)
   (set-variable 'recentf-max-saved-items 3000)
   (set-variable 'recentf-exclude `("^/[^/:]+:" "\\.howm$" "\\.org$" ,(rx bol (eval (e:get-dir :temp)))))
@@ -120,6 +120,19 @@
 ;; for:`eww'
 (when (e:require 'eww t)
   (set-variable 'eww-search-prefix "http://www.google.co.jp/search?q=")
+  ;; 画像表示の切り替え
+  (defun eww-disable-images ()
+    "ewwで画像表示させない"
+    (interactive)
+    (setq-local shr-put-image-function 'shr-put-image-alt)
+    (eww-reload))
+  (defun eww-enable-images ()
+    "ewwで画像表示させる"
+    (interactive)
+    (setq-local shr-put-image-function 'shr-put-image)
+    (eww-reload))
+  (defun shr-put-image-alt (spec alt &optional flags)
+    (insert alt))
   ;; 色設定 [ http://rubikitch.com/2014/11/19/eww-nocolor/ ]
   (defvar eww-disable-colorize t)
   (defun shr-colorize-region--disable (orig start end fg &optional bg &rest _)
@@ -141,7 +154,7 @@
 ;; for:`files'
 (when (e:require 'files t)
   ;; バックアップディレクトリの設定
-  (defconst backup-directory (e:expand "backup" :local))
+  (defconst backup-directory (e:expand "backup" :cache))
   ;; for:`backup'
   (let ((item (cons "\\.*$" backup-directory)))
     (unless (member item backup-directory-alist)
@@ -169,7 +182,7 @@
 ;; for:`ido'
 (when (e:require 'ido t)
   (set-variable 'ido-enable-flex-matching t)
-  (set-variable 'ido-save-directory-list-file (e:expand ".ido.last" :local))
+  (set-variable 'ido-save-directory-list-file (e:expand ".ido.last" :cache))
   (ido-everywhere 1)
   (ido-mode 1))
 
@@ -178,6 +191,7 @@
   ;; 書式
   (set-variable 'linum-format "%5d")
   ;; アイドル時に更新
+  (set-variable 'linum-delay t)
   (defadvice linum-schedule (around linum-schedule--delay () activate)
     (run-with-idle-timer 0.3 nil #'linum-update-current))
   ;; モード毎に無効にする設定
@@ -190,12 +204,22 @@
   ;; 行番号非表示にするモード
   (cl-pushnew 'eww-mode linum-ignore-mode-list)
   (cl-pushnew 'sr-mode  linum-ignore-mode-list)
-  ;; 有効可
+  ;; 有効化
   (global-linum-mode 1))
+
+;; for:`org'
+(when (e:require 'org t)
+  (set-variable 'org-directory (e:expand "org" :home))
+  (set-variable 'org-agenda-files
+                (cl-remove-if 'file-directory-p (directory-files (e:expand "agenda" org-directory) t))))
+
+;; for:`password-cache'
+(when (e:require 'password-cache t)
+  (set-variable 'password-cache-expiry 3600))
 
 ;; for:`server'
 (when (e:require 'server t)
-  (set-variable 'server-auth-dir (e:expand "server" :local))
+  (set-variable 'server-auth-dir (e:expand "server" :cache))
   (when window-system
     (add-hook 'after-init-hook 'server-start)))
 
@@ -209,7 +233,7 @@
 
 ;; for:`tramp'
 (when (e:require 'tramp t)
-  (set-variable 'tramp-persistency-file-name (e:expand "tramp" :local)))
+  (set-variable 'tramp-persistency-file-name (e:expand "tramp" :cache)))
 
 ;; for:`uniquify'
 (when (e:require 'uniquify t)
@@ -217,7 +241,7 @@
 
 ;; for:`url-cookie'
 (when (e:require 'url-cookie t)
-  (set-variable 'url-cookie-file (e:expand "cookies" :local)))
+  (set-variable 'url-cookie-file (e:expand "cookies" :cache)))
 
 ;; for:`whitespace'
 (when (e:require 'whitespace t)

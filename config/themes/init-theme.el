@@ -1,7 +1,7 @@
 ;;; init-theme.el --- 色の設定.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/04/24 15:04:44>
+;; Last updated: <2017/12/15 18:38:44>
 ;;
 
 ;;; Commentary:
@@ -36,9 +36,10 @@
  ;; 現在行のハイライト:`linum'
  '(hl-line ((t (:underline "#80ff80"))))
  ;; 空白文字の表示:`whitespace'
- '(whitespace-tab     ((t (:foreground "#ff0000"))))
- '(whitespace-space   ((t (:foreground "#ff0000"))))
- '(whitespace-newline ((t (:foreground "#228b22"))))
+ '(whitespace-tab      ((t (:foreground "#404040"))))
+ '(whitespace-space    ((t (:foreground "#404040"))))
+ '(whitespace-trailing ((t (:foreground "#404040" :background "#800000"))))
+ '(whitespace-newline  ((t (:foreground "#228b22"))))
  ;; 終了
  )
 
@@ -84,6 +85,16 @@
    '(diredp-other-priv             ((t (:foreground "#a0a0a0"))))
    '(diredp-no-priv                ((t (:foreground "#a0a0a0"))))
   ))
+
+(with-eval-after-load "skk"
+  (custom-theme-set-faces
+   'init
+   '(skk-emacs-hiragana-face       ((t (:foreground "#000000" :background "pink"))))
+   '(skk-emacs-katakana-face       ((t (:foreground "#000000" :background "green"))))
+   '(skk-emacs-jisx0201-face       ((t (:foreground "#000000" :background "thistle"))))
+   '(skk-emacs-jisx0208-latin-face ((t (:foreground "#000000" :background "gold"))))
+   '(skk-emacs-abbrev-face         ((t (:foreground "#000000" :background "royalblue"))))
+   ))
 
 (with-eval-after-load "elscreen"
   (custom-theme-set-faces

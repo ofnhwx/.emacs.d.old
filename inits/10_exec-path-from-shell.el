@@ -1,7 +1,7 @@
 ;;; 10_exec-path-from-shell.el --- setup exec-path-from-shell.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/04/23 10:39:20>
+;; Last updated: <2017/12/04 15:09:21>
 ;;
 
 ;;; Commentary:
@@ -10,7 +10,7 @@
 
 (use-package exec-path-from-shell
   :if (and (not (os-type-win-p))
-           (e:require-package 'exec-path-from-shell))
+           (e:require-package 'exec-path-from-shell nil t))
   :config
   (exec-path-from-shell-initialize))
 
