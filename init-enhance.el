@@ -1,7 +1,7 @@
 ;;; init-enhance.el --- 個人設定用の拡張機能.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2018/01/17 16:34:30>
+;; Last updated: <2018/01/18 11:37:21>
 ;;
 
 ;;; Commentary:
@@ -27,14 +27,15 @@
 (defun os-type-mac-p   () "Mac."     (eq os-type os-type-mac  ))
 (defun os-type-win-p   () "Windows." (eq os-type os-type-win  ))
 
-;; define:`e:require'
 (defun e:require (package &optional noerror)
-  ""
+  "指定された PACKAGE をロードする.
+NOERROR が指定されている場合はエラーを無視する."
   (require package nil noerror))
 
-;; define:`e:require-package'
 (cl-defun e:require-package (package &optional load noerror)
-  ""
+  "指定された PACKAGE をインストールする.
+LOAD が指定された場合はインストール後にロードする.
+NOERROR が指定されている場合はエラーを無視する."
   (when (e:require 'package t)
     (condition-case err
         (or (package-installed-p package)
@@ -46,70 +47,63 @@
         (e:require package noerror)
       (package-installed-p package))))
 
-;; define:`e:load-config'
-(defun e:load-config (filename &optional local)
-  ""
-  (let* ((file (e:expand (if local (concat "local/" filename) filename) :conf))
+(defun e:load-local-config (filename)
+  "FILENAME で指定されたローカル設定を読み込む."
+  (let* ((file (e:expand filename :local))
          (el (concat (file-name-sans-extension file) ".el"))
          (elc (concat el "c")))
-    (when local
-      (unless (file-exists-p (file-name-directory file))
-        (make-directory (file-name-directory file) t))
-      (unless (file-exists-p el)
-        (write-region (format ";; %s" filename) nil el)))
+    (unless (file-exists-p (file-name-directory file))
+      (make-directory (file-name-directory file) t))
+    (unless (file-exists-p el)
+      (write-region (format ";; %s" filename) nil el))
     (if (file-exists-p elc)
         (load elc)
       (load el))))
 
-;; define:`e:set-font'
 (defun e:set-font (fontname height)
-  ""
+  "FONTNAME で指定したフォントが存在する場合に、高さ HEIGHT でフォントを設定する."
   (when (find-font (font-spec :name fontname))
     (set-face-attribute 'default nil :family fontname :height height)
     t))
 
-;; define:`e:get-dir'
 (defvar e:get-dir-alist
   '((:home (cond ((os-type-win-p) (file-truename "~/"))
                  ((os-type-bsd-p) "~/")
                  ((os-type-mac-p) "~/")
                  ((os-type-linux-p) "~/")))
     (:cache (e:expand "cache" (e:get-dir :user)))
+    (:local (e:expand "local" (e:get-dir :user)))
     (:conf (e:expand "config" (e:get-dir :user)))
     (:temp (e:unexpand (file-truename (e:expand ".emacs" temporary-file-directory))))
     (:user user-emacs-directory)))
+
 (defun e:get-dir (dirtype)
-  ""
+  "DIRTYPE で指定したディレクトリを取得する."
   (let ((e (cadr (assoc dirtype e:get-dir-alist))))
     (if e (eval e) dirtype)))
 
-;; define:`e:expand'
 (defun e:expand (filename &optional dirtype)
-  ""
+  "FILENAME と DIRTYPE に応じて展開したパスを取得する."
   (let ((directory (e:get-dir dirtype)))
     (expand-file-name filename directory)))
 
-;; define:`e:unexpand'
 (defun e:unexpand (filename)
-  ""
+  "指定された FILENAME を短縮する."
   (abbreviate-file-name filename))
 
-;; define:`e:safe-exec'
 (defmacro e:safe-exec (sexplist)
-  ""
+  "SEXPLIST を安全に実行する."
   `(if (fboundp (car ',sexplist))
        ,sexplist))
 
-;; define:`e:define-prefix-command'
 (defmacro e:define-prefix-command (command-map &optional docstring)
-  ""
+  "COMMAND-MAP に DOCSTRING を設定して定義する."
   `(progn
      (defvar ,command-map nil ,docstring)
      (define-prefix-command ',command-map)))
 
-;; define:`e:loaded'
 (defun e:loaded ()
-  ""
+  "ロード完了のメッセージをログに出力."
   (when load-in-progress
     (message "*Loading %s...done"
              (file-name-sans-extension (file-name-nondirectory load-file-name)))))

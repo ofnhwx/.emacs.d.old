@@ -2,7 +2,7 @@
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
 
-;; Last updated: <2018/01/17 16:42:05>
+;; Last updated: <2018/01/18 13:45:20>
 ;;
 
 ;;; Commentary:
@@ -120,6 +120,19 @@
 ;; for:`eww'
 (when (e:require 'eww t)
   (set-variable 'eww-search-prefix "http://www.google.co.jp/search?q=")
+  ;; 画像表示の切り替え
+  (defun eww-disable-images ()
+    "ewwで画像表示させない"
+    (interactive)
+    (setq-local shr-put-image-function 'shr-put-image-alt)
+    (eww-reload))
+  (defun eww-enable-images ()
+    "ewwで画像表示させる"
+    (interactive)
+    (setq-local shr-put-image-function 'shr-put-image)
+    (eww-reload))
+  (defun shr-put-image-alt (spec alt &optional flags)
+    (insert alt))
   ;; 色設定 [ http://rubikitch.com/2014/11/19/eww-nocolor/ ]
   (defvar eww-disable-colorize t)
   (defun shr-colorize-region--disable (orig start end fg &optional bg &rest _)

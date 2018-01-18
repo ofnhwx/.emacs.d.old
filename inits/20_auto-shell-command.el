@@ -1,7 +1,7 @@
 ;;; 20_auto-shell-command.el --- setup auto-shell-command.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/12/25 10:11:42>
+;; Last updated: <2018/01/18 11:29:27>
 ;;
 
 ;;; Commentary:
@@ -17,7 +17,7 @@
     (let ((exclude (mapconcat 'identity (cl-mapcar (lambda (x) (format "--exclude '%s'" x)) excludes) " ")))
       (ascmd:add `(,local ,(format "rsync %s %s %s %s" (or option "") exclude local server)))))
   (advice-add 'ascmd:toggle :after 'ascmd:toggle--display-status)
-  (e:load-config "auto-shell-command" t))
+  (e:load-local-config "auto-shell-command"))
 
 (provide '20_auto-shell-command)
 ;;; 20_auto-shell-command.el ends here

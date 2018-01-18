@@ -1,61 +1,70 @@
 ;;; init-enhance.el --- 環境回りの設定.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2018/01/17 16:31:18>
+;; Last updated: <2018/01/18 11:50:21>
 ;;
 
 ;;; Commentary:
 
 ;;; Code:
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; 日本語環境の設定
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; abcdefghijklmnopqrstuvwxyz
+;;; ABCDEFGHIJKLMNOPQRSTUVWXYZ
+;;; `1234567890-=\[];',./
+;;; ~!@#$%^&*()_+|{}:"<>?
+;;; 壱弐参四五壱弐参四五壱弐参四五壱弐参四五壱弐参四五壱弐参四五
+;;; 123456789012345678901234567890123456789012345678901234567890
+;;; ABCdeＡＢＣｄｅ
+;;; ┌─────────────────────────────┐
+;;; │　　　　　　　　　　　　　罫線                            │
+;;; └─────────────────────────────┘
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 ;; 言語環境
 (e:safe-exec (set-language-environment "Japanese"))
+
 ;; 文字コード
 (e:safe-exec (prefer-coding-system          'utf-8))
 (e:safe-exec (set-default-coding-systems    'utf-8))
 (e:safe-exec (set-buffer-file-coding-system 'utf-8))
 (e:safe-exec (set-terminal-coding-system    'utf-8))
 (e:safe-exec (set-keyboard-coding-system    'utf-8))
-;; テーマ関連
+
+;; フォント
+(or
+ (e:set-font "Ricty Diminished Discord" 140)
+ (e:set-font "Monaco" 110)
+ (e:set-font "Takao" 90)
+ (e:set-font "MeiryoKe_Gothic" 90)
+ (e:set-font "IPAゴシック" 90)
+ )
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; テーマ設定
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 (set-variable 'frame-background-mode 'dark)
 (set-variable 'custom-theme-directory (e:expand "themes" :conf))
+(load-theme 'init t)
 
-;; -------------------------------------------------------------------- ;;
-;; フォント
-;; abcdefghijklmnopqrstuvwxyz
-;; ABCDEFGHIJKLMNOPQRSTUVWXYZ
-;; `1234567890-=\[];',./
-;; ~!@#$%^&*()_+|{}:"<>?
-;; 壱弐参四五壱弐参四五壱弐参四五壱弐参四五壱弐参四五壱弐参四五
-;; 123456789012345678901234567890123456789012345678901234567890
-;; ABCdeＡＢＣｄｅ
-;; ┌─────────────────────────────┐
-;; │　　　　　　　　　　　　　罫線                            │
-;; └─────────────────────────────┘
-;; -------------------------------------------------------------------- ;;
-(cond
- ;; windows
- ((os-type-win-p)
-  (or (e:set-font "MeiryoKe_Gothic" 90)
-      (e:set-font "IPAゴシック"     90)))
- ;; linux
- ((os-type-linux-p)
-  (or (e:set-font "Takao" 90)
-      (e:set-font "IPAゴシック" 90)))
- ;; mac
- ((os-type-mac-p)
-  (or (e:set-font "Ricty Diminished Discord" 140)
-      (e:set-font "Monaco"                   110)))
- ;; その他
- (t
-  (e:set-font "Monospace" 90)))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; 環境設定(共通)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;;; シェバング(#!)があったら'chmod +x'する
+;; カスタムファイル
+(set-variable 'custom-file (e:expand "custom.el" :cache))
+;(load custom-file t)
+
+;; 終了コマンドに別名
+(defalias 'exit 'save-buffers-kill-terminal)
+
+;; シェバング(#!)があったら'chmod +x'する
 (add-hook 'after-save-hook
           'executable-make-buffer-file-executable-if-script-p)
 
-;;; さらに細かなもの
 ;; タイトルバーの書式
 (set-variable
  'frame-title-format
@@ -63,11 +72,14 @@
    (multiple-frames "[%F]: ")
    (byte-compiled "(byte compiled) ")
    (buffer-file-name "%f" "%b")))
+
 ;; 日付の書式
 (set-variable 'display-time-format " %Y/%m/%d(%a) %H:%M")
+
 ;; 認証ファイル
 (set-variable 'auth-sources `(,(e:expand ".authinfo.gpg" :cache)))
-;; -------------------------------------------------------------------- ;;
+
+;; さらに細かなもの
 (menu-bar-mode window-system) ;; コンソールではメニューバーを表示しない
 (tool-bar-mode             0) ;; ツールバーを非表示
 (tooltip-mode              0) ;; ツールチップを非表示
@@ -81,6 +93,7 @@
 (column-number-mode        0) ;; 列番号を非表示
 (display-battery-mode      0) ;; バッテリー状態を非表示
 (set-variable 'gc-cons-threshold (* 128 1024 1024)) ;;
+(set-variable 'gc-cons-percentage 0.5)
 (set-variable 'max-specpdl-size     10000)  ;; 安全策
 (set-variable 'max-lisp-eval-depth  10000)  ;;
 (set-variable 'ring-bell-function 'ignore)  ;; ビープ音はなし
@@ -98,20 +111,22 @@
 (set-variable 'create-lockfiles       nil)  ;; lockfileを作成しない
 (set-variable 'require-final-newline  nil)  ;; 勝手に改行を追加しない
 (set-variable 'mode-require-final-newline nil)
-;; -------------------------------------------------------------------- ;;
 
-(defalias 'exit 'save-buffers-kill-terminal)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; 環境設定(個別)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;;; Linux/Mac用の設定
+;; Linux/Mac用の設定
 (when (or (os-type-linux-p)
           (os-type-mac-p))
   ;; 対策: [Listing directory failed but `access-file' worked]
   (require 'ls-lisp nil t)
   (set-variable 'ls-lisp-use-insert-directory-program nil)
   ;; Emacsで使うshellはzsh(fishは'&&'->'; and'で問題あり)
-  (set-variable 'shell-file-name (or (executable-find "zsh")
-                                     (executable-find "bash")
-                                     (executable-find "sh"))))
+  (set-variable 'shell-file-name
+                (or (executable-find "zsh")
+                    (executable-find "bash")
+                    (executable-find "sh"))))
 
 ;;; mac用の設定
 (when (os-type-mac-p)
