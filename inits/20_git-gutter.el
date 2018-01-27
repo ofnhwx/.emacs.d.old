@@ -1,7 +1,7 @@
 ;;; 20_git-gutter.el --- setup git-gutter.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/12/04 15:09:22>
+;; Last updated: <2018/01/28 00:53:03>
 ;;
 
 ;;; Commentary:
@@ -9,15 +9,11 @@
 ;;; Code:
 
 (use-package git-gutter-fringe
-  :if (and window-system
-           (e:require-package 'git-gutter-fringe nil t))
   :diminish git-gutter-mode
   :config
   (global-git-gutter-mode))
 
 (use-package git-gutter
-  :if (and (not window-system)
-           (e:require-package 'git-gutter nil t))
   :diminish git-gutter-mode
   :config
   (global-git-gutter-mode))

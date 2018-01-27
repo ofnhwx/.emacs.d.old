@@ -1,7 +1,7 @@
 ;;; 40_php-mode.el --- setup php-mode.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2018/01/17 16:31:18>
+;; Last updated: <2018/01/28 01:18:20>
 ;;
 
 ;;; Commentary:
@@ -9,7 +9,6 @@
 ;;; Code:
 
 (use-package php-mode
-  :if (e:require-package 'php-mode nil t)
   :commands (php-mode)
   :bind
   (:map php-mode-map
@@ -22,12 +21,12 @@
   (set-variable 'php-search-url "http://www.php.net/")
   (set-variable 'php-manual-url "http://www.php.net/manual/ja")
   :config
-  ;; eldoc
-  (use-package php-eldoc
-    :if (e:require-package 'php-eldoc nil t))
   ;; symfonyのスタイルを有効に
   (add-hook 'php-mode-hook
             'php-enable-symfony2-coding-style))
+
+(use-package php-eldoc
+  :after (php-mode eldoc))
 
 (provide '40_php-mode)
 ;;; 40_php-mode.el ends here

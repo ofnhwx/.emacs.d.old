@@ -1,7 +1,7 @@
 ;;; 10_ddskk.el --- setup template.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/11/20 10:45:38>
+;; Last updated: <2018/01/28 00:37:18>
 ;;
 
 ;;; Commentary:
@@ -9,7 +9,6 @@
 ;;; Code:
 
 (use-package skk
-  :if (e:require-package 'ddskk nil t)
   :init
   (set-variable 'skk-user-directory (e:expand "ddskk" :conf))
   (set-variable 'skk-byte-compile-init-file t)

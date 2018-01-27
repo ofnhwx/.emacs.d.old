@@ -1,18 +1,17 @@
 ;;; 20_all.el --- setup all.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/12/04 15:09:23>
+;; Last updated: <2018/01/28 00:42:39>
 ;;
 
 ;;; Commentary:
 
 ;;; Code:
 
-(use-package all
-  :if (e:require-package 'all nil t)
-  :config
-  (use-package all-ext
-    :if (e:require-package 'all-ext nil t)))
+(use-package all)
+
+(use-package all-ext
+  :after (all))
 
 (provide '20_all)
 ;;; 20_all.el ends here

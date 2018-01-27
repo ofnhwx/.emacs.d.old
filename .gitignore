@@ -20,6 +20,7 @@
 !/.gitignore
 !/init-config.el
 !/init-enhance.el
+!/init-packages.el
 !/init-setup.el
 !/init.el
 !/README.md

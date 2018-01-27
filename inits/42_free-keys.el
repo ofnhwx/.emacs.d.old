@@ -1,15 +1,14 @@
 ;;; 20_free-keys.el --- setup free-keys.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/12/04 15:09:23>
+;; Last updated: <2018/01/28 01:20:40>
 ;;
 
 ;;; Commentary:
 
 ;;; Code:
 
-(use-package free-keys
-  :if (e:require-package 'free-keys nil t))
+(use-package free-keys)
 
 (provide '20_free-keys)
 ;;; 20_free-keys.el ends here

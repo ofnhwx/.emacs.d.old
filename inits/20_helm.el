@@ -1,7 +1,7 @@
 ;;; 20_helm.el --- setup helm.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2018/01/17 16:21:34>
+;; Last updated: <2018/01/28 01:10:41>
 ;;
 
 ;;; Commentary:
@@ -9,7 +9,6 @@
 ;;; Code:
 
 (use-package helm
-  :if (e:require-package 'helm nil t)
   :bind
   (:map global-map
         ([remap execute-extended-command] . helm-M-x))
@@ -19,15 +18,22 @@
       (apply 'windata-display-buffer buffer helm-windata)))
   (set-variable 'helm-display-function 'my/helm-display-buffer))
 
+(use-package helm
+  :after (projectile)
+  :config
+  (defun helm-find-files-with-projectile (&optional arg)
+    (interactive "P")
+    (if (projectile-project-p)
+        (helm-projectile-find-file arg)
+      (helm-find-files arg))))
+
 (use-package helm-ag
-  :if (e:require-package 'helm-ag nil t)
+  :after (helm)
   :init
   (cond
-   ;; ripgrep
-   ((executable-find "rg")
+   ((executable-find "rg") ;; ripgrep
     (set-variable 'helm-ag-base-command "rg --color never --no-heading --smart-case --vimgrep"))
-   ;; The Platinum Searcher
-   ((executable-find "pt")
+   ((executable-find "pt") ;; The Platinum Searcher
     (set-variable 'helm-ag-base-command "pt --nocolor --nogroup --smart-case")))
   :config
   (defun helm-ag--project-root ()
@@ -36,38 +42,39 @@
              return it)))
 
 (use-package helm-c-yasnippet
-  :if (e:require-package 'helm-c-yasnippet nil t))
+  :after (helm))
 
 (use-package helm-descbinds
-  :if (e:require-package 'helm-descbinds nil t))
+  :after (helm))
 
 (use-package helm-dired-history
-  :if (e:require-package 'helm-dired-history nil t)
+  :after (helm))
+
+(use-package helm-dired-history
+  :after (helm ido)
   :config
-  (eval-after-load "ido"
-    (define-key (cdr ido-minor-mode-map-entry) [remap dired] nil)))
+  (define-key (cdr ido-minor-mode-map-entry) [remap dired] nil))
 
 (use-package helm-elscreen
-  :if (e:require-package 'helm-elscreen nil t)
+  :after (helm elscreen)
   :bind
   (:map elscreen-map
         ("C-z" . helm-elscreen)))
 
 (use-package helm-flycheck
-  :if (e:require-package 'helm-flycheck nil t))
+  :after (helm flycheck))
 
 (use-package helm-ghq
-  :if (and (executable-find "ghq")
-           (e:require-package 'helm-ghq nil t)))
+  :after (helm))
 
 (use-package helm-mode-manager
-  :if (e:require-package 'helm-mode-manager nil t))
+  :after (helm))
 
 (use-package helm-projectile
-  :if (e:require-package 'helm-projectile nil t))
+  :after (helm projectile))
 
 (use-package helm-swoop
-  :if (e:require-package 'helm-swoop nil t))
+  :after (helm))
 
 (provide '20_helm)
 ;;; 20_helm.el ends here

@@ -1,15 +1,14 @@
 ;;; 20_list-processes+.el --- setup list-processes+.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/12/04 15:09:23>
+;; Last updated: <2018/01/28 01:20:44>
 ;;
 
 ;;; Commentary:
 
 ;;; Code:
 
-(use-package list-processes+
-  :if (e:require-package 'list-processes+ nil t))
+(use-package list-processes+)
 
 (provide '20_list-processes+)
 ;;; 20_list-processes+.el ends here

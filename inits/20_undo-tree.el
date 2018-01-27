@@ -1,7 +1,7 @@
 ;;; 20_undo-tree.el --- setup undo-tree.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/12/04 15:09:21>
+;; Last updated: <2018/01/28 01:13:43>
 ;;
 
 ;;; Commentary:
@@ -9,7 +9,6 @@
 ;;; Code:
 
 (use-package undo-tree
-  :if (e:require-package 'undo-tree nil t)
   :diminish undo-tree-mode
   :config
   (global-undo-tree-mode))

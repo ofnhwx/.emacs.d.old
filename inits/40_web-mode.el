@@ -1,7 +1,7 @@
 ;;; 40_web-mode.el --- setup web-mode.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/12/04 15:49:07>
+;; Last updated: <2018/01/28 01:19:41>
 ;;
 
 ;;; Commentary:
@@ -9,7 +9,6 @@
 ;;; Code:
 
 (use-package web-mode
-  :if (e:require-package 'web-mode nil t)
   :mode (("\\.twig\\'" . web-mode))
   :bind
   (:map web-mode-map
@@ -25,16 +24,18 @@
    ;; padding
   (set-variable 'web-mode-style-padding  2)
   (set-variable 'web-mode-script-padding 2)
-  (set-variable 'web-mode-block-padding  2)
+  (set-variable 'web-mode-block-padding  2))
+
+(use-package web-mode
+  :after (editorconfig)
   :config
   ;; インデント再調整
-  (with-eval-after-load "editorconfig"
-    (add-hook
-     'editorconfig-custom-hooks
-     (lambda (props)
-       (setq web-mode-script-padding 2)
-       (setq web-mode-style-padding  2)
-       (setq web-mode-block-padding  2)))))
+  (add-hook
+   'editorconfig-custom-hooks
+   (lambda (props)
+     (setq web-mode-script-padding 2)
+     (setq web-mode-style-padding  2)
+     (setq web-mode-block-padding  2))))
 
 (provide '40_web-mode)
 ;;; 40_web-mode.el ends here

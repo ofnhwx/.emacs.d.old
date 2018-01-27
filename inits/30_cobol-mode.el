@@ -1,7 +1,7 @@
 ;;; 30_cobol-mode.el --- setup cobol-mode.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/12/04 15:09:20>
+;; Last updated: <2018/01/28 01:16:43>
 ;;
 
 ;;; Commentary:
@@ -13,13 +13,13 @@
          ("\\.cbl\\'" . cobol-mode)
          ("\\.lst\\'" . cobol-mode)
          ("\\.pco\\'" . cobol-mode)
-         ("\\.pcom\\'" . cobol-mode))
-  :config
-  (use-package column-marker
-    :if (e:require-package 'column-marker nil t)
-    :init
-    (set-variable 'cobol-column-marker-1 6)
-    (set-variable 'cobol-column-marker-2 72)))
+         ("\\.pcom\\'" . cobol-mode)))
+
+(use-package column-marker
+  :after (cobol-mode)
+  :init
+  (set-variable 'cobol-column-marker-1 6)
+  (set-variable 'cobol-column-marker-2 72))
 
 (provide '30_cobol-mode)
 ;;; 30_cobol-mode.el ends here

@@ -1,7 +1,7 @@
 ;;; 20_powerline.el --- setup powerline.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2018/01/10 16:28:43>
+;; Last updated: <2018/01/28 01:07:17>
 ;;
 
 ;;; Commentary:
@@ -9,26 +9,27 @@
 ;;; Code:
 
 (use-package powerline
-  :if (e:require-package 'powerline nil t)
+  :after (evil)
+  :config
+  (defface powerline-evil-normal-face   '((t (:foreground "#000000" :background "#59ff59"))) "NORMAL state."   :group 'powerline)
+  (defface powerline-evil-insert-face   '((t (:foreground "#000000" :background "#5959ff"))) "INSERT state."   :group 'powerline)
+  (defface powerline-evil-visual-face   '((t (:foreground "#000000" :background "#ff5959"))) "VISUAL state."   :group 'powerline)
+  (defface powerline-evil-operator-face '((t (:foreground "#000000" :background "#59ffff"))) "OPERATOR state." :group 'powerline)
+  (defface powerline-evil-replace-face  '((t (:foreground "#000000" :background "#ffff59"))) "REPLACE state."  :group 'powerline)
+  (defface powerline-evil-motion-face   '((t (:foreground "#000000" :background "#ff59ff"))) "MOTION state."   :group 'powerline)
+  (defface powerline-evil-emacs-face    '((t (:foreground "#000000" :background "#ff00ff"))) "EMACS state."    :group 'powerline)
+  (defun powerline-evil-state ()
+    (upcase (format "[%s]" evil-state)))
+  (defun powerline-evil-face ()
+    (let ((face (intern (format "powerline-evil-%s-face" evil-state))))
+      (if (facep face)
+          face
+        nil))))
+
+(use-package powerline
   :init
   (set-variable 'powerline-default-separator 'utf-8)
   :config
-  ;; `evil'用の設定
-  (with-eval-after-load "evil"
-    (defface powerline-evil-normal-face   '((t (:foreground "#000000" :background "#59ff59"))) "NORMAL state."   :group 'powerline)
-    (defface powerline-evil-insert-face   '((t (:foreground "#000000" :background "#5959ff"))) "INSERT state."   :group 'powerline)
-    (defface powerline-evil-visual-face   '((t (:foreground "#000000" :background "#ff5959"))) "VISUAL state."   :group 'powerline)
-    (defface powerline-evil-operator-face '((t (:foreground "#000000" :background "#59ffff"))) "OPERATOR state." :group 'powerline)
-    (defface powerline-evil-replace-face  '((t (:foreground "#000000" :background "#ffff59"))) "REPLACE state."  :group 'powerline)
-    (defface powerline-evil-motion-face   '((t (:foreground "#000000" :background "#ff59ff"))) "MOTION state."   :group 'powerline)
-    (defface powerline-evil-emacs-face    '((t (:foreground "#000000" :background "#ff00ff"))) "EMACS state."    :group 'powerline)
-    (defun powerline-evil-state ()
-      (upcase (format "[%s]" evil-state)))
-    (defun powerline-evil-face ()
-      (let ((face (intern (format "powerline-evil-%s-face" evil-state))))
-        (if (facep face)
-            face
-          nil))))
   ;; 文字・改行コードの表示
   (defun get-buffer-file-eol-type ()
     "バッファの改行コードを取得する."

@@ -1,7 +1,7 @@
 ;;; 20_editorconfig.el --- setup editorconfig.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/12/04 15:09:22>
+;; Last updated: <2018/01/28 00:51:48>
 ;;
 
 ;;; Commentary:
@@ -9,7 +9,6 @@
 ;;; Code:
 
 (use-package editorconfig
-  :if (e:require-package 'editorconfig nil t)
   :diminish editorconfig-mode
   :config
   (editorconfig-mode))

@@ -1,7 +1,8 @@
+
 ;;; init.el --- load this file at first when emacs was started.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2018/01/18 14:32:36>
+;; Last updated: <2018/01/28 00:17:14>
 ;;
 
 ;;; Commentary:
@@ -34,46 +35,31 @@
 
 (cl-eval-when (compile load eval)
   (let* ((default-directory user-emacs-directory))
-    (require 'init-enhance (expand-file-name "init-enhance") t)
-    (require 'init-config  (expand-file-name "init-config")  t)
-    (require 'init-setup   (expand-file-name "init-setup")   t)))
+    (require 'init-enhance  (locate-user-emacs-file "init-enhance")  t)
+    (require 'init-config   (locate-user-emacs-file "init-config")   t)
+    (require 'init-packages (locate-user-emacs-file "init-packages") t)
+    (require 'init-setup    (locate-user-emacs-file "init-setup")    t)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;; Emacs標準のパッケージを使用
+;;; マクロが存在しない場合のダミーを定義
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(when (e:require 'package t)
-  (cl-dolist (item '(("melpa-stable" "https://stable.melpa.org/packages/" 10)
-                     ("melpa" "https://melpa.org/packages/")
-                     ))
-    (let ((archive (car item))
-          (location (cadr item))
-          (priority (or (cl-caddr item) 0)))
-      (when (os-type-win-p)
-        (setq location (replace-regexp-in-string "https://" "http://" location)))
-      (add-to-list 'package-archives (cons archive location))
-      (add-to-list 'package-archive-priorities (cons archive priority))))
-  (unless (file-directory-p package-user-dir)
-    (package-refresh-contents))
-  (package-initialize))
-
-(unless (e:require-package 'use-package t t)
+(unless (e:require 'use-package t)
   (defmacro use-package (&rest args)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; 共通で使用するライブラリ等をロード
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(use-package dash :ensure t)
-(use-package f    :ensure t)
-(use-package s    :ensure t)
-(use-package deferred   :ensure t)
-(use-package concurrent :ensure t)
-(use-package windata    :ensure t)
-(use-package hydra :ensure t)
-(use-package mykie :ensure t)
+(use-package dash)
+(use-package f)
+(use-package s)
+(use-package deferred)
+(use-package concurrent)
+(use-package windata)
+(use-package hydra)
+(use-package mykie)
 (use-package cl-lib-highlight
-  :ensure t
   :config
   (cl-lib-highlight-initialize)
   (cl-lib-highlight-warn-cl-initialize))
@@ -83,7 +69,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (use-package init-loader
-  :if (e:require-package 'init-loader nil t)
   :init
   (set-variable 'init-loader-directory (e:expand "inits" :user))
   :config

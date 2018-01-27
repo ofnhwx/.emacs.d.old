@@ -1,7 +1,7 @@
 ;;; 20_migemo.el --- setup migemo.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/12/04 15:09:23>
+;; Last updated: <2018/01/28 01:03:49>
 ;;
 
 ;;; Commentary:
@@ -9,8 +9,6 @@
 ;;; Code:
 
 (use-package migemo
-  :if (and (executable-find "cmigemo")
-           (e:require-package 'migemo nil t))
   :init
   (set-variable 'migemo-options '("-q" "--emacs"))
   (set-variable 'migemo-user-dictionary nil)

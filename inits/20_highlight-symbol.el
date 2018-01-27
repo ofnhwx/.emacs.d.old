@@ -1,7 +1,7 @@
 ;;; 20_highlight-symbol.el --- setup template.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/12/15 14:57:09>
+;; Last updated: <2018/01/28 00:59:49>
 ;;
 
 ;;; Commentary:
@@ -9,7 +9,6 @@
 ;;; Code:
 
 (use-package highlight-symbol
-  :if (e:require-package 'highlight-symbol nil t)
   :diminish highlight-symbol-mode
   :init
   (set-variable 'highlight-symbol-idle-delay 1.5)

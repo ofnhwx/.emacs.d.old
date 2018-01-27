@@ -1,7 +1,7 @@
 ;;; 40_android-mode.el --- setup android-mode.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/12/04 15:09:22>
+;; Last updated: <2018/01/28 01:16:57>
 ;;
 
 ;;; Commentary:
@@ -9,7 +9,6 @@
 ;;; Code:
 
 (use-package android-mode
-  :if (e:require-package 'android-mode nil t)
   :init
   (set-variable 'android-mode-sdk-dir "~/Library/Android/sdk"))
 

@@ -1,7 +1,7 @@
 ;;; 40_twittering-mode.el --- setup twittering-mode.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2018/01/18 11:29:27>
+;; Last updated: <2018/01/28 01:18:37>
 ;;
 
 ;;; Commentary:
@@ -9,7 +9,6 @@
 ;;; Code:
 
 (use-package twittering-mode
-  :if (e:require-package 'twittering-mode nil t)
   :init
   (set-variable 'twittering-use-master-password t)
   :config
