@@ -1,34 +1,34 @@
 ;;; 99_keybind.el --- キーバインド.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/12/22 15:01:24>
+;; Last updated: <2018/01/19 13:00:08>
 ;;
 
 ;;; Commentary:
 
 ;;; Code:
 
-(e:define-prefix-command base-command-map    "他のコマンドへの派生元")
-(e:define-prefix-command buffer-command-map  "バッファー関連のコマンド")
-(e:define-prefix-command file-command-map    "ファイル関連のコマンド")
-(e:define-prefix-command general-command-map "よく使ういろいろなコマンド")
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; 基点
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(e:define-prefix-command base-command-map "他のコマンドへの派生元")
 (bind-keys
  :map base-command-map
+ (":" . avy-goto-char)
+ (";" . avy-goto-word-1)
  ("b" . buffer-command-map)
  ("f" . file-command-map)
  ("g" . general-command-map)
- ("t" . hydra-toggle/body)
- :map buffer-command-map
- ("b" . switch-to-buffer)
- ("k" . kill-buffer)
- :map file-command-map
- ("f" . find-file)
- ("g" . helm-ghq)
- ("h" . helm-find-files)
- ("m" . magit-find-file)
- ("p" . helm-find-files-with-projectile)
- ("r" . helm-recentf)
+ ("p" . projectile-command-map)
+ ("t" . hydra-toggle/body))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; いろいろ便利なやつ
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(e:define-prefix-command general-command-map "よく使ういろいろなコマンド")
+(bind-keys
  :map general-command-map
  ("," . helm-ag-pop-stack)
  ("." . helm-ag)
@@ -41,28 +41,55 @@
  ("m" . helm-switch-major-mode)
  ("s" . magit-status))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; ファイル関連
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(e:define-prefix-command file-command-map "ファイル関連のコマンド")
 (bind-keys
- :map search-map ;; M-s
- ("g" . dumb-jump-go)
- ("b" . dumb-jump-back)
- ("q" . dumb-jump-quick-look)
- :map help-map ;; C-h
- ("a" . helm-apropos)
- ("b" . helm-descbinds)
- :map ctl-x-map
+ :map file-command-map
  ("f" . find-file)
- ("j" . skk-mode)
- ("o" . ace-window)
- ("C-b" . helm-multi-files)
- ("C-c" . execute-extended-command)
- ("C-f" . helm-find-files-with-projectile)
- :map mode-specific-map ;; C-c
- (":" . avy-goto-char)
- (";" . avy-goto-word-1)
- ("i" . helm-imenu)
- ("t" . google-translate-enja-or-jaen)
- ("x" . shell-pop)
- ("z" . eshell)
+ ("g" . helm-ghq)
+ ("h" . helm-find-files)
+ ("m" . magit-find-file)
+ ("p" . helm-find-files-with-projectile)
+ ("r" . helm-recentf))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; バッファー関連
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(e:define-prefix-command buffer-command-map "バッファー関連のコマンド")
+(bind-keys
+ :map buffer-command-map
+ ("b" . switch-to-buffer)
+ ("k" . kill-buffer))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; [Mac] ホイールによるスクロールを調整
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(when (os-type-mac-p)
+  (defun scroll-down-with-lines ()
+    (interactive)
+    (scroll-down 3))
+  (defun scroll-up-with-lines ()
+    (interactive)
+    (scroll-up 3))
+  (bind-keys
+   :map global-map
+   ("<wheel-up>"          . scroll-down-with-lines)
+   ("<wheel-down>"        . scroll-up-with-lines)
+   ("<double-wheel-up>"   . scroll-down-with-lines)
+   ("<double-wheel-down>" . scroll-up-with-lines)
+   ("<triple-wheel-up>"   . scroll-down-with-lines)
+   ("<triple-wheel-down>" . scroll-up-with-lines)))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; Emacs標準のキーマップとか
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(bind-keys
  :map global-map
  ("C-," . base-command-map)
  ("C-:" . avy-goto-char)
@@ -80,21 +107,38 @@
  ("M-y" . helm-show-kill-ring)
  ("M-z" . avy-zap-to-char-dwim))
 
-(when (os-type-mac-p)
-  (defun scroll-down-with-lines ()
-    (interactive)
-    (scroll-down 3))
-  (defun scroll-up-with-lines ()
-    (interactive)
-    (scroll-up 3))
-  (bind-keys
-   :map global-map
-   ("<wheel-up>"          . scroll-down-with-lines)
-   ("<wheel-down>"        . scroll-up-with-lines)
-   ("<double-wheel-up>"   . scroll-down-with-lines)
-   ("<double-wheel-down>" . scroll-up-with-lines)
-   ("<triple-wheel-up>"   . scroll-down-with-lines)
-   ("<triple-wheel-down>" . scroll-up-with-lines)))
+(bind-keys
+ :map ctl-x-map
+ ("f" . find-file)
+ ("j" . skk-mode)
+ ("o" . ace-window)
+ ("C-b" . helm-multi-files)
+ ("C-c" . execute-extended-command)
+ ("C-f" . helm-find-files-with-projectile))
+
+(bind-keys
+ :map mode-specific-map
+ (":" . avy-goto-char)
+ (";" . avy-goto-word-1)
+ ("i" . helm-imenu)
+ ("t" . google-translate-enja-or-jaen)
+ ("x" . shell-pop)
+ ("z" . eshell))
+
+(bind-keys
+ :map search-map
+ ("g" . dumb-jump-go)
+ ("b" . dumb-jump-back)
+ ("q" . dumb-jump-quick-look))
+
+(bind-keys
+ :map help-map
+ ("a" . helm-apropos)
+ ("b" . helm-descbinds))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;`hydra'によるキー定義
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defhydra hydra-toggle
   (:hint nil)
