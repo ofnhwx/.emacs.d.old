@@ -1,7 +1,7 @@
 ;;; 20_helm.el --- setup helm.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2018/01/28 01:10:41>
+;; Last updated: <2018/03/01 10:07:20>
 ;;
 
 ;;; Commentary:
@@ -13,7 +13,7 @@
   (:map global-map
         ([remap execute-extended-command] . helm-M-x))
   :init
-  (defun my/helm-display-buffer (buffer)
+  (defun my/helm-display-buffer (buffer &optional resume)
     (let ((helm-windata '(frame bottom 0.3 nil)))
       (apply 'windata-display-buffer buffer helm-windata)))
   (set-variable 'helm-display-function 'my/helm-display-buffer))
