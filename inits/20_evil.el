@@ -1,7 +1,7 @@
 ;;; 20_evil.el --- setup template.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2018/01/19 15:37:29>
+;; Last updated: <2018/03/01 16:48:45>
 ;;
 
 ;;; Commentary:
@@ -32,11 +32,17 @@
     (set-variable 'linum-relative-current-symbol "=>")
     (set-variable 'linum-relative-plusp-offset 0)
     :config
+    (defvar temp-linum-mode-state nil)
     (defun linum-relative-on-and-update ()
+      (setq temp-linum-mode-state linum-mode)
       (linum-relative-on)
       (linum-update-current))
+    (defun linum-relative-off-and-restore ()
+      (linum-relative-off)
+      (when temp-linum-mode-state
+        (linum-mode)))
     (add-hook 'evil-operator-state-entry-hook 'linum-relative-on-and-update)
-    (add-hook 'evil-operator-state-exit-hook 'linum-relative-off))
+    (add-hook 'evil-operator-state-exit-hook 'linum-relative-off-and-restore))
   ;; 挿入モードでSKKを有効化
   (with-eval-after-load "skk"
     (add-hook 'evil-insert-state-entry-hook 'skk-latin-mode-on)
