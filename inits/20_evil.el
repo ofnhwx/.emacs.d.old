@@ -1,7 +1,7 @@
 ;;; 20_evil.el --- setup template.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2018/03/01 16:48:45>
+;; Last updated: <2018/03/26 17:30:59>
 ;;
 
 ;;; Commentary:
@@ -49,7 +49,11 @@
     (add-hook 'evil-insert-state-exit-hook 'skk-mode-exit))
   ;; 無効にするモード
   (add-to-list 'evil-emacs-state-modes 'dired-mode)
+  (add-to-list 'evil-emacs-state-modes 'eshell-mode)
   (add-to-list 'evil-emacs-state-modes 'eww-mode)
+  (add-to-list 'evil-emacs-state-modes 'term-mode)
+  (cl-dolist (mode evil-emacs-state-modes)
+    (delete mode evil-insert-state-modes))
   ;; 有効化
   (evil-mode))
 
