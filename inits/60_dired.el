@@ -1,7 +1,7 @@
 ;;; 60_dired.el --- setup dired.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/12/15 17:53:33>
+;; Last updated: <2018/03/29 15:03:47>
 ;;
 
 ;;; Commentary:
@@ -14,41 +14,33 @@
         ("r" . wdired-change-to-wdired-mode)
         ("M-g" . nil))
   :config
-  (use-package dired+
-    :if (e:require-package 'dired+ nil t)))
+  (use-package dired+))
 
 (use-package dired-atool
-  :if (and (executable-find "atool")
-           (e:require-package 'dired-atool nil t))
   :bind
   (:map dired-mode-map
         ("z" . dired-atool-do-unpack-with-subdirectory)
         ("Z" . dired-atool-do-pack)))
 
 (use-package dired-collapse
-  :if (e:require-package 'dired-collapse nil t)
   :config
   (add-hook 'dired-mode-hook 'dired-collapse-mode))
 
 (use-package dired-filter
-  :if (e:require-package 'dired-filter nil t)
   :config
   (add-hook 'dired-mode-hook 'dired-filter-mode))
 
 (use-package dired-hacks-utils
-  :if (e:require-package 'dired-hacks-utils nil t)
   :bind
   ([remap diredp-previous-line] . dired-hacks-previous-file)
   ([remap diredp-next-line] . dired-hacks-next-file))
 
 (use-package dired-narrow
-  :if (e:require-package 'dired-narrow nil t)
   :bind
   (:map dired-mode-map
         ("N" . dired-narrow-fuzzy)))
 
 (use-package dired-ranger
-  :if (e:require-package 'dired-ranger nil t)
   :bind
   (:map dired-mode-map
         ("b" . dired-ranger-bookmark-visit)
@@ -61,7 +53,6 @@
         ("C-c B" . dired-do-byte-compile)))
 
 (use-package dired-sort
-  :if (e:require-package 'dired-sort nil t)
   :bind
   (:map dired-mode-map
         ("s" . hydra-dired-sort/body))
@@ -77,13 +68,11 @@
     ("n" dired-sort-name "name")))
 
 (use-package dired-subtree
-  :if (e:require-package 'dired-subtree nil t)
   :bind
   (:map dired-mode-map
         ("i" . dired-subtree-toggle)))
 
 (use-package dired-toggle-sudo
-  :if (e:require-package 'dired-toggle-sudo nil t)
   :bind
   (:map dired-mode-map
         ("C-c s" . dired-toggle-sudo)))

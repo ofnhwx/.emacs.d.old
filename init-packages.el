@@ -1,7 +1,7 @@
 ;;; init-packages.el --- 必要なパッケージのインストール.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2018/01/28 01:21:10>
+;; Last updated: <2018/03/29 15:05:19>
 ;;
 
 ;;; Commentary:
@@ -45,7 +45,7 @@
 (e:add-required-package 'ddskk)
 (e:add-required-package 'deferred)
 (e:add-required-package 'dired+)
-(e:add-required-package 'dired-atool)
+(e:add-required-package 'dired-atool :if (executable-find "atool"))
 (e:add-required-package 'dired-collapse)
 (e:add-required-package 'dired-filter)
 (e:add-required-package 'dired-hacks-utils)

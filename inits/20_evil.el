@@ -1,7 +1,7 @@
 ;;; 20_evil.el --- setup template.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2018/03/26 17:30:59>
+;; Last updated: <2018/03/29 15:05:12>
 ;;
 
 ;;; Commentary:
@@ -9,7 +9,6 @@
 ;;; Code:
 
 (use-package evil
-  :if (e:require-package 'evil nil t)
   :init
   (set-variable 'evil-cross-lines t)
   (set-variable 'evil-insert-state-map (make-sparse-keymap))
@@ -26,7 +25,6 @@
     (keyboard-quit))
   ;; 必要に応じて相対行番号を表示
   (use-package linum-relative
-    :if (e:require-package 'linum-relative nil t)
     :init
     (set-variable 'linum-relative-format "%5s")
     (set-variable 'linum-relative-current-symbol "=>")
@@ -58,7 +56,6 @@
   (evil-mode))
 
 (use-package evil-surround
-  :if (e:require-package 'evil-surround nil t)
   :config
   (global-evil-surround-mode 1))
 
@@ -93,7 +90,6 @@
    ("C-z z" . evil-exit-emacs-state)))
 
 (use-package evil-numbers
-  :if (e:require-package 'evil-numbers nil t)
   :config
   (bind-keys
    :map evil-normal-state-map

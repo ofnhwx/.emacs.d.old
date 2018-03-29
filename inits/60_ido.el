@@ -1,7 +1,7 @@
 ;;; 60_ido.el --- setup ido.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/12/22 14:50:23>
+;; Last updated: <2018/03/29 15:02:05>
 ;;
 
 ;;; Commentary:
@@ -11,7 +11,6 @@
 
 ;; 'ido'を使用したシンボル補完
 (use-package bbyac
-  :if (e:require-package 'bbyac nil t)
   :init
   (set-variable 'bbyac-max-chars 99999)
   :config
@@ -25,19 +24,16 @@
 
 ;; 曖昧検索を常に有効化
 (use-package flx-ido
-  :if (e:require-package 'flx-ido nil t)
   :config
   (flx-ido-mode))
 
 ;; いろいろな場所で'ido'を使用
 (use-package ido-completing-read+
-  :if (e:require-package 'ido-completing-read+ nil t)
   :config
   (ido-ubiquitous-mode t))
 
 ;; 最適化など
 (use-package ido-hacks
-  :if (e:require-package 'ido-hacks nil t)
   :config
   (let ((hacks "^ido-hacks-"))
     (ad-enable-regexp hacks)
@@ -45,13 +41,11 @@
 
 ;; 候補を縦に表示
 (use-package ido-vertical-mode
-  :if (e:require-package 'ido-vertical-mode nil t)
   :config
   (ido-vertical-mode t))
 
 ;; yes/noの選択に使用
 (use-package ido-yes-or-no
-  :if (e:require-package 'ido-yes-or-no nil t)
   :config
   (ido-yes-or-no-mode t))
 

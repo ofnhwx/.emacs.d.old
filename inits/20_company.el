@@ -1,7 +1,7 @@
 ;;; 20_company.el --- setup company.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2018/01/17 16:31:17>
+;; Last updated: <2018/03/29 15:00:47>
 ;;
 
 ;;; Commentary:
@@ -9,7 +9,6 @@
 ;;; Code:
 
 (use-package company
-  :if (e:require-package 'company nil t)
   :diminish company-mode
   :init
   (set-variable 'company-idle-delay 0)            ;; 補完候補をすぐに表示
@@ -18,12 +17,10 @@
   :config
   ;; PHP補完
   (use-package company-php
-    :if (e:require-package 'company-php nil t)
     :init
     (set-variable 'ac-php-tags-path (e:expand "ac-php" :cache)))
   ;; WEB補完
-  (use-package company-web
-    :if (e:require-package 'company-web nil t))
+  (use-package company-web)
   ;; ヘルパー関数
   (defmacro add-company-backends (hook &rest backends)
     `(add-hook
