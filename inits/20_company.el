@@ -1,7 +1,7 @@
 ;;; 20_company.el --- setup company.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2018/03/29 15:31:40>
+;; Last updated: <2018/03/29 16:27:22>
 ;;
 
 ;;; Commentary:
@@ -22,23 +22,26 @@
       (lambda ()
         (make-local-variable 'company-backends)
         (add-to-list 'company-backends ',backends))))
-  ;; `smartparens'を一時的に無効にする
-  (with-eval-after-load "smartparens"
-    (defvar company-smartparens-enabled nil
-      "`company'の補完中に`smartparens'の状態を保存しておく変数.")
-    (defun disable-smartparens-with-company (arg)
-      "`company'での補完開始時に`smartparens'を無効にする.引数 ARG は未使用."
-      (setq company-smartparens-enabled smartparens-global-mode)
-      (smartparens-global-mode 0))
-    (defun revert-smartparens-with-company (arg)
-      "`company'での補完終了時に`smartparens'の状態を戻す.引数 ARG は未使用."
-      (when company-smartparens-enabled
-        (smartparens-global-mode 1)))
-    (add-hook 'company-completion-started-hook   'disable-smartparens-with-company)
-    (add-hook 'company-completion-finished-hook  'revert-smartparens-with-company)
-    (add-hook 'company-completion-cancelled-hook 'revert-smartparens-with-company))
   ;; 有効化
   (global-company-mode))
+
+(use-package company
+  :after (smartparens)
+  :config
+  ;; `smartparens'を一時的に無効にする
+  (defvar company-smartparens-enabled nil
+    "`company'の補完中に`smartparens'の状態を保存しておく変数.")
+  (defun disable-smartparens-with-company (arg)
+    "`company'での補完開始時に`smartparens'を無効にする.引数 ARG は未使用."
+    (setq company-smartparens-enabled smartparens-global-mode)
+    (smartparens-global-mode 0))
+  (defun revert-smartparens-with-company (arg)
+    "`company'での補完終了時に`smartparens'の状態を戻す.引数 ARG は未使用."
+    (when company-smartparens-enabled
+      (smartparens-global-mode 1)))
+  (add-hook 'company-completion-started-hook   'disable-smartparens-with-company)
+  (add-hook 'company-completion-finished-hook  'revert-smartparens-with-company)
+  (add-hook 'company-completion-cancelled-hook 'revert-smartparens-with-company))
 
 (use-package company-php
   :after (company php-mode)
@@ -47,12 +50,29 @@
   :config
   (add-company-backends php-mode-hook company-ac-php-backend company-dabbrev-code))
 
-(use-package company-web
-  :after (web-mode company)
+(use-package company;;web
+  :after (web-mode)
   :config
-  (if (e:require 'company-php t)
-      (add-company-backends web-mode-hook company-web-html company-ac-php-backend company-dabbrev-code)
-    (add-company-backends web-mode-hook company-web-html company-dabbrev-code)))
+  (cond
+   ((and (e:require 'company-web t)
+         (e:require 'company-php t))
+    (add-company-backends web-mode-hook company-web-html company-ac-php-backend company-dabbrev-code))
+   ((featurep 'company-web)
+    (add-company-backends web-mode-hook company-web-html company-dabbrev-code))
+   ((featurep 'company-php)
+    (add-company-backends web-mode-hook company-ac-php-backend company-dabbrev-code))))
+
+(use-package company;;irony
+  :after (irony)
+  :config
+  (cond
+   ((and (e:require 'company-irony t)
+         (e:require 'company-irony-c-headers t))
+    (add-company-backends irony-mode-hook company-irony-c-headers company-irony company-dabbrev-code))
+   ((featurep 'company-irony)
+    (add-company-backends irony-mode-hook company-irony company-dabbrev-code))
+   ((featurep 'company-irony-c-headers)
+    (add-company-backends irony-mode-hook company-irony-c-headers company-dabbrev-code))))
 
 ;; [2016-06-14] - とりあえず`ac-php'を`web-mode'でも動くように
 (defun company-ac-php-backend (command &optional arg &rest ignored)

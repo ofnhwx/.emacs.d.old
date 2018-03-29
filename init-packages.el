@@ -1,7 +1,7 @@
 ;;; init-packages.el --- 必要なパッケージのインストール.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2018/03/29 15:05:19>
+;; Last updated: <2018/03/29 16:10:50>
 ;;
 
 ;;; Commentary:
@@ -36,6 +36,8 @@
 (e:add-required-package 'cl-lib-highlight)
 (e:add-required-package 'column-marker)
 (e:add-required-package 'company)
+(e:add-required-package 'company-irony)
+(e:add-required-package 'company-irony-c-headers)
 (e:add-required-package 'company-php)
 (e:add-required-package 'company-web)
 (e:add-required-package 'concurrent)
@@ -68,6 +70,7 @@
 (e:add-required-package 'f)
 (e:add-required-package 'flx-ido)
 (e:add-required-package 'flycheck)
+(e:add-required-package 'flycheck-irony)
 (e:add-required-package 'flycheck-swift)
 (e:add-required-package 'free-keys)
 (e:add-required-package 'git-gutter :if (not window-system))
@@ -94,6 +97,8 @@
 (e:add-required-package 'ido-hacks)
 (e:add-required-package 'ido-vertical-mode)
 (e:add-required-package 'ido-yes-or-no)
+(e:add-required-package 'irony)
+(e:add-required-package 'irony-eldoc)
 (e:add-required-package 'lacarte)
 (e:add-required-package 'linum-relative)
 (e:add-required-package 'list-processes+)

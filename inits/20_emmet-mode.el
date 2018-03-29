@@ -1,7 +1,7 @@
 ;;; 20_emmet-mode.el --- setup emmet-mode.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2018/03/29 15:26:50>
+;; Last updated: <2018/03/29 16:06:41>
 ;;
 
 ;;; Commentary:
@@ -24,7 +24,7 @@
 
 (use-package emmet-mode
   :after (web-mode)
-  :confg
+  :config
   (add-hook 'web-mode-hook 'emmet-mode))
 
 (provide '20_emmet-mode)
