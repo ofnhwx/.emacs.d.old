@@ -1,7 +1,7 @@
 ;;; 40_web-mode.el --- setup web-mode.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2018/01/28 01:19:41>
+;; Last updated: <2018/03/29 15:31:16>
 ;;
 
 ;;; Commentary:

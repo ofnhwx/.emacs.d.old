@@ -1,7 +1,7 @@
 ;;; 20_company.el --- setup company.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2018/03/29 15:00:47>
+;; Last updated: <2018/03/29 15:31:40>
 ;;
 
 ;;; Commentary:
@@ -15,12 +15,6 @@
   (set-variable 'company-minimum-prefix-length 1) ;; 補完開始文字数
   (set-variable 'company-selection-wrap-around t) ;; 上下でループ
   :config
-  ;; PHP補完
-  (use-package company-php
-    :init
-    (set-variable 'ac-php-tags-path (e:expand "ac-php" :cache)))
-  ;; WEB補完
-  (use-package company-web)
   ;; ヘルパー関数
   (defmacro add-company-backends (hook &rest backends)
     `(add-hook
@@ -46,10 +40,19 @@
   ;; 有効化
   (global-company-mode))
 
+(use-package company-php
+  :after (company php-mode)
+  :if
+  (set-variable 'ac-php-tags-path (e:expand "ac-php" :cache))
+  :config
+  (add-company-backends php-mode-hook company-ac-php-backend company-dabbrev-code))
 
-;; モード毎の設定
-(add-company-backends php-mode-hook company-ac-php-backend company-dabbrev-code)
-(add-company-backends web-mode-hook company-web-html company-ac-php-backend company-dabbrev-code)
+(use-package company-web
+  :after (web-mode company)
+  :config
+  (if (e:require 'company-php t)
+      (add-company-backends web-mode-hook company-web-html company-ac-php-backend company-dabbrev-code)
+    (add-company-backends web-mode-hook company-web-html company-dabbrev-code)))
 
 ;; [2016-06-14] - とりあえず`ac-php'を`web-mode'でも動くように
 (defun company-ac-php-backend (command &optional arg &rest ignored)

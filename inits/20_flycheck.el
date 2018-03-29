@@ -1,7 +1,7 @@
 ;;; 20_flycheck.el --- setup template.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2018/01/28 00:37:01>
+;; Last updated: <2018/03/29 15:37:04>
 ;;
 
 ;;; Commentary:
@@ -14,8 +14,14 @@
   :config
   (global-flycheck-mode t))
 
+(use-package flycheck
+  :after (web-mode)
+  :config
+  (flycheck-add-mode 'html-tidy 'web-mode)
+  (flycheck-add-mode 'php       'web-mode))
+
 (use-package flycheck-swift
-  :after (flycheck))
+  :after (flycheck swift-mode))
 
 (provide '20_flycheck)
 ;;; 20_flycheck.el ends here

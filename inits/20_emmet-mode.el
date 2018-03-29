@@ -1,7 +1,7 @@
 ;;; 20_emmet-mode.el --- setup emmet-mode.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2018/01/28 00:51:59>
+;; Last updated: <2018/03/29 15:26:50>
 ;;
 
 ;;; Commentary:
@@ -16,6 +16,16 @@
         ("C-j" . nil))
   :init
   (set-variable 'emmet-indentation 2))
+
+(use-package emmet-mode
+  :after (php-mode)
+  :config
+  (add-hook 'php-mode-hook 'emmet-mode))
+
+(use-package emmet-mode
+  :after (web-mode)
+  :confg
+  (add-hook 'web-mode-hook 'emmet-mode))
 
 (provide '20_emmet-mode)
 ;;; 20_emmet-mode.el ends here

@@ -1,7 +1,7 @@
 ;;; 40_php-mode.el --- setup php-mode.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2018/01/28 01:18:20>
+;; Last updated: <2018/03/29 15:33:54>
 ;;
 
 ;;; Commentary:
@@ -24,9 +24,6 @@
   ;; symfonyのスタイルを有効に
   (add-hook 'php-mode-hook
             'php-enable-symfony2-coding-style))
-
-(use-package php-eldoc
-  :after (php-mode eldoc))
 
 (provide '40_php-mode)
 ;;; 40_php-mode.el ends here
