@@ -1,7 +1,7 @@
 ;;; 60_dired.el --- setup dired.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2018/03/29 15:03:47>
+;; Last updated: <2018/03/30 16:15:51>
 ;;
 
 ;;; Commentary:
@@ -23,6 +23,9 @@
         ("Z" . dired-atool-do-pack)))
 
 (use-package dired-collapse
+  :bind
+  (:map dired-mode-map
+        ("," . dired-collapse-mode))
   :config
   (add-hook 'dired-mode-hook 'dired-collapse-mode))
 
