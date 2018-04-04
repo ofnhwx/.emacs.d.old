@@ -1,7 +1,7 @@
 ;;; init-packages.el --- 必要なパッケージのインストール.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2018/03/29 16:10:50>
+;; Last updated: <2018/04/04 16:02:06>
 ;;
 
 ;;; Commentary:
@@ -108,6 +108,7 @@
 (e:add-required-package 'migemo :if (executable-find "cmigemo"))
 (e:add-required-package 'multiple-cursors)
 (e:add-required-package 'mykie)
+(e:add-required-package 'open-junk-file)
 (e:add-required-package 'php-eldoc)
 (e:add-required-package 'php-mode)
 (e:add-required-package 'popwin)
