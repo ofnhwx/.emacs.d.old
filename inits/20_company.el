@@ -1,7 +1,7 @@
 ;;; 20_company.el --- setup company.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2018/03/29 16:27:22>
+;; Last updated: <2018/04/10 12:43:17>
 ;;
 
 ;;; Commentary:
@@ -11,17 +11,14 @@
 (use-package company
   :diminish company-mode
   :init
-  (set-variable 'company-idle-delay 0)            ;; 補完候補をすぐに表示
+  (set-variable 'company-idle-delay 0.1)          ;; 補完候補をすぐに表示
   (set-variable 'company-minimum-prefix-length 1) ;; 補完開始文字数
   (set-variable 'company-selection-wrap-around t) ;; 上下でループ
   :config
   ;; ヘルパー関数
-  (defmacro add-company-backends (hook &rest backends)
-    `(add-hook
-      ',hook
-      (lambda ()
-        (make-local-variable 'company-backends)
-        (add-to-list 'company-backends ',backends))))
+  (defmacro set-company-backends (backends)
+    (make-local-variable 'company-backends)
+    (add-to-list 'company-backends backends))
   ;; 有効化
   (global-company-mode))
 
@@ -48,31 +45,35 @@
   :if
   (set-variable 'ac-php-tags-path (e:expand "ac-php" :cache))
   :config
-  (add-company-backends php-mode-hook company-ac-php-backend company-dabbrev-code))
+  (defun company-php-setup()
+    (set-company-backends '(company-ac-php-backend company-dabbrev-code)))
+  (add-hook 'php-mode-hook 'company-php-setup))
 
 (use-package company;;web
   :after (web-mode)
   :config
-  (cond
-   ((and (e:require 'company-web t)
-         (e:require 'company-php t))
-    (add-company-backends web-mode-hook company-web-html company-ac-php-backend company-dabbrev-code))
-   ((featurep 'company-web)
-    (add-company-backends web-mode-hook company-web-html company-dabbrev-code))
-   ((featurep 'company-php)
-    (add-company-backends web-mode-hook company-ac-php-backend company-dabbrev-code))))
+  (defun company-web-setup()
+    (let ((backends '(company-dabbrev-code)))
+      (when (e:require 'company-php t)
+        (add-to-list 'backends 'company-ac-php-backend))
+      (when (e:require 'company-web t)
+        (add-to-list 'backends 'company-web-html))
+      (set-company-backends backends)))
+  (add-hook 'web-mode-hook 'company-web-setup))
 
 (use-package company;;irony
   :after (irony)
   :config
-  (cond
-   ((and (e:require 'company-irony t)
-         (e:require 'company-irony-c-headers t))
-    (add-company-backends irony-mode-hook company-irony-c-headers company-irony company-dabbrev-code))
-   ((featurep 'company-irony)
-    (add-company-backends irony-mode-hook company-irony company-dabbrev-code))
-   ((featurep 'company-irony-c-headers)
-    (add-company-backends irony-mode-hook company-irony-c-headers company-dabbrev-code))))
+  (defun company-irony-setup ()
+    (let ((backends '(company-yasnippet company-dabbrev-code)))
+      (when (e:require 'company-yasnippet t)
+        (add-to-list 'backends 'company-yasnippet))
+      (when (e:require 'company-irony t)
+        (add-to-list 'backends 'company-irony))
+      (when (e:require 'company-irony-c-headers t)
+        (add-to-list 'backends 'company-irony-c-headers))
+      (set-company-backends backends)))
+  (add-hook 'irony-mode-hook 'company-irony-setup))
 
 ;; [2016-06-14] - とりあえず`ac-php'を`web-mode'でも動くように
 (defun company-ac-php-backend (command &optional arg &rest ignored)

@@ -1,7 +1,7 @@
 ;;; 99_keybind.el --- キーバインド.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2018/01/19 13:00:08>
+;; Last updated: <2018/04/10 10:56:55>
 ;;
 
 ;;; Commentary:
@@ -15,6 +15,7 @@
 (e:define-prefix-command base-command-map "他のコマンドへの派生元")
 (bind-keys
  :map base-command-map
+ ("SPC" . company-complete)
  (":" . avy-goto-char)
  (";" . avy-goto-word-1)
  ("b" . buffer-command-map)
