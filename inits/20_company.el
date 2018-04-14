@@ -1,7 +1,7 @@
 ;;; 20_company.el --- setup company.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2018/04/10 12:43:17>
+;; Last updated: <2018/04/10 17:11:26>
 ;;
 
 ;;; Commentary:
@@ -16,7 +16,7 @@
   (set-variable 'company-selection-wrap-around t) ;; 上下でループ
   :config
   ;; ヘルパー関数
-  (defmacro set-company-backends (backends)
+  (defun set-company-backends (backends)
     (make-local-variable 'company-backends)
     (add-to-list 'company-backends backends))
   ;; 有効化
