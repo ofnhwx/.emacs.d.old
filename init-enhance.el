@@ -1,7 +1,7 @@
 ;;; init-enhance.el --- 個人設定用の拡張機能.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2018/01/28 00:39:26>
+;; Last updated: <2018/04/14 16:25:25>
 ;;
 
 ;;; Commentary:
@@ -106,6 +106,7 @@ NOERROR が指定されている場合はエラーを無視する."
     (:cache (e:expand "cache" (e:get-dir :user)))
     (:local (e:expand "local" (e:get-dir :user)))
     (:conf (e:expand "config" (e:get-dir :user)))
+    (:lisp (e:expand "lisp" (e:get-dir :user)))
     (:temp (e:unexpand (file-truename (e:expand ".emacs" temporary-file-directory))))
     (:user user-emacs-directory)))
 

@@ -1,7 +1,7 @@
 ;;; 20_evil.el --- setup template.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2018/03/29 15:05:12>
+;; Last updated: <2018/04/16 12:06:13>
 ;;
 
 ;;; Commentary:
@@ -49,6 +49,7 @@
   (add-to-list 'evil-emacs-state-modes 'dired-mode)
   (add-to-list 'evil-emacs-state-modes 'eshell-mode)
   (add-to-list 'evil-emacs-state-modes 'eww-mode)
+  (add-to-list 'evil-emacs-state-modes 'prodigy-mode)
   (add-to-list 'evil-emacs-state-modes 'term-mode)
   (cl-dolist (mode evil-emacs-state-modes)
     (delete mode evil-insert-state-modes))

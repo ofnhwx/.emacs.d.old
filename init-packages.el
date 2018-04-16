@@ -1,7 +1,7 @@
 ;;; init-packages.el --- 必要なパッケージのインストール.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2018/04/04 16:02:06>
+;; Last updated: <2018/04/16 12:17:03>
 ;;
 
 ;;; Commentary:
@@ -113,6 +113,7 @@
 (e:add-required-package 'php-mode)
 (e:add-required-package 'popwin)
 (e:add-required-package 'powerline)
+(e:add-required-package 'prodigy)
 (e:add-required-package 'projectile)
 (e:add-required-package 'psysh :if (executable-find "psysh"))
 (e:add-required-package 'rainbow-mode)

@@ -1,5 +1,5 @@
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/11/20 19:01:27>
+;; Last updated: <2018/04/16 12:06:44>
 
 ;;; Commentary:
 ;; [~/.skk 設定例集]
@@ -28,7 +28,7 @@
 ;; 辞書サーバ
 (when (executable-find "google-ime-skk")
   (set-variable 'skk-server-prog (executable-find "google-ime-skk"))
-  (set-variable 'skk-server-inhibit-startup-server nil)
+  (set-variable 'skk-server-inhibit-startup-server t)
   (set-variable 'skk-server-host "localhost")
   (set-variable 'skk-server-portnum 55100))
 
