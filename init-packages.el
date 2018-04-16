@@ -108,6 +108,7 @@
 (e:add-required-package 'migemo :if (executable-find "cmigemo"))
 (e:add-required-package 'multiple-cursors)
 (e:add-required-package 'mykie)
+(e:add-required-package 'notmuch)
 (e:add-required-package 'open-junk-file)
 (e:add-required-package 'php-eldoc)
 (e:add-required-package 'php-mode)
