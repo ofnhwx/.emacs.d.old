@@ -1,7 +1,7 @@
 ;;; init-packages.el --- 必要なパッケージのインストール.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2018/04/16 12:17:03>
+;; Last updated: <2018/04/18 10:08:57>
 ;;
 
 ;;; Commentary:
@@ -125,6 +125,7 @@
 (e:add-required-package 'selected)
 (e:add-required-package 'shell-pop)
 (e:add-required-package 'smartparens)
+(e:add-required-package 'srefactor)
 (e:add-required-package 'string-edit)
 (e:add-required-package 'sudo-edit)
 (e:add-required-package 'swift-mode)
