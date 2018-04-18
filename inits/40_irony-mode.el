@@ -1,7 +1,7 @@
 ;;; 40_irony-mode.el --- setup template.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2018/04/05 09:33:50>
+;; Last updated: <2018/04/18 10:16:55>
 ;;
 
 ;;; Commentary:
@@ -9,6 +9,7 @@
 ;;; Code:
 
 (use-package irony
+  :diminish irony-mode
   :init
   (set-variable 'irony-additional-clang-options '("-std=c++11"))
   (set-variable 'irony-user-dir (e:expand "irony" :cache))
