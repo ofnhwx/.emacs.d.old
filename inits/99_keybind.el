@@ -1,7 +1,7 @@
 ;;; 99_keybind.el --- キーバインド.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2018/04/10 10:56:55>
+;; Last updated: <2018/04/23 14:07:13>
 ;;
 
 ;;; Commentary:
@@ -92,6 +92,7 @@
 
 (bind-keys
  :map global-map
+ ("ESC ESC ESC" . keyboard-quit)
  ("C-," . base-command-map)
  ("C-:" . avy-goto-char)
  ("C-;" . avy-goto-word-1)
