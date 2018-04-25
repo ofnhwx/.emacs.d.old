@@ -1,7 +1,7 @@
 ;;; init-packages.el --- 必要なパッケージのインストール.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2018/04/18 10:08:57>
+;; Last updated: <2018/04/25 10:03:07>
 ;;
 
 ;;; Commentary:
@@ -21,8 +21,6 @@
 ;; 各種パッケージ
 (e:add-required-package 'ace-link)
 (e:add-required-package 'ace-window)
-(e:add-required-package 'all)
-(e:add-required-package 'all-ext)
 (e:add-required-package 'android-mode)
 (e:add-required-package 'anzu)
 (e:add-required-package 'atomic-chrome)
@@ -57,7 +55,6 @@
 (e:add-required-package 'dired-subtree)
 (e:add-required-package 'dired-toggle-sudo)
 (e:add-required-package 'dumb-jump)
-(e:add-required-package 'edbi)
 (e:add-required-package 'editorconfig)
 (e:add-required-package 'eldoc-extension)
 (e:add-required-package 'elscreen)
@@ -116,7 +113,6 @@
 (e:add-required-package 'powerline)
 (e:add-required-package 'prodigy)
 (e:add-required-package 'projectile)
-(e:add-required-package 'psysh :if (executable-find "psysh"))
 (e:add-required-package 'rainbow-mode)
 (e:add-required-package 'recentf-ext)
 (e:add-required-package 'restclient)
