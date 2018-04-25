@@ -1,7 +1,7 @@
 ;;; 20_flycheck.el --- setup template.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2018/03/29 15:47:26>
+;; Last updated: <2018/04/18 14:47:05>
 ;;
 
 ;;; Commentary:
@@ -10,6 +10,8 @@
 
 (use-package flycheck
   :init
+  (set-variable 'flycheck-check-syntax-automatically '(save mode-enabled))
+  (set-variable 'flycheck-idle-change-delay 3.0)
   (set-variable 'flycheck-phpcs-standard "PSR2")
   :config
   (global-flycheck-mode t))
