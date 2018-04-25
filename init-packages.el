@@ -1,7 +1,7 @@
 ;;; init-packages.el --- 必要なパッケージのインストール.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2018/04/25 10:03:07>
+;; Last updated: <2018/04/26 13:41:53>
 ;;
 
 ;;; Commentary:
@@ -85,7 +85,6 @@
 (e:add-required-package 'helm-elscreen)
 (e:add-required-package 'helm-flycheck)
 (e:add-required-package 'helm-ghq :if (executable-find "ghq"))
-(e:add-required-package 'helm-mode-manager)
 (e:add-required-package 'helm-projectile)
 (e:add-required-package 'helm-swoop)
 (e:add-required-package 'highlight-symbol)

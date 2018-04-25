@@ -1,7 +1,7 @@
 ;;; 20_helm.el --- setup helm.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2018/03/01 10:07:20>
+;; Last updated: <2018/04/26 13:50:33>
 ;;
 
 ;;; Commentary:
@@ -50,11 +50,6 @@
 (use-package helm-dired-history
   :after (helm))
 
-(use-package helm-dired-history
-  :after (helm ido)
-  :config
-  (define-key (cdr ido-minor-mode-map-entry) [remap dired] nil))
-
 (use-package helm-elscreen
   :after (helm elscreen)
   :bind
@@ -65,9 +60,6 @@
   :after (helm flycheck))
 
 (use-package helm-ghq
-  :after (helm))
-
-(use-package helm-mode-manager
   :after (helm))
 
 (use-package helm-projectile

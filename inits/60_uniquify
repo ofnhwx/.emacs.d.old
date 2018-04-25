@@ -1,0 +1,16 @@
+;;; 60_uniquify.el --- setup uniquify.
+;;
+;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
+;; Last updated: <2018/04/25 11:07:30>
+;;
+
+;;; Commentary:
+
+;;; Code:
+
+(use-package uniquify
+  :init
+  (set-variable 'uniquify-buffer-name-style 'post-forward-angle-brackets))
+
+(provide '60_uniquify)
+;;; 60_uniquify.el ends here

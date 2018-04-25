@@ -2,7 +2,7 @@
 ;;; init.el --- load this file at first when emacs was started.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2018/01/28 00:17:14>
+;; Last updated: <2018/04/25 11:22:16>
 ;;
 
 ;;; Commentary:
@@ -37,8 +37,7 @@
   (let* ((default-directory user-emacs-directory))
     (require 'init-enhance  (locate-user-emacs-file "init-enhance")  t)
     (require 'init-config   (locate-user-emacs-file "init-config")   t)
-    (require 'init-packages (locate-user-emacs-file "init-packages") t)
-    (require 'init-setup    (locate-user-emacs-file "init-setup")    t)))
+    (require 'init-packages (locate-user-emacs-file "init-packages") t)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; マクロが存在しない場合のダミーを定義

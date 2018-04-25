@@ -1,7 +1,7 @@
 ;;; 60_dired.el --- setup dired.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2018/03/30 16:15:51>
+;; Last updated: <2018/04/26 13:52:36>
 ;;
 
 ;;; Commentary:
@@ -9,12 +9,33 @@
 ;;; Code:
 
 (use-package dired
+  :init
+  (set-variable 'dired-use-ls-dired t)           ;; 'ls'に'--dired'をオプションとして渡す
+  (set-variable 'ls-lisp-dirs-first t)           ;; ディレクトリを上に表示
+  (set-variable 'dired-dwim-target t)            ;; 2つ開いてる場合にもう片方をデフォルトのターゲットに
+  (set-variable 'dired-recursive-copies 'always) ;; ディレクトリを再帰的にコピーする
+  (set-variable 'dired-isearch-filenames t)      ;; diredバッファでC-sした時にファイル名だけにマッチするように
+  (set-variable 'dired-listing-switches "ahl")   ;; 'ls'に渡すオプション
+  :config
+  (defun dired-show-details ()
+    (dired-hide-details-mode 0))
+  (add-hook 'dired-mode-hook 'dired-show-details))
+
+(use-package wdired
+  :after (dired)
   :bind
   (:map dired-mode-map
-        ("r" . wdired-change-to-wdired-mode)
-        ("M-g" . nil))
+        ("r" . wdired-change-to-wdired-mode)))
+
+(use-package dired-x
+  :after (dired))
+
+(use-package dired+
+  :after (dired)
   :config
-  (use-package dired+))
+  (bind-keys
+   :map dired-mode-map
+   ("M-g" . nil)))
 
 (use-package dired-atool
   :bind

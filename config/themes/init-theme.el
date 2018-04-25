@@ -1,7 +1,7 @@
 ;;; init-theme.el --- 色の設定.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/12/15 18:38:44>
+;; Last updated: <2018/04/25 11:23:25>
 ;;
 
 ;;; Commentary:
@@ -33,8 +33,8 @@
  ;; 括弧
  '(show-paren-match-face ((t (:foreground "#ff0000"))))
  '(paren-face            ((t (:foreground "#ffffff"))))
- ;; 現在行のハイライト:`linum'
- '(hl-line ((t (:underline "#80ff80"))))
+ ;; 現在行
+ '(line-number-current-line ((t (:background "#4169ef"))))
  ;; 空白文字の表示:`whitespace'
  '(whitespace-tab      ((t (:foreground "#404040"))))
  '(whitespace-space    ((t (:foreground "#404040"))))

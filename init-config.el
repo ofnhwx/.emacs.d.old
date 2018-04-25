@@ -1,7 +1,7 @@
 ;;; init-enhance.el --- 環境回りの設定.
 ;;
 ;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2018/01/18 11:50:21>
+;; Last updated: <2018/04/25 11:23:09>
 ;;
 
 ;;; Commentary:
@@ -80,6 +80,7 @@
 (set-variable 'auth-sources `(,(e:expand ".authinfo.gpg" :cache)))
 
 ;; さらに細かなもの
+(global-display-line-numbers-mode 1) ;; 行番号の表示
 (menu-bar-mode window-system) ;; コンソールではメニューバーを表示しない
 (tool-bar-mode             0) ;; ツールバーを非表示
 (tooltip-mode              0) ;; ツールチップを非表示
