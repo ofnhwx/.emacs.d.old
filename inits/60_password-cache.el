@@ -1,11 +1,5 @@
-;;; 60_password-cache.el --- setup password-cache.
-;;
-;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2018/04/25 11:01:47>
-;;
-
+;;; 60_password-cache.el --- configurations.
 ;;; Commentary:
-
 ;;; Code:
 
 (use-package password-cache

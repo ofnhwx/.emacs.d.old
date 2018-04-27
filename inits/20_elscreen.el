@@ -1,14 +1,9 @@
-;;; 20_elscreen.el --- setup elscreen.
-;;
-;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2018/01/28 00:51:54>
-;;
-
+;;; 20_elscreen.el --- configurations.
 ;;; Commentary:
-
 ;;; Code:
 
 (use-package elscreen
+  :ensure t
   :init
   (set-variable 'elscreen-prefix-key (kbd "C-z"))
   (set-variable 'elscreen-tab-display-kill-screen nil)

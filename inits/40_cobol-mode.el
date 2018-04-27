@@ -1,14 +1,11 @@
-;;; 30_cobol-mode.el --- setup cobol-mode.
-;;
-;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2018/01/28 01:16:43>
-;;
-
+;;; 30_cobol-mode.el --- configurations.
 ;;; Commentary:
-
 ;;; Code:
 
 (use-package cobol-mode
+  :preface (progn (quelpa '(cobol-mode :fetcher github :repo "emacsmirror/cobol-mode"))
+                  (locate-library "cobol-mode"))
+  :commands (cobol-mode)
   :mode (("\\.cob\\'" . cobol-mode)
          ("\\.cbl\\'" . cobol-mode)
          ("\\.lst\\'" . cobol-mode)
@@ -17,6 +14,8 @@
 
 (use-package column-marker
   :after (cobol-mode)
+  :preface (progn (quelpa '(column-marker :fetcher github :repo "emacsmirror/column-marker"))
+                  (locate-library "column-marker"))
   :init
   (set-variable 'cobol-column-marker-1 6)
   (set-variable 'cobol-column-marker-2 72))

@@ -1,19 +1,17 @@
-;;; 20_git-gutter.el --- setup git-gutter.
-;;
-;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2018/01/28 00:53:03>
-;;
-
+;;; 20_git-gutter.el --- configurations.
 ;;; Commentary:
-
 ;;; Code:
 
 (use-package git-gutter-fringe
+  :preface (not window-system)
+  :ensure t
   :diminish git-gutter-mode
   :config
   (global-git-gutter-mode))
 
 (use-package git-gutter
+  :preface (bound-and-true-p window-system)
+  :ensure t
   :diminish git-gutter-mode
   :config
   (global-git-gutter-mode))

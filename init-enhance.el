@@ -1,11 +1,5 @@
 ;;; init-enhance.el --- 個人設定用の拡張機能.
-;;
-;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2018/04/14 16:25:25>
-;;
-
 ;;; Commentary:
-
 ;;; Code:
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -40,59 +34,27 @@
 (defvar e:package-repository nil
   "パッケージをインストールする際に使用するリポジトリ.")
 
-(defvar e:required-packages nil
-  "設定に必要なパッケージを定義.")
+(defvar e:package-initialized-p nil
+  "パッケージの初期化が完了しているか.")
 
 (defun e:add-package-repository (name url &optional priority)
   "パッケージリポジトリを追加する.
 NAME, URL は必須、PRIORITY は必要な場合のみ指定する."
   (add-to-list 'e:package-repository (list name url (or priority 0)) t))
 
-(cl-defun e:add-required-package (package &key (if t))
-  "設定に必要な PACKAGE を追加する."
-  (if if
-      (add-to-list 'e:required-packages package t)))
-
-(defun e:install-required-packages ()
-  "設定に必要なパッケージを一括でインストールする."
-  (cl-dolist (item e:package-repository)
-    (let ((archive (car item))
-          (location (cadr item))
-          (priority (or (cl-caddr item) 0)))
-      (when (os-type-win-p)
-        (setq location (replace-regexp-in-string "https://" "http://" location)))
-      (add-to-list 'package-archives (cons archive location))
-      (add-to-list 'package-archive-priorities (cons archive priority))))
-  (package-initialize)
-  (when (cl-remove-if (lambda (p) (package-installed-p p)) e:required-packages)
-    (package-refresh-contents)
-    (cl-dolist (p e:required-packages)
-      (unless (package-installed-p p)
-        (condition-case err
-            (progn (message "Install Package: %s." p)
-                   (package-install p))
-          (error
-           (message "%s" err)))))))
-
-(defun e:require (package &optional noerror)
-  "指定された PACKAGE をロードする.
-NOERROR が指定されている場合はエラーを無視する."
-  (require package nil noerror))
-
-(cl-defun e:require-package (package &optional load noerror)
-  "指定された PACKAGE をインストールする.
-LOAD が指定された場合はインストール後にロードする.
-NOERROR が指定されている場合はエラーを無視する."
-  (when (e:require 'package t)
-    (condition-case err
-        (or (package-installed-p package)
-            (progn (message "install: %s." package)
-                   (package-install package)))
-      (error (message "%s" err)
-             (cl-return-from e:require-package)))
-    (if load
-        (e:require package noerror)
-      (package-installed-p package))))
+(defun e:package-initialize ()
+  "パッケージの初期化."
+  (unless e:package-initialized-p
+    (cl-dolist (item e:package-repository)
+      (let ((archive (car item))
+            (location (cadr item))
+            (priority (or (cl-caddr item) 0)))
+        (when (os-type-win-p)
+          (setq location (replace-regexp-in-string "https://" "http://" location)))
+        (add-to-list 'package-archives (cons archive location))
+        (add-to-list 'package-archive-priorities (cons archive priority))))
+    (package-initialize)
+    (setq e:package-initialized-p t)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; パス関連の拡張
@@ -106,6 +68,7 @@ NOERROR が指定されている場合はエラーを無視する."
     (:cache (e:expand "cache" (e:get-dir :user)))
     (:local (e:expand "local" (e:get-dir :user)))
     (:conf (e:expand "config" (e:get-dir :user)))
+    (:config (e:expand "config" (e:get-dir :user)))
     (:lisp (e:expand "lisp" (e:get-dir :user)))
     (:temp (e:unexpand (file-truename (e:expand ".emacs" temporary-file-directory))))
     (:user user-emacs-directory)))

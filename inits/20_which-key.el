@@ -1,14 +1,9 @@
-;;; 20_which-key.el --- setup which-key.
-;;
-;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2018/01/28 01:15:17>
-;;
-
+;;; 20_which-key.el --- configurations.
 ;;; Commentary:
-
 ;;; Code:
 
 (use-package which-key
+  :ensure t
   :diminish which-key-mode
   :config
   (which-key-setup-side-window-right-bottom)

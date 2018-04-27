@@ -1,11 +1,5 @@
-;;; 60_url-cookie.el --- setup url-cookie.
-;;
-;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2018/04/25 11:08:56>
-;;
-
+;;; 60_url-cookie.el --- configurations.
 ;;; Commentary:
-
 ;;; Code:
 
 (use-package url-cookie

@@ -1,11 +1,5 @@
 ;;; init-enhance.el --- 環境回りの設定.
-;;
-;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2018/04/25 11:23:09>
-;;
-
 ;;; Commentary:
-
 ;;; Code:
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -79,8 +73,14 @@
 ;; 認証ファイル
 (set-variable 'auth-sources `(,(e:expand ".authinfo.gpg" :cache)))
 
+;; 行番号の表示
+(add-hook 'prog-mode-hook 'display-line-numbers-mode)
+(setq-default display-line-numbers-width 4)
+
+;; GPG関連
+(set-variable 'epa-pinentry-mode 'loopback)
+
 ;; さらに細かなもの
-(global-display-line-numbers-mode 1) ;; 行番号の表示
 (menu-bar-mode window-system) ;; コンソールではメニューバーを表示しない
 (tool-bar-mode             0) ;; ツールバーを非表示
 (tooltip-mode              0) ;; ツールチップを非表示

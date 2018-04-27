@@ -1,14 +1,10 @@
-;;; 20_lacarte.el --- setup lacarte.
-;;
-;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2018/01/28 00:59:57>
-;;
-
+;;; 20_lacarte.el --- configurations.
 ;;; Commentary:
-
 ;;; Code:
 
-(use-package lacarte)
+(use-package lacarte
+  :preface (progn (quelpa '(lacarte :fetcher github :repo "emacsmirror/lacarte"))
+                  (locate-library "lacarte")))
 
 (provide '20_lacarte)
 ;;; 20_lacarte.el ends here

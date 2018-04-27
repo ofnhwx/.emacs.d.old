@@ -1,14 +1,10 @@
-;;; 20_list-processes+.el --- setup list-processes+.
-;;
-;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2018/01/28 01:20:44>
-;;
-
+;;; 20_list-processes+.el --- configurations.
 ;;; Commentary:
-
 ;;; Code:
 
-(use-package list-processes+)
+(use-package list-processes+
+  :preface (progn (quelpa '(list-processes+ :fetcher github :repo "emacsmirror/list-processes-plus"))
+                  (locate-library "list-processes+")))
 
 (provide '20_list-processes+)
 ;;; 20_list-processes+.el ends here

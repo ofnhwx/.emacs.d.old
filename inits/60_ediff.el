@@ -1,11 +1,5 @@
-;;; 60_ediff.el --- setup ediff.
-;;
-;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2018/04/25 10:57:08>
-;;
-
+;;; 60_ediff.el --- configurations.
 ;;; Commentary:
-
 ;;; Code:
 
 (use-package ediff

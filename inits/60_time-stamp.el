@@ -1,11 +1,5 @@
-;;; 60_time-stamp.el --- setup time-stamp.
-;;
-;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2018/04/25 11:00:32>
-;;
-
+;;; 60_time-stamp.el --- configurations.
 ;;; Commentary:
-
 ;;; Code:
 
 (use-package time-stamp

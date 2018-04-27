@@ -1,28 +1,22 @@
-;;; 20_company.el --- setup company.
-;;
-;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2018/04/10 17:11:26>
-;;
-
+;;; 20_company.el --- configurations.
 ;;; Commentary:
-
 ;;; Code:
 
 (use-package company
+  :ensure t
   :diminish company-mode
   :init
-  (set-variable 'company-idle-delay 0.1)          ;; 補完候補をすぐに表示
-  (set-variable 'company-minimum-prefix-length 1) ;; 補完開始文字数
-  (set-variable 'company-selection-wrap-around t) ;; 上下でループ
+  (set-variable 'company-idle-delay 0)
+  (set-variable 'company-minimum-prefix-length 2)
+  (set-variable 'company-selection-wrap-around t)
   :config
-  ;; ヘルパー関数
   (defun set-company-backends (backends)
     (make-local-variable 'company-backends)
     (add-to-list 'company-backends backends))
-  ;; 有効化
   (global-company-mode))
 
 (use-package company
+  :no-require t
   :after (smartparens)
   :config
   ;; `smartparens'を一時的に無効にする
@@ -41,7 +35,8 @@
   (add-hook 'company-completion-cancelled-hook 'revert-smartparens-with-company))
 
 (use-package company-php
-  :after (company php-mode)
+  :after (company)
+  :ensure t
   :if
   (set-variable 'ac-php-tags-path (e:expand "ac-php" :cache))
   :config
@@ -49,7 +44,8 @@
     (set-company-backends '(company-ac-php-backend company-dabbrev-code)))
   (add-hook 'php-mode-hook 'company-php-setup))
 
-(use-package company;;web
+(use-package company
+  :no-require t
   :after (web-mode)
   :config
   (defun company-web-setup()
@@ -61,7 +57,8 @@
       (set-company-backends backends)))
   (add-hook 'web-mode-hook 'company-web-setup))
 
-(use-package company;;irony
+(use-package company
+  :no-require t
   :after (irony)
   :config
   (defun company-irony-setup ()

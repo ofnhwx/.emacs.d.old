@@ -1,30 +1,29 @@
-;;; 20_avy.el --- setup avy.
-;;
-;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2018/01/28 00:49:05>
-;;
-
+;;; 20_avy.el --- configurations.
 ;;; Commentary:
-
 ;;; Code:
 
-(use-package avy)
+(use-package avy
+  :ensure t)
 
 (use-package ace-link
   :after (avy)
+  :ensure t
   :config
   (ace-link-setup-default))
 
 (use-package ace-window
-  :after (avy))
+  :after (avy)
+  :ensure t)
 
 (use-package avy-migemo
   :after (avy migemo)
+  :ensure t
   :config
   (avy-migemo-mode 1))
 
 (use-package avy-zap
-  :after (avy))
+  :after (avy)
+  :ensure t)
 
 (provide '20_avy)
 ;;; 20_avy.el ends here

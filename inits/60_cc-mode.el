@@ -1,11 +1,5 @@
-;;; 40_cc-mode.el --- setup template.
-;;
-;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2018/04/24 16:54:56>
-;;
-
+;;; 40_cc-mode.el --- configurations.
 ;;; Commentary:
-
 ;;; Code:
 
 (use-package cc-mode

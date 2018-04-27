@@ -1,11 +1,5 @@
-;;; 60_org.el --- setup org.
-;;
-;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2018/04/25 11:05:35>
-;;
-
+;;; 60_org.el --- configurations.
 ;;; Commentary:
-
 ;;; Code:
 
 (use-package org

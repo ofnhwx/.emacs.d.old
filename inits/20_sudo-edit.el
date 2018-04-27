@@ -1,14 +1,9 @@
-;;; 20_sudo-edit.el --- setup sudo-edit.
-;;
-;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2018/01/28 01:13:37>
-;;
-
+;;; 20_sudo-edit.el --- configurations.
 ;;; Commentary:
-
 ;;; Code:
 
-(use-package sudo-edit)
+(use-package sudo-edit
+  :ensure t)
 
 (provide '20_sudo-edit)
 ;;; 20_sudo-edit.el ends here

@@ -1,11 +1,5 @@
-;;; 60_recentf.el --- setup recentf.
-;;
-;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2018/04/25 10:48:07>
-;;
-
+;;; 60_recentf.el --- configurations.
 ;;; Commentary:
-
 ;;; Code:
 
 (use-package recentf
@@ -26,7 +20,8 @@
   (recentf-mode 1))
 
 (use-package recentf-ext
-  :after (recentf))
+  :after (recentf)
+  :ensure t)
 
 (provide '60_recentf)
 ;;; 60_recentf.el ends here

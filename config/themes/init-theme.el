@@ -1,11 +1,5 @@
 ;;; init-theme.el --- 色の設定.
-;;
-;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2018/04/25 11:23:25>
-;;
-
 ;;; Commentary:
-
 ;;; Code:
 
 (deftheme init)

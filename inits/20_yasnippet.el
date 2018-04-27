@@ -1,14 +1,9 @@
-;;; 20_yasnippet.el --- setup yasnippet.
-;;
-;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2018/04/18 10:16:24>
-;;
-
+;;; 20_yasnippet.el --- configurations.
 ;;; Commentary:
-
 ;;; Code:
 
 (use-package yasnippet
+  :ensure t
   :diminish yas-minor-mode
   :init
   (set-variable 'yas--default-user-snippets-dir (e:expand "snippets" :conf))

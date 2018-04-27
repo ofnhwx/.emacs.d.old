@@ -9,17 +9,14 @@
 # 無視したくないファイルを以下に'![ファイル名]'で指定する
 ##### Gitで管理するファイル #####
 !/config/
-!/config/ddskk/init
 !/config/ddskk/skk.tut
 !/inits/
-!/lisp/
 !/.editorconfig
 !/.gitattributes
 !/.gitconfig
 !/.gitignore
 !/init-config.el
 !/init-enhance.el
-!/init-packages.el
 !/init-setup.el
 !/init.el
 !/README.md

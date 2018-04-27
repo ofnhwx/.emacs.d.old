@@ -1,14 +1,9 @@
-;;; 20_string-edit.el --- setup string-edit.
-;;
-;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2018/01/28 01:13:28>
-;;
-
+;;; 20_string-edit.el --- configurations.
 ;;; Commentary:
-
 ;;; Code:
 
-(use-package string-edit)
+(use-package string-edit
+  :ensure t)
 
 (provide '20_string-edit)
 ;;; 20_string-edit.el ends here

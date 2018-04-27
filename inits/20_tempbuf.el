@@ -1,14 +1,10 @@
-;;; 30_tempbuf.el --- setup tempbuf.
-;;
-;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/04/22 23:31:00>
-;;
-
+;;; 30_tempbuf.el --- configurations.
 ;;; Commentary:
-
 ;;; Code:
 
 (use-package tempbuf
+  :preface (progn (quelpa '(tempbuf :fetcher wiki :files ("tempbuf.el")))
+                  (locate-library "tempbuf"))
   :config
   (defmacro enable-tempbuf--hook (hook)
     `(add-hook ,hook 'turn-on-tempbuf-mode)))

@@ -1,24 +1,25 @@
-;;; 20_helm.el --- setup helm.
-;;
-;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2018/04/26 13:50:33>
-;;
-
+;;; 20_helm.el --- configurations.
 ;;; Commentary:
-
 ;;; Code:
 
 (use-package helm
-  :bind
-  (:map global-map
-        ([remap execute-extended-command] . helm-M-x))
-  :init
+  :ensure t
+  :config
+  (bind-keys
+   :map global-map
+   ([remap execute-extended-command] . helm-M-x)))
+
+(use-package helm
+  :no-require t
+  :after (windata)
+  :config
   (defun my/helm-display-buffer (buffer &optional resume)
     (let ((helm-windata '(frame bottom 0.3 nil)))
       (apply 'windata-display-buffer buffer helm-windata)))
   (set-variable 'helm-display-function 'my/helm-display-buffer))
 
 (use-package helm
+  :no-require t
   :after (projectile)
   :config
   (defun helm-find-files-with-projectile (&optional arg)
@@ -28,13 +29,14 @@
       (helm-find-files arg))))
 
 (use-package helm-ag
+  :preface (or (executable-find "rg")  ;; ripgrep
+               (executable-find "pt")) ;; The Platinum Searcher
   :after (helm)
+  :ensure t
   :init
   (cond
-   ((executable-find "rg") ;; ripgrep
-    (set-variable 'helm-ag-base-command "rg --color never --no-heading --smart-case --vimgrep"))
-   ((executable-find "pt") ;; The Platinum Searcher
-    (set-variable 'helm-ag-base-command "pt --nocolor --nogroup --smart-case")))
+   ((executable-find "rg") (set-variable 'helm-ag-base-command "rg --color never --no-heading --smart-case --vimgrep"))
+   ((executable-find "pt") (set-variable 'helm-ag-base-command "pt --nocolor --nogroup --smart-case")))
   :config
   (defun helm-ag--project-root ()
     (cl-loop for dir in '(".git" ".git/" ".hg/" ".svn/")
@@ -42,31 +44,41 @@
              return it)))
 
 (use-package helm-c-yasnippet
-  :after (helm))
+  :after (helm yasnippet)
+  :ensure t)
 
 (use-package helm-descbinds
-  :after (helm))
+  :after (helm)
+  :ensure t)
 
 (use-package helm-dired-history
-  :after (helm))
+  :after (helm dired)
+  :ensure t)
 
 (use-package helm-elscreen
   :after (helm elscreen)
-  :bind
-  (:map elscreen-map
-        ("C-z" . helm-elscreen)))
+  :ensure t
+  :config
+  (bind-keys
+   :map elscreen-map
+   ("C-z" . helm-elscreen)))
 
 (use-package helm-flycheck
-  :after (helm flycheck))
+  :after (helm flycheck)
+  :ensure t)
 
 (use-package helm-ghq
-  :after (helm))
+  :preface (executable-find "ghq")
+  :after (helm)
+  :ensure t)
 
 (use-package helm-projectile
-  :after (helm projectile))
+  :after (helm projectile)
+  :ensure t)
 
 (use-package helm-swoop
-  :after (helm))
+  :after (helm)
+  :ensure t)
 
 (provide '20_helm)
 ;;; 20_helm.el ends here

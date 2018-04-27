@@ -1,11 +1,5 @@
-;;; 60_abbrev.el --- setup template.
-;;
-;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2018/04/25 10:36:15>
-;;
-
+;;; 60_abbrev.el --- configurations.
 ;;; Commentary:
-
 ;;; Code:
 
 (use-package abbrev

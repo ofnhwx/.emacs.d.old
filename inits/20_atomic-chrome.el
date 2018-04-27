@@ -1,14 +1,9 @@
-;;; 20_atomic-chrome.el --- setup template.
-;;
-;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2018/01/28 00:43:03>
-;;
-
+;;; 20_atomic-chrome.el --- configurations.
 ;;; Commentary:
-
 ;;; Code:
 
 (use-package atomic-chrome
+  :ensure t
   :config
   (atomic-chrome-start-server))
 

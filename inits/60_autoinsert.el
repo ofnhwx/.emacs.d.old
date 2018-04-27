@@ -1,11 +1,5 @@
-;;; 60_autoinsert.el --- setup autoinsert.
-;;
-;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2018/04/25 10:37:24>
-;;
-
+;;; 60_autoinsert.el --- configurations.
 ;;; Commentary:
-
 ;;; Code:
 
 (use-package autoinsert

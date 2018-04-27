@@ -1,14 +1,9 @@
-;;; 20_flycheck.el --- setup template.
-;;
-;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2018/04/18 14:47:05>
-;;
-
+;;; 20_flycheck.el --- configurations.
 ;;; Commentary:
-
 ;;; Code:
 
 (use-package flycheck
+  :ensure t
   :init
   (set-variable 'flycheck-check-syntax-automatically '(save mode-enabled))
   (set-variable 'flycheck-idle-change-delay 3.0)
@@ -17,6 +12,7 @@
   (global-flycheck-mode t))
 
 (use-package flycheck
+  :no-require t
   :after (web-mode)
   :config
   (flycheck-add-mode 'html-tidy 'web-mode)
@@ -24,11 +20,13 @@
 
 (use-package flycheck-irony
   :after (flycheck irony)
+  :ensure t
   :config
   (flycheck-irony-setup))
 
 (use-package flycheck-swift
-  :after (flycheck swift-mode))
+  :after (flycheck swift-mode)
+  :ensure t)
 
 (provide '20_flycheck)
 ;;; 20_flycheck.el ends here

@@ -1,14 +1,12 @@
-;;; 20_dump-jump.el --- setup dumb-jump.
-;;
-;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2018/01/28 00:51:40>
-;;
-
+;;; 20_dump-jump.el --- configurations.
 ;;; Commentary:
-
 ;;; Code:
 
 (use-package dumb-jump
+  :ensure t)
+
+(use-package dumb-jump
+  :no-require t
   :after (helm)
   :init
   (set-variable 'dumb-jump-selector 'helm))

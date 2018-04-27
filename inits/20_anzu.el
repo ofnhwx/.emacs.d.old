@@ -1,14 +1,9 @@
-;;; 20_anzu.el --- setup anzu.
-;;
-;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2018/01/28 00:42:58>
-;;
-
+;;; 20_anzu.el --- configurations.
 ;;; Commentary:
-
 ;;; Code:
 
 (use-package anzu
+  :ensure t
   :diminish anzu-mode
   :config
   (global-anzu-mode 1))

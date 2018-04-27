@@ -1,11 +1,5 @@
-;;; 60_eshell.el --- setup template.
-;;
-;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2018/04/25 12:07:14>
-;;
-
+;;; 60_eshell.el --- configurations.
 ;;; Commentary:
-
 ;;; Code:
 
 (use-package eshell
@@ -43,7 +37,8 @@
         (view-file (pop args))))))
 
 (use-package eshell
-  :after (eshell helm)
+  :no-require t
+  :after (helm)
   :config
   (defun eshell/setup-keys ()
     (bind-keys

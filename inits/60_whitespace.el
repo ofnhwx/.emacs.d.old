@@ -1,11 +1,5 @@
-;;; 60_whitespace.el --- setup whitespace.
-;;
-;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2018/04/25 10:50:40>
-;;
-
+;;; 60_whitespace.el --- configurations.
 ;;; Commentary:
-
 ;;; Code:
 
 (use-package whitespace

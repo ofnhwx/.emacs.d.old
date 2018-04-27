@@ -1,11 +1,5 @@
-;;; 60_semantic.el --- setup template.
-;;
-;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2018/04/18 10:27:52>
-;;
-
+;;; 60_semantic.el --- configurations.
 ;;; Commentary:
-
 ;;; Code:
 
 (use-package semantic

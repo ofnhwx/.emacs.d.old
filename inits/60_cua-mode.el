@@ -1,11 +1,5 @@
-;;; 60_cua-mode.el --- setup cua-mode.
-;;
-;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2018/04/25 10:40:37>
-;;
-
+;;; 60_cua-mode.el --- configurations.
 ;;; Commentary:
-
 ;;; Code:
 
 (use-package cua-base

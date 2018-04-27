@@ -1,14 +1,9 @@
-;;; 20_multiple-cursors.el --- setup multiple-cursors.
-;;
-;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2018/01/28 01:05:51>
-;;
-
+;;; 20_multiple-cursors.el --- configurations.
 ;;; Commentary:
-
 ;;; Code:
 
 (use-package multiple-cursors
+  :ensure t
   :init
   (set-variable 'mc/list-file (e:expand "mc-lists.el" :cache))
   :config

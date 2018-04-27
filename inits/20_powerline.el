@@ -1,14 +1,9 @@
-;;; 20_powerline.el --- setup powerline.
-;;
-;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2018/01/28 01:07:17>
-;;
-
+;;; 20_powerline.el --- configurations.
 ;;; Commentary:
-
 ;;; Code:
 
 (use-package powerline
+  :no-require t
   :after (evil)
   :config
   (defface powerline-evil-normal-face   '((t (:foreground "#000000" :background "#59ff59"))) "NORMAL state."   :group 'powerline)
@@ -27,6 +22,7 @@
         nil))))
 
 (use-package powerline
+  :ensure t
   :init
   (set-variable 'powerline-default-separator 'utf-8)
   :config

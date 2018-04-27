@@ -1,11 +1,5 @@
-;;; 60_tramp.el --- setup tramp.
-;;
-;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2018/04/25 11:06:44>
-;;
-
+;;; 60_tramp.el --- configurations.
 ;;; Commentary:
-
 ;;; Code:
 
 (use-package tramp

@@ -1,11 +1,5 @@
-;;; 60_eldoc.el --- setup eldoc.
-;;
-;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2018/04/25 10:45:48>
-;;
-
+;;; 60_eldoc.el --- configurations.
 ;;; Commentary:
-
 ;;; Code:
 
 (use-package eldoc
@@ -19,15 +13,19 @@
   (add-hook 'ielm-mode-hook 'turn-on-eldoc-mode))
 
 (use-package eldoc-extension
-  :after (eldoc))
+  :after (eldoc)
+  :preface (progn (quelpa '(eldoc-extension :fetcher github :repo "emacsmirror/eldoc-extension"))
+                  (locate-library "eldoc-extension")))
 
 (use-package php-eldoc
-  :after (eldoc php-mode)
+  :after (eldoc)
+  :ensure t
   :config
   (add-hook 'php-mode-hook 'php-eldoc-enable))
 
 (use-package irony-eldoc
-  :after (eldoc irony)
+  :after (eldoc)
+  :ensure t
   :config
   (add-hook 'irony-mode-hook 'irony-eldoc))
 

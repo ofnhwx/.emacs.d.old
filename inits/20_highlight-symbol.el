@@ -1,17 +1,12 @@
-;;; 20_highlight-symbol.el --- setup template.
-;;
-;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2018/01/28 00:59:49>
-;;
-
+;;; 20_highlight-symbol.el --- configurations.
 ;;; Commentary:
-
 ;;; Code:
 
 (use-package highlight-symbol
+  :ensure t
   :diminish highlight-symbol-mode
   :init
-  (set-variable 'highlight-symbol-idle-delay 1.5)
+  (set-variable 'highlight-symbol-idle-delay 3.0)
   :config
   (add-hook 'prog-mode-hook 'highlight-symbol-mode)
   (add-hook 'prog-mode-hook 'highlight-symbol-nav-mode))

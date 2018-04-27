@@ -1,11 +1,5 @@
-;;; 60_server.el --- setup server.
-;;
-;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2018/04/25 11:04:49>
-;;
-
+;;; 60_server.el --- configurations.
 ;;; Commentary:
-
 ;;; Code:
 
 (use-package server

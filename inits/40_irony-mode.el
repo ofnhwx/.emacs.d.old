@@ -1,18 +1,15 @@
-;;; 40_irony-mode.el --- setup template.
-;;
-;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2018/04/18 10:16:55>
-;;
-
+;;; 40_irony-mode.el --- configurations.
 ;;; Commentary:
-
 ;;; Code:
 
 (use-package irony
+  :ensure t
   :diminish irony-mode
+  :commands (irony-mode)
   :init
   (set-variable 'irony-additional-clang-options '("-std=c++11"))
   (set-variable 'irony-user-dir (e:expand "irony" :cache))
+  (set-variable 'irony-server-install-prefix irony-user-dir)
   :config
   (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
   (add-hook 'c-mode-hook 'irony-mode)

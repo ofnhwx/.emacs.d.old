@@ -1,14 +1,11 @@
-;;; 20_auto-shell-command.el --- setup auto-shell-command.
-;;
-;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2018/01/28 00:43:16>
-;;
-
+;;; 20_auto-shell-command.el --- configurations.
 ;;; Commentary:
-
 ;;; Code:
 
 (use-package auto-shell-command
+  :ensure t
+  :init
+  (defvar default-mode-line-format nil)
   :config
   (defun ascmd:toggle--display-status ()
     (message "ascmd: %s." (if ascmd:active "enabled" "disabled")))

@@ -1,11 +1,5 @@
-;;; 60_generic-x.el --- setup generic-x.
-;;
-;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2018/04/25 10:58:42>
-;;
-
+;;; 60_generic-x.el --- configurations.
 ;;; Commentary:
-
 ;;; Code:
 
 (use-package generic-x)

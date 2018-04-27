@@ -1,14 +1,9 @@
-;;; 20_popwin.el --- setup popwin.
-;;
-;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2018/01/28 01:05:56>
-;;
-
+;;; 20_popwin.el --- configurations.
 ;;; Commentary:
-
 ;;; Code:
 
 (use-package popwin
+  :ensure t
   :config
   (popwin-mode 1))
 

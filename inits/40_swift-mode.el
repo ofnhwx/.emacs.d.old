@@ -1,14 +1,10 @@
-;;; 40_swift-mode.el --- setup template.
-;;
-;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2018/01/28 01:18:27>
-;;
-
+;;; 40_swift-mode.el --- configurations.
 ;;; Commentary:
-
 ;;; Code:
 
-(use-package swift-mode)
+(use-package swift-mode
+  :ensure t
+  :commands (swift-mode))
 
 (provide '40_swift-mode)
 ;;; 40_swift-mode.el ends here

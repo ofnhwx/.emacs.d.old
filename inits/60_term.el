@@ -1,22 +1,19 @@
-;;; 60_term.el --- setup term.
-;;
-;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2018/03/29 15:25:03>
-;;
-
+;;; 60_term.el --- configurations.
 ;;; Commentary:
-
 ;;; Code:
 
 (use-package term+
   :after (term)
-  :bind
-  (:map term+char-map
-        ("C-^" . nil)
-        ("C-z" . nil)))
+  :ensure t
+  :config
+  (bind-keys
+   :map term+char-map
+   ("C-^" . nil)
+   ("C-z" . nil)))
 
 (use-package term+mux
-  :after (term+))
+  :after (term+)
+  :ensure t)
 
 (provide '60_term)
 ;;; 60_term.el ends here

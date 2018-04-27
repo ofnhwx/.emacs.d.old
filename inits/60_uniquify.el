@@ -1,11 +1,5 @@
-;;; 60_uniquify.el --- setup uniquify.
-;;
-;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2018/04/25 11:07:30>
-;;
-
+;;; 60_uniquify.el --- configurations.
 ;;; Commentary:
-
 ;;; Code:
 
 (use-package uniquify

@@ -1,15 +1,11 @@
-;;; 20_ctags-update.el --- setup ctags-update.
-;;
-;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2018/03/29 15:33:47>
-;;
-
+;;; 20_ctags-update.el --- configurations.
 ;;; Commentary:
-
 ;;; Code:
 
 (use-package ctags-update
+  :preface (executable-find "ctags")
   :after (php-mode)
+  :ensure t
   :config
   (add-hook 'php-mode-hook 'turn-on-ctags-auto-update-mode))
 

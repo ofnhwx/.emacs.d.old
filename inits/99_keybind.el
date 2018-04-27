@@ -1,11 +1,5 @@
 ;;; 99_keybind.el --- キーバインド.
-;;
-;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2018/04/23 14:07:13>
-;;
-
 ;;; Commentary:
-
 ;;; Code:
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -16,6 +10,7 @@
 (bind-keys
  :map base-command-map
  ("SPC" . company-complete)
+ ("," . hydra-mc/body)
  (":" . avy-goto-char)
  (";" . avy-goto-word-1)
  ("b" . buffer-command-map)
@@ -219,14 +214,6 @@
   ("{" shrink-window-horizontally)
   ("}" enlarge-window-horizontally)
   ("q" nil "quit" :color blue))
-
-(mykie:set-keys global-map
-  "C-w"
-  :default (kill-region (line-beginning-position) (line-end-position))
-  :region kill-region
-  "M-w"
-  :default (kill-ring-save (line-beginning-position) (line-end-position))
-  :region kill-ring-save)
 
 (provide '99_keybind)
 ;;; 99_keybind.el ends here

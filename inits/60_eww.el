@@ -1,11 +1,5 @@
-;;; 60_eww.el --- setup eww.
-;;
-;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2018/04/25 10:55:31>
-;;
-
+;;; 60_eww.el --- configurations.
 ;;; Commentary:
-
 ;;; Code:
 
 (use-package eww
