@@ -82,17 +82,18 @@
 
 ;; さらに細かなもの
 (menu-bar-mode window-system) ;; コンソールではメニューバーを表示しない
-(tool-bar-mode             0) ;; ツールバーを非表示
-(tooltip-mode              0) ;; ツールチップを非表示
-(scroll-bar-mode           0) ;; スクロールバーを表示しない
-(show-paren-mode           1) ;; paren(対応する括弧のハイライト)を有効
-(blink-cursor-mode         0) ;; カーソルを点滅しない
-(global-hl-line-mode       0) ;; 下線を非表示(この辺りは'powerline'で対応)
-(size-indication-mode      0) ;; サイズを非表示
-(display-time-mode         0) ;; 時間を非表示
-(line-number-mode          0) ;; 行番号を非表示
-(column-number-mode        0) ;; 列番号を非表示
-(display-battery-mode      0) ;; バッテリー状態を非表示
+(tool-bar-mode        0) ;; ツールバーを非表示
+(tooltip-mode         0) ;; ツールチップを非表示
+(scroll-bar-mode      0) ;; スクロールバーを表示しない
+(show-paren-mode      1) ;; paren(対応する括弧のハイライト)を有効
+(blink-cursor-mode    0) ;; カーソルを点滅しない
+(save-place-mode      1) ;; カーソル位置を保存
+(global-hl-line-mode  0) ;; 下線を非表示(この辺りは'powerline'で対応)
+(size-indication-mode 0) ;; サイズを非表示
+(display-time-mode    0) ;; 時間を非表示
+(line-number-mode     0) ;; 行番号を非表示
+(column-number-mode   0) ;; 列番号を非表示
+(display-battery-mode 0) ;; バッテリー状態を非表示
 (set-variable 'gc-cons-threshold (* 128 1024 1024)) ;;
 (set-variable 'gc-cons-percentage 0.5)
 (set-variable 'max-specpdl-size     10000)  ;; 安全策
