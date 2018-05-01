@@ -27,7 +27,7 @@
   (set-variable 'auto-save-buffers-enhanced-quiet-save-p t)
   (set-variable 'auto-save-buffers-enhanced-interval 3)
   (set-variable 'auto-save-buffers-enhanced-save-scratch-buffer-to-file-p t)
-  (set-variable 'auto-save-buffers-enhanced-file-related-with-scratch-buffer (e:expand ".scratch" :cache))
+  (set-variable 'auto-save-buffers-enhanced-file-related-with-scratch-buffer (e:expand "scratch" :cache))
   :config
   (auto-save-buffers-enhanced t))
 

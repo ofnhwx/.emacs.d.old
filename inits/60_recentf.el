@@ -4,7 +4,7 @@
 
 (use-package recentf
   :init
-  (set-variable 'recentf-save-file (e:expand ".recentf" :cache))
+  (set-variable 'recentf-save-file (e:expand "recentf" :cache))
   (set-variable 'recentf-max-menu-items 20)
   (set-variable 'recentf-max-saved-items 3000)
   (set-variable 'recentf-exclude `("^/[^/:]+:" "\\.howm$" "\\.org$" ,(rx bol (eval (e:get-dir :temp)))))

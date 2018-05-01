@@ -5,7 +5,7 @@
 (use-package ido
   :init
   (set-variable 'ido-enable-flex-matching t)
-  (set-variable 'ido-save-directory-list-file (e:expand ".ido.last" :cache))
+  (set-variable 'ido-save-directory-list-file (e:expand "ido.last" :cache))
   :config
   (ido-everywhere 1)
   (ido-mode 1))
