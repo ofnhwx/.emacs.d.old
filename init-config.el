@@ -80,6 +80,13 @@
 ;; GPG関連
 (set-variable 'epa-pinentry-mode 'loopback)
 
+;; カーソル位置を保存
+(set-variable 'save-place-file (e:expand "places" :cache))
+(save-place-mode 1)
+
+;; URLキャッシュ
+(set-variable 'url-cache-directory (e:expand "url" :cache))
+
 ;; さらに細かなもの
 (menu-bar-mode window-system) ;; コンソールではメニューバーを表示しない
 (tool-bar-mode        0) ;; ツールバーを非表示
