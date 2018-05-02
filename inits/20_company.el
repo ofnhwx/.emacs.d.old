@@ -6,13 +6,14 @@
   :ensure t
   :init
   (set-variable 'company-lighter-base "C")
+  (set-variable 'company-transformers '(company-sort-by-occurrence company-sort-by-backend-importance))
   (set-variable 'company-idle-delay 0)
   (set-variable 'company-minimum-prefix-length 1)
   (set-variable 'company-selection-wrap-around t)
   :config
   (defun set-company-backends (backends)
     (make-local-variable 'company-backends)
-    (add-to-list 'company-backends (-filter 'fboundp backends)))
+    (add-to-list 'company-backends (--filter (or (fboundp it) (eq it :with)) backends)))
   (add-hook 'prog-mode-hook 'company-mode))
 
 (use-package company
@@ -88,12 +89,7 @@
   :after (irony)
   :config
   (defun company-irony-setup ()
-    (let (backends)
-      (add-to-list 'backends 'company-dabbrev-code)
-      (add-to-list 'backends 'company-yasnippet)
-      (add-to-list 'backends 'company-irony)
-      (add-to-list 'backends 'company-irony-c-headers)
-      (set-company-backends backends)))
+    (set-company-backends '(company-irony company-irony-c-headers :with company-dabbrev-code company-yasnippet)))
   (add-hook 'irony-mode-hook 'company-irony-setup))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
