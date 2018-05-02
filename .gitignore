@@ -4,7 +4,10 @@
 /.*
 
 # 除外するディレクトリ内の特定のファイルだけ有効にしたい
+/config/authinfo.plist
 /config/ddskk/*
+/config/org
+/config/rest
 
 # 無視したくないファイルを以下に'![ファイル名]'で指定する
 ##### Gitで管理するファイル #####

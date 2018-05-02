@@ -71,7 +71,8 @@
 (set-variable 'display-time-format " %Y/%m/%d(%a) %H:%M")
 
 ;; 認証ファイル
-(set-variable 'auth-sources `(,(e:expand ".authinfo.gpg" :cache)))
+(set-variable 'auth-sources `(,(e:expand "authinfo.plist" :config)))
+(set-variable 'plstore-encoded t)
 
 ;; 行番号の表示
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)

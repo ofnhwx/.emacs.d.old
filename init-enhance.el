@@ -91,6 +91,13 @@ NAME, URL は必須、PRIORITY は必要な場合のみ指定する."
 ;;; その他便利なやつ
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(defun e:auth-source-get (property &rest spec)
+  "認証情報から SPEC に一致する項目の PROPERTY を取得する."
+  (let ((plist (car (apply 'auth-source-search spec)))
+        (pkey (intern (format ":%s" property))))
+    (when plist
+      (plist-get plist pkey))))
+
 (defun e:load-local-config (filename)
   "FILENAME で指定されたローカル設定を読み込む."
   (let* ((file (e:expand filename :local))

@@ -4,8 +4,8 @@
 
 (use-package codic
   :ensure t
-  :config
-  (e:load-local-config "codic"))
+  :init
+  (set-variable 'codic-api-token (e:auth-source-get 'api-token :app "codic")))
 
 (provide '20_codic)
 ;;; 20_codic.el ends here
