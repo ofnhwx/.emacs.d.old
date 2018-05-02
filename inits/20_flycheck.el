@@ -5,11 +5,12 @@
 (use-package flycheck
   :ensure t
   :init
+  (set-variable 'flycheck-mode-line-prefix "FC")
   (set-variable 'flycheck-check-syntax-automatically '(save mode-enabled))
   (set-variable 'flycheck-idle-change-delay 3.0)
   (set-variable 'flycheck-phpcs-standard "PSR2")
   :config
-  (global-flycheck-mode t))
+  (add-hook 'prog-mode-hook 'flycheck-mode))
 
 (use-package flycheck
   :no-require t

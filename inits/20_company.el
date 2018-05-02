@@ -4,16 +4,16 @@
 
 (use-package company
   :ensure t
-  ;;:diminish company-mode
   :init
+  (set-variable 'company-lighter-base "C")
   (set-variable 'company-idle-delay 0)
-  (set-variable 'company-minimum-prefix-length 2)
+  (set-variable 'company-minimum-prefix-length 1)
   (set-variable 'company-selection-wrap-around t)
   :config
   (defun set-company-backends (backends)
     (make-local-variable 'company-backends)
     (add-to-list 'company-backends (-filter 'fboundp backends)))
-  (global-company-mode))
+  (add-hook 'prog-mode-hook 'company-mode))
 
 (use-package company
   :no-require t
