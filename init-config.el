@@ -48,8 +48,9 @@
 ;;; 環境設定(共通)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; 終了コマンドに別名
+;; コマンドに別名を追加
 (defalias 'exit 'save-buffers-kill-terminal)
+(defalias 'yes-or-no-p 'y-or-n-p)
 
 ;; シェバング(#!)があったら'chmod +x'する
 (add-hook 'after-save-hook
