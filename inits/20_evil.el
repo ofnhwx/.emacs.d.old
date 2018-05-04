@@ -74,17 +74,33 @@
   :after (evil)
   :ensure t
   :init
-  (set-variable 'linum-relative-backend 'display-line-numbers-mode)
+  (cond
+   ((fboundp 'display-line-numbers-mode)
+    (set-variable 'linum-relative-backend 'display-line-numbers-mode))
+   (t
+    (set-variable 'linum-relative-format "%4s")
+    (set-variable 'linum-relative-current-symbol "=>")
+    (set-variable 'linum-relative-plusp-offset 1)))
   :config
   (defvar temp-linum-mode-state nil)
-  (defun linum-relative-on-and-update ()
-    (setq temp-linum-mode-state display-line-numbers-mode)
-    (linum-relative-on)
-    (linum-update-current))
-  (defun linum-relative-off-and-restore ()
-    (linum-relative-off)
-    (when temp-linum-mode-state
-      (display-line-numbers-mode)))
+  (cond
+   ((fboundp 'display-line-numbers-mode)
+    (defun linum-relative-on-and-update ()
+      (setq temp-linum-mode-state display-line-numbers-mode)
+      (linum-relative-on))
+    (defun linum-relative-off-and-restore ()
+      (linum-relative-off)
+      (when temp-linum-mode-state
+        (display-line-numbers-mode))))
+   (t
+    (defun linum-relative-on-and-update ()
+      (setq temp-linum-mode-state linum-mode)
+      (linum-relative-on)
+      (linum-update-current))
+    (defun linum-relative-off-and-restore ()
+      (linum-relative-off)
+      (when temp-linum-mode-state
+        (linum-mode)))))
   (add-hook 'evil-operator-state-entry-hook 'linum-relative-on-and-update)
   (add-hook 'evil-operator-state-exit-hook 'linum-relative-off-and-restore))
 

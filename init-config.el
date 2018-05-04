@@ -62,8 +62,15 @@
                 (buffer-file-name "%f" (dired-directory dired-directory "%b"))))
 
 ;; 行番号の表示
-(add-hook 'prog-mode-hook 'display-line-numbers-mode)
-(setq-default display-line-numbers-width 4)
+(cond
+ ((fboundp 'display-line-numbers-mode)
+  (add-hook 'prog-mode-hook 'display-line-numbers-mode)
+  (setq-default display-line-numbers-width 4))
+ (t
+  (set-variable 'linum-format "%4d")
+  (set-variable 'linum-delay t)
+  (defadvice linum-schedule (around linum-schedule--delay () activate)
+    (run-with-idle-timer 0.3 nil #'linum-update-current))))
 
 ;; ファイルを移動
 ;; [~/.emacs.d/cache]
