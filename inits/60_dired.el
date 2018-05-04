@@ -117,6 +117,7 @@
 
 (use-package dired-toggle-sudo
   :after (dired)
+  :ensure t
   :config
   (bind-keys
    :map dired-mode-map
