@@ -3,7 +3,7 @@
 ;;; Code:
 
 (use-package notmuch
-  :preface (executable-find "notmuch")
+  :if (executable-find "notmuch")
   :ensure t
   :init
   (set-variable 'notmuch-archive-tags '("-inbox" "-unread"))
@@ -26,7 +26,7 @@
   (setenv "XAPIAN_CJK_NGRAM" "1"))
 
 (use-package message
-  :preface (executable-find "msmtp")
+  :if (executable-find "msmtp")
   :init
   (set-variable 'message-send-mail-function 'message-send-mail-with-sendmail)
   (set-variable 'sendmail-program (executable-find "msmtp"))

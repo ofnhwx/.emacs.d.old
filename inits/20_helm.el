@@ -29,8 +29,8 @@
       (helm-find-files arg))))
 
 (use-package helm-ag
-  :preface (or (executable-find "rg")  ;; ripgrep
-               (executable-find "pt")) ;; The Platinum Searcher
+  :if (or (executable-find "rg")  ;; ripgrep
+          (executable-find "pt")) ;; The Platinum Searcher
   :after (helm)
   :ensure t
   :init
@@ -68,7 +68,7 @@
   :ensure t)
 
 (use-package helm-ghq
-  :preface (executable-find "ghq")
+  :if (executable-find "ghq")
   :after (helm)
   :ensure t)
 

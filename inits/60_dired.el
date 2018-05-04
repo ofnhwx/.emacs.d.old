@@ -22,8 +22,8 @@
    ("r" . wdired-change-to-wdired-mode)))
 
 (use-package dired+
-  :preface (progn (quelpa '(dired+ :fetcher github :repo "emacsmirror/dired-plus"))
-                  (locate-library "dired+"))
+  :if (progn (quelpa '(dired+ :fetcher github :repo "emacsmirror/dired-plus"))
+             (locate-library "dired+"))
   :after (dired)
   :config
   (bind-keys
@@ -34,7 +34,7 @@
   (add-hook 'dired-mode-hook 'dired-show-details))
 
 (use-package dired-atool
-  :preface (executable-find "atool")
+  :if (executable-find "atool")
   :after (dired)
   :ensure t
   :config
@@ -90,8 +90,8 @@
    ("C-c B" . dired-do-byte-compile)))
 
 (use-package dired-sort
-  :preface (progn (quelpa '(dired-sort :fetcher github :repo "emacsmirror/dired-sort"))
-                  (locate-library "dired-sort"))
+  :if (progn (quelpa '(dired-sort :fetcher github :repo "emacsmirror/dired-sort"))
+             (locate-library "dired-sort"))
   :after (dired hydra)
   :config
   (bind-keys

@@ -3,8 +3,8 @@
 ;;; Code:
 
 (use-package cobol-mode
-  :preface (progn (quelpa '(cobol-mode :fetcher github :repo "emacsmirror/cobol-mode"))
-                  (locate-library "cobol-mode"))
+  :if (progn (quelpa '(cobol-mode :fetcher github :repo "emacsmirror/cobol-mode"))
+             (locate-library "cobol-mode"))
   :commands (cobol-mode)
   :mode (("\\.cob\\'" . cobol-mode)
          ("\\.cbl\\'" . cobol-mode)
@@ -14,8 +14,8 @@
 
 (use-package column-marker
   :after (cobol-mode)
-  :preface (progn (quelpa '(column-marker :fetcher github :repo "emacsmirror/column-marker"))
-                  (locate-library "column-marker"))
+  :if (progn (quelpa '(column-marker :fetcher github :repo "emacsmirror/column-marker"))
+             (locate-library "column-marker"))
   :init
   (set-variable 'cobol-column-marker-1 6)
   (set-variable 'cobol-column-marker-2 72))

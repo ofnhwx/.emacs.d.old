@@ -3,14 +3,14 @@
 ;;; Code:
 
 (use-package git-gutter-fringe
-  :preface (not window-system)
+  :if (not window-system)
   :ensure t
   :diminish git-gutter-mode
   :config
   (global-git-gutter-mode))
 
 (use-package git-gutter
-  :preface (bound-and-true-p window-system)
+  :if (bound-and-true-p window-system)
   :ensure t
   :diminish git-gutter-mode
   :config

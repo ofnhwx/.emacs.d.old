@@ -14,8 +14,8 @@
 
 (use-package eldoc-extension
   :after (eldoc)
-  :preface (progn (quelpa '(eldoc-extension :fetcher github :repo "emacsmirror/eldoc-extension"))
-                  (locate-library "eldoc-extension")))
+  :if (progn (quelpa '(eldoc-extension :fetcher github :repo "emacsmirror/eldoc-extension"))
+             (locate-library "eldoc-extension")))
 
 (use-package php-eldoc
   :after (eldoc)

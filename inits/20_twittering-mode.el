@@ -3,8 +3,8 @@
 ;;; Code:
 
 (use-package twittering-mode
-  :preface (progn (quelpa 'twittering-mode)
-                  (locate-library "twittering-mode"))
+  :if (progn (quelpa 'twittering-mode)
+             (locate-library "twittering-mode"))
   :init
   (set-variable 'twittering-number-of-tweets-on-retrieval 50)
   (set-variable 'twittering-use-master-password t)

@@ -3,7 +3,7 @@
 ;;; Code:
 
 (use-package ctags-update
-  :preface (executable-find "ctags")
+  :if (executable-find "ctags")
   :after (php-mode)
   :ensure t
   :config

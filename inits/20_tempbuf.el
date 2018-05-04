@@ -3,8 +3,8 @@
 ;;; Code:
 
 (use-package tempbuf
-  :preface (progn (quelpa '(tempbuf :fetcher wiki :files ("tempbuf.el")))
-                  (locate-library "tempbuf"))
+  :if (progn (quelpa '(tempbuf :fetcher wiki :files ("tempbuf.el")))
+             (locate-library "tempbuf"))
   :config
   (defmacro enable-tempbuf--hook (hook)
     `(add-hook ,hook 'turn-on-tempbuf-mode)))

@@ -3,7 +3,7 @@
 ;;; Code:
 
 (use-package migemo
-  :preface (executable-find "cmigemo")
+  :if (executable-find "cmigemo")
   :ensure t
   :init
   (set-variable 'migemo-options '("-q" "--emacs"))
