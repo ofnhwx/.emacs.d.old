@@ -67,6 +67,7 @@
   (add-hook 'prog-mode-hook 'display-line-numbers-mode)
   (setq-default display-line-numbers-width 4))
  (t
+  (add-hook 'prog-mode-hook 'linum-mode)
   (set-variable 'linum-format "%4d")
   (set-variable 'linum-delay t)
   (defadvice linum-schedule (around linum-schedule--delay () activate)
