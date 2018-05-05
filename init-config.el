@@ -84,8 +84,10 @@
 (set-variable 'url-cookie-file (e:expand "cookies" :cache))
 ;; [~/.emacs.d/config]
 (set-variable 'auth-sources `(,(e:expand "authinfo.plist" :config)))
-(set-variable 'org-agenda-files (cl-remove-if 'file-directory-p (directory-files (e:expand "org/agenda" :config) t)))
 (set-variable 'org-directory (e:expand "org" :config))
+(let ((org-agenda-dir (e:expand "org/agenda" :config)))
+  (when (file-exists-p org-agenda-dir)
+    (set-variable 'org-agenda-files (cl-remove-if 'file-directory-p (directory-files org-agenda-dir t)))))
 
 ;; さらに細かなもの
 (menu-bar-mode window-system) ;; コンソールではメニューバーを表示しない
