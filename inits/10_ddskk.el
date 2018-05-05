@@ -6,6 +6,7 @@
   :ensure ddskk
   :defer t
   :init
+  (set-variable 'viper-mode nil)
   (set-variable 'skk-user-directory (e:expand "ddskk" :conf))
   (set-variable 'default-input-method "japanese-skk")
   (set-variable 'skk-byte-compile-init-file t)
