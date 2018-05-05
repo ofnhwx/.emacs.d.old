@@ -53,6 +53,8 @@ NAME, URL は必須、PRIORITY は必要な場合のみ指定する."
           (setq location (replace-regexp-in-string "https://" "http://" location)))
         (add-to-list 'package-archives (cons archive location))
         (add-to-list 'package-archive-priorities (cons archive priority))))
+    (unless (file-directory-p package-user-dir)
+      (package-refresh-contents))
     (package-initialize)
     (setq e:package-initialized-p t)))
 
