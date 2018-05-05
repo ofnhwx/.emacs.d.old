@@ -2,8 +2,8 @@
 ;;; Commentary:
 ;;; Code:
 
-(use-package ctags-update
-  :if (executable-find "ctags")
+(e:use-package ctags-update
+  (executable-find "ctags")
   :after (php-mode)
   :ensure t
   :defer t

@@ -2,8 +2,8 @@
 ;;; Commentary:
 ;;; Code:
 
-(use-package migemo
-  :if (executable-find "cmigemo")
+(e:use-package migemo
+  (executable-find "cmigemo")
   :ensure t
   :init
   (set-variable 'migemo-options '("-q" "--emacs"))

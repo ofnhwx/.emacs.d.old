@@ -56,6 +56,12 @@ NAME, URL は必須、PRIORITY は必要な場合のみ指定する."
     (package-initialize)
     (setq e:package-initialized-p t)))
 
+(defmacro e:use-package (name preconditions &rest args)
+  "PRECONDITIONS が満たされる場合のみ、NAME, ARGS を使用して`use-package'を呼び出す."
+  (declare (indent defun))
+  `(when ,preconditions
+     (use-package ,name ,@args)))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; パス関連の拡張
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

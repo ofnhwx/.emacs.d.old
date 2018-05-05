@@ -2,15 +2,15 @@
 ;;; Commentary:
 ;;; Code:
 
-(use-package git-gutter-fringe
-  :if (not window-system)
+(e:use-package git-gutter-fringe
+  (not window-system)
   :ensure t
   :diminish git-gutter-mode
   :config
   (global-git-gutter-mode))
 
-(use-package git-gutter
-  :if window-system
+(e:use-package git-gutter
+  window-system
   :ensure t
   :diminish git-gutter-mode
   :config

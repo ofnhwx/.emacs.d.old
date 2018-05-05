@@ -33,8 +33,8 @@
     (dired-hide-details-mode 0))
   (add-hook 'dired-mode-hook 'dired-show-details))
 
-(use-package dired-atool
-  :if (executable-find "atool")
+(e:use-package dired-atool
+  (executable-find "atool")
   :after (dired)
   :ensure t
   :config

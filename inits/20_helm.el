@@ -28,9 +28,9 @@
         (helm-projectile-find-file arg)
       (helm-find-files arg))))
 
-(use-package helm-ag
-  :if (or (executable-find "rg")  ;; ripgrep
-          (executable-find "pt")) ;; The Platinum Searcher
+(e:use-package helm-ag
+  (or (executable-find "rg")  ;; ripgrep
+      (executable-find "pt")) ;; The Platinum Searcher
   :after (helm)
   :ensure t
   :defer t
@@ -69,8 +69,8 @@
   :after (helm flycheck)
   :ensure t)
 
-(use-package helm-ghq
-  :if (executable-find "ghq")
+(e:use-package helm-ghq
+  (executable-find "ghq")
   :after (helm)
   :ensure t
   :defer t)

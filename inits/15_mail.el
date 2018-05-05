@@ -2,8 +2,8 @@
 ;;; Commentary:
 ;;; Code:
 
-(use-package notmuch
-  :if (executable-find "notmuch")
+(e:use-package notmuch
+  (executable-find "notmuch")
   :ensure t
   :defer t
   :init
@@ -26,8 +26,8 @@
   :config
   (setenv "XAPIAN_CJK_NGRAM" "1"))
 
-(use-package message
-  :if (executable-find "msmtp")
+(e:use-package message
+  (executable-find "msmtp")
   :after (notmuch)
   :init
   (set-variable 'message-send-mail-function 'message-send-mail-with-sendmail)
