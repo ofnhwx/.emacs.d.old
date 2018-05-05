@@ -10,7 +10,7 @@
   (global-git-gutter-mode))
 
 (use-package git-gutter
-  :if (bound-and-true-p window-system)
+  :if window-system
   :ensure t
   :diminish git-gutter-mode
   :config

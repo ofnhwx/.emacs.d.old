@@ -4,7 +4,7 @@
 
 (use-package swift-mode
   :ensure t
-  :commands (swift-mode))
+  :defer t)
 
 (provide '40_swift-mode)
 ;;; 40_swift-mode.el ends here

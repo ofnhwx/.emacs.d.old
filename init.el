@@ -40,6 +40,12 @@
 (unless (require 'use-package nil t)
   (package-install 'use-package))
 
+(use-package use-package
+  :init
+  (set-variable 'use-package-check-before-init t)
+  (set-variable 'use-package-verbose t)
+  (set-variable 'use-package-minimum-reported-time 0.1))
+
 (use-package exec-path-from-shell
   :ensure t
   :config
@@ -54,16 +60,11 @@
 ;;; 共通で使用するライブラリ等をロード
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(use-package dash
-  :ensure t)
-(use-package f
-  :ensure t)
-(use-package s
-  :ensure t)
-(use-package windata
-  :ensure t)
-(use-package hydra
-  :ensure t)
+(use-package dash    :ensure t)
+(use-package f       :ensure t)
+(use-package s       :ensure t)
+(use-package windata :ensure t)
+(use-package hydra   :ensure t)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; 各種パッケージ設定

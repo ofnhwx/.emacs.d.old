@@ -4,7 +4,7 @@
 
 (use-package yaml-mode
   :ensure t
-  :commands (yaml-mode))
+  :defer t)
 
 (provide '40_yaml-mode)
 ;;; 40_yaml-mode.el ends here

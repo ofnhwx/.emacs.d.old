@@ -5,15 +5,16 @@
 (use-package irony
   :ensure t
   :diminish irony-mode
-  :commands (irony-mode)
+  :defer t
   :init
   (set-variable 'irony-additional-clang-options '("-std=c++11"))
-  (set-variable 'irony-user-dir (e:expand "irony" :cache))
-  (set-variable 'irony-server-install-prefix irony-user-dir)
-  :config
+  (let ((dir (e:expand "irony" :cache)))
+    (set-variable 'irony-user-dir dir)
+    (set-variable 'irony-server-install-prefix dir))
   (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
   (add-hook 'c-mode-hook 'irony-mode)
   (add-hook 'c++-mode-hook 'irony-mode)
+  :config
   (defun irony-add-include (path)
     (add-to-list 'irony-additional-clang-options (format "-I%s" path)))
   (e:load-local-config "irony"))

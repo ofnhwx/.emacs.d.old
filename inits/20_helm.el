@@ -33,6 +33,7 @@
           (executable-find "pt")) ;; The Platinum Searcher
   :after (helm)
   :ensure t
+  :defer t
   :init
   (cond
    ((executable-find "rg") (set-variable 'helm-ag-base-command "rg --color never --no-heading --smart-case --vimgrep"))
@@ -49,7 +50,8 @@
 
 (use-package helm-descbinds
   :after (helm)
-  :ensure t)
+  :ensure t
+  :defer t)
 
 (use-package helm-dired-history
   :after (helm dired)
@@ -70,7 +72,8 @@
 (use-package helm-ghq
   :if (executable-find "ghq")
   :after (helm)
-  :ensure t)
+  :ensure t
+  :defer t)
 
 (use-package helm-projectile
   :after (helm projectile)
@@ -78,7 +81,8 @@
 
 (use-package helm-swoop
   :after (helm)
-  :ensure t)
+  :ensure t
+  :defer t)
 
 (provide '20_helm)
 ;;; 20_helm.el ends here

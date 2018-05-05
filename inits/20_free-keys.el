@@ -3,7 +3,8 @@
 ;;; Code:
 
 (use-package free-keys
-  :ensure t)
+  :ensure t
+  :defer t)
 
 (provide '20_free-keys)
 ;;; 20_free-keys.el ends here

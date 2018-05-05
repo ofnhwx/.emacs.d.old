@@ -3,7 +3,8 @@
 ;;; Code:
 
 (use-package string-edit
-  :ensure t)
+  :ensure t
+  :defer t)
 
 (provide '20_string-edit)
 ;;; 20_string-edit.el ends here

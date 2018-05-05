@@ -13,7 +13,8 @@
 
 (use-package ace-window
   :after (avy)
-  :ensure t)
+  :ensure t
+  :defer t)
 
 (use-package avy-migemo
   :after (avy migemo)
@@ -23,6 +24,7 @@
 
 (use-package avy-zap
   :after (avy)
+  :ensure t
   :ensure t)
 
 (provide '20_avy)

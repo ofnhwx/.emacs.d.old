@@ -3,11 +3,13 @@
 ;;; Code:
 
 (use-package restclient
-  :ensure t)
+  :ensure t
+  :defer t)
 
 (use-package restclient-helm
   :after (restclient helm)
-  :ensure t)
+  :ensure t
+  :defer t)
 
 (provide '20_restclient)
 ;;; 20_restclient.el ends here

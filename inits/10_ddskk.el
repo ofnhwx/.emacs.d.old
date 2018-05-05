@@ -4,6 +4,7 @@
 
 (use-package skk
   :ensure ddskk
+  :defer t
   :init
   (set-variable 'skk-user-directory (e:expand "ddskk" :conf))
   (set-variable 'default-input-method "japanese-skk")

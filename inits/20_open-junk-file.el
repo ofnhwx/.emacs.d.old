@@ -4,6 +4,7 @@
 
 (use-package open-junk-file
   :ensure t
+  :defer t
   :init
   (set-variable 'open-junk-file-format (e:expand "junk/%Y%m%d_%H%M%S." :cache)))
 

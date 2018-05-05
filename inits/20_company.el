@@ -40,24 +40,24 @@
 (use-package company-php
   :after (company)
   :ensure t
-  :commands (company-ac-php-backend)
+  :defer t
   :init
   (set-variable 'ac-php-tags-path (e:expand "ac-php" :cache)))
 
 (use-package company-web
   :after (company)
   :ensure t
-  :commands (company-web-html))
+  :defer t)
 
 (use-package company-irony
   :after (company irony)
   :ensure t
-  :commands (company-irony))
+  :defer t)
 
 (use-package company-irony-c-headers
   :after (company irony)
   :ensure t
-  :commands (company-irony-c-headers))
+  :defer t)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -95,22 +95,25 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; [2016-06-14] - とりあえず`ac-php'を`web-mode'でも動くように
-(defun company-ac-php-backend (command &optional arg &rest ignored)
-  (interactive (list 'interactive))
-  (case command
-    (interactive (company-begin-backend 'company-ac-php-backend))
-    (prefix (and (or (eq major-mode 'php-mode)
-                     (eq major-mode 'web-mode))
-                 (company-ac-php--prefix)))
-    (candidates (company-ac-php-candidate arg))
-    (annotation (company-ac-php-annotation arg))
-    (duplicates t)
-    (post-completion
-     (let((doc))
-       (when (ac-php--tag-name-is-function arg)
-         (setq doc (ac-php-clean-document (get-text-property 0 'ac-php-help arg)))
-         (insert (concat doc ")"))
-         (company-template-c-like-templatify (concat arg doc ")")))))))
+(use-package company-php
+  :no-require t
+  :config
+  (defun company-ac-php-backend (command &optional arg &rest ignored)
+    (interactive (list 'interactive))
+    (case command
+      (interactive (company-begin-backend 'company-ac-php-backend))
+      (prefix (and (or (eq major-mode 'php-mode)
+                       (eq major-mode 'web-mode))
+                   (company-ac-php--prefix)))
+      (candidates (company-ac-php-candidate arg))
+      (annotation (company-ac-php-annotation arg))
+      (duplicates t)
+      (post-completion
+       (let((doc))
+         (when (ac-php--tag-name-is-function arg)
+           (setq doc (ac-php-clean-document (get-text-property 0 'ac-php-help arg)))
+           (insert (concat doc ")"))
+           (company-template-c-like-templatify (concat arg doc ")"))))))))
 
 (provide '20_company)
 ;;; 20_company.el ends here

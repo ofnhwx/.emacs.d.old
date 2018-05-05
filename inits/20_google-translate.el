@@ -4,6 +4,9 @@
 
 (use-package google-translate
   :ensure t
+  :defer t
+  :init
+  (autoload 'google-translate-english-chars "google-translate")
   :config
   (defvar google-translate-english-chars "[:ascii:]’“”–"
     "これらの文字が含まれているときは英語とみなす")

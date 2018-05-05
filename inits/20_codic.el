@@ -4,7 +4,8 @@
 
 (use-package codic
   :ensure t
-  :init
+  :defer t
+  :config
   (set-variable 'codic-api-token (e:auth-source-get 'api-token :app "codic")))
 
 (provide '20_codic)

@@ -3,7 +3,8 @@
 ;;; Code:
 
 (use-package magit
-  :ensure
+  :ensure t
+  :defer t
   :init
   (set-variable 'magit-diff-refine-hunk 'all)
   (set-variable 'smerge-refine-ignore-whitespace nil))
@@ -11,7 +12,7 @@
 (use-package magit-gitflow
   :after (magit)
   :ensure t
-  :config
+  :init
   (add-hook 'magit-mode-hook 'turn-on-magit-gitflow))
 
 (provide '20_magit)

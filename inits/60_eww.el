@@ -6,8 +6,7 @@
   :bind
   (:map eww-mode-map
         ("[" . eww-enable-images)
-        ("]" . eww-disable-images)
-        ("o" . ace-link-eww))
+        ("]" . eww-disable-images))
   :init
   (set-variable 'eww-search-prefix "http://www.google.co.jp/search?q=")
   :config

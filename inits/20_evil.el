@@ -73,6 +73,7 @@
 (use-package linum-relative
   :after (evil)
   :ensure t
+  :defer t
   :init
   (cond
    ((fboundp 'display-line-numbers-mode)
@@ -81,6 +82,10 @@
     (set-variable 'linum-relative-format "%4s")
     (set-variable 'linum-relative-current-symbol "=>")
     (set-variable 'linum-relative-plusp-offset 1)))
+  (autoload 'linum-relative-on-and-update "linum-relative")
+  (autoload 'linum-relative-off-and-restore "linum-relative")
+  (add-hook 'evil-operator-state-entry-hook 'linum-relative-on-and-update)
+  (add-hook 'evil-operator-state-exit-hook 'linum-relative-off-and-restore)
   :config
   (defvar temp-linum-mode-state nil)
   (cond
@@ -100,9 +105,7 @@
     (defun linum-relative-off-and-restore ()
       (linum-relative-off)
       (when temp-linum-mode-state
-        (linum-mode)))))
-  (add-hook 'evil-operator-state-entry-hook 'linum-relative-on-and-update)
-  (add-hook 'evil-operator-state-exit-hook 'linum-relative-off-and-restore))
+        (linum-mode))))))
 
 (use-package evil-surround
   :after (evil)
@@ -113,11 +116,11 @@
 (use-package evil-numbers
   :after (evil)
   :ensure t
-  :config
-  (bind-keys
-   :map evil-normal-state-map
-   ("C-c +" . evil-numbers/inc-at-pt)
-   ("C-c -" . evil-numbers/dec-at-pt)))
+  :defer t
+  :bind
+  (:map evil-normal-state-map
+        ("C-c +" . evil-numbers/inc-at-pt)
+        ("C-c -" . evil-numbers/dec-at-pt)))
 
 (provide '20_evil)
 ;;; 20_evil.el ends here

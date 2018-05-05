@@ -4,15 +4,15 @@
 
 (use-package gitattributes-mode
   :ensure t
-  :commands (gitattributes-mode))
+  :defer t)
 
 (use-package gitconfig-mode
   :ensure t
-  :commands (gitconfig-mode))
+  :defer t)
 
 (use-package gitignore-mode
   :ensure t
-  :commands (gitignore-mode))
+  :defer t)
 
 (provide '40_git-modes)
 ;;; 40_git-modes.el ends here

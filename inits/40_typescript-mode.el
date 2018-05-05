@@ -4,7 +4,7 @@
 
 (use-package typescript-mode
   :ensure t
-  :commands (typescript-mode))
+  :defer t)
 
 (provide '40_typescript-mode)
 ;;; 40_typescript-mode.el ends here

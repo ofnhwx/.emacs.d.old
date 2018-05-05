@@ -4,15 +4,14 @@
 
 (use-package emmet-mode
   :ensure t
-  :commands (emmet-mode)
+  :defer t
+  :bind
+  (:map emmet-mode-keymap
+        ("<C-return>" . nil)
+        ("C-c C-j" . emmet-expand-line)
+        ("C-j" . nil))
   :init
   (set-variable 'emmet-indentation 2)
-  :config
-  (bind-keys
-   :map emmet-mode-keymap
-   ("<C-return>" . nil)
-   ("C-c C-j" . emmet-expand-line)
-   ("C-j" . nil))
   (add-hook 'php-mode-hook 'emmet-mode)
   (add-hook 'web-mode-hook 'emmet-mode))
 

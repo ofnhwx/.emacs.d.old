@@ -4,7 +4,7 @@
 
 (use-package vimrc-mode
   :ensure t
-  :commands (vimrc-mode))
+  :defer t)
 
 (provide '40_vimrc-mode)
 ;;; 40_vimrc-mode.el ends here

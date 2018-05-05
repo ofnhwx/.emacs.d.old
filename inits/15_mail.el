@@ -5,6 +5,7 @@
 (use-package notmuch
   :if (executable-find "notmuch")
   :ensure t
+  :defer t
   :init
   (set-variable 'notmuch-archive-tags '("-inbox" "-unread"))
   (set-variable 'notmuch-column-control 1.0)
@@ -27,6 +28,7 @@
 
 (use-package message
   :if (executable-find "msmtp")
+  :after (notmuch)
   :init
   (set-variable 'message-send-mail-function 'message-send-mail-with-sendmail)
   (set-variable 'sendmail-program (executable-find "msmtp"))

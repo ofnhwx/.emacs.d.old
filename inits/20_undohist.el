@@ -4,10 +4,9 @@
 
 (use-package undohist
   :ensure t
-  :init
+  :config
   (setq undohist-directory (e:expand "undohist" :cache))
   (setq undohist-ignored-files '("\\.gpg$"))
-  :config
   (defun undohist-save-1--with-ignored ()
     (let ((file (make-undohist-file-name (buffer-file-name))))
       (undohist-recover-file-p file)))

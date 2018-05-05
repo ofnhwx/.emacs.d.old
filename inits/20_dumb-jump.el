@@ -3,7 +3,8 @@
 ;;; Code:
 
 (use-package dumb-jump
-  :ensure t)
+  :ensure t
+  :defer t)
 
 (use-package dumb-jump
   :no-require t

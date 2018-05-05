@@ -4,24 +4,24 @@
 
 (use-package web-mode
   :ensure t
-  :commands (web-mode)
+  :defer t
   :mode (("\\.twig\\'" . web-mode))
+  :bind
+  (:map web-mode-map
+        ("C-]" . ac-php-find-symbol-at-point)
+        ("C-}" . ac-php-location-stack-back))
   :init
   (set-variable 'web-mode-comment-keywords "\\(?:BUG\\|FIXME\\|HACK\\|KLUDGE\\|OPTIMIZE\\|RE\\(?:FACTOR\\|VIEW\\)\\|TODO\\|WORKAROUND\\|XXX\\|MEMO\\)")
-   ;; offset
+  ;; offset
   (set-variable 'web-mode-markup-indent-offset 2)
   (set-variable 'web-mode-css-indent-offset    2)
   (set-variable 'web-mode-code-indent-offset   4)
   (set-variable 'web-mode-attr-indent-offset   2)
-   ;; padding
+  ;; padding
   (set-variable 'web-mode-style-padding  2)
   (set-variable 'web-mode-script-padding 2)
   (set-variable 'web-mode-block-padding  2)
-  :config
-  (bind-keys
-   :map web-mode-map
-   ("C-]" . ac-php-find-symbol-at-point)
-   ("C-}" . ac-php-location-stack-back))
+  ;; re indent
   (add-hook
    'editorconfig-custom-hooks
    (lambda (props)

@@ -4,9 +4,9 @@
 
 (use-package rainbow-mode
   :ensure t
+  :defer t
   :diminish rainbow-mode
-  :commands (rainbow-mode)
-  :config
+  :init
   (add-hook 'lisp-interaction-mode-hook 'rainbow-mode)
   (add-hook 'emacs-lisp-mode-hook 'rainbow-mode)
   (add-hook 'html-mode-hook 'rainbow-mode)

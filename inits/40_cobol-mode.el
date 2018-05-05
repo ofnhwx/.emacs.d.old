@@ -5,7 +5,7 @@
 (use-package cobol-mode
   :if (progn (quelpa '(cobol-mode :fetcher github :repo "emacsmirror/cobol-mode"))
              (locate-library "cobol-mode"))
-  :commands (cobol-mode)
+  :defer t
   :mode (("\\.cob\\'" . cobol-mode)
          ("\\.cbl\\'" . cobol-mode)
          ("\\.lst\\'" . cobol-mode)

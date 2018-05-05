@@ -4,6 +4,7 @@
 
 (use-package multiple-cursors
   :ensure t
+  :defer t
   :init
   (set-variable 'mc/list-file (e:expand "mc-lists.el" :cache))
   :config

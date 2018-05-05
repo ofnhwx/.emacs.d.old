@@ -4,7 +4,7 @@
 
 (use-package android-mode
   :ensure t
-  :commands (android-mode)
+  :defer t
   :init
   (set-variable 'android-mode-sdk-dir "~/Library/Android/sdk"))
 

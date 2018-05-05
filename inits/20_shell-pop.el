@@ -4,6 +4,7 @@
 
 (use-package shell-pop
   :ensure t
+  :defer t
   :init
   (set-variable 'shell-pop-shell-type '("eshell" "*pop:eshell*" (lambda () (eshell))))
   (set-variable 'shell-pop-window-position "bottom")

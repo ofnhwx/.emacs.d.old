@@ -4,10 +4,10 @@
 
 (use-package highlight-symbol
   :ensure t
+  :defer t
   :diminish highlight-symbol-mode
   :init
   (set-variable 'highlight-symbol-idle-delay 3.0)
-  :config
   (add-hook 'prog-mode-hook 'highlight-symbol-mode)
   (add-hook 'prog-mode-hook 'highlight-symbol-nav-mode))
 

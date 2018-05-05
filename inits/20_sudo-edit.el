@@ -3,7 +3,8 @@
 ;;; Code:
 
 (use-package sudo-edit
-  :ensure t)
+  :ensure t
+  :defer t)
 
 (provide '20_sudo-edit)
 ;;; 20_sudo-edit.el ends here

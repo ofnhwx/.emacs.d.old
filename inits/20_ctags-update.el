@@ -6,7 +6,8 @@
   :if (executable-find "ctags")
   :after (php-mode)
   :ensure t
-  :config
+  :defer t
+  :init
   (add-hook 'php-mode-hook 'turn-on-ctags-auto-update-mode))
 
 (provide '20_ctags-update)

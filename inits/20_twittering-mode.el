@@ -8,10 +8,10 @@
   :init
   (set-variable 'twittering-number-of-tweets-on-retrieval 50)
   (set-variable 'twittering-use-master-password t)
+  :bind
+  (:map twittering-mode-map
+        ("I" . twit:toggle-show-icon))
   :config
-  (bind-keys
-   :map twittering-mode-map
-   ("I" . twit:toggle-show-icon))
   (defun twit:toggle-show-icon ()
     (interactive)
     (let ((enable (not twittering-icon-mode)))
