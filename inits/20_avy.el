@@ -16,7 +16,8 @@
   :ensure t
   :defer t)
 
-(use-package avy-migemo
+(e:use-package avy-migemo
+  (executable-find "cmigemo")
   :after (avy migemo)
   :ensure t
   :config
