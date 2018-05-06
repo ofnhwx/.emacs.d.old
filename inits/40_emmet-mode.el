@@ -11,8 +11,8 @@
         ("C-c C-j" . emmet-expand-line)
         ("C-j" . nil))
   :hook
-  ((php-mode-hook . emmet-mode)
-   (web-mode-hook . emmet-mode))
+  ((php-mode . emmet-mode)
+   (web-mode . emmet-mode))
   :custom
   (emmet-indentation 2))
 

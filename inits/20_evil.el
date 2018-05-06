@@ -67,16 +67,16 @@
   :no-require t
   :after (skk)
   :hook
-  ((evil-insert-state-entry-hook . skk-latin-mode-on)
-   (evil-insert-state-exit-hook  . skk-mode-exit)))
+  ((evil-insert-state-entry . skk-latin-mode-on)
+   (evil-insert-state-exit  . skk-mode-exit)))
 
 (use-package linum-relative
   :after (evil)
   :ensure t
   :defer t
   :hook
-  ((evil-operator-state-entry-hook . linum-relative-on-and-update)
-   (evil-operator-state-exit-hook  . linum-relative-off-and-restore))
+  ((evil-operator-state-entry . linum-relative-on-and-update)
+   (evil-operator-state-exit  . linum-relative-off-and-restore))
   :init
   (cond
    ((fboundp 'display-line-numbers-mode)

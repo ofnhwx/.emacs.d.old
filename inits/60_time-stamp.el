@@ -3,7 +3,7 @@
 ;;; Code:
 
 (use-package time-stamp
-  :hook (before-save-hook . time-stamp)
+  :hook (before-save . time-stamp)
   :custom
   (time-stamp-active t)
   (time-stamp-start  (concat "Last " "updated: <"))

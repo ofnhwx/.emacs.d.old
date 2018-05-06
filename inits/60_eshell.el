@@ -39,8 +39,7 @@
 (use-package eshell
   :no-require t
   :after (helm)
-  :hook
-  (eshell-mode-hook . eshell/setup-keys)
+  :hook (eshell-mode . eshell/setup-keys)
   :config
   (defun eshell/setup-keys ()
     (bind-keys

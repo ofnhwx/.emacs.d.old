@@ -7,9 +7,9 @@
   :diminish irony-mode
   :defer t
   :hook
-  ((irony-mode-hook . irony-cdb-autosetup-compile-options)
-   (c-mode-hook     . irony-mode)
-   (c++-mode-hook   . irony-mode))
+  ((irony-mode . irony-cdb-autosetup-compile-options)
+   (c-mode     . irony-mode)
+   (c++-mode   . irony-mode))
   :custom
   (irony-additional-clang-options '("-std=c++11"))
   (irony-user-dir (e:expand "irony" :cache))

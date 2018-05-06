@@ -20,9 +20,9 @@
   :no-require t
   :after (smartparens)
   :hook
-  ((company-completion-started-hook   . disable-smartparens-with-company)
-   (company-completion-finished-hook  . revert-smartparens-with-company)
-   (company-completion-cancelled-hook . revert-smartparens-with-company))
+  ((company-completion-started   . disable-smartparens-with-company)
+   (company-completion-finished  . revert-smartparens-with-company)
+   (company-completion-cancelled . revert-smartparens-with-company))
   :config
   ;; `smartparens'を一時的に無効にする
   (defvar company-smartparens-enabled nil
@@ -65,7 +65,7 @@
 (use-package company
   :no-require t
   :after (php-mode)
-  :hook (php-mode-hook . company-php-setup)
+  :hook (php-mode . company-php-setup)
   :config
   (defun company-php-setup()
     (set-company-backends '(company-ac-php-backend :with company-dabbrev-code))))
@@ -73,7 +73,7 @@
 (use-package company
   :no-require t
   :after (web-mode)
-  :hook (web-mode-hook . company-web-setup)
+  :hook (web-mode . company-web-setup)
   :config
   (defun company-web-setup()
     (set-company-backends '(company-ac-php-backend company-web-html :with company-dabbrev-code))))
@@ -81,7 +81,7 @@
 (use-package company
   :no-require t
   :after (irony)
-  :hook (irony-mode-hook . company-irony-setup)
+  :hook (irony-mode . company-irony-setup)
   :config
   (defun company-irony-setup ()
     (set-company-backends '(company-irony company-irony-c-headers :with company-dabbrev-code company-yasnippet))))

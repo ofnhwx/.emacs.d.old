@@ -5,7 +5,7 @@
 (use-package flycheck
   :ensure t
   :defer t
-  :hook (prog-mode-hook . flycheck-mode)
+  :hook (prog-mode . flycheck-mode)
   :custom
   (flycheck-mode-line-prefix "FC")
   (flycheck-check-syntax-automatically '(save mode-enabled))

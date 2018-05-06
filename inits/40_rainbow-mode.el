@@ -7,12 +7,12 @@
   :defer t
   :diminish rainbow-mode
   :hook
-  ((lisp-interaction-mode-hook . rainbow-mode)
-   (emacs-lisp-mode-hook . rainbow-mode)
-   (html-mode-hook . rainbow-mode)
-   (css-mode-hook . rainbow-mode)
-   (php-mode-hook . rainbow-mode)
-   (web-mode-hook . rainbow-mode)))
+  ((lisp-interaction-mode . rainbow-mode)
+   (emacs-lisp-mode . rainbow-mode)
+   (html-mode . rainbow-mode)
+   (css-mode . rainbow-mode)
+   (php-mode . rainbow-mode)
+   (web-mode . rainbow-mode)))
 
 (provide '20_rainbow-mode)
 ;;; 20_rainbow-mode.el ends here
