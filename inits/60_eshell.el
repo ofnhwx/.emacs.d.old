@@ -3,20 +3,20 @@
 ;;; Code:
 
 (use-package eshell
-  :init
-  (set-variable 'eshell-directory-name (e:expand "eshell" :cache))
-  (set-variable 'eshell-history-size 100000)
-  (set-variable 'eshell-cmpl-ignore-case t)
-  (set-variable 'eshell-hist-ignoredups t)
-  (set-variable 'eshell-ask-to-save-history (quote always))
-  (set-variable 'eshell-cmpl-cycle-completions nil)
-  (set-variable 'eshell-visual-commands
-                '("elm" "less" "lynx" "rlogin" "more" "ncftp" "pine"
-                  "screen" "ssh" "telnet" "tin" "top" "trn" "vi"))
-  (set-variable 'eshell-escape-control-x nil)
-  (set-variable 'eshell-prompt-function
-                (lambda () (concat "[" (e:unexpand (eshell/pwd)) "]\n" (if (zerop (user-uid)) "# " "$ "))))
-  (set-variable 'eshell-prompt-regexp "^[^#$]*[#$] ")
+  :custom
+  (eshell-directory-name (e:expand "eshell" :cache))
+  (eshell-history-size 100000)
+  (eshell-cmpl-ignore-case t)
+  (eshell-hist-ignoredups t)
+  (eshell-ask-to-save-history (quote always))
+  (eshell-cmpl-cycle-completions nil)
+  (eshell-visual-commands
+   '("elm" "less" "lynx" "rlogin" "more" "ncftp" "pine"
+     "screen" "ssh" "telnet" "tin" "top" "trn" "vi"))
+  (eshell-escape-control-x nil)
+  (eshell-prompt-function
+   (lambda () (concat "[" (e:unexpand (eshell/pwd)) "]\n" (if (zerop (user-uid)) "# " "$ "))))
+  (eshell-prompt-regexp "^[^#$]*[#$] ")
   :config
   ;; command - clear
   (defun eshell/clear ()
@@ -39,13 +39,14 @@
 (use-package eshell
   :no-require t
   :after (helm)
+  :hook
+  (eshell-mode-hook . eshell/setup-keys)
   :config
   (defun eshell/setup-keys ()
     (bind-keys
      :map eshell-mode-map
      ("C-i" . helm-esh-pcomplete)
-     ("M-h" . helm-eshell-history)))
-  (add-hook 'eshell-mode-hook 'eshell/setup-keys))
+     ("M-h" . helm-eshell-history))))
 
 (provide '60_eshell)
 ;;; 60_eshell.el ends here

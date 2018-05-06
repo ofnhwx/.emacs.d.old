@@ -5,14 +5,16 @@
 (e:use-package migemo
   (executable-find "cmigemo")
   :ensure t
+  :custom
+  (migemo-command (executable-find "cmigemo"))
+  (migemo-options '("-q" "--emacs"))
+  (migemo-user-dictionary nil)
+  (migemo-regex-dictionary nil)
+  (migemo-coding-system 'utf-8-unix)
   :init
-  (set-variable 'migemo-options '("-q" "--emacs"))
-  (set-variable 'migemo-user-dictionary nil)
-  (set-variable 'migemo-regex-dictionary nil)
-  (set-variable 'migemo-coding-system 'utf-8-unix)
-  (when (os-type-mac-p)
-    (set-variable 'migemo-command (executable-find "cmigemo"))
-    (set-variable 'migemo-dictionary "/usr/local/share/migemo/utf-8/migemo-dict"))
+  (cond
+   ((os-type-mac-p)
+    (set-variable 'migemo-dictionary "/usr/local/share/migemo/utf-8/migemo-dict")))
   :config
   (migemo-init))
 

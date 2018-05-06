@@ -16,9 +16,9 @@
   :after (cobol-mode)
   :if (progn (quelpa '(column-marker :fetcher github :repo "emacsmirror/column-marker"))
              (locate-library "column-marker"))
-  :init
-  (set-variable 'cobol-column-marker-1 6)
-  (set-variable 'cobol-column-marker-2 72))
+  :custom
+  (cobol-column-marker-1 6)
+  (cobol-column-marker-2 72))
 
 (provide '30_cobol-mode)
 ;;; 30_cobol-mode.el ends here

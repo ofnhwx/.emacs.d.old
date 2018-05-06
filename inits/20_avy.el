@@ -3,16 +3,15 @@
 ;;; Code:
 
 (use-package avy
-  :ensure t)
+  :ensure t
+  :defer t)
 
 (use-package ace-link
-  :after (avy)
   :ensure t
   :config
   (ace-link-setup-default))
 
 (use-package ace-window
-  :after (avy)
   :ensure t
   :defer t)
 
@@ -24,9 +23,8 @@
   (avy-migemo-mode 1))
 
 (use-package avy-zap
-  :after (avy)
   :ensure t
-  :ensure t)
+  :defer t)
 
 (provide '20_avy)
 ;;; 20_avy.el ends here

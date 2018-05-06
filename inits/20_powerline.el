@@ -23,8 +23,8 @@
 
 (use-package powerline
   :ensure t
-  :init
-  (set-variable 'powerline-default-separator 'utf-8)
+  :custom
+  (powerline-default-separator 'utf-8)
   :config
   ;; 文字・改行コードの表示
   (defun get-buffer-file-eol-type ()

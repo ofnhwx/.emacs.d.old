@@ -4,9 +4,9 @@
 
 (use-package abbrev
   :diminish abbrev-mode
-  :init
-  (set-variable 'abbrev-file-name (e:expand "abbrev.defs" :cache))
-  (set-variable 'save-abbrevs t)
+  :custom
+  (abbrev-file-name (e:expand "abbrev.defs" :cache))
+  (save-abbrevs t)
   :config
   (when (file-exists-p abbrev-file-name)
     (quietly-read-abbrev-file)))

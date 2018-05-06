@@ -5,11 +5,11 @@
 (use-package term+
   :after (term)
   :ensure t
-  :config
-  (bind-keys
-   :map term+char-map
-   ("C-^" . nil)
-   ("C-z" . nil)))
+  :defer t
+  :bind
+  (:map term+char-map
+        ("C-^" . nil)
+        ("C-z" . nil)))
 
 (use-package term+mux
   :after (term+)

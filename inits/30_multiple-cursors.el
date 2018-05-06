@@ -5,8 +5,8 @@
 (use-package multiple-cursors
   :ensure t
   :defer t
-  :init
-  (set-variable 'mc/list-file (e:expand "mc-lists.el" :cache))
+  :custom
+  (mc/list-file (e:expand "mc-lists.el" :cache))
   :config
   (setq mc/cmds-to-run-once
         '(hydra-mc/mc/insert-numbers

@@ -3,8 +3,8 @@
 ;;; Code:
 
 (use-package cua-base
-  :init
-  (set-variable 'cua-enable-cua-keys nil)
+  :custom
+  (cua-enable-cua-keys nil)
   :config
   (cua-mode 1))
 

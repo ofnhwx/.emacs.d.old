@@ -7,7 +7,6 @@
   :defer t)
 
 (use-package restclient-helm
-  :after (restclient helm)
   :ensure t
   :defer t)
 

@@ -7,8 +7,8 @@
   (:map eww-mode-map
         ("[" . eww-enable-images)
         ("]" . eww-disable-images))
-  :init
-  (set-variable 'eww-search-prefix "http://www.google.co.jp/search?q=")
+  :custom
+  (eww-search-prefix "http://www.google.co.jp/search?q=")
   :config
   ;; 画像表示の切り替え
   (defun eww-disable-images ()

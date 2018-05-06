@@ -3,13 +3,13 @@
 ;;; Code:
 
 (use-package dired
-  :init
-  (set-variable 'dired-use-ls-dired t)
-  (set-variable 'ls-lisp-dirs-first t)
-  (set-variable 'dired-dwim-target t)
-  (set-variable 'dired-recursive-copies 'always)
-  (set-variable 'dired-isearch-filenames t)
-  (set-variable 'dired-listing-switches "ahl"))
+  :custom
+  (dired-use-ls-dired t)
+  (ls-lisp-dirs-first t)
+  (dired-dwim-target t)
+  (dired-recursive-copies 'always)
+  (dired-isearch-filenames t)
+  (dired-listing-switches "ahl"))
 
 (use-package dired-x
   :after (dired))
@@ -49,8 +49,7 @@
   :config
   (bind-keys
    :map dired-mode-map
-   ("," . dired-collapse-mode))
-  (add-hook 'dired-mode-hook 'dired-collapse-mode))
+   ("," . dired-collapse-mode)))
 
 (use-package dired-filter
   :after (dired)

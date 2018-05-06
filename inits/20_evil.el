@@ -5,12 +5,12 @@
 (use-package evil
   :after (elscreen)
   :ensure t
-  :init
-  (set-variable 'evil-cross-lines t)
-  (set-variable 'evil-insert-state-map (make-sparse-keymap))
-  (set-variable 'evil-move-cursor-back nil)
-  (set-variable 'evil-toggle-key "C-z z")
-  (set-variable 'evil-want-fine-undo t)
+  :custom
+  (evil-cross-lines t)
+  (evil-insert-state-map (make-sparse-keymap))
+  (evil-move-cursor-back nil)
+  (evil-toggle-key "C-z z")
+  (evil-want-fine-undo t)
   :config
   (add-to-list 'evil-emacs-state-modes 'dired-mode)
   (add-to-list 'evil-emacs-state-modes 'eshell-mode)
@@ -66,14 +66,17 @@
 (use-package evil
   :no-require t
   :after (skk)
-  :config
-  (add-hook 'evil-insert-state-entry-hook 'skk-latin-mode-on)
-  (add-hook 'evil-insert-state-exit-hook 'skk-mode-exit))
+  :hook
+  ((evil-insert-state-entry-hook . skk-latin-mode-on)
+   (evil-insert-state-exit-hook  . skk-mode-exit)))
 
 (use-package linum-relative
   :after (evil)
   :ensure t
   :defer t
+  :hook
+  ((evil-operator-state-entry-hook . linum-relative-on-and-update)
+   (evil-operator-state-exit-hook  . linum-relative-off-and-restore))
   :init
   (cond
    ((fboundp 'display-line-numbers-mode)
@@ -82,10 +85,6 @@
     (set-variable 'linum-relative-format "%4s")
     (set-variable 'linum-relative-current-symbol "=>")
     (set-variable 'linum-relative-plusp-offset 1)))
-  (autoload 'linum-relative-on-and-update "linum-relative")
-  (autoload 'linum-relative-off-and-restore "linum-relative")
-  (add-hook 'evil-operator-state-entry-hook 'linum-relative-on-and-update)
-  (add-hook 'evil-operator-state-exit-hook 'linum-relative-off-and-restore)
   :config
   (defvar temp-linum-mode-state nil)
   (cond

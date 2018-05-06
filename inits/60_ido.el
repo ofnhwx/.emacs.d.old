@@ -3,9 +3,9 @@
 ;;; Code:
 
 (use-package ido
-  :init
-  (set-variable 'ido-enable-flex-matching t)
-  (set-variable 'ido-save-directory-list-file (e:expand "ido.last" :cache))
+  :custom
+  (ido-enable-flex-matching t)
+  (ido-save-directory-list-file (e:expand "ido.last" :cache))
   :config
   (ido-everywhere 1)
   (ido-mode 1))
@@ -19,8 +19,8 @@
 (use-package bbyac
   :after (ido)
   :ensure t
-  :init
-  (set-variable 'bbyac-max-chars 99999))
+  :custom
+  (bbyac-max-chars 99999))
 
 (use-package flx-ido
   :after (ido)

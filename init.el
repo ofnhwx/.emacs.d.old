@@ -33,6 +33,7 @@
 ;;; パッケージ関連の初期設定
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(add-to-list 'package-pinned-packages '(use-package . "melpa"))
 (e:add-package-repository "melpa-stable" "https://stable.melpa.org/packages/" 10)
 (e:add-package-repository "melpa" "https://melpa.org/packages/")
 (e:package-initialize)

@@ -3,12 +3,12 @@
 ;;; Code:
 
 (use-package recentf
-  :init
-  (set-variable 'recentf-save-file (e:expand "recentf" :cache))
-  (set-variable 'recentf-max-menu-items 20)
-  (set-variable 'recentf-max-saved-items 3000)
-  (set-variable 'recentf-exclude `("^/[^/:]+:" "\\.howm$" "\\.org$" ,(rx bol (eval (e:get-dir :temp)))))
-  (set-variable 'recentf-filename-handlers '(abbreviate-file-name))
+  :custom
+  (recentf-save-file (e:expand "recentf" :cache))
+  (recentf-max-menu-items 20)
+  (recentf-max-saved-items 3000)
+  (recentf-exclude `("^/[^/:]+:" "\\.howm$" "\\.org$" ,(rx bol (eval (e:get-dir :temp)))))
+  (recentf-filename-handlers '(abbreviate-file-name))
   :config
   (run-with-idle-timer 300 t 'recentf-save-list)
   (defadvice recentf-save-list (before recentf-save-list--convert-home activate)

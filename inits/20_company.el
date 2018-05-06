@@ -4,21 +4,25 @@
 
 (use-package company
   :ensure t
-  :init
-  (set-variable 'company-lighter-base "C")
-  (set-variable 'company-transformers '(company-sort-by-occurrence company-sort-by-backend-importance))
-  (set-variable 'company-idle-delay 0)
-  (set-variable 'company-minimum-prefix-length 1)
-  (set-variable 'company-selection-wrap-around t)
+  :custom
+  (company-lighter-base "C")
+  (company-transformers '(company-sort-by-occurrence company-sort-by-backend-importance))
+  (company-idle-delay 0)
+  (company-minimum-prefix-length 1)
+  (ompany-selection-wrap-around t)
   :config
   (defun set-company-backends (backends)
     (make-local-variable 'company-backends)
     (add-to-list 'company-backends (--filter (or (fboundp it) (eq it :with)) backends)))
-  (add-hook 'prog-mode-hook 'company-mode))
+  (global-company-mode))
 
 (use-package company
   :no-require t
   :after (smartparens)
+  :hook
+  ((company-completion-started-hook   . disable-smartparens-with-company)
+   (company-completion-finished-hook  . revert-smartparens-with-company)
+   (company-completion-cancelled-hook . revert-smartparens-with-company))
   :config
   ;; `smartparens'を一時的に無効にする
   (defvar company-smartparens-enabled nil
@@ -30,22 +34,19 @@
   (defun revert-smartparens-with-company (arg)
     "`company'での補完終了時に`smartparens'の状態を戻す.引数 ARG は未使用."
     (when company-smartparens-enabled
-      (smartparens-global-mode 1)))
-  (add-hook 'company-completion-started-hook   'disable-smartparens-with-company)
-  (add-hook 'company-completion-finished-hook  'revert-smartparens-with-company)
-  (add-hook 'company-completion-cancelled-hook 'revert-smartparens-with-company))
+      (smartparens-global-mode 1))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (use-package company-php
-  :after (company)
+  :after (company php-mode)
   :ensure t
   :defer t
-  :init
-  (set-variable 'ac-php-tags-path (e:expand "ac-php" :cache)))
+  :custom
+  (ac-php-tags-path (e:expand "ac-php" :cache)))
 
 (use-package company-web
-  :after (company)
+  :after (company web-mode)
   :ensure t
   :defer t)
 
@@ -64,33 +65,26 @@
 (use-package company
   :no-require t
   :after (php-mode)
+  :hook (php-mode-hook . company-php-setup)
   :config
   (defun company-php-setup()
-    (let (backends)
-      (add-to-list 'backends 'company-dabbrev-code)
-      (add-to-list 'backends 'company-ac-php-backend)
-      (set-company-backends backends)))
-  (add-hook 'php-mode-hook 'company-php-setup))
+    (set-company-backends '(company-ac-php-backend :with company-dabbrev-code))))
 
 (use-package company
   :no-require t
   :after (web-mode)
+  :hook (web-mode-hook . company-web-setup)
   :config
   (defun company-web-setup()
-    (let (backends)
-      (add-to-list 'backends 'company-dabbrev-code)
-      (add-to-list 'backends 'company-ac-php-backend)
-      (add-to-list 'backends 'company-web-html)
-      (set-company-backends backends)))
-  (add-hook 'web-mode-hook 'company-web-setup))
+    (set-company-backends '(company-ac-php-backend company-web-html :with company-dabbrev-code))))
 
 (use-package company
   :no-require t
   :after (irony)
+  :hook (irony-mode-hook . company-irony-setup)
   :config
   (defun company-irony-setup ()
-    (set-company-backends '(company-irony company-irony-c-headers :with company-dabbrev-code company-yasnippet)))
-  (add-hook 'irony-mode-hook 'company-irony-setup))
+    (set-company-backends '(company-irony company-irony-c-headers :with company-dabbrev-code company-yasnippet))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 

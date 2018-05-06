@@ -4,9 +4,9 @@
 
 (use-package elscreen
   :ensure t
-  :init
-  (set-variable 'elscreen-prefix-key (kbd "C-z"))
-  (set-variable 'elscreen-tab-display-kill-screen nil)
+  :custom
+  (elscreen-prefix-key (kbd "C-z"))
+  (elscreen-tab-display-kill-screen nil)
   :config
   (elscreen-start))
 

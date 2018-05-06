@@ -5,12 +5,12 @@
 (use-package flycheck
   :ensure t
   :defer t
-  :init
-  (set-variable 'flycheck-mode-line-prefix "FC")
-  (set-variable 'flycheck-check-syntax-automatically '(save mode-enabled))
-  (set-variable 'flycheck-idle-change-delay 3.0)
-  (set-variable 'flycheck-phpcs-standard "PSR2")
-  (add-hook 'prog-mode-hook 'flycheck-mode))
+  :hook (prog-mode-hook . flycheck-mode)
+  :custom
+  (flycheck-mode-line-prefix "FC")
+  (flycheck-check-syntax-automatically '(save mode-enabled))
+  (flycheck-idle-change-delay 3.0)
+  (flycheck-phpcs-standard "PSR2"))
 
 (use-package flycheck
   :no-require t
@@ -27,7 +27,9 @@
 
 (use-package flycheck-swift
   :after (flycheck swift-mode)
-  :ensure t)
+  :ensure t
+  :config
+  (flycheck-swift-setup))
 
 (provide '20_flycheck)
 ;;; 20_flycheck.el ends here

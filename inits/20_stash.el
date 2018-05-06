@@ -4,8 +4,8 @@
 
 (use-package stash
   :ensure t
-  :init
-  (set-variable 'stash-directory (e:expand "stashes" :cache))
+  :custom
+  (stash-directory (e:expand "stashes" :cache))
   :config
   (defstashapp app 60)
   (defstash kill-ring "kill-ring.el" app (or stashed 'nil)))
