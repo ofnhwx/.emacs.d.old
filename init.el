@@ -42,10 +42,13 @@
   (package-install 'use-package))
 
 (use-package use-package
-  :init
-  (set-variable 'use-package-check-before-init t)
-  (set-variable 'use-package-verbose t)
-  (set-variable 'use-package-minimum-reported-time 0.1))
+  :custom
+  (use-package-check-before-init t)
+  (use-package-verbose t)
+  (use-package-minimum-reported-time 0.1)
+  :config
+  (use-package bind-key :ensure t)
+  (use-package diminish :ensure t))
 
 (use-package exec-path-from-shell
   :ensure t
