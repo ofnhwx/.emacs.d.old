@@ -13,7 +13,8 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (let ((emacs-dir (file-name-directory (or load-file-name buffer-file-name))))
-  (setq user-emacs-directory (abbreviate-file-name emacs-dir)))
+  (setq user-emacs-directory (abbreviate-file-name emacs-dir))
+  (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; `cl-lib'を使用する
@@ -25,9 +26,8 @@
 ;;; 個人用の拡張・設定を読み込み
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(let ((default-directory user-emacs-directory))
-  (require 'init-enhance (locate-user-emacs-file "init-enhance") t)
-  (require 'init-config  (locate-user-emacs-file "init-config" ) t))
+(require 'init-enhance)
+(require 'init-config)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; パッケージ関連の初期設定

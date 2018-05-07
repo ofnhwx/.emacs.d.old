@@ -1,12 +1,20 @@
-;;; 99_keybind.el --- キーバインド.
+;;; 01_keybind.el --- キーバインド.
 ;;; Commentary:
 ;;; Code:
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; キーマップを定義
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(e:define-prefix-command base-command-map "他のコマンドへの派生元")
+(e:define-prefix-command general-command-map "よく使ういろいろなコマンド")
+(e:define-prefix-command file-command-map "ファイル関連のコマンド")
+(e:define-prefix-command buffer-command-map "バッファー関連のコマンド")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; 基点
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(e:define-prefix-command base-command-map "他のコマンドへの派生元")
 (bind-keys
  :map base-command-map
  ("SPC" . company-complete)
@@ -23,7 +31,6 @@
 ;;; いろいろ便利なやつ
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(e:define-prefix-command general-command-map "よく使ういろいろなコマンド")
 (bind-keys
  :map general-command-map
  ("," . helm-ag-pop-stack)
@@ -41,7 +48,6 @@
 ;;; ファイル関連
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(e:define-prefix-command file-command-map "ファイル関連のコマンド")
 (bind-keys
  :map file-command-map
  ("f" . find-file)
@@ -55,7 +61,6 @@
 ;;; バッファー関連
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(e:define-prefix-command buffer-command-map "バッファー関連のコマンド")
 (bind-keys
  :map buffer-command-map
  ("b" . switch-to-buffer)
@@ -217,5 +222,6 @@
   ("}" enlarge-window-horizontally)
   ("q" nil "quit" :color blue))
 
-(provide '99_keybind)
-;;; 99_keybind.el ends here
+(e:loaded)
+(provide '01_keybind)
+;;; 01_keybind.el ends here

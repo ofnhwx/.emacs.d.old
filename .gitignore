@@ -14,13 +14,11 @@
 !/config/
 !/config/ddskk/skk.tut
 !/inits/
+!/lisp/
 !/.editorconfig
 !/.gitattributes
 !/.gitconfig
 !/.gitignore
-!/init-config.el
-!/init-enhance.el
-!/init-setup.el
 !/init.el
 !/README.md
 
