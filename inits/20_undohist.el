@@ -6,7 +6,7 @@
   :ensure t
   :config
   (setq undohist-directory (e:expand "undohist" :cache))
-  (setq undohist-ignored-files '("\\.gpg$"))
+  (setq undohist-ignored-files '("\\.gpg$" "!COMMIT_EDITMSG$"))
   (defun undohist-save-1--with-ignored ()
     (let ((file (make-undohist-file-name (buffer-file-name))))
       (undohist-recover-file-p file)))
