@@ -119,6 +119,7 @@
  (":" . avy-goto-char)
  (";" . avy-goto-word-1)
  ("i" . helm-imenu)
+ ("o" . open-by-intellij)
  ("t" . google-translate-enja-or-jaen)
  ("x" . shell-pop)
  ("z" . eshell))
