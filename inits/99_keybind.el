@@ -106,6 +106,7 @@
 
 (bind-keys
  :map ctl-x-map
+ ("1" . zoom-window-zoom)
  ("f" . find-file)
  ("j" . skk-mode)
  ("o" . ace-window)
