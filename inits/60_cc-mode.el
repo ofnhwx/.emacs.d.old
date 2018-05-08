@@ -14,9 +14,15 @@
            (target (f-filename (buffer-file-name)))
            (candidate-str (s-trim (shell-command-to-string (format "git ls-files %s | grep -E '(^|/)%s\\.'" relative (file-name-sans-extension target)))))
            (candidate (--filter (not (string-equal target (f-filename it))) (--map (e:expand it path) (s-split "\n" candidate-str)))))
-      (if (zerop (length candidate))
-          (print "not found.")
-        (find-file (car candidate))))))
+      (cond
+       ((> (length candidate) 1)
+        (helm :sources '((name . "Header <=> Source")
+                         (candidates . candidate)
+                         (action . find-file))))
+       ((= (length candidate) 1)
+        (find-file (car candidate)))
+       (t
+        (print "not found."))))))
 
 (provide '40_cc-mode)
 ;;; 40_cc-mode.el ends here
