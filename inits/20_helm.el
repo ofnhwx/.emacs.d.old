@@ -29,21 +29,6 @@
       (apply 'windata-display-buffer buffer helm-windata)))
   (set-variable 'helm-display-function 'my/helm-display-buffer))
 
-(use-package helm
-  :no-require t
-  :after (projectile)
-  :bind
-  (:map file-command-map
-        ("p" . helm-find-files-with-projectile))
-  (:map ctl-x-map
-        ("C-f" . helm-find-files-with-projectile))
-  :config
-  (defun helm-find-files-with-projectile (&optional arg)
-    (interactive "P")
-    (if (projectile-project-p)
-        (helm-projectile-find-file-dwim)
-      (helm-find-files arg))))
-
 (e:use-package helm-ag
   (or (executable-find "rg")  ;; ripgrep
       (executable-find "pt")) ;; The Platinum Searcher
@@ -103,7 +88,18 @@
 (use-package helm-projectile
   :after (projectile)
   :ensure t
-  :defer t)
+  :defer t
+  :bind
+  (:map file-command-map
+        ("p" . helm-find-files-with-projectile))
+  (:map ctl-x-map
+        ("C-f" . helm-find-files-with-projectile))
+  :config
+  (defun helm-find-files-with-projectile (&optional arg)
+    (interactive "P")
+    (if (projectile-project-p)
+        (helm-projectile)
+      (helm-find-files arg))))
 
 (use-package helm-swoop
   :after (helm)
