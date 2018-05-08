@@ -35,6 +35,9 @@
     :key "z"
     :in (eq major-mode 'eshell-mode)
     :switch eshell)
+  (defun state--switch-back-before-to (to from key)
+    (ignore-errors (state--switch-back from)))
+  (advice-add 'state--switch-to :before 'state--switch-back-before-to)
   (state-global-mode))
 
 (provide '20_state)
