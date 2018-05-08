@@ -4,6 +4,7 @@
 
 (use-package editorconfig
   :ensure t
+  :demand t
   :diminish editorconfig-mode
   :config
   (editorconfig-mode))

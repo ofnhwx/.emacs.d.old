@@ -4,6 +4,7 @@
 
 (use-package selected
   :ensure t
+  :demand t
   :diminish selected-minor-mode
   :bind
   (:map selected-keymap
@@ -17,6 +18,7 @@
 (use-package helm-selected
   :after (helm selected)
   :ensure t
+  :defer t
   :bind
   (:map selected-keymap
         ("?" . helm-selected)))

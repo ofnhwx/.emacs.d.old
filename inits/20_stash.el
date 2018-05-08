@@ -4,6 +4,7 @@
 
 (use-package stash
   :ensure t
+  :demand t
   :custom
   (stash-directory (e:expand "stashes" :cache))
   :config

@@ -4,6 +4,7 @@
 
 (use-package elscreen
   :ensure t
+  :demand t
   :custom
   (elscreen-prefix-key (kbd "C-z"))
   (elscreen-tab-display-kill-screen nil)

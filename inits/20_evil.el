@@ -35,34 +35,31 @@
     (message "%s" evil-state)
     (when (bound-and-true-p evil-mode)
       (evil-force-normal-state))
-    (keyboard-quit))
+    (keyboard-quit)))
+
+(use-package evil
+  :no-require t
+  :bind
   ;; モーションモード(motion -> normal -> visual)
-  (bind-keys
-   :map evil-motion-state-map
-   ("C-^" . nil) ;; evil-buffer
-   ("C-g" . evil-keyboard-quit))
+  (:map evil-motion-state-map
+        ("C-^" . nil) ;; evil-buffer
+        ("C-g" . evil-keyboard-quit))
   ;; 通常モード
-  (bind-keys
-   :map evil-normal-state-map
-   ("SPC" . base-command-map))
+  (:map evil-normal-state-map
+        ("SPC" . base-command-map))
   ;; ビジュアルモード
-  (bind-keys
-   :map evil-visual-state-map)
+  (:map evil-visual-state-map)
   ;; 挿入モード
-  (bind-keys
-   :map evil-insert-state-map
-   ("C-g" . evil-keyboard-quit)
-   ("<escape>" . evil-force-normal-state))
+  (:map evil-insert-state-map
+        ("C-g" . evil-keyboard-quit)
+        ("<escape>" . evil-force-normal-state))
   ;; オペレーターモード
-  (bind-keys
-   :map evil-operator-state-map)
+  (:map evil-operator-state-map)
   ;; 置き換えモード
-  (bind-keys
-   :map evil-replace-state-map)
+  (:map evil-replace-state-map)
   ;; Emacsモード
-  (bind-keys
-   :map evil-emacs-state-map
-   ("C-z z" . evil-exit-emacs-state)))
+  (:map evil-emacs-state-map
+        ("C-z z" . evil-exit-emacs-state)))
 
 (use-package evil
   :no-require t
@@ -72,7 +69,6 @@
    (evil-insert-state-exit  . skk-mode-exit)))
 
 (use-package linum-relative
-  :after (evil)
   :ensure t
   :defer t
   :hook
@@ -108,13 +104,12 @@
         (linum-mode))))))
 
 (use-package evil-surround
-  :after (evil)
   :ensure t
+  :demand t
   :config
   (global-evil-surround-mode 1))
 
 (use-package evil-numbers
-  :after (evil)
   :ensure t
   :defer t
   :bind

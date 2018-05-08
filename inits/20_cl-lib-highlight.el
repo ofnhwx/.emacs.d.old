@@ -4,6 +4,7 @@
 
 (use-package cl-lib-highlight
   :ensure t
+  :demand t
   :config
   (cl-lib-highlight-initialize)
   (cl-lib-highlight-warn-cl-initialize))

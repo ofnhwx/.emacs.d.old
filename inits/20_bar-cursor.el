@@ -4,6 +4,7 @@
 
 (use-package bar-cursor
   :ensure t
+  :demand t
   :diminish bar-cursor-mode
   :config
   (bar-cursor-mode 1))

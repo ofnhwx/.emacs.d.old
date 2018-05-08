@@ -4,6 +4,7 @@
 
 (use-package undohist
   :ensure t
+  :demand t
   :config
   (setq undohist-directory (e:expand "undohist" :cache))
   (setq undohist-ignored-files '("\\.gpg$" "!COMMIT_EDITMSG$"))

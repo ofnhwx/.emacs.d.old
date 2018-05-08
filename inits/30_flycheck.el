@@ -20,13 +20,13 @@
   (flycheck-add-mode 'php       'web-mode))
 
 (use-package flycheck-irony
-  :after (flycheck irony)
+  :after (irony)
   :ensure t
   :config
   (flycheck-irony-setup))
 
 (use-package flycheck-swift
-  :after (flycheck swift-mode)
+  :after (swift-mode)
   :ensure t
   :config
   (flycheck-swift-setup))

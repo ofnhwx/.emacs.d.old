@@ -4,6 +4,7 @@
 
 (use-package state
   :ensure t
+  :demand t
   :diminish state-mode
   :config
   (state-define-state junk

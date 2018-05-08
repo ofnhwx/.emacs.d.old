@@ -5,6 +5,7 @@
 (e:use-package git-gutter-fringe
   (not window-system)
   :ensure t
+  :demand t
   :diminish git-gutter-mode
   :config
   (global-git-gutter-mode))
@@ -12,6 +13,7 @@
 (e:use-package git-gutter
   window-system
   :ensure t
+  :demand t
   :diminish git-gutter-mode
   :config
   (global-git-gutter-mode))

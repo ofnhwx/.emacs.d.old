@@ -4,6 +4,7 @@
 
 (use-package which-key
   :ensure t
+  :demand t
   :diminish which-key-mode
   :config
   (which-key-setup-side-window-right-bottom)

@@ -23,6 +23,7 @@
 
 (use-package powerline
   :ensure t
+  :demand t
   :custom
   (powerline-default-separator 'utf-8)
   :config

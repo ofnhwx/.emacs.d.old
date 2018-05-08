@@ -5,6 +5,7 @@
 (e:use-package migemo
   (executable-find "cmigemo")
   :ensure t
+  :demand t
   :custom
   (migemo-command (executable-find "cmigemo"))
   (migemo-options '("-q" "--emacs"))

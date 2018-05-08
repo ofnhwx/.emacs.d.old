@@ -4,6 +4,7 @@
 
 (use-package anzu
   :ensure t
+  :demand t
   :diminish anzu-mode
   :config
   (global-anzu-mode 1))

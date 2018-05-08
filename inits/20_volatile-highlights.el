@@ -4,6 +4,7 @@
 
 (use-package volatile-highlights
   :ensure t
+  :demand t
   :diminish volatile-highlights-mode
   :config
   (volatile-highlights-mode 1))

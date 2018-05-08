@@ -4,6 +4,7 @@
 
 (use-package smartparens
   :ensure t
+  :demand t
   :diminish smartparens-mode
   :config
   (smartparens-global-mode t))

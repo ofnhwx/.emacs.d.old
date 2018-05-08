@@ -3,6 +3,7 @@
 ;;; Code:
 
 (use-package maxframe
+
   :ensure t
   :config
   (maximize-frame))

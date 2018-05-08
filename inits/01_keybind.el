@@ -17,14 +17,10 @@
 
 (bind-keys
  :map base-command-map
- ("SPC" . company-complete)
  ("," . hydra-mc/body)
- (":" . avy-goto-char)
- (";" . avy-goto-word-1)
  ("b" . buffer-command-map)
  ("f" . file-command-map)
  ("g" . general-command-map)
- ("p" . projectile-command-map)
  ("t" . hydra-toggle/body))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -32,17 +28,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (bind-keys
- :map general-command-map
- ("," . helm-ag-pop-stack)
- ("." . helm-ag)
- ("/" . helm-ag-project-root)
- ("_" . helm-ag-this-file)
- ("d" . magit-diff-buffer-file-popup)
- ("e" . string-edit-at-point)
- ("g" . avy-goto-line)
- ("l" . magit-log-buffer-file-popup)
- ("m" . helm-switch-major-mode)
- ("s" . magit-status))
+ :map general-command-map)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; ファイル関連
@@ -50,12 +36,7 @@
 
 (bind-keys
  :map file-command-map
- ("f" . find-file)
- ("g" . helm-ghq)
- ("h" . helm-find-files)
- ("m" . magit-find-file)
- ("p" . helm-find-files-with-projectile)
- ("r" . helm-recentf))
+ ("f" . find-file))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; バッファー関連
@@ -94,51 +75,18 @@
  :map global-map
  ("ESC ESC ESC" . keyboard-quit)
  ("C-," . base-command-map)
- ("C-:" . avy-goto-char)
- ("C-;" . avy-goto-word-1)
- ("C-<" . er/contract-region)
- ("C->" . er/expand-region)
+ ("C-<backspace>" . cycle-spacing)
  ("C-M-¥" . indent-region)
- ("C-^" . ace-window)
- ("C-¥" . skk-mode)
- ("M-%" . vr/query-replace)
- ("M-/" . bbyac-expand-symbols)
- ("M-:" . helm-eval-expression-with-eldoc)
- ("M-X" . lacarte-execute-command)
- ("M-g" . general-command-map)
- ("M-y" . helm-show-kill-ring)
- ("M-z" . avy-zap-to-char-dwim))
+ ("M-g" . general-command-map))
 
 (bind-keys
  :map ctl-x-map
- ("1" . zoom-window-zoom)
  ("f" . find-file)
- ("j" . skk-mode)
- ("o" . ace-window)
- ("C-b" . helm-multi-files)
- ("C-c" . execute-extended-command)
- ("C-f" . helm-find-files-with-projectile))
+ ("C-c" . execute-extended-command))
 
 (bind-keys
  :map mode-specific-map
- (":" . avy-goto-char)
- (";" . avy-goto-word-1)
- ("i" . helm-imenu)
- ("o" . open-by-intellij)
- ("t" . google-translate-enja-or-jaen)
- ("x" . shell-pop)
- ("z" . eshell))
-
-(bind-keys
- :map search-map
- ("g" . dumb-jump-go)
- ("b" . dumb-jump-back)
- ("q" . dumb-jump-quick-look))
-
-(bind-keys
- :map help-map
- ("a" . helm-apropos)
- ("b" . helm-descbinds))
+ ("o" . open-by-intellij))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;`hydra'によるキー定義

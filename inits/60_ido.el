@@ -19,6 +19,9 @@
 (use-package bbyac
   :after (ido)
   :ensure t
+  :bind
+  (:map global-map
+        ("M-/" . bbyac-expand-symbols))
   :custom
   (bbyac-max-chars 99999))
 
@@ -47,12 +50,6 @@
   :ensure t
   :config
   (ido-vertical-mode t))
-
-(use-package ido-yes-or-no
-  :after (ido)
-  :ensure t
-  :config
-  (ido-yes-or-no-mode t))
 
 (provide '60_ido)
 ;;; 60_ido.el ends here

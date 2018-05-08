@@ -4,6 +4,7 @@
 
 (use-package atomic-chrome
   :ensure t
+  :demand t
   :config
   (atomic-chrome-start-server))
 

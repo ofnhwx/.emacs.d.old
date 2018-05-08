@@ -4,6 +4,7 @@
 
 (use-package popwin
   :ensure t
+  :demand t
   :config
   (popwin-mode 1))
 

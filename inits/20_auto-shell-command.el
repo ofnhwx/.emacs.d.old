@@ -5,6 +5,7 @@
 (use-package auto-shell-command
   :if (require 'cl nil t)
   :ensure t
+  :demand t
   :init
   (defvar default-mode-line-format nil)
   :config

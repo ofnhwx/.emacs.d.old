@@ -5,6 +5,7 @@
 (use-package twittering-mode
   :if (progn (quelpa 'twittering-mode)
              (locate-library "twittering-mode"))
+  :demand t
   :custom
   (twittering-number-of-tweets-on-retrieval 50)
   (twittering-use-master-password t)

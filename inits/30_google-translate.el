@@ -5,8 +5,9 @@
 (use-package google-translate
   :ensure t
   :defer t
-  :init
-  (autoload 'google-translate-english-chars "google-translate")
+  :bind
+  (:map mode-specific-map
+        ("t" . google-translate-english-chars))
   :config
   (defvar google-translate-english-chars "[:ascii:]’“”–"
     "これらの文字が含まれているときは英語とみなす")

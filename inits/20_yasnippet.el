@@ -4,6 +4,7 @@
 
 (use-package yasnippet
   :ensure t
+  :demand t
   :diminish yas-minor-mode
   :custom
   (yas--default-user-snippets-dir (e:expand "snippets" :conf))

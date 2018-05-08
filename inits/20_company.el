@@ -4,6 +4,10 @@
 
 (use-package company
   :ensure t
+  :demand t
+  :bind
+  (:map base-command-map
+        ("SPC" . company-complete))
   :custom
   (company-lighter-base "C")
   (company-transformers '(company-sort-by-occurrence company-sort-by-backend-importance))
@@ -39,24 +43,24 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (use-package company-php
-  :after (company php-mode)
+  :after (php-mode)
   :ensure t
   :defer t
   :custom
   (ac-php-tags-path (e:expand "ac-php" :cache)))
 
 (use-package company-web
-  :after (company web-mode)
+  :after (web-mode)
   :ensure t
   :defer t)
 
 (use-package company-irony
-  :after (company irony)
+  :after (irony)
   :ensure t
   :defer t)
 
 (use-package company-irony-c-headers
-  :after (company irony)
+  :after (irony)
   :ensure t
   :defer t)
 

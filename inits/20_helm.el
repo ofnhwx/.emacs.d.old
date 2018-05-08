@@ -4,10 +4,21 @@
 
 (use-package helm
   :ensure t
-  :config
-  (bind-keys
-   :map global-map
-   ([remap execute-extended-command] . helm-M-x)))
+  :demand t
+  :bind
+  (:map file-command-map
+        ("h" . helm-find-files)
+        ("r" . helm-recentf))
+  (:map global-map
+        ([remap execute-extended-command] . helm-M-x)
+        ("M-:" . helm-eval-expression-with-eldoc)
+        ("M-y" . helm-show-kill-ring))
+  (:map ctl-x-map
+        ("C-b" . helm-multi-files))
+  (:map mode-specific-map
+        ("i" . helm-imenu))
+  (:map help-map
+        ("a" . helm-apropos)))
 
 (use-package helm
   :no-require t
@@ -21,11 +32,16 @@
 (use-package helm
   :no-require t
   :after (projectile)
+  :bind
+  (:map file-command-map
+        ("p" . helm-find-files-with-projectile))
+  (:map ctl-x-map
+        ("C-f" . helm-find-files-with-projectile))
   :config
   (defun helm-find-files-with-projectile (&optional arg)
     (interactive "P")
     (if (projectile-project-p)
-        (helm-projectile-find-file arg)
+        (helm-projectile-find-file-dwim)
       (helm-find-files arg))))
 
 (e:use-package helm-ag
@@ -34,50 +50,60 @@
   :after (helm)
   :ensure t
   :defer t
+  :bind
+  (:map general-command-map
+        ("," . helm-ag-pop-stack)
+        ("." . helm-ag)
+        ("/" . helm-ag-project-root)
+        ("_" . helm-ag-this-file))
   :init
   (cond
-   ((executable-find "rg") (set-variable 'helm-ag-base-command "rg --color never --no-heading --smart-case --vimgrep"))
-   ((executable-find "pt") (set-variable 'helm-ag-base-command "pt --nocolor --nogroup --smart-case")))
+   ((executable-find "rg")
+    (set-variable 'helm-ag-base-command "rg --color never --no-heading --smart-case --vimgrep"))
+   ((executable-find "pt")
+    (set-variable 'helm-ag-base-command "pt --nocolor --nogroup --smart-case")))
   :config
   (defun helm-ag--project-root ()
     (cl-loop for dir in '(".git" ".git/" ".hg/" ".svn/")
              when (locate-dominating-file default-directory dir)
              return it)))
 
-(use-package helm-c-yasnippet
-  :after (helm yasnippet)
-  :ensure t)
-
 (use-package helm-descbinds
-  :after (helm)
   :ensure t
-  :defer t)
+  :defer t
+  :bind
+  (:map help-map
+        ("b" . helm-descbinds)))
 
 (use-package helm-dired-history
-  :after (helm dired)
+  :after (dired)
   :ensure t)
 
 (use-package helm-elscreen
-  :after (helm elscreen)
+  :after (elscreen)
   :ensure t
-  :config
-  (bind-keys
-   :map elscreen-map
-   ("C-z" . helm-elscreen)))
+  :defer t
+  :bind
+  (:map elscreen-map
+        ("C-z" . helm-elscreen)))
 
 (use-package helm-flycheck
-  :after (helm flycheck)
-  :ensure t)
-
-(e:use-package helm-ghq
-  (executable-find "ghq")
-  :after (helm)
+  :after (flycheck)
   :ensure t
   :defer t)
 
+(e:use-package helm-ghq
+  (executable-find "ghq")
+  :ensure t
+  :defer t
+  :bind
+  (:map file-command-map
+        ("g" . helm-ghq)))
+
 (use-package helm-projectile
-  :after (helm projectile)
-  :ensure t)
+  :after (projectile)
+  :ensure t
+  :defer t)
 
 (use-package helm-swoop
   :after (helm)
