@@ -9,11 +9,12 @@
   (:map base-command-map
         ("SPC" . company-complete))
   :custom
-  (company-lighter-base "C")
-  (company-transformers '(company-sort-by-occurrence company-sort-by-backend-importance))
+  (company-dabbrev-code-ignore-case t)
   (company-idle-delay 0)
+  (company-lighter-base "C")
   (company-minimum-prefix-length 1)
-  (ompany-selection-wrap-around t)
+  (company-selection-wrap-around t)
+  (company-transformers '(company-sort-by-occurrence company-sort-by-backend-importance))
   :config
   (defun set-company-backends (backends)
     (make-local-variable 'company-backends)
@@ -57,7 +58,9 @@
 (use-package company-irony
   :after (irony)
   :ensure t
-  :defer t)
+  :defer t
+  :custom
+  (company-irony-ignore-case 'smart))
 
 (use-package company-irony-c-headers
   :after (irony)
