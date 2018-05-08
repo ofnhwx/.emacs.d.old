@@ -22,6 +22,21 @@
         nil))))
 
 (use-package powerline
+  :no-require t
+  :after (skk)
+  :config
+  (defun powerline-skk-setup-modeline (fun &rest args)
+    (setq skk-indicator-alist (skk-make-indicator-alist))
+    (custom-set-faces
+     '(skk-emacs-hiragana-face       ((t (:foreground "#000000" :background "pink"))))
+     '(skk-emacs-katakana-face       ((t (:foreground "#000000" :background "green"))))
+     '(skk-emacs-jisx0201-face       ((t (:foreground "#000000" :background "thistle"))))
+     '(skk-emacs-jisx0208-latin-face ((t (:foreground "#000000" :background "gold"))))
+     '(skk-emacs-abbrev-face         ((t (:foreground "#000000" :background "royalblue")))))
+    (force-mode-line-update t))
+  (advice-add 'skk-setup-modeline :around 'powerline-skk-setup-modeline))
+
+(use-package powerline
   :ensure t
   :demand t
   :custom
@@ -64,6 +79,11 @@
                ;; ステート(evil)
                (when (bound-and-true-p evil-mode)
                  (powerline-raw (powerline-evil-state) (powerline-evil-face)))
+               ;; skk
+               (powerline-raw (or (and (bound-and-true-p skk-modeline-input-mode)
+                                       (cl-plusp (length skk-modeline-input-mode))
+                                       skk-modeline-input-mode)
+                                  "-----::"))
                ;; 状態(%:readonly, *:modified, -:otherwise)
                (powerline-raw "%*" mode-line 'l)
                ;; IME

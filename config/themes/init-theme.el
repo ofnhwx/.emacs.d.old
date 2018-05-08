@@ -80,16 +80,6 @@
    '(diredp-no-priv                ((t (:foreground "#a0a0a0"))))
   ))
 
-(with-eval-after-load "skk"
-  (custom-theme-set-faces
-   'init
-   '(skk-emacs-hiragana-face       ((t (:foreground "#000000" :background "pink"))))
-   '(skk-emacs-katakana-face       ((t (:foreground "#000000" :background "green"))))
-   '(skk-emacs-jisx0201-face       ((t (:foreground "#000000" :background "thistle"))))
-   '(skk-emacs-jisx0208-latin-face ((t (:foreground "#000000" :background "gold"))))
-   '(skk-emacs-abbrev-face         ((t (:foreground "#000000" :background "royalblue"))))
-   ))
-
 (with-eval-after-load "elscreen"
   (custom-theme-set-faces
    'init
