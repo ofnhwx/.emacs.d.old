@@ -29,11 +29,14 @@
 
 ;; フォント
 (or
- (e:set-font "Ricty Diminished Discord" 140)
- (e:set-font "Monaco" 110)
- (e:set-font "Takao" 90)
- (e:set-font "MeiryoKe_Gothic" 90)
- (e:set-font "IPAゴシック" 90)
+ (e:set-font "Ricty Diminished Discord" :target 'japanese-jisx0208)
+ )
+(or
+ (e:set-font "Ricty Diminished Discord" :height 140)
+ (e:set-font "Monaco" :height 110)
+ (e:set-font "Takao")
+ (e:set-font "MeiryoKe_Gothic")
+ (e:set-font "IPAゴシック")
  )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

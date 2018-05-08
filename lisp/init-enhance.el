@@ -119,11 +119,14 @@ NAME, URL は必須、PRIORITY は必要な場合のみ指定する."
         (load elc)
       (load el))))
 
-(defun e:set-font (fontname height)
+(cl-defun e:set-font (fontname &key (height 90) target)
   "FONTNAME で指定したフォントが存在する場合に、高さ HEIGHT でフォントを設定する."
-  (when (find-font (font-spec :name fontname))
-    (set-face-attribute 'default nil :family fontname :height height)
-    t))
+  (let ((font (font-spec :family fontname :height height)))
+    (when (find-font font)
+      (if target
+          (set-fontset-font t target font)
+        (set-face-attribute 'default nil :family fontname :height height))
+      font)))
 
 (defmacro e:safe-exec (sexplist)
   "SEXPLIST を安全に実行する."
