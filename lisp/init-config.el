@@ -28,16 +28,22 @@
 (e:safe-exec (set-keyboard-coding-system    'utf-8))
 
 ;; フォント
-(or
- (e:set-font "Ricty Diminished Discord" :target 'japanese-jisx0208 :size 14)
- )
-(or
- (e:set-font "Ricty Diminished Discord" :size 14)
- (e:set-font "Monaco" :size 11)
- (e:set-font "Takao")
- (e:set-font "MeiryoKe_Gothic")
- (e:set-font "IPAゴシック")
- )
+(progn
+  (let ((target 'japanese-jisx0208))
+    (or
+     (e:set-font "Ricty Diminished Discord" :target target :size 14)
+     ))
+  (let ((target 'katakana-jisx0201))
+    (or
+     (e:set-font "Ricty Diminished Discord" :target target :size 14)
+     ))
+  (or
+   (e:set-font "Ricty Diminished Discord" :size 14)
+   (e:set-font "Monaco" :size 11)
+   (e:set-font "Takao")
+   (e:set-font "MeiryoKe_Gothic")
+   (e:set-font "IPAゴシック")
+   ))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; テーマ設定

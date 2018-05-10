@@ -25,6 +25,7 @@
   (set-variable 'skk-show-inline 'vertical)
   (set-variable 'skk-sticky-key ";")
   (set-variable 'skk-tut-file (e:expand "ddskk/SKK.tut" :conf))
+  (set-variable 'skk-use-jisx0201-input-method t)
   (when (executable-find "google-ime-skk")
     (set-variable 'skk-server-prog (executable-find "google-ime-skk"))
     (set-variable 'skk-server-inhibit-startup-server t)
