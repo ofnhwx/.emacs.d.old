@@ -13,6 +13,8 @@
  ;; モードライン
  '(mode-line           ((t (:background "#f00000" :box (:line-width 1 :color "#ffffff")))))
  '(mode-line-inactive  ((t (:background "#000000" :box (:line-width 1 :color "#ffffff")))))
+ '(mode-line-buffer-id          ((t (:inherit mode-line          :weight bold))))
+ '(mode-line-buffer-id-inactive ((t (:inherit mode-line-inactive :weight bold))))
  ;; 関数, 変数, 文字列
  '(font-lock-function-name-face   ((t (:foreground "#4169e1"))))
  '(font-lock-variable-name-face   ((t (:foreground "#00ffff"))))

@@ -83,18 +83,19 @@
                (powerline-raw (or (and (bound-and-true-p skk-modeline-input-mode)
                                        (cl-plusp (length skk-modeline-input-mode))
                                        skk-modeline-input-mode)
-                                  "-----::"))
+                                  "-----::")
+                              mode-line)
                ;; 状態(%:readonly, *:modified, -:otherwise)
-               (powerline-raw "%*" mode-line 'l)
+               (powerline-raw "%*" mode-line)
                ;; IME
                ;;(powerline-raw mode-line-mule-info mode-line)
                (powerline-raw current-input-method-title mode-line)
                (powerline-coding-type mode-line)
                ;; バッファー名
-               (powerline-buffer-id mode-line-buffer-id 'r)
+               (powerline-buffer-id mode-line-buffer-id)
                ;; 関数名(wchich-func-mode)
                (when (bound-and-true-p which-func-mode)
-                 (powerline-raw which-func-format nil 'l))
+                 (powerline-raw which-func-format face1 'l))
                ;; >>>
                (funcall separator-left mode-line face1)
                ;; 更新チャンネル(erc)
