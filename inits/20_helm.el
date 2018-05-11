@@ -104,7 +104,10 @@
 (use-package helm-swoop
   :after (helm)
   :ensure t
-  :defer t)
+  :defer t
+  :bind
+  (:map isearch-mode-map
+        ("C-o" . helm-swoop-from-isearch)))
 
 (provide '20_helm)
 ;;; 20_helm.el ends here

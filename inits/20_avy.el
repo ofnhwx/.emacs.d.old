@@ -16,7 +16,9 @@
         ("C-;" . avy-goto-word-1))
   (:map mode-specific-map
         (":" . avy-goto-char)
-        (";" . avy-goto-word-1)))
+        (";" . avy-goto-word-1))
+  (:map isearch-mode-map
+        ("C-i" . avy-isearch)))
 
 (use-package ace-link
   :ensure t
