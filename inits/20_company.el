@@ -9,6 +9,7 @@
   (:map base-command-map
         ("SPC" . company-complete))
   :custom
+  (company-async-timeout 5)
   (company-dabbrev-code-ignore-case t)
   (company-idle-delay 0)
   (company-lighter-base "C")
