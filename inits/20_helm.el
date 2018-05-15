@@ -25,7 +25,7 @@
   :after (windata)
   :config
   (defun my/helm-display-buffer (buffer &optional resume)
-    (let ((helm-windata '(frame bottom 0.3 nil)))
+    (let ((helm-windata '(frame bottom 0.4 nil)))
       (apply 'windata-display-buffer buffer helm-windata)))
   (set-variable 'helm-display-function 'my/helm-display-buffer))
 
