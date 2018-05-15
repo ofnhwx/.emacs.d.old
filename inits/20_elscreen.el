@@ -6,6 +6,7 @@
   :ensure t
   :demand t
   :custom
+  (elscreen-display-tab nil)
   (elscreen-prefix-key (kbd "C-z"))
   (elscreen-tab-display-kill-screen nil)
   :config
