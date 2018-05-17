@@ -10,6 +10,7 @@
   (evil-insert-state-map (make-sparse-keymap))
   (evil-move-cursor-back nil)
   (evil-toggle-key "C-z z")
+  (evil-visual-char 'exclusive)
   (evil-want-fine-undo t)
   :config
   (add-to-list 'evil-emacs-state-modes 'dired-mode)
