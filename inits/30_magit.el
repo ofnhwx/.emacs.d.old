@@ -13,6 +13,7 @@
         ("l" . magit-log-buffer-file-popup)
         ("s" . magit-status))
   :custom
+  (magit-log-margin '(t "%Y-%m-%d %H:%M" magit-log-margin-width t 15))
   (magit-diff-refine-hunk 'all)
   (smerge-refine-ignore-whitespace nil))
 
