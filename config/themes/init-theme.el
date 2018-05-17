@@ -8,7 +8,7 @@
  'init
  ;; 文字・背景, カーソル, 選択範囲
  '(default ((t (:background "#000000" :foreground "#ffffff"))))
- '(cursor  ((t (:background "#ffff00"))))
+ '(cursor  ((t (:background "#ffff00" :foreground "#000000"))))
  '(region  ((t (:background "#000080"))))
  ;; モードライン
  '(mode-line           ((t (:background "#f00000" :box (:line-width 1 :color "#ffffff")))))

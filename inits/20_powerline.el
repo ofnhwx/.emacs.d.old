@@ -37,6 +37,21 @@
   (advice-add 'skk-setup-modeline :around 'powerline-skk-setup-modeline))
 
 (use-package powerline
+  :no-require t
+  :after (elscreen)
+  :config
+  (defun powerline-elscreen-max ()
+    (--first (elscreen-screen-live-p it) (number-sequence 9 0 -1)))
+  (defun powerline-elscreen-before ()
+    (apply 'concat (--map (if (elscreen-screen-live-p it) (int-to-string it) "_")
+                          (number-sequence 0 (1- (elscreen-get-current-screen))))))
+  (defun powerline-elscreen-current ()
+    (int-to-string (elscreen-get-current-screen)))
+  (defun powerline-elscreen-after ()
+    (apply 'concat (--map (if (elscreen-screen-live-p it) (int-to-string it) "_")
+                          (number-sequence (1+ (elscreen-get-current-screen)) (powerline-elscreen-max))))))
+
+(use-package powerline
   :ensure t
   :demand t
   :custom
@@ -73,9 +88,17 @@
              (face2               (if active 'powerline-active2 'powerline-inactive2))
              (separator-left  (intern (format "powerline-%s-%s" (powerline-current-separator) (car powerline-default-separator-dir))))
              (separator-right (intern (format "powerline-%s-%s" (powerline-current-separator) (cdr powerline-default-separator-dir))))
-             ;;
+             (bottom-left-window (eq (get-buffer-window) (e:bottom-left-window)))
+             ;; 左側
              (lhs
               (list
+               ;; elscreen
+               (if bottom-left-window
+                   (powerline-raw (concat "[" (powerline-elscreen-before)) 'mode-line-inactive))
+               (if bottom-left-window
+                   (powerline-raw (powerline-elscreen-current) 'cursor))
+               (if bottom-left-window
+                   (powerline-raw (concat (powerline-elscreen-after) "]") 'mode-line-inactive))
                ;; ステート(evil)
                (when (bound-and-true-p evil-mode)
                  (powerline-raw (powerline-evil-state) (powerline-evil-face)))
@@ -113,7 +136,7 @@
                (funcall separator-left face1 face2)
                ;; Version Control
                (powerline-vc face2 'r)))
-             ;;
+             ;; 右側
              (rhs
               (list
                ;; バッテリー、時刻等
