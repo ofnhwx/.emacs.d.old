@@ -42,13 +42,21 @@
 (use-package eshell
   :no-require t
   :after (helm)
-  :hook (eshell-mode . eshell/setup-keys)
+  :hook (eshell-mode . eshell/setup-helm-keys)
   :config
-  (defun eshell/setup-keys ()
+  (defun eshell/setup-helm-keys ()
     (bind-keys
      :map eshell-mode-map
+     ("<tab>" . helm-esh-pcomplete)
      ("C-i" . helm-esh-pcomplete)
      ("M-h" . helm-eshell-history))))
+
+(e:use-package fish-completion
+  (executable-find "fish")
+  :after (eshell)
+  :ensure t
+  :defer t
+  :hook (eshell-mode . fish-completion-mode))
 
 (provide '60_eshell)
 ;;; 60_eshell.el ends here

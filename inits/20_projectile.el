@@ -13,6 +13,7 @@
   (projectile-keymap-prefix (kbd "C-x p"))
   (projectile-known-projects-file (e:expand "projectile-bookmarks.eld" :cache))
   (projectile-cache-file (e:expand "projectile.cache" :cache))
+  (projectile-enable-caching t)
   :config
   (projectile-global-mode))
 

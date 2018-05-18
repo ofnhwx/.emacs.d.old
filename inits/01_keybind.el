@@ -97,14 +97,16 @@
   "
 ^Toggle^
 -----------------------------
-[_h_]: hs-minor-mode   %(if hs-minor-mode \[*\] \[_\])
-[_r_]: read-only-mode  %(if buffer-read-only \[*\] \[_\])
-[_t_]: truncate-lines  %(if truncate-lines \[*\] \[_\])
-[_w_]: whitespace-mode %(if whitespace-mode \[*\] \[_\])
+[_h_]: 折りたたみ     %(if hs-minor-mode        \[*\] \[_\])
+[_r_]: 読取専用       %(if buffer-read-only     \[*\] \[_\])
+[_t_]: 折り返し       %(if (not truncate-lines) \[*\] \[_\])
+[_v_]: 表示行で移動   %(if visual-line-mode     \[*\] \[_\])
+[_w_]: 空白文字を表示 %(if whitespace-mode      \[*\] \[_\])
 "
   ("h" hs-minor-mode)
   ("r" read-only-mode)
   ("t" toggle-truncate-lines)
+  ("v" visual-line-mode)
   ("w" whitespace-mode))
 
 (defhydra hydra-jump

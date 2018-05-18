@@ -12,6 +12,22 @@
   (evil-toggle-key "C-z z")
   (evil-visual-char 'exclusive)
   (evil-want-fine-undo t)
+  :bind
+  (:map evil-normal-state-map
+        ("j" . evil-next-visual-line)
+        ("k" . evil-previous-visual-line)
+        ("g0" . elscreen-jump)
+        ("g1" . elscreen-jump)
+        ("g2" . elscreen-jump)
+        ("g3" . elscreen-jump)
+        ("g4" . elscreen-jump)
+        ("g5" . elscreen-jump)
+        ("g6" . elscreen-jump)
+        ("g7" . elscreen-jump)
+        ("g8" . elscreen-jump)
+        ("g9" . elscreen-jump)
+        ("gt" . elscreen-next)
+        ("gT" . elscreen-previous))
   :config
   (add-to-list 'evil-emacs-state-modes 'dired-mode)
   (add-to-list 'evil-emacs-state-modes 'eshell-mode)
@@ -69,6 +85,30 @@
   ((evil-insert-state-entry . skk-latin-mode-on)
    (evil-insert-state-exit  . skk-mode-exit)))
 
+(use-package evil-numbers
+  :ensure t
+  :defer t
+  :bind
+  (:map evil-normal-state-map
+        ("C-c +" . evil-numbers/inc-at-pt)
+        ("C-c -" . evil-numbers/dec-at-pt)))
+
+(use-package evil-string-inflection
+  :ensure t
+  :defer t
+  :init
+  (when (fboundp 'evil-operator-snakecamelfy)
+    (defalias 'evil-operator-string-inflection 'evil-operator-snakecamelfy))
+  :bind
+  (:map evil-normal-state-map
+        ("g~" . evil-operator-string-inflection)))
+
+(use-package evil-surround
+  :ensure t
+  :demand t
+  :config
+  (global-evil-surround-mode 1))
+
 (use-package linum-relative
   :ensure t
   :defer t
@@ -103,20 +143,6 @@
       (linum-relative-off)
       (when temp-linum-mode-state
         (linum-mode))))))
-
-(use-package evil-surround
-  :ensure t
-  :demand t
-  :config
-  (global-evil-surround-mode 1))
-
-(use-package evil-numbers
-  :ensure t
-  :defer t
-  :bind
-  (:map evil-normal-state-map
-        ("C-c +" . evil-numbers/inc-at-pt)
-        ("C-c -" . evil-numbers/dec-at-pt)))
 
 (provide '20_evil)
 ;;; 20_evil.el ends here

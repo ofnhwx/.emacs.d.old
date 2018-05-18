@@ -6,6 +6,8 @@
   :ensure t
   :demand t
   :diminish which-key-mode
+  :custom
+  (which-key-sort-order 'which-key-prefix-then-key-order)
   :config
   (which-key-setup-side-window-right-bottom)
   (which-key-mode))

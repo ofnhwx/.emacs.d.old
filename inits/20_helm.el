@@ -14,6 +14,7 @@
         ("M-:" . helm-eval-expression-with-eldoc)
         ("M-y" . helm-show-kill-ring))
   (:map ctl-x-map
+        ("r h" . helm-register)
         ("C-b" . helm-multi-files))
   (:map mode-specific-map
         ("i" . helm-imenu))

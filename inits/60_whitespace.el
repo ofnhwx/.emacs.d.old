@@ -3,7 +3,9 @@
 ;;; Code:
 
 (use-package whitespace
-  :diminish global-whitespace-mode
+  :demand t
+  :diminish
+  whitespace-mode
   :custom
   (whitespace-style
    '(face      ;; 'face'で色を付ける
@@ -19,8 +21,7 @@
    '((space-mark   ?\u3000 [?\u25A1])
      (tab-mark     ?\t     [?\u00BB ?\t])
      (newline-mark ?\n     [?\u21B5 ?\n])))
-  :config
-  (global-whitespace-mode 1))
+  :hook (find-file . whitespace-mode))
 
 (provide '60_whitespace)
 ;;; 60_whitespace.el ends here
