@@ -2,6 +2,10 @@
 ;;; Commentary:
 ;;; Code:
 
+(use-package google-this
+  :ensure
+  :defer t)
+
 (use-package google-translate
   :ensure t
   :defer t
