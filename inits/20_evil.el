@@ -46,12 +46,15 @@
 (use-package evil
   :no-require t
   :config
+  (defun evil-save-and-normal-state ()
+    "Save and force normal state."
+    (interactive)
+    (save-buffer)
+    (evil-force-normal-state))
   (defun evil-keyboard-quit ()
     "Keyboard quit and force normal state."
     (interactive)
-    (message "%s" evil-state)
-    (when (bound-and-true-p evil-mode)
-      (evil-force-normal-state))
+    (evil-force-normal-state)
     (keyboard-quit)))
 
 (use-package evil
@@ -69,6 +72,7 @@
   ;; 挿入モード
   (:map evil-insert-state-map
         ("C-g" . evil-keyboard-quit)
+        ("C-x C-s" . evil-save-and-normal-state)
         ("<escape>" . evil-force-normal-state))
   ;; オペレーターモード
   (:map evil-operator-state-map)
