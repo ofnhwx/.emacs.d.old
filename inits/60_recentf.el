@@ -7,7 +7,7 @@
   (recentf-save-file (e:expand "recentf" :cache))
   (recentf-max-menu-items 20)
   (recentf-max-saved-items 3000)
-  (recentf-exclude `("^/[^/:]+:" "\\.howm$" "\\.org$" ,(rx bol (eval (e:get-dir :temp)))))
+  (recentf-exclude `("^/[^/:]+:" ,(rx bol (eval (e:get-dir :temp)))))
   (recentf-filename-handlers '(abbreviate-file-name))
   :config
   (run-with-idle-timer 300 t 'recentf-save-list)
