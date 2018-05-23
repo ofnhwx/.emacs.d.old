@@ -5,6 +5,8 @@
 (use-package avy
   :ensure t
   :defer t
+  :custom
+  (avy-background t)
   :bind
   (:map base-command-map
         (":" . avy-goto-char)
