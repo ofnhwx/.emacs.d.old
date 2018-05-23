@@ -156,9 +156,10 @@
 ^Other window^              ^This window^
 ---------------------------------------------------------
 [_n_]: scroll down          [_=_]: balance
-[_p_]: scroll up            [_~_]: shrink
-[_N_]: scroll down (page)   [_{_]: enlarge (horizontally)
-[_P_]: scroll up   (page)   [_}_]: shrink  (horizontally)
+[_p_]: scroll up            [_\\^_]: enlarge
+[_N_]: scroll down (page)   [_~_]: shrink
+[_P_]: scroll up   (page)   [_{_]: enlarge (horizontally)
+^^                          [_}_]: shrink  (horizontally)
 
 "
   ("n" (lambda () (interactive) (scroll-other-window  1)))
