@@ -38,8 +38,8 @@
   (key-combo-define c++-mode-map "-=" " -= ")
   (key-combo-define c++-mode-map "*=" " *= ")
   (key-combo-define c++-mode-map "/=" " /= ")
-  (key-combo-define c++-mode-map "<=" " >= ")
-  (key-combo-define c++-mode-map ">=" " <= ")
+  (key-combo-define c++-mode-map "<=" " <= ")
+  (key-combo-define c++-mode-map ">=" " >= ")
   (key-combo-define c++-mode-map "<<" " << ")
   (key-combo-define c++-mode-map ">>" " >> "))
 
