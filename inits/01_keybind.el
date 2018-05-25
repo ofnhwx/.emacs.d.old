@@ -17,7 +17,6 @@
 
 (bind-keys
  :map base-command-map
- ("," . hydra-mc/body)
  ("b" . buffer-command-map)
  ("f" . file-command-map)
  ("g" . general-command-map)
@@ -116,39 +115,6 @@
   ("p" previous-error           "prev-error")
   ("N" git-gutter:next-hunk     "next-hunk")
   ("P" git-gutter:previous-hunk "prev-hunk"))
-
-(defhydra hydra-mc
-  (global-map "C-t" :color pink :hint nil)
-  "
-^Prev^           ^^^Next^           ^^^Sort^       ^Other^
-----------------------------------------------------------------
-[_p_,_<_]: mark    [_n_,_>_]: mark    [_o_]: asc   [_*_]: mark all
-[_P_,_U_]: unmark  [_N_,_u_]: unmark  [_O_]: desc  [_d_]: mark all(dwim)
-[_S_]^^  : skip    [_s_]^^  : skip    ^^           [_m_]: mark more
-^^^^               ^^^^               ^^           [_i_]: insert numbers
-
-"
-  ;; Prev
-  ("p" mc/mark-previous-like-this)
-  ("<" mc/mark-previous-like-this)
-  ("P" mc/unmark-previous-like-this)
-  ("U" mc/unmark-previous-like-this)
-  ("S" mc/skip-to-previous-like-this)
-  ;; Next
-  ("n" mc/mark-next-like-this)
-  (">" mc/mark-next-like-this)
-  ("N" mc/unmark-next-like-this)
-  ("u" mc/unmark-next-like-this)
-  ("s" mc/skip-to-next-like-this)
-  ;; Sort
-  ("o" mc/sort-regions)
-  ("O" mc/reverse-regions)
-  ;; Other
-  ("*" mc/mark-all-like-this)
-  ("d" mc/mark-all-like-this-dwim)
-  ("m" mc/mark-more-like-this-extended)
-  ("i" mc/insert-numbers)
-  ("q" nil "quit" :color blue))
 
 (defhydra hydra-wc
   (global-map "C-c" :color amaranth :hint nil)
