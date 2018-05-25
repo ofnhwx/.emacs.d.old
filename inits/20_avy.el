@@ -6,6 +6,7 @@
   :ensure t
   :defer t
   :custom
+  (avy-all-windows nil)
   (avy-background t)
   :bind
   (:map base-command-map
