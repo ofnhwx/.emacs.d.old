@@ -26,7 +26,7 @@
   :no-require t
   :after (cc-mode)
   :config
-  (key-combo-define c++-mode-map "." '("." "->"))
+  (key-combo-define c++-mode-map "." '("." "->" "..."))
   (key-combo-define c++-mode-map "," '("," ", "))
   (key-combo-define c++-mode-map "+" '(" + " "++"))
   (key-combo-define c++-mode-map "-" '(" - " "--"))
