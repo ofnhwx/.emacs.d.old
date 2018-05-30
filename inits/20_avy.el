@@ -6,20 +6,21 @@
   :ensure t
   :defer t
   :custom
-  (avy-all-windows nil)
+  (avy-all-windows t)
   (avy-background t)
+  (avy-keys (number-sequence ?a ?z))
   :bind
   (:map base-command-map
-        (":" . avy-goto-char)
-        (";" . avy-goto-word-1))
+        (":" . avy-goto-word-1)
+        (";" . avy-goto-char-timer))
   (:map general-command-map
         ("g" . avy-goto-line))
   (:map global-map
-        ("C-:" . avy-goto-char)
-        ("C-;" . avy-goto-word-1))
+        ("C-:" . avy-goto-word-1)
+        ("C-;" . avy-goto-char-timer))
   (:map mode-specific-map
-        (":" . avy-goto-char)
-        (";" . avy-goto-word-1))
+        (":" . avy-goto-word-1)
+        (";" . avy-goto-char-timer))
   (:map isearch-mode-map
         ("C-i" . avy-isearch)))
 
