@@ -10,12 +10,15 @@
   (evil-insert-state-map (make-sparse-keymap))
   (evil-move-cursor-back nil)
   (evil-toggle-key "C-z z")
-  (evil-visual-char 'exclusive)
   (evil-want-fine-undo t)
   :bind
   (:map evil-normal-state-map
+        ("<down>" . evil-next-visual-line)
+        ("<up>" . evil-previous-visual-line)
         ("j" . evil-next-visual-line)
         ("k" . evil-previous-visual-line)
+        ("gj" . evil-next-line)
+        ("gk" . evil-previous-line)
         ("g0" . elscreen-jump)
         ("g1" . elscreen-jump)
         ("g2" . elscreen-jump)
@@ -89,6 +92,33 @@
   ((evil-insert-state-entry . skk-latin-mode-on)
    (evil-insert-state-exit  . skk-mode-exit)))
 
+(use-package evil-args
+  :ensure t
+  :demand t
+  :bind
+  (:map evil-inner-text-objects-map
+        ("a" . evil-inner-arg))
+  (:map evil-outer-text-objects-map
+        ("a" . evil-outer-arg)))
+
+(use-package evil-exchange
+  :ensure t
+  :demand t
+  :config
+  (evil-exchange-install))
+
+(use-package evil-matchit
+  :ensure t
+  :demand t
+  :config
+  (global-evil-matchit-mode 1))
+
+(use-package evil-nerd-commenter
+  :ensure t
+  :demand t
+  :config
+  (evilnc-default-hotkeys))
+
 (use-package evil-numbers
   :ensure t
   :defer t
@@ -96,6 +126,11 @@
   (:map evil-normal-state-map
         ("C-c +" . evil-numbers/inc-at-pt)
         ("C-c -" . evil-numbers/dec-at-pt)))
+
+(use-package evil-little-word
+  :if (progn (quelpa '(evil-plugins :fetcher github :repo "tarao/evil-plugins"))
+             (locate-library "evil-little-word"))
+  :demand t)
 
 (use-package evil-string-inflection
   :ensure t
@@ -112,6 +147,19 @@
   :demand t
   :config
   (global-evil-surround-mode 1))
+
+(use-package evil-tutor-ja
+  :ensure t
+  :defer t
+  :custom
+  (evil-tutor-working-directory (e:expand "tutor/" :cache))
+  (evil-tutor-ja-working-directory (e:expand "tutor/" :cache)))
+
+(use-package evil-visualstar
+  :ensure t
+  :demand t
+  :config
+  (global-evil-visualstar-mode 1))
 
 (use-package linum-relative
   :ensure t
