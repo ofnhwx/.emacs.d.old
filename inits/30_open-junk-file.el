@@ -1,4 +1,4 @@
-;;; 20_open-junk-file.el --- configurations.
+;;; 30_open-junk-file.el --- configurations.
 ;;; Commentary:
 ;;; Code:
 
@@ -8,5 +8,5 @@
   :custom
   (open-junk-file-format (e:expand "junk/%Y%m%d_%H%M%S." :cache)))
 
-(provide '20_open-junk-file)
-;;; 20_open-junk-file.el ends here
+(provide '30_open-junk-file)
+;;; 30_open-junk-file.el ends here

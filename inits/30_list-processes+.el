@@ -1,4 +1,4 @@
-;;; 20_list-processes+.el --- configurations.
+;;; 30_list-processes+.el --- configurations.
 ;;; Commentary:
 ;;; Code:
 
@@ -7,5 +7,5 @@
              (locate-library "list-processes+"))
   :defer t)
 
-(provide '20_list-processes+)
-;;; 20_list-processes+.el ends here
+(provide '30_list-processes+)
+;;; 30_list-processes+.el ends here

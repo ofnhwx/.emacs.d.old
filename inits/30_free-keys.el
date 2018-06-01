@@ -1,4 +1,4 @@
-;;; 20_free-keys.el --- configurations.
+;;; 30_free-keys.el --- configurations.
 ;;; Commentary:
 ;;; Code:
 
@@ -6,5 +6,5 @@
   :ensure t
   :defer t)
 
-(provide '20_free-keys)
-;;; 20_free-keys.el ends here
+(provide '30_free-keys)
+;;; 30_free-keys.el ends here

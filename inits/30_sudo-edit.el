@@ -1,4 +1,4 @@
-;;; 20_sudo-edit.el --- configurations.
+;;; 30_sudo-edit.el --- configurations.
 ;;; Commentary:
 ;;; Code:
 
@@ -6,5 +6,5 @@
   :ensure t
   :defer t)
 
-(provide '20_sudo-edit)
-;;; 20_sudo-edit.el ends here
+(provide '30_sudo-edit)
+;;; 30_sudo-edit.el ends here

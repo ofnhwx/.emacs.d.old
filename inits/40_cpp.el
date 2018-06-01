@@ -1,8 +1,26 @@
-;;; 40_cc-mode.el --- configurations.
+;;; 40_cpp.el --- configurations.
 ;;; Commentary:
 ;;; Code:
 
+(use-package irony
+  :ensure t
+  :diminish irony-mode
+  :defer t
+  :hook
+  ((irony-mode . irony-cdb-autosetup-compile-options)
+   (c-mode     . irony-mode)
+   (c++-mode   . irony-mode))
+  :custom
+  (irony-additional-clang-options '("-std=c++11"))
+  (irony-user-dir (e:expand "irony" :cache))
+  (irony-server-install-prefix irony-user-dir)
+  :config
+  (defun irony-add-include (path)
+    (add-to-list 'irony-additional-clang-options (format "-I%s" path)))
+  (e:load-local-config "irony"))
+
 (use-package cc-mode
+  :defer t
   :bind
   (:map c++-mode-map
         ("C-c /" . cc-switch-header/source))
@@ -24,5 +42,5 @@
        (t
         (print "not found."))))))
 
-(provide '40_cc-mode)
-;;; 40_cc-mode.el ends here
+(provide '40_cpp)
+;;; 40_cpp.el ends here

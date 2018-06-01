@@ -1,4 +1,4 @@
-;;; 20_codic.el --- configurations.
+;;; 30_codic.el --- configurations.
 ;;; Commentary:
 ;;; Code:
 
@@ -8,5 +8,5 @@
   :config
   (set-variable 'codic-api-token (e:auth-source-get 'api-token :app "codic")))
 
-(provide '20_codic)
-;;; 20_codic.el ends here
+(provide '30_codic)
+;;; 30_codic.el ends here

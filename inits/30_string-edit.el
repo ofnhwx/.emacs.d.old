@@ -1,4 +1,4 @@
-;;; 20_string-edit.el --- configurations.
+;;; 30_string-edit.el --- configurations.
 ;;; Commentary:
 ;;; Code:
 
@@ -9,5 +9,5 @@
   (:map general-command-map
         ("e" . string-edit-at-point)))
 
-(provide '20_string-edit)
-;;; 20_string-edit.el ends here
+(provide '30_string-edit)
+;;; 30_string-edit.el ends here

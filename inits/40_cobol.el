@@ -1,4 +1,4 @@
-;;; 30_cobol-mode.el --- configurations.
+;;; 30_cobol.el --- configurations.
 ;;; Commentary:
 ;;; Code:
 
@@ -20,5 +20,5 @@
   (cobol-column-marker-1 6)
   (cobol-column-marker-2 72))
 
-(provide '30_cobol-mode)
-;;; 30_cobol-mode.el ends here
+(provide '30_cobol)
+;;; 30_cobol.el ends here

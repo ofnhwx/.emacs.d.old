@@ -1,4 +1,4 @@
-;;; 20_ctags-update.el --- configurations.
+;;; 30_ctags-update.el --- configurations.
 ;;; Commentary:
 ;;; Code:
 
@@ -8,5 +8,5 @@
   :defer t
   :hook (php-mode . turn-on-ctags-auto-update-mode))
 
-(provide '20_ctags-update)
-;;; 20_ctags-update.el ends here
+(provide '30_ctags-update)
+;;; 30_ctags-update.el ends here

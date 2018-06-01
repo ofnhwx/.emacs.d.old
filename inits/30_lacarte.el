@@ -1,4 +1,4 @@
-;;; 20_lacarte.el --- configurations.
+;;; 30_lacarte.el --- configurations.
 ;;; Commentary:
 ;;; Code:
 
@@ -10,5 +10,5 @@
   (:map global-map
         ("M-X" . lacarte-execute-command)))
 
-(provide '20_lacarte)
-;;; 20_lacarte.el ends here
+(provide '30_lacarte)
+;;; 30_lacarte.el ends here

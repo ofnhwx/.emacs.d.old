@@ -1,4 +1,4 @@
-;;; 40_twittering-mode.el --- configurations.
+;;; 30_twittering-mode.el --- configurations.
 ;;; Commentary:
 ;;; Code:
 
@@ -68,5 +68,5 @@
     (setq twittering-timeline-data-table (make-hash-table :test 'equal))
     (twit)))
 
-(provide '40_twittering-mode)
-;;; 40_twittering-mode.el ends here
+(provide '30_twittering-mode)
+;;; 30_twittering-mode.el ends here

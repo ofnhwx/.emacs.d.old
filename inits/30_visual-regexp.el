@@ -1,4 +1,4 @@
-;;; 20_visual-regexp.el --- configurations.
+;;; 30_visual-regexp.el --- configurations.
 ;;; Commentary:
 ;;; Code:
 
@@ -9,5 +9,5 @@
   (:map global-map
         ("M-%" . vr/query-replace)))
 
-(provide '20_visual-regexp)
-;;; 20_visual-regexp.el ends here
+(provide '30_visual-regexp)
+;;; 30_visual-regexp.el ends here

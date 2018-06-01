@@ -1,4 +1,4 @@
-;;; 20_restclient.el --- configurations.
+;;; 30_restclient.el --- configurations.
 ;;; Commentary:
 ;;; Code:
 
@@ -10,5 +10,5 @@
   :ensure t
   :defer t)
 
-(provide '20_restclient)
-;;; 20_restclient.el ends here
+(provide '30_restclient)
+;;; 30_restclient.el ends here

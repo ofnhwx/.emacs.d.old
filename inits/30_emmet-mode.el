@@ -1,4 +1,4 @@
-;;; 20_emmet-mode.el --- configurations.
+;;; 30_emmet-mode.el --- configurations.
 ;;; Commentary:
 ;;; Code:
 
@@ -16,5 +16,5 @@
   :custom
   (emmet-indentation 2))
 
-(provide '20_emmet-mode)
-;;; 20_emmet-mode.el ends here
+(provide '30_emmet-mode)
+;;; 30_emmet-mode.el ends here

@@ -1,4 +1,4 @@
-;;; 20_rainbow-mode.el --- configurations.
+;;; 30_rainbow-mode.el --- configurations.
 ;;; Commentary:
 ;;; Code:
 
@@ -14,5 +14,5 @@
    (php-mode . rainbow-mode)
    (web-mode . rainbow-mode)))
 
-(provide '20_rainbow-mode)
-;;; 20_rainbow-mode.el ends here
+(provide '30_rainbow-mode)
+;;; 30_rainbow-mode.el ends here

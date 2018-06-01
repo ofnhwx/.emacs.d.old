@@ -1,4 +1,4 @@
-;;; 20_google-translate.el --- configurations.
+;;; 30_google-translate.el --- configurations.
 ;;; Commentary:
 ;;; Code:
 
@@ -33,5 +33,5 @@
       (run-at-time 0.1 nil 'deactivate-mark)
       (google-translate-translate (if asciip "en" "ja") (if asciip "ja" "en") string))))
 
-(provide '20_google-translate)
-;;; 20_google-translate.el ends here
+(provide '30_google-translate)
+;;; 30_google-translate.el ends here

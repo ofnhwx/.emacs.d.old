@@ -1,4 +1,4 @@
-;;; 20_dump-jump.el --- configurations.
+;;; 30_dump-jump.el --- configurations.
 ;;; Commentary:
 ;;; Code:
 
@@ -17,5 +17,5 @@
   :custom
   (dumb-jump-selector 'helm))
 
-(provide '20_dump-jump)
-;;; 20_dump-jump.el ends here
+(provide '30_dump-jump)
+;;; 30_dump-jump.el ends here

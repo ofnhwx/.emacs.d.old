@@ -1,4 +1,4 @@
-;;; 20_highlight-symbol.el --- configurations.
+;;; 30_highlight-symbol.el --- configurations.
 ;;; Commentary:
 ;;; Code:
 
@@ -12,5 +12,5 @@
   :custom
   (highlight-symbol-idle-delay 3.0))
 
-(provide '20_highlight-symbol)
-;;; 20_highlight-symbol.el ends here
+(provide '30_highlight-symbol)
+;;; 30_highlight-symbol.el ends here

@@ -1,4 +1,4 @@
-;;; 40_php-mode.el --- configurations.
+;;; 40_php.el --- configurations.
 ;;; Commentary:
 ;;; Code:
 
@@ -16,5 +16,5 @@
   (php-search-url "http://www.php.net/")
   (php-manual-url "http://www.php.net/manual/ja"))
 
-(provide '40_php-mode)
-;;; 40_php-mode.el ends here
+(provide '40_php)
+;;; 40_php.el ends here

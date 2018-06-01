@@ -1,4 +1,4 @@
-;;; 20_shell-pop.el --- configurations.
+;;; 30_shell-pop.el --- configurations.
 ;;; Commentary:
 ;;; Code:
 
@@ -14,5 +14,5 @@
   (shell-pop-window-size 50)
   (shell-pop-full-span t))
 
-(provide '20_shell-pop)
-;;; 20_shell-pop.el ends here
+(provide '30_shell-pop)
+;;; 30_shell-pop.el ends here

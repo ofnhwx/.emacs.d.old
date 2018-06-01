@@ -1,4 +1,4 @@
-;;; 40_web-mode.el --- configurations.
+;;; 40_web.el --- configurations.
 ;;; Commentary:
 ;;; Code:
 
@@ -30,5 +30,5 @@
     (setq web-mode-style-padding  2)
     (setq web-mode-block-padding  2)))
 
-(provide '40_web-mode)
-;;; 40_web-mode.el ends here
+(provide '40_web)
+;;; 40_web.el ends here

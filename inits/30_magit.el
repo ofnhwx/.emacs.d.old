@@ -1,4 +1,4 @@
-;;; 20_magit.el --- configurations.
+;;; 30_magit.el --- configurations.
 ;;; Commentary:
 ;;; Code:
 
@@ -22,5 +22,5 @@
   :ensure t
   :hook (magit-mode . turn-on-magit-gitflow))
 
-(provide '20_magit)
-;;; 20_magit.el ends here
+(provide '30_magit)
+;;; 30_magit.el ends here

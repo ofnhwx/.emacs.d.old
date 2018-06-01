@@ -1,4 +1,4 @@
-;;; 40_git-modes.el --- configurations.
+;;; 40_git.el --- configurations.
 ;;; Commentary:
 ;;; Code:
 
@@ -14,5 +14,5 @@
   :ensure t
   :defer t)
 
-(provide '40_git-modes)
-;;; 40_git-modes.el ends here
+(provide '40_git)
+;;; 40_git.el ends here

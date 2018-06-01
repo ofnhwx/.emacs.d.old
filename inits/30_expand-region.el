@@ -1,4 +1,4 @@
-;;; 20_expand-region.el --- configurations.
+;;; 30_expand-region.el --- configurations.
 ;;; Commentary:
 ;;; Code:
 
@@ -10,5 +10,5 @@
         ("C-<" . er/contract-region)
         ("C->" . er/expand-region)))
 
-(provide '20_expand-region)
-;;; 20_expand-region.el ends here
+(provide '30_expand-region)
+;;; 30_expand-region.el ends here

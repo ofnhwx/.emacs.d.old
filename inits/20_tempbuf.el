@@ -1,4 +1,4 @@
-;;; 30_tempbuf.el --- configurations.
+;;; 20_tempbuf.el --- configurations.
 ;;; Commentary:
 ;;; Code:
 
@@ -10,5 +10,5 @@
   (defmacro enable-tempbuf--hook (hook)
     `(add-hook ,hook 'turn-on-tempbuf-mode)))
 
-(provide '30_tempbuf)
-;;; 30_tempbuf.el ends here
+(provide '20_tempbuf)
+;;; 20_tempbuf.el ends here
