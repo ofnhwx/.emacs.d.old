@@ -177,6 +177,7 @@
     (mac-set-input-method-parameter "com.google.inputmethod.Japanese.HalfWidthKana"  'cursor-color "#0000ff"))
   ;; CommandをMetaとして使用
   (set-variable 'ns-command-modifier 'meta)
+  (set-variable 'ns-right-command-modifier 'super)
   ;; 自動的にIMEをオフにする
   (when (fboundp 'mac-change-language-to-us)
     (add-hook 'after-init-hook       'mac-change-language-to-us)
