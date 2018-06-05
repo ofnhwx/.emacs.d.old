@@ -144,9 +144,10 @@
 ;;; 環境設定(個別)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;;
-(when window-system
-  (add-hook 'after-init-hook 'server-start))
+;; サーバー起動
+(and (require 'server nil t)
+     (not (server-running-p))
+     (server-start))
 
 ;; Linux/Mac用の設定
 (when (or (os-type-linux-p)
