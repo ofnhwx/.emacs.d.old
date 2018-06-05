@@ -11,6 +11,8 @@
   (evil-move-cursor-back nil)
   (evil-toggle-key "C-z z")
   (evil-want-fine-undo t)
+  (evil-normal-state-cursor 'box)
+  (evil-visual-state-cursor 'box)
   :bind
   (:map evil-normal-state-map
         ("<down>" . evil-next-visual-line)
@@ -36,6 +38,7 @@
   (add-to-list 'evil-emacs-state-modes 'eshell-mode)
   (add-to-list 'evil-emacs-state-modes 'eww-history-mode)
   (add-to-list 'evil-emacs-state-modes 'eww-mode)
+  (add-to-list 'evil-emacs-state-modes 'helm-major-mode)
   (add-to-list 'evil-emacs-state-modes 'help-mode)
   (add-to-list 'evil-emacs-state-modes 'messsages-buffer-mode)
   (add-to-list 'evil-emacs-state-modes 'prodigy-mode)
