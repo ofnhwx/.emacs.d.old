@@ -11,6 +11,7 @@
         ("r" . helm-recentf))
   (:map global-map
         ([remap execute-extended-command] . helm-M-x)
+        ("C-@" . helm-multi-files)
         ("M-:" . helm-eval-expression-with-eldoc)
         ("M-y" . helm-show-kill-ring))
   (:map ctl-x-map
