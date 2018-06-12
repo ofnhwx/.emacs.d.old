@@ -25,6 +25,8 @@
   :if (progn (quelpa '(dired+ :fetcher github :repo "emacsmirror/dired-plus"))
              (locate-library "dired+"))
   :after (dired)
+  :init
+  (setq diredp-bind-problematic-terminal-keys nil)
   :config
   (bind-keys
    :map dired-mode-map
