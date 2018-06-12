@@ -31,16 +31,20 @@
    (company-completion-cancelled . revert-smartparens-with-company))
   :config
   ;; `smartparens'を一時的に無効にする
+  (defvar company-smartparens-disable-modes nil
+    "`company'の補完中に`smartparens'を無効にするモード.")
   (defvar company-smartparens-enabled nil
     "`company'の補完中に`smartparens'の状態を保存しておく変数.")
   (defun disable-smartparens-with-company (arg)
     "`company'での補完開始時に`smartparens'を無効にする.引数 ARG は未使用."
-    (setq company-smartparens-enabled smartparens-global-mode)
-    (smartparens-global-mode 0))
+    (when (member major-mode company-smartparens-disable-modes)
+      (setq company-smartparens-enabled smartparens-global-mode)
+      (smartparens-global-mode 0)))
   (defun revert-smartparens-with-company (arg)
     "`company'での補完終了時に`smartparens'の状態を戻す.引数 ARG は未使用."
-    (when company-smartparens-enabled
-      (smartparens-global-mode 1))))
+    (and (member major-mode company-smartparens-disable-modes)
+         company-smartparens-enabled
+         (smartparens-global-mode 1))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
