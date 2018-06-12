@@ -116,6 +116,12 @@
   :config
   (global-evil-matchit-mode 1))
 
+(use-package evil-mc
+  :ensure t
+  :demand t
+  :config
+  (global-evil-mc-mode 1))
+
 (use-package evil-nerd-commenter
   :ensure t
   :demand t
