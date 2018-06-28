@@ -7,46 +7,26 @@
   :ensure t
   :custom
   (evil-cross-lines t)
-  (evil-insert-state-map (make-sparse-keymap))
   (evil-move-cursor-back nil)
   (evil-toggle-key "C-z z")
   (evil-want-fine-undo t)
   (evil-normal-state-cursor 'box)
   (evil-visual-state-cursor 'box)
-  :bind
-  (:map evil-normal-state-map
-        ("<down>" . evil-next-visual-line)
-        ("<up>" . evil-previous-visual-line)
-        ("j" . evil-next-visual-line)
-        ("k" . evil-previous-visual-line)
-        ("gj" . evil-next-line)
-        ("gk" . evil-previous-line)
-        ("g0" . elscreen-jump)
-        ("g1" . elscreen-jump)
-        ("g2" . elscreen-jump)
-        ("g3" . elscreen-jump)
-        ("g4" . elscreen-jump)
-        ("g5" . elscreen-jump)
-        ("g6" . elscreen-jump)
-        ("g7" . elscreen-jump)
-        ("g8" . elscreen-jump)
-        ("g9" . elscreen-jump)
-        ("gt" . elscreen-next)
-        ("gT" . elscreen-previous))
   :config
-  (add-to-list 'evil-emacs-state-modes 'dired-mode)
-  (add-to-list 'evil-emacs-state-modes 'eshell-mode)
-  (add-to-list 'evil-emacs-state-modes 'eww-history-mode)
-  (add-to-list 'evil-emacs-state-modes 'eww-mode)
-  (add-to-list 'evil-emacs-state-modes 'helm-major-mode)
-  (add-to-list 'evil-emacs-state-modes 'help-mode)
-  (add-to-list 'evil-emacs-state-modes 'messsages-buffer-mode)
-  (add-to-list 'evil-emacs-state-modes 'prodigy-mode)
-  (add-to-list 'evil-emacs-state-modes 'srefactor-ui-menu-mode)
-  (add-to-list 'evil-emacs-state-modes 'term-mode)
-  (cl-dolist (mode evil-emacs-state-modes)
+  (defun evil-set-emacs-state (mode)
     (delete mode evil-insert-state-modes)
-    (delete mode evil-motion-state-modes))
+    (delete mode evil-motion-state-modes)
+    (add-to-list 'evil-emacs-state-modes mode))
+  (evil-set-emacs-state 'dired-mode)
+  (evil-set-emacs-state 'eshell-mode)
+  (evil-set-emacs-state 'eww-history-mode)
+  (evil-set-emacs-state 'eww-mode)
+  (evil-set-emacs-state 'helm-major-mode)
+  (evil-set-emacs-state 'help-mode)
+  (evil-set-emacs-state 'messsages-buffer-mode)
+  (evil-set-emacs-state 'prodigy-mode)
+  (evil-set-emacs-state 'srefactor-ui-menu-mode)
+  (evil-set-emacs-state 'term-mode)
   (evil-mode))
 
 (use-package evil
@@ -65,6 +45,8 @@
 
 (use-package evil
   :no-require t
+  :custom
+  (evil-insert-state-map (make-sparse-keymap))
   :bind
   ;; モーションモード(motion -> normal -> visual)
   (:map evil-motion-state-map
@@ -72,7 +54,25 @@
         ("C-g" . evil-keyboard-quit))
   ;; 通常モード
   (:map evil-normal-state-map
-        ("SPC" . base-command-map))
+        ("SPC" . base-command-map)
+        ("<down>" . evil-next-visual-line)
+        ("<up>" . evil-previous-visual-line)
+        ("j" . evil-next-visual-line)
+        ("k" . evil-previous-visual-line)
+        ("gj" . evil-next-line)
+        ("gk" . evil-previous-line)
+        ("g0" . elscreen-jump)
+        ("g1" . elscreen-jump)
+        ("g2" . elscreen-jump)
+        ("g3" . elscreen-jump)
+        ("g4" . elscreen-jump)
+        ("g5" . elscreen-jump)
+        ("g6" . elscreen-jump)
+        ("g7" . elscreen-jump)
+        ("g8" . elscreen-jump)
+        ("g9" . elscreen-jump)
+        ("gt" . elscreen-next)
+        ("gT" . elscreen-previous))
   ;; ビジュアルモード
   (:map evil-visual-state-map)
   ;; 挿入モード
