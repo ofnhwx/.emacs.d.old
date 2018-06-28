@@ -95,6 +95,24 @@ NAME, URL は必須、PRIORITY は必要な場合のみ指定する."
   "指定された FILENAME を短縮する."
   (abbreviate-file-name filename))
 
+(defun e:shorten (filename &optional max)
+  "指定された FILENAME を MAX 以下の長さに短縮する."
+  (let ((filename (e:unexpand filename))
+        (max (or max (window-width)))
+        (target 3)
+        (break nil))
+    (while (and (> (length filename) max)
+                (not break))
+      (let ((parts (split-string filename "/")))
+        (if (> (length parts) (+ target 2))
+            (progn
+              (if (equal (nth target parts) "...")
+                  (setq parts (remove (nth (+ target 1) parts) parts))
+                (setf (nth target parts) "..."))
+              (setq filename (string-join parts "/")))
+          (setq break t))))
+    filename))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; その他便利なやつ
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -151,6 +169,14 @@ NAME, URL は必須、PRIORITY は必要な場合のみ指定する."
   (when load-in-progress
     (message "*Loading %s...done"
              (file-name-sans-extension (file-name-nondirectory load-file-name)))))
+
+(defun e:ghq-add-load-path (name)
+  "NAME で指定したディレクトリを`load-path'に追加する."
+  (when (and (require 's nil t)
+             (executable-find "ghq"))
+    (let ((path (s-trim (shell-command-to-string (format "ghq list | grep %s" name)))))
+      (unless (s-blank-p path)
+        (add-to-list 'load-path (e:expand path (s-trim (shell-command-to-string "ghq root"))))))))
 
 (e:loaded)
 (provide 'init-enhance)

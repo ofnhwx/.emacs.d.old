@@ -115,7 +115,7 @@
                (powerline-raw current-input-method-title mode-line)
                (powerline-coding-type mode-line)
                ;; バッファー名
-               (powerline-buffer-id mode-line-buffer-id)
+               ;;(powerline-buffer-id mode-line-buffer-id)
                ;; 関数名(wchich-func-mode)
                (when (bound-and-true-p which-func-mode)
                  (powerline-raw which-func-format face1 'l))

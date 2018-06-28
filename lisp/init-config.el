@@ -70,10 +70,17 @@
               '((multiple-frames "[%F]:")
                 (buffer-file-name "%f" (dired-directory dired-directory "%b"))))
 
+(setq-default header-line-format
+              '((:eval (cond
+                        (buffer-file-name (e:shorten buffer-file-name))
+                        (dired-directory nil)
+                        (t "%b")))))
+
 ;; 行番号の表示
 (cond
  ((fboundp 'display-line-numbers-mode)
   (add-hook 'prog-mode-hook 'display-line-numbers-mode)
+  (add-hook 'find-file-hook 'display-line-numbers-mode)
   (setq-default display-line-numbers-width 4))
  (t
   (add-hook 'prog-mode-hook 'linum-mode)

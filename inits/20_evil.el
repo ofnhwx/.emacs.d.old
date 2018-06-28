@@ -119,6 +119,7 @@
 (use-package evil-mc
   :ensure t
   :demand t
+  :diminish evil-mc-mode
   :config
   (global-evil-mc-mode 1))
 
