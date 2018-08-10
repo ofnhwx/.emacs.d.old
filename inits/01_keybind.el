@@ -85,6 +85,7 @@
 
 (bind-keys
  :map mode-specific-map
+ ("=" . hydra-wc/body)
  ("o" . open-by-intellij))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -117,7 +118,7 @@
   ("P" git-gutter:previous-hunk "prev-hunk"))
 
 (defhydra hydra-wc
-  (global-map "C-c" :color amaranth :hint nil)
+  (:color amaranth :hint nil)
   "
 ^Other window^              ^This window^
 ---------------------------------------------------------
@@ -133,10 +134,10 @@
   ("N" (lambda () (interactive) (scroll-other-window)))
   ("P" (lambda () (interactive) (scroll-other-window '-)))
   ("=" balance-windows)
-  ("~" shrink-window)
   ("^" enlarge-window)
-  ("{" shrink-window-horizontally)
-  ("}" enlarge-window-horizontally)
+  ("~" shrink-window)
+  ("{" enlarge-window-horizontally)
+  ("}" shrink-window-horizontally)
   ("q" nil "quit" :color blue))
 
 (e:loaded)
