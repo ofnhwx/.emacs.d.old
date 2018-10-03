@@ -8,13 +8,16 @@
   :defer t
   :hook
   ((irony-mode . irony-cdb-autosetup-compile-options)
-   (c-mode     . irony-mode)
-   (c++-mode   . irony-mode))
+   (c-mode     . irony:activate)
+   (c++-mode   . irony:activate))
   :custom
   (irony-additional-clang-options '("-std=c++11"))
   (irony-user-dir (e:expand "irony" :cache))
   (irony-server-install-prefix irony-user-dir)
   :config
+  (defun irony:activate ()
+    (when (cl-member major-mode irony-supported-major-modes)
+      (irony-mode 1)))
   (defun irony-add-include (path)
     (add-to-list 'irony-additional-clang-options (format "-I%s" path)))
   (e:load-local-config "irony"))
