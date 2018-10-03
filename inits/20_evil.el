@@ -97,7 +97,7 @@
 
 (use-package evil-args
   :ensure t
-  :demand t
+  :defer t
   :bind
   (:map evil-inner-text-objects-map
         ("a" . evil-inner-arg))

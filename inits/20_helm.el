@@ -20,7 +20,9 @@
   (:map mode-specific-map
         ("i" . helm-imenu))
   (:map help-map
-        ("a" . helm-apropos)))
+        ("a" . helm-apropos))
+  :custom
+  (helm-buffer-max-length nil))
 
 (use-package helm
   :no-require t
