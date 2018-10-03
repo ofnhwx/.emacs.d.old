@@ -98,28 +98,5 @@
   (defun company-irony-setup ()
     (set-company-backends '(company-irony company-irony-c-headers :with company-dabbrev-code company-yasnippet))))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;; [2016-06-14] - とりあえず`ac-php'を`web-mode'でも動くように
-(use-package company-php
-  :no-require t
-  :config
-  (defun company-ac-php-backend (command &optional arg &rest ignored)
-    (interactive (list 'interactive))
-    (case command
-      (interactive (company-begin-backend 'company-ac-php-backend))
-      (prefix (and (or (eq major-mode 'php-mode)
-                       (eq major-mode 'web-mode))
-                   (company-ac-php--prefix)))
-      (candidates (company-ac-php-candidate arg))
-      (annotation (company-ac-php-annotation arg))
-      (duplicates t)
-      (post-completion
-       (let((doc))
-         (when (ac-php--tag-name-is-function arg)
-           (setq doc (ac-php-clean-document (get-text-property 0 'ac-php-help arg)))
-           (insert (concat doc ")"))
-           (company-template-c-like-templatify (concat arg doc ")"))))))))
-
 (provide '20_company)
 ;;; 20_company.el ends here
