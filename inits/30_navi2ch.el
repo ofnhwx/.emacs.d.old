@@ -5,14 +5,14 @@
 (use-package navi2ch
   :if (e:ghq-add-load-path "navi2ch")
   :defer t
-  :commands (navi2ch))
+  :commands (navi2ch)
+  :custom
+  (navi2ch-net-http-proxy "127.0.0.1:9080"))
 
 (use-package navi2ch
   :no-require t
   :after (evil)
   :hook (navi2ch-article-mode . evil-emacs-state)
-  :custom
-  (navi2ch-net-http-proxy "127.0.0.1:9080")
   :config
   (evil-set-emacs-state 'navi2ch-article-mode)
   (evil-set-emacs-state 'navi2ch-articles-mode)
