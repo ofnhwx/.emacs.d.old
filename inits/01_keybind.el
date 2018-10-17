@@ -20,7 +20,8 @@
  ("b" . buffer-command-map)
  ("f" . file-command-map)
  ("g" . general-command-map)
- ("t" . hydra-toggle/body))
+ ("t" . hydra-toggle/body)
+ ("x" . helm-M-x))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; いろいろ便利なやつ
