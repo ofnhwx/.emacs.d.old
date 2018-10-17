@@ -170,13 +170,19 @@ NAME, URL は必須、PRIORITY は必要な場合のみ指定する."
     (message "*Loading %s...done"
              (file-name-sans-extension (file-name-nondirectory load-file-name)))))
 
-(defun e:ghq-add-load-path (name)
-  "NAME で指定したディレクトリを`load-path'に追加する."
+(defun e:ghq-get-path (name)
+  "NAME で指定したディレクトリを取得する."
   (when (and (require 's nil t)
              (executable-find "ghq"))
     (let ((path (s-trim (shell-command-to-string (format "ghq list | grep %s" name)))))
       (unless (s-blank-p path)
-        (add-to-list 'load-path (e:expand path (s-trim (shell-command-to-string "ghq root"))))))))
+        (e:expand path (s-trim (shell-command-to-string "ghq root")))))))
+
+(defun e:ghq-add-load-path (name)
+  "NAME で指定したディレクトリを`load-path'に追加する."
+  (let ((path (e:ghq-get-path name)))
+    (when path
+      (add-to-list 'load-path path))))
 
 (e:loaded)
 (provide 'init-enhance)
