@@ -5,12 +5,6 @@
 (use-package skk
   :ensure ddskk
   :defer t
-  :bind
-  (:map global-map
-        ("C-¥" . skk-mode)
-        ("C-\\" . skk-mode))
-  (:map ctl-x-map
-        ("j" . skk-mode))
   :init
   (set-variable 'skk-user-directory (e:expand "ddskk" :conf))
   (set-variable 'default-input-method "japanese-skk")

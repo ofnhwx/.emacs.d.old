@@ -3,9 +3,6 @@
 ;;; Code:
 
 (use-package eshell
-  :bind
-  (:map mode-specific-map
-        ("z" . eshell))
   :custom
   (eshell-directory-name (e:expand "eshell" :cache))
   (eshell-history-size 100000)

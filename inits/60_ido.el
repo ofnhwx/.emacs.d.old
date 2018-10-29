@@ -19,9 +19,6 @@
 (use-package bbyac
   :after (ido)
   :ensure t
-  :bind
-  (:map global-map
-        ("M-/" . bbyac-expand-symbols))
   :custom
   (bbyac-max-chars 99999))
 

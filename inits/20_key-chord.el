@@ -11,7 +11,7 @@
   (key-chord-safety-interval-backward 0.10)
   (key-chord-safety-interval-forward  0.25)
   :config
-  (key-chord-define-global "fj" 'base-command-map)
+  (key-chord-define-global "fj" 'e:base-commands-map)
   (key-chord-mode 1))
 
 (provide '20_key-chord)

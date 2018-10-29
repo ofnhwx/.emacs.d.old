@@ -6,9 +6,6 @@
   :ensure t
   :demand t
   :after (elscreen)
-  :bind
-  (:map ctl-x-map
-        ("!" . zoom-window-zoom))
   :custom
   (zoom-window-use-elscreen t)
   (zoom-window-mode-line-color "purple")

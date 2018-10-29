@@ -4,10 +4,7 @@
 
 (use-package string-edit
   :ensure t
-  :defer t
-  :bind
-  (:map general-command-map
-        ("e" . string-edit-at-point)))
+  :defer t)
 
 (provide '30_string-edit)
 ;;; 30_string-edit.el ends here

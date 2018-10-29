@@ -54,7 +54,7 @@
         ("C-g" . evil-keyboard-quit))
   ;; 通常モード
   (:map evil-normal-state-map
-        ("SPC" . base-command-map)
+        ("SPC" . e:base-commands-map)
         ("<down>" . evil-next-visual-line)
         ("<up>" . evil-previous-visual-line)
         ("j" . evil-next-visual-line)

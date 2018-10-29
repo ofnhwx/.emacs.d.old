@@ -5,9 +5,6 @@
 (use-package company
   :ensure t
   :demand t
-  :bind
-  (:map base-command-map
-        ("SPC" . company-complete))
   :custom
   (company-async-timeout 5)
   (company-dabbrev-code-ignore-case t)

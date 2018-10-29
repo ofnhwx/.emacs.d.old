@@ -9,20 +9,6 @@
   (avy-all-windows t)
   (avy-background t)
   (avy-keys (number-sequence ?a ?z))
-  :bind
-  (:map base-command-map
-        (":" . avy-goto-char-timer)
-        (";" . avy-goto-word-1))
-  (:map general-command-map
-        ("g" . avy-goto-line))
-  (:map global-map
-        ("C-:" . avy-goto-char-timer)
-        ("C-;" . avy-goto-word-1))
-  (:map mode-specific-map
-        (":" . avy-goto-char-timer)
-        (";" . avy-goto-word-1))
-  (:map isearch-mode-map
-        ("C-i" . avy-isearch))
   :config
   (defun add-keys-to-avy (prefix c &optional mode)
     (define-key global-map
@@ -45,12 +31,7 @@
 
 (use-package ace-window
   :ensure t
-  :defer t
-  :bind
-  (:map global-map
-        ("C-^" . ace-window))
-  (:map ctl-x-map
-        ("o" . ace-window)))
+  :defer t)
 
 (e:use-package avy-migemo
   (executable-find "cmigemo")
@@ -62,10 +43,7 @@
 
 (use-package avy-zap
   :ensure t
-  :defer t
-  :bind
-  (:map global-map
-        ("M-z" . avy-zap-to-char-dwim)))
+  :defer t)
 
 (provide '20_avy)
 ;;; 20_avy.el ends here

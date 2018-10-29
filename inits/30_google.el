@@ -9,9 +9,6 @@
 (use-package google-translate
   :ensure t
   :defer t
-  :bind
-  (:map mode-specific-map
-        ("t" . google-translate-enja-or-jaen))
   :config
   (defvar google-translate-english-chars "[:ascii:]’“”–"
     "これらの文字が含まれているときは英語とみなす")

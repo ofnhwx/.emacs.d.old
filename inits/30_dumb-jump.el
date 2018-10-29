@@ -4,12 +4,7 @@
 
 (use-package dumb-jump
   :ensure t
-  :defer t
-  :bind
-  (:map search-map
-        ("g" . dumb-jump-go)
-        ("b" . dumb-jump-back)
-        ("q" . dumb-jump-quick-look)))
+  :defer t)
 
 (use-package dumb-jump
   :no-require t

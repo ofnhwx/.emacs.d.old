@@ -158,12 +158,6 @@ NAME, URL は必須、PRIORITY は必要な場合のみ指定する."
   `(if (fboundp (car ',sexplist))
        ,sexplist))
 
-(defmacro e:define-prefix-command (command-map &optional docstring)
-  "COMMAND-MAP に DOCSTRING を設定して定義する."
-  `(progn
-     (defvar ,command-map nil ,docstring)
-     (define-prefix-command ',command-map)))
-
 (defun e:loaded ()
   "ロード完了のメッセージをログに出力."
   (when load-in-progress

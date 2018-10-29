@@ -6,21 +6,8 @@
   :ensure t
   :demand t
   :bind
-  (:map file-command-map
-        ("h" . helm-find-files)
-        ("r" . helm-recentf))
   (:map global-map
-        ([remap execute-extended-command] . helm-M-x)
-        ("C-@" . helm-multi-files)
-        ("M-:" . helm-eval-expression-with-eldoc)
-        ("M-y" . helm-show-kill-ring))
-  (:map ctl-x-map
-        ("r h" . helm-register)
-        ("C-b" . helm-multi-files))
-  (:map mode-specific-map
-        ("i" . helm-imenu))
-  (:map help-map
-        ("a" . helm-apropos))
+        ([remap execute-extended-command] . helm-M-x))
   :custom
   (helm-buffer-max-length nil))
 
@@ -39,12 +26,6 @@
   :after (helm)
   :ensure t
   :defer t
-  :bind
-  (:map general-command-map
-        ("," . helm-ag-pop-stack)
-        ("." . helm-ag)
-        ("/" . helm-ag-project-root)
-        ("_" . helm-ag-this-file))
   :init
   (cond
    ((executable-find "rg")
@@ -59,10 +40,7 @@
 
 (use-package helm-descbinds
   :ensure t
-  :defer t
-  :bind
-  (:map help-map
-        ("b" . helm-descbinds)))
+  :defer t)
 
 (use-package helm-dired-history
   :after (dired)
@@ -84,20 +62,13 @@
 (e:use-package helm-ghq
   (executable-find "ghq")
   :ensure t
-  :defer t
-  :bind
-  (:map file-command-map
-        ("g" . helm-ghq)))
+  :defer t)
 
 (use-package helm-projectile
   :after (projectile)
   :ensure t
   :defer t
-  :bind
-  (:map file-command-map
-        ("p" . helm-find-files-with-projectile))
-  (:map ctl-x-map
-        ("C-f" . helm-find-files-with-projectile))
+  :commands (helm-find-files-with-projectile)
   :config
   (defun helm-find-files-with-projectile (&optional arg)
     (interactive "P")
@@ -108,10 +79,7 @@
 (use-package helm-swoop
   :after (helm)
   :ensure t
-  :defer t
-  :bind
-  (:map isearch-mode-map
-        ("C-o" . helm-swoop-from-isearch)))
+  :defer t)
 
 (provide '20_helm)
 ;;; 20_helm.el ends here
