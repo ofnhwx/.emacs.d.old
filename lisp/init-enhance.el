@@ -119,9 +119,8 @@ NAME, URL は必須、PRIORITY は必要な場合のみ指定する."
 
 (defun e:bottom-left-window ()
   "分割されたウィンドウのうち左下のものを取得する."
-  (car (--sort (or (< (window-left-column it) (window-left-column other))
-                   (> (window-top-line it) (window-top-line other)))
-               (window-list))))
+  (car (--sort (> (window-top-line it) (window-top-line other))
+               (--filter (zerop (window-left-column it)) (window-list)))))
 
 (defun e:auth-source-get (property &rest spec)
   "認証情報から SPEC に一致する項目の PROPERTY を取得する."
