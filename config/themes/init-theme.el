@@ -4,6 +4,15 @@
 
 (deftheme init)
 
+(defconst color:black   "#000000")
+(defconst color:red     "#ff2600")
+(defconst color:green   "#00f900")
+(defconst color:yellow  "#fefb00")
+(defconst color:blue    "#0432ff")
+(defconst color:magenta "#ff40ff")
+(defconst color:cyan    "#00fcff")
+(defconst color:white   "#ffffff")
+
 (custom-theme-set-faces
  'init
  ;; 文字・背景, カーソル, 選択範囲

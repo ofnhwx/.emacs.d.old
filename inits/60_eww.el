@@ -39,9 +39,7 @@
     "ewwで文字色を反映させる"
     (interactive)
     (setq-local eww-disable-colorize nil)
-    (eww-reload))
-  ;; 環境ごとの設定
-  (e:load-local-config "eww"))
+    (eww-reload)))
 
 (provide '60_eww)
 ;;; 60_eww.el ends here
