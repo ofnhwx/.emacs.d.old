@@ -1,24 +1,29 @@
 ;;; init-theme.el --- 色の設定.
-;;
-;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/12/15 18:38:44>
-;;
-
 ;;; Commentary:
-
 ;;; Code:
 
 (deftheme init)
+
+(defconst color:black   "#000000")
+(defconst color:red     "#ff2600")
+(defconst color:green   "#00f900")
+(defconst color:yellow  "#fefb00")
+(defconst color:blue    "#0432ff")
+(defconst color:magenta "#ff40ff")
+(defconst color:cyan    "#00fcff")
+(defconst color:white   "#ffffff")
 
 (custom-theme-set-faces
  'init
  ;; 文字・背景, カーソル, 選択範囲
  '(default ((t (:background "#000000" :foreground "#ffffff"))))
- '(cursor  ((t (:background "#ffff00"))))
+ '(cursor  ((t (:background "#ffff00" :foreground "#000000"))))
  '(region  ((t (:background "#000080"))))
  ;; モードライン
  '(mode-line           ((t (:background "#f00000" :box (:line-width 1 :color "#ffffff")))))
  '(mode-line-inactive  ((t (:background "#000000" :box (:line-width 1 :color "#ffffff")))))
+ '(mode-line-buffer-id          ((t (:inherit mode-line          :weight bold))))
+ '(mode-line-buffer-id-inactive ((t (:inherit mode-line-inactive :weight bold))))
  ;; 関数, 変数, 文字列
  '(font-lock-function-name-face   ((t (:foreground "#4169e1"))))
  '(font-lock-variable-name-face   ((t (:foreground "#00ffff"))))
@@ -33,8 +38,8 @@
  ;; 括弧
  '(show-paren-match-face ((t (:foreground "#ff0000"))))
  '(paren-face            ((t (:foreground "#ffffff"))))
- ;; 現在行のハイライト:`linum'
- '(hl-line ((t (:underline "#80ff80"))))
+ ;; 現在行
+ '(line-number-current-line ((t (:background "#4169ef"))))
  ;; 空白文字の表示:`whitespace'
  '(whitespace-tab      ((t (:foreground "#404040"))))
  '(whitespace-space    ((t (:foreground "#404040"))))
@@ -85,16 +90,6 @@
    '(diredp-other-priv             ((t (:foreground "#a0a0a0"))))
    '(diredp-no-priv                ((t (:foreground "#a0a0a0"))))
   ))
-
-(with-eval-after-load "skk"
-  (custom-theme-set-faces
-   'init
-   '(skk-emacs-hiragana-face       ((t (:foreground "#000000" :background "pink"))))
-   '(skk-emacs-katakana-face       ((t (:foreground "#000000" :background "green"))))
-   '(skk-emacs-jisx0201-face       ((t (:foreground "#000000" :background "thistle"))))
-   '(skk-emacs-jisx0208-latin-face ((t (:foreground "#000000" :background "gold"))))
-   '(skk-emacs-abbrev-face         ((t (:foreground "#000000" :background "royalblue"))))
-   ))
 
 (with-eval-after-load "elscreen"
   (custom-theme-set-faces

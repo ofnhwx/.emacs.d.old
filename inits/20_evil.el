@@ -1,111 +1,210 @@
-;;; 20_evil.el --- setup template.
-;;
-;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2018/01/10 14:10:16>
-;;
-
+;;; 20_evil.el --- configurations.
 ;;; Commentary:
-
 ;;; Code:
 
 (use-package evil
-  :if (e:require-package 'evil nil t)
-  :init
-  ;; カーソルを行の末尾に移動可能
-  (set-variable 'evil-move-cursor-back nil)
-  ;; UNDOの単位を細かく
-  (set-variable 'evil-want-fine-undo t)
-  ;; 行をまたいでカーソル前後移動
-  (set-variable 'evil-cross-lines t)
-  ;; 挿入ステートでは基本Emacs
-  (set-variable 'evil-insert-state-map (make-sparse-keymap))
+  :after (elscreen)
+  :ensure t
+  :custom
+  (evil-cross-lines t)
+  (evil-move-cursor-back nil)
+  (evil-toggle-key "C-z z")
+  (evil-want-fine-undo t)
+  (evil-normal-state-cursor 'box)
+  (evil-visual-state-cursor 'box)
   :config
+  (defun evil-set-emacs-state (mode)
+    (delete mode evil-insert-state-modes)
+    (delete mode evil-motion-state-modes)
+    (add-to-list 'evil-emacs-state-modes mode))
+  (evil-set-emacs-state 'dired-mode)
+  (evil-set-emacs-state 'eshell-mode)
+  (evil-set-emacs-state 'eww-history-mode)
+  (evil-set-emacs-state 'eww-mode)
+  (evil-set-emacs-state 'helm-major-mode)
+  (evil-set-emacs-state 'help-mode)
+  (evil-set-emacs-state 'messsages-buffer-mode)
+  (evil-set-emacs-state 'prodigy-mode)
+  (evil-set-emacs-state 'srefactor-ui-menu-mode)
+  (evil-set-emacs-state 'term-mode)
+  (evil-mode))
+
+(use-package evil
+  :no-require t
+  :config
+  (defun evil-save-and-normal-state ()
+    "Save and force normal state."
+    (interactive)
+    (save-buffer)
+    (evil-force-normal-state))
   (defun evil-keyboard-quit ()
     "Keyboard quit and force normal state."
     (interactive)
-    (message "%s" evil-state)
-    (when (bound-and-true-p evil-mode)
-      (evil-force-normal-state))
-    (keyboard-quit))
-  ;; 必要に応じて相対行番号を表示
-  (use-package linum-relative
-    :if (e:require-package 'linum-relative nil t)
-    :config
-    (defun linum-relative-on-and-update ()
-      (linum-relative-on)
-      (linum-update-current))
-    (add-hook 'evil-operator-state-entry-hook 'linum-relative-on-and-update)
-    (add-hook 'evil-operator-state-exit-hook 'linum-relative-off))
-  ;; 挿入モードでSKKを有効化
-  (with-eval-after-load "skk"
-    (add-hook 'evil-insert-state-entry-hook 'skk-latin-mode-on)
-    (add-hook 'evil-insert-state-exit-hook 'skk-mode-exit))
-  ;; 無効にするモード
-  (add-to-list 'evil-emacs-state-modes 'dired-mode)
-  (add-to-list 'evil-emacs-state-modes 'eww-mode)
-  ;; 有効化
-  (evil-mode))
+    (evil-force-normal-state)
+    (keyboard-quit)))
+
+(use-package evil
+  :no-require t
+  :custom
+  (evil-insert-state-map (make-sparse-keymap))
+  :bind
+  ;; モーションモード(motion -> normal -> visual)
+  (:map evil-motion-state-map
+        ("C-^" . nil) ;; evil-buffer
+        ("C-g" . evil-keyboard-quit))
+  ;; 通常モード
+  (:map evil-normal-state-map
+        ("SPC" . e:base-commands-map)
+        ("<down>" . evil-next-visual-line)
+        ("<up>" . evil-previous-visual-line)
+        ("j" . evil-next-visual-line)
+        ("k" . evil-previous-visual-line)
+        ("gj" . evil-next-line)
+        ("gk" . evil-previous-line)
+        ("g0" . elscreen-jump)
+        ("g1" . elscreen-jump)
+        ("g2" . elscreen-jump)
+        ("g3" . elscreen-jump)
+        ("g4" . elscreen-jump)
+        ("g5" . elscreen-jump)
+        ("g6" . elscreen-jump)
+        ("g7" . elscreen-jump)
+        ("g8" . elscreen-jump)
+        ("g9" . elscreen-jump)
+        ("gt" . elscreen-next)
+        ("gT" . elscreen-previous))
+  ;; ビジュアルモード
+  (:map evil-visual-state-map)
+  ;; 挿入モード
+  (:map evil-insert-state-map
+        ("C-g" . evil-keyboard-quit)
+        ("C-x C-s" . evil-save-and-normal-state)
+        ("<escape>" . evil-force-normal-state))
+  ;; オペレーターモード
+  (:map evil-operator-state-map)
+  ;; 置き換えモード
+  (:map evil-replace-state-map)
+  ;; Emacsモード
+  (:map evil-emacs-state-map
+        ("C-z z" . evil-exit-emacs-state)))
+
+(use-package evil
+  :no-require t
+  :after (skk)
+  :hook
+  ((evil-insert-state-entry . skk-latin-mode-on)
+   (evil-insert-state-exit  . skk-mode-exit)))
+
+(use-package evil-args
+  :ensure t
+  :defer t
+  :bind
+  (:map evil-inner-text-objects-map
+        ("a" . evil-inner-arg))
+  (:map evil-outer-text-objects-map
+        ("a" . evil-outer-arg)))
+
+(use-package evil-exchange
+  :ensure t
+  :demand t
+  :config
+  (evil-exchange-install))
+
+(use-package evil-matchit
+  :ensure t
+  :demand t
+  :config
+  (global-evil-matchit-mode 1))
+
+(use-package evil-mc
+  :ensure t
+  :demand t
+  :diminish evil-mc-mode
+  :config
+  (global-evil-mc-mode 1))
+
+(use-package evil-nerd-commenter
+  :ensure t
+  :demand t
+  :config
+  (evilnc-default-hotkeys))
+
+(use-package evil-numbers
+  :ensure t
+  :defer t
+  :bind
+  (:map evil-normal-state-map
+        ("C-c +" . evil-numbers/inc-at-pt)
+        ("C-c -" . evil-numbers/dec-at-pt)))
+
+(use-package evil-little-word
+  :if (progn (quelpa '(evil-plugins :fetcher github :repo "tarao/evil-plugins"))
+             (locate-library "evil-little-word"))
+  :demand t)
+
+(use-package evil-string-inflection
+  :ensure t
+  :defer t
+  :init
+  (when (fboundp 'evil-operator-snakecamelfy)
+    (defalias 'evil-operator-string-inflection 'evil-operator-snakecamelfy))
+  :bind
+  (:map evil-normal-state-map
+        ("g~" . evil-operator-string-inflection)))
 
 (use-package evil-surround
-  :if (e:require-package 'evil-surround nil t)
+  :ensure t
+  :demand t
   :config
   (global-evil-surround-mode 1))
 
-(use-package evil
-  :config
-  ;; 通常モード
-  (bind-keys
-   :map evil-normal-state-map
-   ("C-," . nil)
-   ("C-^" . nil)
-   ("C-z" . nil)
-   ("C-z z" . evil-emacs-state))
-  ;; モーションモード
-  (bind-keys
-   :map evil-motion-state-map
-   ("C-^" . nil)
-   ("C-z" . nil)
-   ("C-z z" . evil-emacs-state))
-  ;; 挿入モード
-  (bind-keys
-   :map evil-insert-state-map
-   ("C-g" . evil-keyboard-quit)
-   ("C-z" . nil)
-   ("C-z z" . evil-emacs-state)
-   ("<escape>" . evil-force-normal-state))
-  ;; ビジュアルモード
-  (bind-keys
-   :map evil-visual-state-map
-   ("C-g" . evil-keyboard-quit)
-   ("C-z" . nil)
-   ("C-z z" . evil-emacs-state))
-  ;; オペレーターモード
-  (bind-keys
-   :map evil-operator-state-map)
-  ;; 置き換えモード
-  (bind-keys
-   :map evil-replace-state-map)
-  ;; Emacsモード
-  (bind-keys
-   :map evil-emacs-state-map
-   ("C-z" . nil)
-   ("C-z z" . evil-exit-emacs-state)))
+(use-package evil-tutor-ja
+  :ensure t
+  :defer t
+  :custom
+  (evil-tutor-working-directory (e:expand "tutor/" :cache))
+  (evil-tutor-ja-working-directory (e:expand "tutor/" :cache)))
 
-(use-package evil-numbers
-  :if (e:require-package 'evil-numbers nil t)
+(use-package evil-visualstar
+  :ensure t
+  :demand t
   :config
-  (bind-keys
-   :map evil-normal-state-map
-   ("C-c +" . evil-numbers/inc-at-pt)
-   ("C-c -" . evil-numbers/dec-at-pt)))
+  (global-evil-visualstar-mode 1))
 
-(use-package goto-chg
-  :if (e:require 'goto-chg t)
+(use-package linum-relative
+  :ensure t
+  :defer t
+  :hook
+  ((evil-operator-state-entry . linum-relative-on-and-update)
+   (evil-operator-state-exit  . linum-relative-off-and-restore))
+  :init
+  (cond
+   ((fboundp 'display-line-numbers-mode)
+    (set-variable 'linum-relative-backend 'display-line-numbers-mode))
+   (t
+    (set-variable 'linum-relative-format "%4s")
+    (set-variable 'linum-relative-current-symbol "=>")
+    (set-variable 'linum-relative-plusp-offset 1)))
   :config
-  (bind-keys
-   :map evil-normal-state-map
-   ("g ;" . goto-last-change)
-   ("g ," . goto-last-change-reverse)))
+  (defvar temp-linum-mode-state nil)
+  (cond
+   ((fboundp 'display-line-numbers-mode)
+    (defun linum-relative-on-and-update ()
+      (setq temp-linum-mode-state display-line-numbers-mode)
+      (linum-relative-on))
+    (defun linum-relative-off-and-restore ()
+      (linum-relative-off)
+      (when temp-linum-mode-state
+        (display-line-numbers-mode))))
+   (t
+    (defun linum-relative-on-and-update ()
+      (setq temp-linum-mode-state linum-mode)
+      (linum-relative-on)
+      (linum-update-current))
+    (defun linum-relative-off-and-restore ()
+      (linum-relative-off)
+      (when temp-linum-mode-state
+        (linum-mode))))))
 
 (provide '20_evil)
 ;;; 20_evil.el ends here

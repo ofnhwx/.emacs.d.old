@@ -1,23 +1,19 @@
-;;; 20_git-gutter.el --- setup git-gutter.
-;;
-;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/12/04 15:09:22>
-;;
-
+;;; 20_git-gutter.el --- configurations.
 ;;; Commentary:
-
 ;;; Code:
 
-(use-package git-gutter-fringe
-  :if (and window-system
-           (e:require-package 'git-gutter-fringe nil t))
+(e:use-package git-gutter-fringe
+  (not window-system)
+  :ensure t
+  :demand t
   :diminish git-gutter-mode
   :config
   (global-git-gutter-mode))
 
-(use-package git-gutter
-  :if (and (not window-system)
-           (e:require-package 'git-gutter nil t))
+(e:use-package git-gutter
+  window-system
+  :ensure t
+  :demand t
   :diminish git-gutter-mode
   :config
   (global-git-gutter-mode))

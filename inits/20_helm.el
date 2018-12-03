@@ -1,32 +1,35 @@
-;;; 20_helm.el --- setup helm.
-;;
-;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2018/01/17 16:21:34>
-;;
-
+;;; 20_helm.el --- configurations.
 ;;; Commentary:
-
 ;;; Code:
 
 (use-package helm
-  :if (e:require-package 'helm nil t)
+  :ensure t
+  :demand t
   :bind
   (:map global-map
         ([remap execute-extended-command] . helm-M-x))
-  :init
-  (defun my/helm-display-buffer (buffer)
-    (let ((helm-windata '(frame bottom 0.3 nil)))
+  :custom
+  (helm-buffer-max-length nil))
+
+(use-package helm
+  :no-require t
+  :after (windata)
+  :config
+  (defun my/helm-display-buffer (buffer &optional resume)
+    (let ((helm-windata '(frame bottom 0.4 nil)))
       (apply 'windata-display-buffer buffer helm-windata)))
   (set-variable 'helm-display-function 'my/helm-display-buffer))
 
-(use-package helm-ag
-  :if (e:require-package 'helm-ag nil t)
+(e:use-package helm-ag
+  (or (executable-find "rg")  ;; ripgrep
+      (executable-find "pt")) ;; The Platinum Searcher
+  :after (helm)
+  :ensure t
+  :defer t
   :init
   (cond
-   ;; ripgrep
    ((executable-find "rg")
     (set-variable 'helm-ag-base-command "rg --color never --no-heading --smart-case --vimgrep"))
-   ;; The Platinum Searcher
    ((executable-find "pt")
     (set-variable 'helm-ag-base-command "pt --nocolor --nogroup --smart-case")))
   :config
@@ -35,39 +38,48 @@
              when (locate-dominating-file default-directory dir)
              return it)))
 
-(use-package helm-c-yasnippet
-  :if (e:require-package 'helm-c-yasnippet nil t))
-
 (use-package helm-descbinds
-  :if (e:require-package 'helm-descbinds nil t))
+  :ensure t
+  :defer t)
 
 (use-package helm-dired-history
-  :if (e:require-package 'helm-dired-history nil t)
-  :config
-  (eval-after-load "ido"
-    (define-key (cdr ido-minor-mode-map-entry) [remap dired] nil)))
+  :after (dired)
+  :ensure t)
 
 (use-package helm-elscreen
-  :if (e:require-package 'helm-elscreen nil t)
+  :after (elscreen)
+  :ensure t
+  :defer t
   :bind
   (:map elscreen-map
         ("C-z" . helm-elscreen)))
 
 (use-package helm-flycheck
-  :if (e:require-package 'helm-flycheck nil t))
+  :after (flycheck)
+  :ensure t
+  :defer t)
 
-(use-package helm-ghq
-  :if (and (executable-find "ghq")
-           (e:require-package 'helm-ghq nil t)))
-
-(use-package helm-mode-manager
-  :if (e:require-package 'helm-mode-manager nil t))
+(e:use-package helm-ghq
+  (executable-find "ghq")
+  :ensure t
+  :defer t)
 
 (use-package helm-projectile
-  :if (e:require-package 'helm-projectile nil t))
+  :after (projectile)
+  :ensure t
+  :defer t
+  :commands (helm-find-files-with-projectile)
+  :config
+  (defun helm-find-files-with-projectile (&optional arg)
+    (interactive "P")
+    (if (projectile-project-p)
+        (helm-projectile)
+      (helm-find-files arg))))
 
 (use-package helm-swoop
-  :if (e:require-package 'helm-swoop nil t))
+  :after (helm)
+  :ensure t
+  :defer t)
 
 (provide '20_helm)
 ;;; 20_helm.el ends here

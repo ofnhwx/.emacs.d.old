@@ -1,76 +1,99 @@
-;;; 20_company.el --- setup company.
-;;
-;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2018/01/17 16:31:17>
-;;
-
+;;; 20_company.el --- configurations.
 ;;; Commentary:
-
 ;;; Code:
 
 (use-package company
-  :if (e:require-package 'company nil t)
-  :diminish company-mode
-  :init
-  (set-variable 'company-idle-delay 0)            ;; 補完候補をすぐに表示
-  (set-variable 'company-minimum-prefix-length 1) ;; 補完開始文字数
-  (set-variable 'company-selection-wrap-around t) ;; 上下でループ
+  :ensure t
+  :demand t
+  :custom
+  (company-async-timeout 5)
+  (company-dabbrev-code-ignore-case t)
+  (company-idle-delay 0)
+  (company-lighter-base "C")
+  (company-minimum-prefix-length 1)
+  (company-selection-wrap-around t)
+  (company-transformers '(company-sort-by-occurrence company-sort-by-backend-importance))
   :config
-  ;; PHP補完
-  (use-package company-php
-    :if (e:require-package 'company-php nil t)
-    :init
-    (set-variable 'ac-php-tags-path (e:expand "ac-php" :cache)))
-  ;; WEB補完
-  (use-package company-web
-    :if (e:require-package 'company-web nil t))
-  ;; ヘルパー関数
-  (defmacro add-company-backends (hook &rest backends)
-    `(add-hook
-      ',hook
-      (lambda ()
-        (make-local-variable 'company-backends)
-        (add-to-list 'company-backends ',backends))))
-  ;; `smartparens'を一時的に無効にする
-  (with-eval-after-load "smartparens"
-    (defvar company-smartparens-enabled nil
-      "`company'の補完中に`smartparens'の状態を保存しておく変数.")
-    (defun disable-smartparens-with-company (arg)
-      "`company'での補完開始時に`smartparens'を無効にする.引数 ARG は未使用."
-      (setq company-smartparens-enabled smartparens-global-mode)
-      (smartparens-global-mode 0))
-    (defun revert-smartparens-with-company (arg)
-      "`company'での補完終了時に`smartparens'の状態を戻す.引数 ARG は未使用."
-      (when company-smartparens-enabled
-        (smartparens-global-mode 1)))
-    (add-hook 'company-completion-started-hook   'disable-smartparens-with-company)
-    (add-hook 'company-completion-finished-hook  'revert-smartparens-with-company)
-    (add-hook 'company-completion-cancelled-hook 'revert-smartparens-with-company))
-  ;; 有効化
+  (defun set-company-backends (backends)
+    (make-local-variable 'company-backends)
+    (add-to-list 'company-backends (--filter (or (fboundp it) (eq it :with)) backends)))
   (global-company-mode))
 
+(use-package company
+  :no-require t
+  :after (smartparens)
+  :hook
+  ((company-completion-started   . disable-smartparens-with-company)
+   (company-completion-finished  . revert-smartparens-with-company)
+   (company-completion-cancelled . revert-smartparens-with-company))
+  :config
+  ;; `smartparens'を一時的に無効にする
+  (defvar company-smartparens-disable-modes nil
+    "`company'の補完中に`smartparens'を無効にするモード.")
+  (defvar company-smartparens-enabled nil
+    "`company'の補完中に`smartparens'の状態を保存しておく変数.")
+  (defun disable-smartparens-with-company (arg)
+    "`company'での補完開始時に`smartparens'を無効にする.引数 ARG は未使用."
+    (when (member major-mode company-smartparens-disable-modes)
+      (setq company-smartparens-enabled smartparens-global-mode)
+      (smartparens-global-mode 0)))
+  (defun revert-smartparens-with-company (arg)
+    "`company'での補完終了時に`smartparens'の状態を戻す.引数 ARG は未使用."
+    (and (member major-mode company-smartparens-disable-modes)
+         company-smartparens-enabled
+         (smartparens-global-mode 1))))
 
-;; モード毎の設定
-(add-company-backends php-mode-hook company-ac-php-backend company-dabbrev-code)
-(add-company-backends web-mode-hook company-web-html company-ac-php-backend company-dabbrev-code)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; [2016-06-14] - とりあえず`ac-php'を`web-mode'でも動くように
-(defun company-ac-php-backend (command &optional arg &rest ignored)
-  (interactive (list 'interactive))
-  (case command
-    (interactive (company-begin-backend 'company-ac-php-backend))
-    (prefix (and (or (eq major-mode 'php-mode)
-                     (eq major-mode 'web-mode))
-                 (company-ac-php--prefix)))
-    (candidates (company-ac-php-candidate arg))
-    (annotation (company-ac-php-annotation arg))
-    (duplicates t)
-    (post-completion
-     (let((doc))
-       (when (ac-php--tag-name-is-function arg)
-         (setq doc (ac-php-clean-document (get-text-property 0 'ac-php-help arg)))
-         (insert (concat doc ")"))
-         (company-template-c-like-templatify (concat arg doc ")")))))))
+(use-package company-php
+  :after (php-mode)
+  :ensure t
+  :defer t
+  :custom
+  (ac-php-tags-path (e:expand "ac-php" :cache)))
+
+(use-package company-web
+  :after (web-mode)
+  :ensure t
+  :defer t)
+
+(use-package company-irony
+  :after (irony)
+  :ensure t
+  :defer t
+  :custom
+  (company-irony-ignore-case 'smart))
+
+(use-package company-irony-c-headers
+  :after (irony)
+  :ensure t
+  :defer t)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(use-package company
+  :no-require t
+  :after (php-mode)
+  :hook (php-mode . company-php-setup)
+  :config
+  (defun company-php-setup()
+    (set-company-backends '(company-ac-php-backend :with company-dabbrev-code))))
+
+(use-package company
+  :no-require t
+  :after (web-mode)
+  :hook (web-mode . company-web-setup)
+  :config
+  (defun company-web-setup()
+    (set-company-backends '(company-ac-php-backend company-web-html :with company-dabbrev-code))))
+
+(use-package company
+  :no-require t
+  :after (irony)
+  :hook (irony-mode . company-irony-setup)
+  :config
+  (defun company-irony-setup ()
+    (set-company-backends '(company-irony company-irony-c-headers :with company-dabbrev-code company-yasnippet))))
 
 (provide '20_company)
 ;;; 20_company.el ends here

@@ -1,15 +1,10 @@
-;;; 20_bar-cursor.el --- setup bar-cursor.
-;;
-;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/12/04 15:09:23>
-;;
-
+;;; 20_bar-cursor.el --- configurations.
 ;;; Commentary:
-
 ;;; Code:
 
 (use-package bar-cursor
-  :if (e:require-package 'bar-cursor nil t)
+  :ensure t
+  :demand t
   :diminish bar-cursor-mode
   :config
   (bar-cursor-mode 1))

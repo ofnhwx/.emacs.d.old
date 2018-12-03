@@ -1,34 +1,62 @@
-;;; 20_powerline.el --- setup powerline.
-;;
-;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2018/01/10 16:28:43>
-;;
-
+;;; 20_powerline.el --- configurations.
 ;;; Commentary:
-
 ;;; Code:
 
 (use-package powerline
-  :if (e:require-package 'powerline nil t)
-  :init
-  (set-variable 'powerline-default-separator 'utf-8)
+  :no-require t
+  :after (evil)
   :config
-  ;; `evil'用の設定
-  (with-eval-after-load "evil"
-    (defface powerline-evil-normal-face   '((t (:foreground "#000000" :background "#59ff59"))) "NORMAL state."   :group 'powerline)
-    (defface powerline-evil-insert-face   '((t (:foreground "#000000" :background "#5959ff"))) "INSERT state."   :group 'powerline)
-    (defface powerline-evil-visual-face   '((t (:foreground "#000000" :background "#ff5959"))) "VISUAL state."   :group 'powerline)
-    (defface powerline-evil-operator-face '((t (:foreground "#000000" :background "#59ffff"))) "OPERATOR state." :group 'powerline)
-    (defface powerline-evil-replace-face  '((t (:foreground "#000000" :background "#ffff59"))) "REPLACE state."  :group 'powerline)
-    (defface powerline-evil-motion-face   '((t (:foreground "#000000" :background "#ff59ff"))) "MOTION state."   :group 'powerline)
-    (defface powerline-evil-emacs-face    '((t (:foreground "#000000" :background "#ff00ff"))) "EMACS state."    :group 'powerline)
-    (defun powerline-evil-state ()
-      (upcase (format "[%s]" evil-state)))
-    (defun powerline-evil-face ()
-      (let ((face (intern (format "powerline-evil-%s-face" evil-state))))
-        (if (facep face)
-            face
-          nil))))
+  (defface powerline-evil-normal-face   '((t (:foreground "#000000" :background "#59ff59"))) "NORMAL state."   :group 'powerline)
+  (defface powerline-evil-insert-face   '((t (:foreground "#000000" :background "#5959ff"))) "INSERT state."   :group 'powerline)
+  (defface powerline-evil-visual-face   '((t (:foreground "#000000" :background "#ff5959"))) "VISUAL state."   :group 'powerline)
+  (defface powerline-evil-operator-face '((t (:foreground "#000000" :background "#59ffff"))) "OPERATOR state." :group 'powerline)
+  (defface powerline-evil-replace-face  '((t (:foreground "#000000" :background "#ffff59"))) "REPLACE state."  :group 'powerline)
+  (defface powerline-evil-motion-face   '((t (:foreground "#000000" :background "#ff59ff"))) "MOTION state."   :group 'powerline)
+  (defface powerline-evil-emacs-face    '((t (:foreground "#000000" :background "#ff00ff"))) "EMACS state."    :group 'powerline)
+  (defun powerline-evil-state ()
+    (upcase (format "[%s]" evil-state)))
+  (defun powerline-evil-face ()
+    (let ((face (intern (format "powerline-evil-%s-face" evil-state))))
+      (if (facep face)
+          face
+        nil))))
+
+(use-package powerline
+  :no-require t
+  :after (skk)
+  :config
+  (defun powerline-skk-setup-modeline (fun &rest args)
+    (setq skk-indicator-alist (skk-make-indicator-alist))
+    (custom-set-faces
+     '(skk-emacs-hiragana-face       ((t (:foreground "#000000" :background "pink"))))
+     '(skk-emacs-katakana-face       ((t (:foreground "#000000" :background "green"))))
+     '(skk-emacs-jisx0201-face       ((t (:foreground "#000000" :background "thistle"))))
+     '(skk-emacs-jisx0208-latin-face ((t (:foreground "#000000" :background "gold"))))
+     '(skk-emacs-abbrev-face         ((t (:foreground "#000000" :background "royalblue")))))
+    (force-mode-line-update t))
+  (advice-add 'skk-setup-modeline :around 'powerline-skk-setup-modeline))
+
+(use-package powerline
+  :no-require t
+  :after (elscreen)
+  :config
+  (defun powerline-elscreen-max ()
+    (--first (elscreen-screen-live-p it) (number-sequence 9 0 -1)))
+  (defun powerline-elscreen-before ()
+    (apply 'concat (--map (if (elscreen-screen-live-p it) (int-to-string it) "_")
+                          (number-sequence 0 (1- (elscreen-get-current-screen))))))
+  (defun powerline-elscreen-current ()
+    (int-to-string (elscreen-get-current-screen)))
+  (defun powerline-elscreen-after ()
+    (apply 'concat (--map (if (elscreen-screen-live-p it) (int-to-string it) "_")
+                          (number-sequence (1+ (elscreen-get-current-screen)) (powerline-elscreen-max))))))
+
+(use-package powerline
+  :ensure t
+  :demand t
+  :custom
+  (powerline-default-separator 'utf-8)
+  :config
   ;; 文字・改行コードの表示
   (defun get-buffer-file-eol-type ()
     "バッファの改行コードを取得する."
@@ -60,23 +88,37 @@
              (face2               (if active 'powerline-active2 'powerline-inactive2))
              (separator-left  (intern (format "powerline-%s-%s" (powerline-current-separator) (car powerline-default-separator-dir))))
              (separator-right (intern (format "powerline-%s-%s" (powerline-current-separator) (cdr powerline-default-separator-dir))))
-             ;;
+             (bottom-left-window (eq (get-buffer-window) (e:bottom-left-window)))
+             ;; 左側
              (lhs
               (list
+               ;; elscreen
+               (if bottom-left-window
+                   (powerline-raw (concat "[" (powerline-elscreen-before)) 'mode-line-inactive))
+               (if bottom-left-window
+                   (powerline-raw (powerline-elscreen-current) 'cursor))
+               (if bottom-left-window
+                   (powerline-raw (concat (powerline-elscreen-after) "]") 'mode-line-inactive))
                ;; ステート(evil)
                (when (bound-and-true-p evil-mode)
                  (powerline-raw (powerline-evil-state) (powerline-evil-face)))
+               ;; skk
+               (powerline-raw (or (and (bound-and-true-p skk-modeline-input-mode)
+                                       (cl-plusp (length skk-modeline-input-mode))
+                                       skk-modeline-input-mode)
+                                  "-----::")
+                              mode-line)
                ;; 状態(%:readonly, *:modified, -:otherwise)
-               (powerline-raw "%*" mode-line 'l)
+               (powerline-raw "%*" mode-line)
                ;; IME
                ;;(powerline-raw mode-line-mule-info mode-line)
                (powerline-raw current-input-method-title mode-line)
                (powerline-coding-type mode-line)
                ;; バッファー名
-               (powerline-buffer-id mode-line-buffer-id 'r)
+               ;;(powerline-buffer-id mode-line-buffer-id)
                ;; 関数名(wchich-func-mode)
                (when (bound-and-true-p which-func-mode)
-                 (powerline-raw which-func-format nil 'l))
+                 (powerline-raw which-func-format face1 'l))
                ;; >>>
                (funcall separator-left mode-line face1)
                ;; 更新チャンネル(erc)
@@ -94,7 +136,7 @@
                (funcall separator-left face1 face2)
                ;; Version Control
                (powerline-vc face2 'r)))
-             ;;
+             ;; 右側
              (rhs
               (list
                ;; バッテリー、時刻等

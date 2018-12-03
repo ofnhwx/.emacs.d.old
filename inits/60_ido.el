@@ -1,59 +1,52 @@
-;;; 60_ido.el --- setup ido.
-;;
-;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/12/22 14:50:23>
-;;
-
+;;; 60_ido.el --- configurations.
 ;;; Commentary:
-
 ;;; Code:
 
-
-;; 'ido'を使用したシンボル補完
-(use-package bbyac
-  :if (e:require-package 'bbyac nil t)
-  :init
-  (set-variable 'bbyac-max-chars 99999)
+(use-package ido
+  :custom
+  (ido-enable-flex-matching t)
+  (ido-save-directory-list-file (e:expand "ido.last" :cache))
   :config
-  (defun bbyac--display-matches--use-ido (orig strlist)
-    (cond ((null (cdr strlist))
-           (car strlist))
-          ((cl-notany #'bbyac--string-multiline-p strlist)
-           (ido-completing-read "Bbyac: " strlist nil t))
-          (t (apply orig strlist))))
-  (advice-add 'bbyac--display-matches :around 'bbyac--display-matches--use-ido))
+  (ido-everywhere 1)
+  (ido-mode 1))
 
-;; 曖昧検索を常に有効化
+(use-package ido
+  :no-require t
+  :after (helm-dired-history)
+  :config
+  (define-key (cdr ido-minor-mode-map-entry) [remap dired] nil))
+
+(use-package bbyac
+  :after (ido)
+  :ensure t
+  :custom
+  (bbyac-max-chars 99999))
+
 (use-package flx-ido
-  :if (e:require-package 'flx-ido nil t)
+  :after (ido)
+  :ensure t
   :config
   (flx-ido-mode))
 
-;; いろいろな場所で'ido'を使用
 (use-package ido-completing-read+
-  :if (e:require-package 'ido-completing-read+ nil t)
+  :after (ido)
+  :ensure t
   :config
   (ido-ubiquitous-mode t))
 
-;; 最適化など
 (use-package ido-hacks
-  :if (e:require-package 'ido-hacks nil t)
+  :after (ido)
+  :ensure t
   :config
   (let ((hacks "^ido-hacks-"))
     (ad-enable-regexp hacks)
     (ad-activate-regexp hacks)))
 
-;; 候補を縦に表示
 (use-package ido-vertical-mode
-  :if (e:require-package 'ido-vertical-mode nil t)
+  :after (ido)
+  :ensure t
   :config
   (ido-vertical-mode t))
-
-;; yes/noの選択に使用
-(use-package ido-yes-or-no
-  :if (e:require-package 'ido-yes-or-no nil t)
-  :config
-  (ido-yes-or-no-mode t))
 
 (provide '60_ido)
 ;;; 60_ido.el ends here

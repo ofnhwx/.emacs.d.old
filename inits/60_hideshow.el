@@ -1,11 +1,5 @@
-;;; 60_hideshow.el --- setup hideshow.
-;;
-;; -*- mode: Emacs-Lisp; coding: utf-8 -*-
-;; Last updated: <2017/04/23 00:49:40>
-;;
-
+;;; 60_hideshow.el --- configurations.
 ;;; Commentary:
-
 ;;; Code:
 
 (use-package hideshow
