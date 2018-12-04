@@ -30,8 +30,9 @@
 ;; フォント
 (let ((font "Ricty Diminished Discord")
       (size 12))
-  (e:set-font font :size size :target 'japanese-jisx0208)
-  (e:set-font font :size size :target 'katakana-jisx0201)
+  (when (os-type-mac-p)
+    (e:set-font font :size size :target 'japanese-jisx0208)
+    (e:set-font font :size size :target 'katakana-jisx0201))
   (e:set-font font :size size))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
