@@ -20,8 +20,10 @@
                       'avy-goto-char) ,c))))
   (cl-loop for c from ?0 to ?9 do (add-keys-to-avy "s-" c 'word))
   (cl-loop for c from ?a to ?z do (add-keys-to-avy "s-" c 'word))
+  (cl-loop for c from ?A to ?Z do (add-keys-to-avy "s-" c 'word))
   (cl-loop for c from ?0 to ?9 do (add-keys-to-avy "s-M-" c))
-  (cl-loop for c from ?a to ?z do (add-keys-to-avy "s-M-" c)))
+  (cl-loop for c from ?a to ?z do (add-keys-to-avy "s-M-" c))
+  (cl-loop for c from ?A to ?Z do (add-keys-to-avy "s-M-" c)))
 
 (use-package ace-link
   :ensure t
