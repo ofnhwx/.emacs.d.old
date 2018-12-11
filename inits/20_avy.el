@@ -38,6 +38,8 @@
   :after (migemo)
   :ensure t
   :demand t
+  :custom
+  (aw-scope 'frame)
   :config
   (avy-migemo-mode 1))
 

@@ -78,7 +78,7 @@
  ("C-<" . er/contract-region)
  ("C-<backspace>" . cycle-spacing)
  ("C->" . er/expand-region)
- ("C-@" . helm-multi-files)
+ ("C-@" . e:base-commands-map)
  ("C-M-¥" . indent-region)
  ("C-\\" . skk-mode)
  ("C-^" . ace-window)
